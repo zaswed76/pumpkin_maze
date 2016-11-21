@@ -1,7 +1,49 @@
 import pygame
-from pygame.sprite import Sprite
+from pygame.sprite import Sprite, Group
 
 
+class MyGroup(Group):
+    def __init__(self, name, *sprites):
+        super().__init__(*sprites)
+        self.name = name
+
+class AbsSprite(Sprite):
+    def __init__(self, screen, image, alpha=False, *groups):
+        super().__init__(*groups)
+        if alpha:
+            self.image = pygame.image.load(image).convert_alpha()
+        else:
+            self.image = pygame.image.load(image).convert()
+        self.screen = screen
+        self.rect = self.image.get_rect()
+
+    def blitme(self):
+        self.screen.blit(self.image, self.rect)
+
+
+class Background(AbsSprite):
+    def __init__(self, screen, image, alpha=False, *groups):
+        super().__init__(screen, image, alpha, *groups)
+        self.name = 'Background'
+
+
+class Platform(Sprite):
+    def __init__(self, name, screen, image, x, y):
+        super().__init__()
+        self.name = name
+        self.image = image
+        self.screen = screen
+        # Загрузка изображения корабля и получение прямоугольника.
+
+        _, _, width, height = self.image.get_rect()
+        self.screen_rect = screen.get_rect()
+        self.rect = pygame.Rect(x, y, width, height)
+
+
+
+
+    def blitme(self):
+        self.screen.blit(self.image, self.rect)
 
 
 class Player(Sprite):
@@ -28,7 +70,7 @@ class Player(Sprite):
         self.screen_rect = screen.get_rect()
 
         # Каждый новый корабль появляется у нижнего края экрана.
-        self.rect.right = 64
+        self.rect.right = 160
         self.rect.bottom = 64
 
         # Сохранение вещественной координаты центра корабля.
@@ -71,6 +113,7 @@ class Player(Sprite):
         for p in platforms:
 
             if pygame.sprite.collide_rect(self, p):
+                print(p.name)
                 if p.name == 'walls':
                     if speed_x < 0:
                         self.rect.left = p.rect.right
@@ -80,8 +123,8 @@ class Player(Sprite):
                         self.rect.top = p.rect.bottom
                     elif speed_y > 0:
                         self.rect.bottom = p.rect.top
-                elif p.name == 'dors':
+                elif p.name == 'doors':
                     if self.stats.level < self.stats.max_levels:
                         self.stats.level += 1
-                        self.rect.right = 64
+                        self.rect.right = 160
                         self.rect.bottom = 64

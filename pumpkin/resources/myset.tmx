@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="10" height="10" tilewidth="32" tileheight="32" nextobjectid="1">
+ <tileset firstgid="1" name="tileset" tilewidth="32" tileheight="32" tilecount="2016" columns="32">
+  <image source="tileset.png" width="1024" height="2016"/>
+ </tileset>
+ <layer name="Слой тайлов 1" width="10" height="10">
+  <data encoding="csv">
+1503,1935,1936,1346,1350,1127,1029,1059,517,485,
+578,609,0,0,0,0,0,0,0,0,
+23,53,51,120,65,137,322,321,0,302,
+861,123,210,0,0,0,0,0,539,300,
+61,62,29,1152,0,0,0,0,412,302,
+158,157,30,1151,0,0,0,0,0,443,
+1958,0,0,0,0,0,0,0,0,0,
+1663,1630,1275,1879,0,0,0,0,0,0,
+1661,1824,0,0,0,0,0,0,0,0,
+741,1856,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+</map>

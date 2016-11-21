@@ -1,39 +1,39 @@
-import sys
+from collections import OrderedDict
 import pygame
-from pygame import *
-from pygame.sprite import Group, OrderedUpdates
-from libs import level_map
-from controller import Controller
-import units
 import gamestats
 import paths
+from controller import Controller
+from libs import level_map
+from libs import units
+from config import Config
 
-class MyGroup(Group):
-    def __init__(self, name, *sprites):
-        super().__init__(*sprites)
-        self.name = name
+cfg = Config()
 
-bg_layer = MyGroup('bg')
-dors = MyGroup('dors')
-walls = MyGroup('walls')
+
+# bg_layer = units.MyGroup('bg')
+blocks = OrderedDict()
+blocks['doors'] = units.MyGroup('doors')
+blocks['wooden_walls'] = units.MyGroup('walls')
+blocks['stone_walls'] = units.MyGroup('walls')
 
 
 def run_game():
     # Инициализирует игру и создает объект экрана.
     pygame.init()
-    screen = pygame.display.set_mode((640, 640))
+    screen = pygame.display.set_mode((768, 640))
     pygame.display.set_caption("pumpkin_maze")
     # Запуск основного цикла игры.
     stats = gamestats.GameStat()
-    maps = ('maps/map1.json', 'maps/map2.json')
-    levels = level_map.Levels(maps, screen, paths.resources, bg_layer, walls, dors)
-    up = down = left = right = running = False
-    player = units.Player(stats, screen, 1, 1, 27, 27)
+    dir = level_map.get_map_files(paths.maps)
+    maps = level_map.get_map_files(paths.maps)
+
+    levels = level_map.Levels(maps, screen, paths.resources, **blocks)
+    player = units.Player(stats, screen, cfg.speedx, cfg.speedy, 27, 27)
     timer = pygame.time.Clock()
     while True:
         timer.tick(120)
         # Отслеживание событий клавиатуры и мыши.
-        controll = Controller(player)
+        controller = Controller(player)
         # Отображение последнего прорисованного экрана.
 
         screen.fill((0,0,0))

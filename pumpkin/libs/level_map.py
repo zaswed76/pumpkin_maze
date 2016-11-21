@@ -1,37 +1,11 @@
 import json
 import os
-import pygame
-from pygame.sprite import Sprite
-from .subsprite import SubSprite
-from .platform import Platform
+from pygame import init, display, sprite
+from pumpkin.libs.subsprite import SubSprite
+from pumpkin.libs.units import Platform, Background
 
-
-class AbsSprite(Sprite):
-    def __init__(self, screen, image, alpha=False, *groups):
-        super().__init__(*groups)
-        if alpha:
-            self.image = pygame.image.load(image).convert_alpha()
-        else:
-            self.image = pygame.image.load(image).convert()
-        self.screen = screen
-        self.rect = self.image.get_rect()
-
-    def blitme(self):
-        self.screen.blit(self.image, self.rect)
-
-
-class Background(AbsSprite):
-    def __init__(self, screen, image, alpha=False, *groups):
-        super().__init__(screen, image, alpha, *groups)
-        self.name = 'Background'
-
-
-class Layers:
-    def __init__(self):
-        """
-
-        """
-        pass
+def get_map_files(direct):
+    return [os.path.join(direct, p) for p in os.listdir(direct)]
 
 
 class MapParser:
@@ -80,7 +54,8 @@ class LevelMap(list):
 
         self.screen = screen
         self.map_parser = MapParser(level)
-        self.image_background = self.get_bg_path(self.map_parser.bg_image)
+        self.image_background = self.get_bg_path(
+            self.map_parser.bg_image)
         if self.imgset_dir is None:
             self.image_set = self.map_parser.set_image
         else:
@@ -93,7 +68,8 @@ class LevelMap(list):
         self.images_subsprite = self.subsprite.get_sprites()
 
     def get_bg_path(self, pth):
-        return os.path.join(self.imgset_dir, os.path.basename(pth))
+        if pth is not None:
+            return os.path.join(self.imgset_dir, os.path.basename(pth))
 
     def get_fotoset_path(self, pth):
         return os.path.join(self.imgset_dir, os.path.basename(pth))
@@ -108,17 +84,16 @@ class LevelMap(list):
 
         self.all_layers.draw(self.screen)
 
-    def create_map(self, *groups):
-        for group, data in zip(groups, self.map_parser.tile_layers):
+    def create_map(self, **groups):
+        for group, data in zip(groups.values(), self.map_parser.tile_layers):
             self.creare_layer(group, data)
-
 
     def creare_layer(self, group, data):
         x = 0
         y = 0
         step = self.map_parser.tilewidth
         width = step * self.map_parser.width
-
+        print(data)
         for n in data:
             if n:
                 image = self.images_subsprite[n - 1]
@@ -138,47 +113,43 @@ class LevelMap(list):
 
 
 class Levels(list):
-    def __init__(self, maps, screen, resource, bg_group, *groups):
+    def __init__(self, maps, screen, resource,  **groups):
         super().__init__()
-        self.bg_group = bg_group
+        self.bg_group = None
         self.resource = resource
         self.groups = groups
         self.screen = screen
         self.maps = maps
-        self.init_levels()
+        self.create_levels()
 
-
-    def init_levels(self):
+    def create_levels(self):
         for map in self.maps:
-
             level = self.create_level(map, self.screen)
             self.append(level)
 
-
-
     def create_level(self, mp, screen):
-        all_group = pygame.sprite.LayeredUpdates()
+        all_group = sprite.LayeredUpdates()
         level = LevelMap(mp, screen, all_group,
-                                   imgset_dir=self.resource)
-        level.create_background(self.bg_group)
-        level.create_map(*self.groups)
+                         imgset_dir=self.resource)
+        if self.bg_group is not None:
+            level.create_background(self.bg_group)
+        level.create_map(**self.groups)
         return all_group
+
 
 if __name__ == '__main__':
     import os
-    import paths
+    from pumpkin import paths
     import pygame
     from pygame.sprite import Group
     from libs import subsprite
 
-    pygame.init()
-    screen = pygame.display.set_mode((150, 150))
-    pth_map = os.path.join(paths.maps, 'map1.json')
+    init()
+    screen = display.set_mode((150, 150))
+    pth_map = os.path.join(paths.maps, 'map3.json')
 
-    mp = LevelMap(pth_map, screen, Group())
-    # print(mp.map_parser.level_map['tilesets'])
-    # print(mp.map_parser.level_map['tilesets'][0])
-    # print(mp.map_parser.level_map['tilesets'][1])
-    # print(mp.map_parser.tile_layers)
-    # print(mp.map_parser.bg_image)
-    # mp.create_map()
+    mp = MapParser(pth_map)
+    lay = mp.level_map['layers'][0]
+    prop = lay['properties']
+    print(prop)
+    print()
