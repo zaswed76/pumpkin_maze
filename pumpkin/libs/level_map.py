@@ -1,5 +1,6 @@
 import json
 import os
+import pygame
 from pygame.sprite import Sprite
 from .subsprite import SubSprite
 from .platform import Platform
@@ -22,6 +23,7 @@ class AbsSprite(Sprite):
 class Background(AbsSprite):
     def __init__(self, screen, image, alpha=False, *groups):
         super().__init__(screen, image, alpha, *groups)
+        self.name = 'Background'
 
 
 class Layers:
@@ -40,14 +42,11 @@ class MapParser:
         self.tileheight = self.level_map['tilesets'][0]['tileheight']
         self.set_image = self.level_map['tilesets'][0]['image']
 
-
-
         self.width = self.level_map['width']
         self.bg_image = None
         self.tile_layers = []
 
         self.parse_layers()
-
 
     def parse_layers(self):
         for layer in self.layers:
@@ -71,38 +70,42 @@ class MapParser:
             print('------------------')
 
 
-class LevelMap:
+class LevelMap(list):
     def __init__(self, level, screen, all_layers, imgset_dir=None):
 
+        super().__init__()
         self.imgset_dir = imgset_dir
 
         self.all_layers = all_layers
-        self.image_background = None
+
         self.screen = screen
         self.map_parser = MapParser(level)
+        self.image_background = self.get_bg_path(self.map_parser.bg_image)
         if self.imgset_dir is None:
             self.image_set = self.map_parser.set_image
         else:
-            self.image_set = self.get_fotoset_path(self.map_parser.set_image)
+            self.image_set = self.get_fotoset_path(
+                self.map_parser.set_image)
         self.subsprite = SubSprite(
             self.image_set,
             self.map_parser.tilewidth,
             self.map_parser.tileheight)
         self.images_subsprite = self.subsprite.get_sprites()
 
+    def get_bg_path(self, pth):
+        return os.path.join(self.imgset_dir, os.path.basename(pth))
+
     def get_fotoset_path(self, pth):
-        print(os.path.basename(pth))
-        print(os.path.isabs(pth))
-        print(os.path.relpath(pth))
         return os.path.join(self.imgset_dir, os.path.basename(pth))
 
     def create_background(self, group):
-        bg = Background(self.screen, self.map_parser.bg_image)
-        group.add(bg)
-        self.all_layers.add(group)
-
+        if self.map_parser.bg_image is not None:
+            bg = Background(self.screen, self.image_background)
+            group.add(bg)
+            self.all_layers.add(group)
 
     def draw_layers(self):
+
         self.all_layers.draw(self.screen)
 
     def create_map(self, *groups):
@@ -118,8 +121,9 @@ class LevelMap:
 
         for n in data:
             if n:
-                image = self.images_subsprite[n-1]
-                platform = Platform(self.screen, image, x, y)
+                image = self.images_subsprite[n - 1]
+                platform = Platform(group.name, self.screen, image, x,
+                                    y)
                 group.add(platform)
                 x += step
             else:
@@ -129,7 +133,36 @@ class LevelMap:
                 y += step
             self.all_layers.add(group)
 
+    def empty(self):
+        self.all_layers.empty()
 
+
+class Levels(list):
+    def __init__(self, maps, screen, resource, bg_group, *groups):
+        super().__init__()
+        self.bg_group = bg_group
+        self.resource = resource
+        self.groups = groups
+        self.screen = screen
+        self.maps = maps
+        self.init_levels()
+
+
+    def init_levels(self):
+        for map in self.maps:
+
+            level = self.create_level(map, self.screen)
+            self.append(level)
+
+
+
+    def create_level(self, mp, screen):
+        all_group = pygame.sprite.LayeredUpdates()
+        level = LevelMap(mp, screen, all_group,
+                                   imgset_dir=self.resource)
+        level.create_background(self.bg_group)
+        level.create_map(*self.groups)
+        return all_group
 
 if __name__ == '__main__':
     import os
@@ -149,5 +182,3 @@ if __name__ == '__main__':
     # print(mp.map_parser.tile_layers)
     # print(mp.map_parser.bg_image)
     # mp.create_map()
-
-

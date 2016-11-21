@@ -1,8 +1,22 @@
 import sys
 import pygame
+from pygame import *
 from pygame.sprite import Group, OrderedUpdates
 from libs import level_map
+from controller import Controller
+import units
+import gamestats
 import paths
+
+class MyGroup(Group):
+    def __init__(self, name, *sprites):
+        super().__init__(*sprites)
+        self.name = name
+
+bg_layer = MyGroup('bg')
+dors = MyGroup('dors')
+walls = MyGroup('walls')
+
 
 def run_game():
     # Инициализирует игру и создает объект экрана.
@@ -10,20 +24,23 @@ def run_game():
     screen = pygame.display.set_mode((640, 640))
     pygame.display.set_caption("pumpkin_maze")
     # Запуск основного цикла игры.
-    all_group = pygame.sprite.OrderedUpdates()
-    levels = []
-    for i in range(100):
-        level_1 = level_map.LevelMap('maps/map1.json', screen, all_group, imgset_dir=paths.resources)
-        walls = Group()
-        level_1.create_map(walls)
-        levels.append(level_1)
+    stats = gamestats.GameStat()
+    maps = ('maps/map1.json', 'maps/map2.json')
+    levels = level_map.Levels(maps, screen, paths.resources, bg_layer, walls, dors)
+    up = down = left = right = running = False
+    player = units.Player(stats, screen, 1, 1, 27, 27)
+    timer = pygame.time.Clock()
     while True:
+        timer.tick(120)
         # Отслеживание событий клавиатуры и мыши.
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                sys.exit()
+        controll = Controller(player)
         # Отображение последнего прорисованного экрана.
-        levels[0].draw_layers()
+
+        screen.fill((0,0,0))
+        levels[stats.level].draw(screen)
+        player.blitme()
+        player.update(levels[stats.level])
         pygame.display.flip()
+
 
 run_game()

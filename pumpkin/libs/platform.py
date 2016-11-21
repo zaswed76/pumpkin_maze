@@ -3,8 +3,9 @@ from pygame.sprite import Sprite
 
 
 class Platform(Sprite):
-    def __init__(self, screen, image, x, y):
+    def __init__(self, name, screen, image, x, y):
         super().__init__()
+        self.name = name
         self.image = image
         self.screen = screen
         # Загрузка изображения корабля и получение прямоугольника.
