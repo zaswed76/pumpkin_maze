@@ -42,5 +42,5 @@ class SubSprite:
         return [(x, t) for x in s]
 
 if __name__ == '__main__':
-    sub = SubSprite('1-7sq.png', 100, 100)
+    sub = SubSprite(r'D:\0SYNC\python_projects\games\Games\pumpkin_maze\pumpkin\resources\DungeonCrawl_ProjectUtumnoTileset.png', 32, 32)
     print(sub.get_sprites())
