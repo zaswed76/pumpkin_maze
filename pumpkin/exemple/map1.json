@@ -59,6 +59,14 @@
          "imagewidth":320,
          "margin":0,
          "name":"myset",
+         "properties":
+            {
+             "file":"..\/resources\/myset.png"
+            },
+         "propertytypes":
+            {
+             "file":"file"
+            },
          "spacing":0,
          "tilecount":100,
          "tileheight":32,

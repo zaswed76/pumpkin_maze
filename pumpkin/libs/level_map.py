@@ -146,10 +146,10 @@ if __name__ == '__main__':
 
     init()
     screen = display.set_mode((150, 150))
-    pth_map = os.path.join(paths.maps, 'map3.json')
+    pth_map = os.path.join(paths.maps, 'map1.json')
 
     mp = MapParser(pth_map)
     lay = mp.level_map['layers'][0]
-    prop = lay['properties']
-    print(prop)
+    prop = lay.get('properties')
+    mp.print()
     print()
