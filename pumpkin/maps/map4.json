@@ -1,32 +1,18 @@
 { "height":10,
  "layers":[
         {
-         "data":[96, 96, 96, 96, 96, 96, 96, 96, 96, 96, 96, 0, 0, 0, 0, 0, 0, 0, 0, 96, 96, 0, 0, 0, 0, 0, 0, 0, 0, 96, 96, 0, 0, 0, 0, 0, 0, 0, 0, 96, 96, 0, 0, 0, 0, 0, 0, 0, 0, 96, 96, 0, 0, 0, 0, 0, 0, 0, 0, 0, 96, 0, 0, 0, 0, 0, 0, 0, 0, 96, 96, 0, 0, 0, 0, 0, 0, 0, 0, 96, 96, 0, 0, 0, 0, 0, 0, 0, 0, 96, 96, 96, 96, 96, 96, 96, 96, 96, 96, 96],
+         "data":[50, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 50],
          "height":10,
-         "name":"walls",
+         "name":"wall",
          "opacity":1,
-         "type":"tilelayer",
-         "visible":true,
-         "width":10,
-         "x":0,
-         "y":0
-        }, 
-        {
-         "data":[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 47, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-         "height":10,
-         "name":"doors",
-         "opacity":1,
-         "type":"tilelayer",
-         "visible":true,
-         "width":10,
-         "x":0,
-         "y":0
-        }, 
-        {
-         "data":[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 48, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 24, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 52, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-         "height":10,
-         "name":"artifacts",
-         "opacity":1,
+         "properties":
+            {
+             "link":""
+            },
+         "propertytypes":
+            {
+             "link":"string"
+            },
          "type":"tilelayer",
          "visible":true,
          "width":10,
@@ -54,17 +40,16 @@
              "0":
                 {
                  "class":"wall",
-                 "destructible":false
+                 "destructible":true
                 },
              "1":
                 {
                  "class":"wall",
-                 "destructible":false
+                 "destructible":true
                 },
              "10":
                 {
                  "class":"food",
-                 "destructible":false,
                  "hit":5,
                  "speed":0,
                  "strength":0
@@ -72,7 +57,6 @@
              "11":
                 {
                  "class":"food",
-                 "destructible":false,
                  "hit":2,
                  "speed":0,
                  "strength":0
@@ -80,7 +64,6 @@
              "12":
                 {
                  "class":"food",
-                 "destructible":false,
                  "hit":0,
                  "speed":0,
                  "strength":3
@@ -88,7 +71,6 @@
              "13":
                 {
                  "class":"food",
-                 "destructible":false,
                  "hit":0,
                  "speed":2,
                  "strength":0
@@ -96,7 +78,6 @@
              "14":
                 {
                  "class":"food",
-                 "destructible":false,
                  "hit":2,
                  "speed":0,
                  "strength":0
@@ -104,7 +85,6 @@
              "15":
                 {
                  "class":"food",
-                 "destructible":false,
                  "hit":2,
                  "speed":0,
                  "strength":0
@@ -112,7 +92,6 @@
              "16":
                 {
                  "class":"food",
-                 "destructible":false,
                  "hit":2,
                  "speed":0,
                  "strength":0
@@ -120,7 +99,6 @@
              "17":
                 {
                  "class":"food",
-                 "destructible":false,
                  "hit":2,
                  "speed":0,
                  "strength":0
@@ -128,465 +106,301 @@
              "18":
                 {
                  "class":"wall",
-                 "destructible":false
+                 "destructible":true
                 },
              "19":
                 {
-                 "class":"nterrain",
-                 "destructible":false
+                 "class":"wall",
+                 "destructible":true
                 },
              "2":
                 {
                  "class":"wall",
-                 "destructible":false
+                 "destructible":true
                 },
              "20":
                 {
                  "class":"weapon",
-                 "damage":3,
-                 "destructible":false
+                 "damage":3
                 },
              "21":
                 {
                  "class":"weapon",
-                 "damage":3,
-                 "destructible":false
+                 "damage":3
                 },
              "22":
                 {
                  "class":"weapon",
-                 "damage":4,
-                 "destructible":false
+                 "damage":4
                 },
              "23":
                 {
                  "class":"weapon",
-                 "damage":4,
-                 "destructible":false
+                 "damage":4
                 },
              "24":
                 {
                  "class":"weapon",
-                 "damage":2,
-                 "destructible":false
+                 "damage":2
                 },
              "25":
                 {
                  "class":"weapon",
-                 "damage":1,
-                 "destructible":false
+                 "damage":1
                 },
              "26":
                 {
                  "class":"weapon",
-                 "damage":1,
-                 "destructible":false
+                 "damage":1
                 },
              "27":
                 {
                  "class":"weapon",
-                 "damage":3,
-                 "destructible":false
+                 "damage":3
                 },
              "28":
                 {
                  "class":"weapon",
-                 "damage":3,
-                 "destructible":false
+                 "damage":3
                 },
              "29":
                 {
-                 "class":"nterrain",
-                 "destructible":false
+                 "class":"wall",
+                 "destructible":true
                 },
              "3":
                 {
                  "class":"wall",
-                 "destructible":false
+                 "destructible":true
                 },
              "30":
                 {
                  "armor":4,
-                 "class":"armor",
-                 "destructible":false
+                 "class":"armor"
                 },
              "31":
                 {
                  "armor":3,
-                 "class":"armor",
-                 "destructible":false
+                 "class":"armor"
                 },
              "32":
                 {
                  "armor":3,
-                 "class":"armor",
-                 "destructible":false
+                 "class":"armor"
                 },
              "33":
                 {
                  "armor":2,
-                 "class":"armor",
-                 "destructible":false
+                 "class":"armor"
                 },
              "34":
                 {
                  "armor":1,
-                 "class":"armor",
-                 "destructible":false
+                 "class":"armor"
                 },
              "35":
                 {
                  "armor":1,
-                 "class":"armor",
-                 "destructible":false
+                 "class":"armor"
                 },
              "36":
                 {
                  "armor":5,
-                 "class":"armor",
-                 "destructible":false
-                },
-             "37":
-                {
-                 "class":"nterrain",
-                 "destructible":false
+                 "class":"armor"
                 },
              "38":
                 {
-                 "class":"nterrain",
-                 "destructible":false
+                 "class":"wall",
+                 "destructible":true
                 },
              "39":
                 {
                  "class":"wall",
-                 "destructible":false
+                 "destructible":true
                 },
              "4":
                 {
                  "class":"wall",
-                 "destructible":false
+                 "destructible":true
                 },
              "40":
                 {
                  "armor":2,
-                 "class":"armor",
-                 "destructible":false
+                 "class":"armor"
                 },
              "41":
                 {
                  "armor":3,
-                 "class":"armor",
-                 "destructible":false
+                 "class":"armor"
                 },
              "42":
                 {
                  "armor":1,
-                 "class":"armor",
-                 "destructible":false
+                 "class":"armor"
                 },
              "43":
                 {
                  "class":"weapon",
-                 "damage":0,
-                 "destructible":false
-                },
-             "44":
-                {
-                 "destructible":false
-                },
-             "45":
-                {
-                 "destructible":false
+                 "damage":0
                 },
              "46":
                 {
                  "class":"door",
-                 "destructible":false,
                  "id":0,
                  "link":0
-                },
-             "47":
-                {
-                 "class":"nterrain",
-                 "destructible":false
                 },
              "48":
                 {
                  "class":"wall",
-                 "destructible":false
+                 "destructible":true
                 },
              "49":
                 {
-                 "class":"door",
-                 "destructible":false,
-                 "id":0,
-                 "link":0
+                 "class":"doors",
+                 "id":10,
+                 "link":10
                 },
              "5":
                 {
                  "class":"wall",
-                 "destructible":false
+                 "destructible":true
                 },
              "50":
                 {
                  "armor":1,
-                 "class":"armor",
-                 "destructible":false
+                 "class":"armor"
                 },
              "51":
                 {
                  "armor":1,
-                 "class":"armor",
-                 "destructible":false
+                 "class":"armor"
                 },
              "52":
                 {
                  "armor":1,
-                 "class":"armor",
-                 "destructible":false
+                 "class":"armor"
                 },
              "53":
                 {
                  "armor":1,
-                 "class":"armor",
-                 "destructible":false
+                 "class":"armor"
                 },
              "54":
                 {
                  "armor":1,
-                 "class":"armor",
-                 "destructible":false
-                },
-             "55":
-                {
-                 "destructible":false
+                 "class":"armor"
                 },
              "56":
                 {
                  "class":"door",
-                 "destructible":false,
                  "id":0,
                  "link":0
                 },
-             "57":
-                {
-                 "class":"nterrain",
-                 "destructible":false
-                },
              "58":
                 {
-                 "class":"nterrain",
-                 "destructible":false
+                 "class":"wall",
+                 "destructible":true
                 },
              "59":
                 {
                  "class":"door",
-                 "destructible":false,
-                 "id":0,
-                 "link":0
+                 "id":2,
+                 "link":1
                 },
              "6":
                 {
                  "class":"wall",
-                 "destructible":false
-                },
-             "60":
-                {
-                 "destructible":false
-                },
-             "61":
-                {
-                 "destructible":false
-                },
-             "62":
-                {
-                 "destructible":false
-                },
-             "63":
-                {
-                 "destructible":false
-                },
-             "64":
-                {
-                 "destructible":false
-                },
-             "65":
-                {
-                 "destructible":false
+                 "destructible":true
                 },
              "66":
                 {
                  "class":"wall",
                  "destructible":false
                 },
-             "67":
-                {
-                 "class":"nterrain",
-                 "destructible":false
-                },
              "68":
                 {
-                 "class":"nterrain",
-                 "destructible":false
-                },
-             "69":
-                {
+                 "class":"wall",
                  "destructible":true
                 },
              "7":
                 {
                  "class":"wall",
-                 "destructible":false
-                },
-             "70":
-                {
-                 "destructible":false
-                },
-             "71":
-                {
-                 "destructible":false
-                },
-             "72":
-                {
-                 "destructible":false
-                },
-             "73":
-                {
-                 "destructible":false
-                },
-             "74":
-                {
-                 "destructible":false
-                },
-             "75":
-                {
-                 "destructible":false
+                 "destructible":true
                 },
              "76":
                 {
                  "class":"wall",
-                 "destructible":true
-                },
-             "77":
-                {
-                 "class":"nterrain",
                  "destructible":false
                 },
              "78":
                 {
-                 "class":"nterrain",
-                 "destructible":false
-                },
-             "79":
-                {
-                 "destructible":false
+                 "class":"wall",
+                 "destructible":true
                 },
              "8":
                 {
                  "class":"wall",
-                 "destructible":false
-                },
-             "80":
-                {
-                 "destructible":false
+                 "destructible":true
                 },
              "81":
                 {
                  "armor":1,
-                 "class":"armor",
-                 "destructible":false
+                 "class":"armor"
                 },
              "82":
                 {
                  "armor":1,
-                 "class":"armor",
-                 "destructible":false
+                 "class":"armor"
                 },
              "83":
                 {
-                 "class":"nterrain",
-                 "destructible":false
+                 "class":"wall",
+                 "destructible":true
                 },
              "84":
                 {
-                 "class":"nterrain",
-                 "destructible":false
+                 "class":"wall",
+                 "destructible":true
                 },
              "85":
                 {
-                 "class":"nterrain",
-                 "destructible":false
+                 "class":"wall",
+                 "destructible":true
                 },
              "86":
                 {
                  "class":"wall",
-                 "destructible":true
+                 "destructible":false
                 },
              "87":
                 {
                  "class":"wall",
-                 "destructible":true
+                 "destructible":false
                 },
              "88":
                 {
-                 "class":"nterrain",
-                 "destructible":false
-                },
-             "89":
-                {
-                 "destructible":false
+                 "class":"wall",
+                 "destructible":true
                 },
              "9":
                 {
                  "class":"wall",
-                 "destructible":false
+                 "destructible":true
                 },
              "90":
                 {
-                 "destructible":false,
                  "num":1
-                },
-             "91":
-                {
-                 "destructible":false
-                },
-             "92":
-                {
-                 "destructible":false
-                },
-             "93":
-                {
-                 "destructible":false
-                },
-             "94":
-                {
-                 "destructible":false
-                },
-             "95":
-                {
-                 "class":"wall",
-                 "destructible":false
-                },
-             "96":
-                {
-                 "class":"nterrain",
-                 "destructible":false
                 },
              "97":
                 {
                  "class":"door",
-                 "destructible":false,
                  "id":0,
                  "link":0
                 },
              "98":
                 {
-                 "class":"nterrain",
-                 "destructible":false
-                },
-             "99":
-                {
-                 "destructible":false
+                 "class":"wall",
+                 "destructible":true
                 }
             },
          "tilepropertytypes":
@@ -604,7 +418,6 @@
              "10":
                 {
                  "class":"string",
-                 "destructible":"bool",
                  "hit":"int",
                  "speed":"int",
                  "strength":"int"
@@ -612,7 +425,6 @@
              "11":
                 {
                  "class":"string",
-                 "destructible":"bool",
                  "hit":"int",
                  "speed":"int",
                  "strength":"int"
@@ -620,7 +432,6 @@
              "12":
                 {
                  "class":"string",
-                 "destructible":"bool",
                  "hit":"int",
                  "speed":"int",
                  "strength":"int"
@@ -628,7 +439,6 @@
              "13":
                 {
                  "class":"string",
-                 "destructible":"bool",
                  "hit":"int",
                  "speed":"int",
                  "strength":"int"
@@ -636,7 +446,6 @@
              "14":
                 {
                  "class":"string",
-                 "destructible":"bool",
                  "hit":"int",
                  "speed":"int",
                  "strength":"int"
@@ -644,7 +453,6 @@
              "15":
                 {
                  "class":"string",
-                 "destructible":"bool",
                  "hit":"int",
                  "speed":"int",
                  "strength":"int"
@@ -652,7 +460,6 @@
              "16":
                 {
                  "class":"string",
-                 "destructible":"bool",
                  "hit":"int",
                  "speed":"int",
                  "strength":"int"
@@ -660,7 +467,6 @@
              "17":
                 {
                  "class":"string",
-                 "destructible":"bool",
                  "hit":"int",
                  "speed":"int",
                  "strength":"int"
@@ -683,56 +489,47 @@
              "20":
                 {
                  "class":"string",
-                 "damage":"int",
-                 "destructible":"bool"
+                 "damage":"int"
                 },
              "21":
                 {
                  "class":"string",
-                 "damage":"int",
-                 "destructible":"bool"
+                 "damage":"int"
                 },
              "22":
                 {
                  "class":"string",
-                 "damage":"int",
-                 "destructible":"bool"
+                 "damage":"int"
                 },
              "23":
                 {
                  "class":"string",
-                 "damage":"int",
-                 "destructible":"bool"
+                 "damage":"int"
                 },
              "24":
                 {
                  "class":"string",
-                 "damage":"int",
-                 "destructible":"bool"
+                 "damage":"int"
                 },
              "25":
                 {
                  "class":"string",
-                 "damage":"int",
-                 "destructible":"bool"
+                 "damage":"int"
                 },
              "26":
                 {
                  "class":"string",
-                 "damage":"int",
-                 "destructible":"bool"
+                 "damage":"int"
                 },
              "27":
                 {
                  "class":"string",
-                 "damage":"int",
-                 "destructible":"bool"
+                 "damage":"int"
                 },
              "28":
                 {
                  "class":"string",
-                 "damage":"int",
-                 "destructible":"bool"
+                 "damage":"int"
                 },
              "29":
                 {
@@ -747,49 +544,37 @@
              "30":
                 {
                  "armor":"int",
-                 "class":"string",
-                 "destructible":"bool"
+                 "class":"string"
                 },
              "31":
                 {
                  "armor":"int",
-                 "class":"string",
-                 "destructible":"bool"
+                 "class":"string"
                 },
              "32":
                 {
                  "armor":"int",
-                 "class":"string",
-                 "destructible":"bool"
+                 "class":"string"
                 },
              "33":
                 {
                  "armor":"int",
-                 "class":"string",
-                 "destructible":"bool"
+                 "class":"string"
                 },
              "34":
                 {
                  "armor":"int",
-                 "class":"string",
-                 "destructible":"bool"
+                 "class":"string"
                 },
              "35":
                 {
                  "armor":"int",
-                 "class":"string",
-                 "destructible":"bool"
+                 "class":"string"
                 },
              "36":
                 {
                  "armor":"int",
-                 "class":"string",
-                 "destructible":"bool"
-                },
-             "37":
-                {
-                 "class":"string",
-                 "destructible":"bool"
+                 "class":"string"
                 },
              "38":
                 {
@@ -809,46 +594,28 @@
              "40":
                 {
                  "armor":"int",
-                 "class":"string",
-                 "destructible":"bool"
+                 "class":"string"
                 },
              "41":
                 {
                  "armor":"int",
-                 "class":"string",
-                 "destructible":"bool"
+                 "class":"string"
                 },
              "42":
                 {
                  "armor":"int",
-                 "class":"string",
-                 "destructible":"bool"
+                 "class":"string"
                 },
              "43":
                 {
                  "class":"string",
-                 "damage":"int",
-                 "destructible":"bool"
-                },
-             "44":
-                {
-                 "destructible":"bool"
-                },
-             "45":
-                {
-                 "destructible":"bool"
+                 "damage":"int"
                 },
              "46":
                 {
                  "class":"string",
-                 "destructible":"bool",
                  "id":"int",
                  "link":"int"
-                },
-             "47":
-                {
-                 "class":"string",
-                 "destructible":"bool"
                 },
              "48":
                 {
@@ -858,7 +625,6 @@
              "49":
                 {
                  "class":"string",
-                 "destructible":"bool",
                  "id":"int",
                  "link":"int"
                 },
@@ -870,48 +636,33 @@
              "50":
                 {
                  "armor":"int",
-                 "class":"string",
-                 "destructible":"bool"
+                 "class":"string"
                 },
              "51":
                 {
                  "armor":"int",
-                 "class":"string",
-                 "destructible":"bool"
+                 "class":"string"
                 },
              "52":
                 {
                  "armor":"int",
-                 "class":"string",
-                 "destructible":"bool"
+                 "class":"string"
                 },
              "53":
                 {
                  "armor":"int",
-                 "class":"string",
-                 "destructible":"bool"
+                 "class":"string"
                 },
              "54":
                 {
                  "armor":"int",
-                 "class":"string",
-                 "destructible":"bool"
-                },
-             "55":
-                {
-                 "destructible":"bool"
+                 "class":"string"
                 },
              "56":
                 {
                  "class":"string",
-                 "destructible":"bool",
                  "id":"int",
                  "link":"int"
-                },
-             "57":
-                {
-                 "class":"string",
-                 "destructible":"bool"
                 },
              "58":
                 {
@@ -921,7 +672,6 @@
              "59":
                 {
                  "class":"string",
-                 "destructible":"bool",
                  "id":"int",
                  "link":"int"
                 },
@@ -930,36 +680,7 @@
                  "class":"string",
                  "destructible":"bool"
                 },
-             "60":
-                {
-                 "destructible":"bool"
-                },
-             "61":
-                {
-                 "destructible":"bool"
-                },
-             "62":
-                {
-                 "destructible":"bool"
-                },
-             "63":
-                {
-                 "destructible":"bool"
-                },
-             "64":
-                {
-                 "destructible":"bool"
-                },
-             "65":
-                {
-                 "destructible":"bool"
-                },
              "66":
-                {
-                 "class":"string",
-                 "destructible":"bool"
-                },
-             "67":
                 {
                  "class":"string",
                  "destructible":"bool"
@@ -969,45 +690,12 @@
                  "class":"string",
                  "destructible":"bool"
                 },
-             "69":
-                {
-                 "destructible":"bool"
-                },
              "7":
                 {
                  "class":"string",
                  "destructible":"bool"
                 },
-             "70":
-                {
-                 "destructible":"bool"
-                },
-             "71":
-                {
-                 "destructible":"bool"
-                },
-             "72":
-                {
-                 "destructible":"bool"
-                },
-             "73":
-                {
-                 "destructible":"bool"
-                },
-             "74":
-                {
-                 "destructible":"bool"
-                },
-             "75":
-                {
-                 "destructible":"bool"
-                },
              "76":
-                {
-                 "class":"string",
-                 "destructible":"bool"
-                },
-             "77":
                 {
                  "class":"string",
                  "destructible":"bool"
@@ -1017,30 +705,20 @@
                  "class":"string",
                  "destructible":"bool"
                 },
-             "79":
-                {
-                 "destructible":"bool"
-                },
              "8":
                 {
                  "class":"string",
                  "destructible":"bool"
                 },
-             "80":
-                {
-                 "destructible":"bool"
-                },
              "81":
                 {
                  "armor":"int",
-                 "class":"string",
-                 "destructible":"bool"
+                 "class":"string"
                 },
              "82":
                 {
                  "armor":"int",
-                 "class":"string",
-                 "destructible":"bool"
+                 "class":"string"
                 },
              "83":
                 {
@@ -1072,10 +750,6 @@
                  "class":"string",
                  "destructible":"bool"
                 },
-             "89":
-                {
-                 "destructible":"bool"
-                },
              "9":
                 {
                  "class":"string",
@@ -1083,49 +757,17 @@
                 },
              "90":
                 {
-                 "destructible":"bool",
                  "num":"int"
-                },
-             "91":
-                {
-                 "destructible":"bool"
-                },
-             "92":
-                {
-                 "destructible":"bool"
-                },
-             "93":
-                {
-                 "destructible":"bool"
-                },
-             "94":
-                {
-                 "destructible":"bool"
-                },
-             "95":
-                {
-                 "class":"string",
-                 "destructible":"bool"
-                },
-             "96":
-                {
-                 "class":"string",
-                 "destructible":"bool"
                 },
              "97":
                 {
                  "class":"string",
-                 "destructible":"bool",
                  "id":"int",
                  "link":"int"
                 },
              "98":
                 {
                  "class":"string",
-                 "destructible":"bool"
-                },
-             "99":
-                {
                  "destructible":"bool"
                 }
             },

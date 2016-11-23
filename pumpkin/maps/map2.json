@@ -1,21 +1,10 @@
-{ "backgroundcolor":"#008461",
+{ "backgroundcolor":"#3f7e00",
  "height":10,
  "layers":[
         {
-         "data":[1021, 1021, 1021, 1021, 1021, 1021, 1021, 1021, 1021, 1021, 1021, 0, 0, 0, 0, 0, 0, 0, 0, 1021, 1021, 0, 0, 0, 0, 0, 0, 0, 0, 1021, 1021, 0, 0, 0, 0, 0, 0, 0, 0, 1021, 1021, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1021, 0, 0, 0, 0, 0, 0, 0, 0, 1021, 1021, 0, 0, 0, 0, 0, 0, 0, 0, 1021, 1021, 0, 0, 0, 0, 0, 0, 0, 0, 1021, 1021, 0, 0, 0, 0, 0, 0, 0, 0, 1021, 1021, 1021, 1021, 1021, 1021, 1021, 1021, 1021, 1021, 1021],
+         "data":[3073, 3073, 3073, 3073, 3073, 3073, 3073, 3073, 0, 3073, 0, 1450, 0, 0, 0, 0, 0, 3073, 3073, 3073, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1923, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1501, 0, 0, 1450, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1345, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
          "height":10,
-         "name":"stone",
-         "opacity":1,
-         "type":"tilelayer",
-         "visible":true,
-         "width":10,
-         "x":0,
-         "y":0
-        }, 
-        {
-         "data":[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-         "height":10,
-         "name":"door",
+         "name":"\u0421\u043b\u043e\u0439 \u0442\u0430\u0439\u043b\u043e\u0432 1",
          "opacity":1,
          "type":"tilelayer",
          "visible":true,
@@ -29,122 +18,51 @@
  "tileheight":32,
  "tilesets":[
         {
-         "columns":10,
+         "columns":64,
          "firstgid":1,
-         "image":"..\/resources\/myset.png",
-         "imageheight":320,
-         "imagewidth":320,
+         "image":"..\/resources\/DungeonCrawl_ProjectUtumnoTileset.png",
+         "imageheight":1536,
+         "imagewidth":2048,
          "margin":0,
-         "name":"myset",
+         "name":"DungeonCrawl_ProjectUtumnoTileset",
          "spacing":0,
-         "terrains":[
-                {
-                 "name":"sss",
-                 "tile":-1
-                }, 
-                {
-                 "name":"ssds",
-                 "tile":55
-                }, 
-                {
-                 "name":"\u041d\u043e\u0432\u044b\u0439 \u0443\u0447\u0430\u0441\u0442\u043e\u043a",
-                 "tile":-1
-                }],
-         "tilecount":100,
+         "tilecount":3072,
          "tileheight":32,
-         "tiles":
+         "tileproperties":
             {
-             "0":
+             "1449":
                 {
-                 "objectgroup":
-                    {
-                     "draworder":"index",
-                     "height":0,
-                     "name":"",
-                     "objects":[
-                            {
-                             "height":0,
-                             "id":1,
-                             "name":"",
-                             "polygon":[
-                                    {
-                                     "x":0,
-                                     "y":0
-                                    }, 
-                                    {
-                                     "x":29.4545454545455,
-                                     "y":0.545454545454545
-                                    }, 
-                                    {
-                                     "x":28.1818181818182,
-                                     "y":27.0909090909091
-                                    }, 
-                                    {
-                                     "x":7.45454545454545,
-                                     "y":27.4545454545455
-                                    }, 
-                                    {
-                                     "x":4.36363636363636,
-                                     "y":21.4545454545455
-                                    }, 
-                                    {
-                                     "x":0,
-                                     "y":8.90909090909091
-                                    }],
-                             "rotation":0,
-                             "type":"",
-                             "visible":true,
-                             "width":0,
-                             "x":0.727272727272727,
-                             "y":1.63636363636364
-                            }],
-                     "opacity":1,
-                     "type":"objectgroup",
-                     "visible":true,
-                     "width":0,
-                     "x":0,
-                     "y":0
-                    }
+                 "type":"armor"
                 },
-             "10":
+             "1500":
                 {
-                 "terrain":[0, 0, 0, -1]
+                 "type":"food"
                 },
-             "44":
+             "1922":
                 {
-                 "terrain":[-1, -1, -1, 1]
+                 "type":"\u043e\u0440\u0443\u0436\u0438\u0435"
+                }
+            },
+         "tilepropertytypes":
+            {
+             "1449":
+                {
+                 "type":"string"
                 },
-             "45":
+             "1500":
                 {
-                 "terrain":[-1, -1, 1, -1]
+                 "type":"string"
                 },
-             "54":
+             "1922":
                 {
-                 "terrain":[-1, 1, -1, -1]
-                },
-             "55":
-                {
-                 "terrain":[1, 1, 1, 1]
+                 "type":"string"
                 }
             },
          "tilewidth":32
         }, 
         {
-         "columns":16,
-         "firstgid":101,
-         "image":"..\/resources\/Tileset_Espa_o.png",
-         "imageheight":1792,
-         "imagewidth":512,
-         "margin":0,
-         "name":"Tileset_Espa_o",
-         "spacing":0,
-         "tilecount":896,
-         "tileheight":32,
-         "tilewidth":32
-        }, 
-        {
          "columns":8,
-         "firstgid":997,
+         "firstgid":3073,
          "image":"..\/resources\/rpg_maker_wooden_floor_by_ayene_chan-d587fmi.png",
          "imageheight":256,
          "imagewidth":256,

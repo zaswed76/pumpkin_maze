@@ -6,6 +6,7 @@ screen = pygame.display.set_mode(
         (500, 500))
 class SubSprite:
     def __init__(self, image, width, height):
+        self.image = image
         self.height = height
         self.width = width
         self.sprite = pygame.image.load(image).convert_alpha()
@@ -40,6 +41,17 @@ class SubSprite:
 
     def get_sprite_time(self, s, t):
         return [(x, t) for x in s]
+
+    def __repr__(self):
+        return '''
+        class - {}
+        tileset - {}
+        self.w_count - {}
+        self.h_count - {}
+        size - ({}, {})
+
+        '''.format(self.__class__, self.image, self.w_count,
+                   self.h_count, self.width, self.height)
 
 if __name__ == '__main__':
     sub = SubSprite(r'D:\0SYNC\python_projects\games\Games\pumpkin_maze\pumpkin\resources\DungeonCrawl_ProjectUtumnoTileset.png', 32, 32)

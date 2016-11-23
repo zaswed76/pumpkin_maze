@@ -1,6 +1,6 @@
 import json
 
-with open('map1.json', "r") as f:
+with open('map2.json', "r") as f:
     conf = json.load(f)
 
 

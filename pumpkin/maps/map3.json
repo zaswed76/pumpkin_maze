@@ -1,17 +1,56 @@
-{ "height":10,
+{ "backgroundcolor":"#3f7e00",
+ "height":10,
  "layers":[
         {
-         "data":[32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 0, 0, 0, 0, 0, 0, 0, 0, 32, 32, 0, 0, 0, 0, 0, 0, 0, 0, 32, 32, 0, 0, 0, 0, 0, 0, 0, 0, 32, 32, 0, 0, 0, 0, 0, 0, 0, 0, 32, 32, 0, 0, 0, 0, 0, 0, 0, 0, 32, 32, 0, 0, 0, 0, 0, 0, 0, 0, 32, 32, 0, 0, 0, 0, 0, 0, 0, 0, 32, 32, 0, 0, 0, 0, 0, 0, 0, 0, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32],
+         "data":[3073, 3073, 3073, 3073, 3073, 3073, 3073, 3073, 3073, 3073, 3073, 0, 0, 0, 0, 0, 0, 0, 0, 3073, 3073, 0, 0, 0, 0, 0, 0, 0, 0, 3073, 3073, 0, 0, 0, 0, 0, 0, 0, 0, 3073, 3073, 0, 0, 0, 0, 0, 0, 0, 0, 3073, 3073, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3073, 0, 0, 0, 0, 0, 0, 0, 0, 3073, 3073, 0, 0, 0, 0, 0, 0, 0, 0, 3073, 3073, 0, 0, 0, 0, 0, 0, 0, 0, 3073, 3073, 3073, 3073, 3073, 3073, 3073, 3073, 3073, 3073, 3073],
          "height":10,
-         "name":"\u0421\u043b\u043e\u0439 \u0442\u0430\u0439\u043b\u043e\u0432 1",
+         "name":"wall",
          "opacity":1,
          "properties":
             {
-             "class":"stone"
+             "type":"wall"
             },
          "propertytypes":
             {
-             "class":"string"
+             "type":"string"
+            },
+         "type":"tilelayer",
+         "visible":true,
+         "width":10,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "data":[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3146, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+         "height":10,
+         "name":"doors",
+         "opacity":1,
+         "properties":
+            {
+             "type":"doors"
+            },
+         "propertytypes":
+            {
+             "type":"string"
+            },
+         "type":"tilelayer",
+         "visible":true,
+         "width":10,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "data":[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1501, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3045, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+         "height":10,
+         "name":"artifact",
+         "opacity":1,
+         "properties":
+            {
+             "type":"artifact"
+            },
+         "propertytypes":
+            {
+             "type":"string"
             },
          "type":"tilelayer",
          "visible":true,
@@ -25,8 +64,90 @@
  "tileheight":32,
  "tilesets":[
         {
-         "columns":10,
+         "columns":64,
          "firstgid":1,
+         "image":"..\/resources\/DungeonCrawl_ProjectUtumnoTileset.png",
+         "imageheight":1536,
+         "imagewidth":2048,
+         "margin":0,
+         "name":"DungeonCrawl_ProjectUtumnoTileset",
+         "spacing":0,
+         "tilecount":3072,
+         "tileheight":32,
+         "tileproperties":
+            {
+             "1449":
+                {
+                 "type":"armor"
+                },
+             "1500":
+                {
+                 "health":2,
+                 "type":"food"
+                },
+             "1922":
+                {
+                 "type":"\u043e\u0440\u0443\u0436\u0438\u0435"
+                },
+             "3044":
+                {
+                 "damage":3,
+                 "type":"armor"
+                }
+            },
+         "tilepropertytypes":
+            {
+             "1449":
+                {
+                 "type":"string"
+                },
+             "1500":
+                {
+                 "health":"int",
+                 "type":"string"
+                },
+             "1922":
+                {
+                 "type":"string"
+                },
+             "3044":
+                {
+                 "damage":"int",
+                 "type":"string"
+                }
+            },
+         "tilewidth":32
+        }, 
+        {
+         "columns":8,
+         "firstgid":3073,
+         "image":"..\/resources\/rpg_maker_wooden_floor_by_ayene_chan-d587fmi.png",
+         "imageheight":256,
+         "imagewidth":256,
+         "margin":0,
+         "name":"rpg_maker_wooden_floor_by_ayene_chan-d587fmi",
+         "spacing":0,
+         "tilecount":64,
+         "tileheight":32,
+         "tileproperties":
+            {
+             "0":
+                {
+                 "type":"stone"
+                }
+            },
+         "tilepropertytypes":
+            {
+             "0":
+                {
+                 "type":"string"
+                }
+            },
+         "tilewidth":32
+        }, 
+        {
+         "columns":10,
+         "firstgid":3137,
          "image":"..\/resources\/myset.png",
          "imageheight":320,
          "imagewidth":320,
@@ -35,6 +156,20 @@
          "spacing":0,
          "tilecount":100,
          "tileheight":32,
+         "tileproperties":
+            {
+             "9":
+                {
+                 "type":"doors"
+                }
+            },
+         "tilepropertytypes":
+            {
+             "9":
+                {
+                 "type":"string"
+                }
+            },
          "tilewidth":32
         }],
  "tilewidth":32,
