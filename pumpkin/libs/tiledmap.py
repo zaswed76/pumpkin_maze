@@ -1,6 +1,7 @@
 import json
 import os
-from pumpkin.libs import subsprite
+
+from libs import subsprite
 
 
 class Layer:
@@ -38,12 +39,21 @@ class TileSets(dict):
 
 class TiledParser:
     def __init__(self, json_map: str, tileset_dir: str):
+
+        """
+        создаёт объект карты, объект SubSprite
+        :param json_map: str path каталог размещения json карты
+        :param tileset_dir: str path каталог размещения tileseta
+        """
+
         self.tileset_dir = tileset_dir
+        # загрузка карты
         self.json_map = self.load_map(json_map)
+        # слои
         self.layers = self.json_map['layers']
         # [0] парсится карта ТОЛЬКО с одним тайлсетом
         self.sets = TileSets(self.json_map['tilesets'][0])
-
+        # объект SubSprite
         self.subsprite = subsprite.SubSprite(
             self.get_tileset_path(),
             self.json_map['tilewidth'],
@@ -79,6 +89,7 @@ class TiledParser:
         for lay in self.layers:
             for tile in lay['data']:
                 if tile:
+                    # сдвигаем на один назад (в json карте отсчёт от 1)
                     tiles.add(tile - 1)
         return tiles
 
@@ -88,7 +99,7 @@ if __name__ == '__main__':
 
     pth_map = os.path.join(paths.maps, 'map1.json')
     tiled = TiledParser(pth_map, paths.tilesets)
-    print(tiled.get_id_tiles())
+    tiled.print_json_map()
     # print(tiled.get_tileset_path())
     # print(tiled.sets.get_set())
-    print(tiled.subsprite)
+    # print(tiled.get_subsprites(tiled.get_id_tiles()))

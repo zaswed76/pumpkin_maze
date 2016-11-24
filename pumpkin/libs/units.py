@@ -2,10 +2,10 @@ import pygame
 from pygame.sprite import Sprite, Group
 
 
-class MyGroup(Group):
+class UGroup(Group):
     def __init__(self, name, *sprites):
         super().__init__(*sprites)
-        self.name = name
+        self.type = name
 
 class AbsSprite(Sprite):
     def __init__(self, screen, image, alpha=False, *groups):

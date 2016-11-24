@@ -10,11 +10,7 @@ from config import Config
 cfg = Config()
 
 
-# bg_layer = units.MyGroup('bg')
-blocks = OrderedDict()
-blocks['doors'] = units.MyGroup('doors')
-blocks['wooden_walls'] = units.MyGroup('walls')
-blocks['stone_walls'] = units.MyGroup('walls')
+
 
 
 def run_game():
