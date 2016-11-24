@@ -84,7 +84,8 @@ class Controller:
         for s in group:
             clicked = s.rect.collidepoint(x, y)
             if clicked:
-                print(s.rect)
+                print(s.rect.centerx)
+                print(s.rect.centery)
                 print(s.name)
                 print(s.gid)
                 return clicked
