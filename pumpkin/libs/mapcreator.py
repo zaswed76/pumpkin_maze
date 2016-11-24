@@ -21,6 +21,7 @@ class MapCreator:
             group_layer = units.UGroup(type_name)
             self.create_layer(group_layer, data)
 
+
     def create_layer(self, group_layer, data):
         x = 0
         y = 0
@@ -28,7 +29,7 @@ class MapCreator:
         width = step * self.tiled_map.json_map['width']
         for n in data:
             if n:
-                image = self.image_sprites[n]
+                image = self.image_sprites[n -1]
                 platform = Platform(group_layer.type, self.screen,
                                     image, x,
                                     y)
@@ -40,3 +41,9 @@ class MapCreator:
                 x = 0
                 y += step
             self.all_layers.add(group_layer)
+
+    def draw_map(self):
+        if self.all_layers:
+            self.all_layers.draw(self.screen)
+        else:
+            print(self.all_layers)

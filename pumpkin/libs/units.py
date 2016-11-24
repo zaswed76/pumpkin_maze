@@ -1,6 +1,7 @@
 import pygame
 from pygame.sprite import Sprite, Group
 
+a = 1 if 1 else 3
 
 class UGroup(Group):
     def __init__(self, name, *sprites):
