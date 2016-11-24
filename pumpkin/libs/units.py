@@ -29,8 +29,9 @@ class Background(AbsSprite):
 
 
 class Platform(Sprite):
-    def __init__(self, name, screen, image, x, y):
+    def __init__(self, name, screen, image, x, y, gid):
         super().__init__()
+        self.gid = gid
         self.name = name
         self.image = image
         self.screen = screen

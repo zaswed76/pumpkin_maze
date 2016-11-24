@@ -40,7 +40,7 @@ class Player:
         self._right = bool
 
 class Controller:
-    def __init__(self, player=None):
+    def __init__(self, player=None, groups=()):
         """
 
         :type player: pygame.sprite.Sprite
@@ -53,6 +53,11 @@ class Controller:
 
         for e in pygame.event.get():
             if e.type == pygame.QUIT: sys.exit()
+            elif e.type == pygame.MOUSEBUTTONDOWN:
+                x, y = pygame.mouse.get_pos()
+
+                self.mouse_collide(x, y, groups)
+
             if e.type == pygame.KEYDOWN and e.key == pygame.K_ESCAPE:
                 sys.exit()
             if e.type == pygame.KEYDOWN and e.key == pygame.K_UP:
@@ -74,3 +79,15 @@ class Controller:
                 player.right = False
             if e.type == pygame.KEYUP and e.key == pygame.K_LEFT:
                 player.left = False
+
+    def mouse_collide(self, x, y, group):
+        for s in group:
+            clicked = s.rect.collidepoint(x, y)
+            if clicked:
+                print(s.rect)
+                print(s.name)
+                print(s.gid)
+                return clicked
+
+
+

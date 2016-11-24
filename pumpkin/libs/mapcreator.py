@@ -31,8 +31,7 @@ class MapCreator:
             if n:
                 image = self.image_sprites[n -1]
                 platform = Platform(group_layer.type, self.screen,
-                                    image, x,
-                                    y)
+                                    image, x, y, n)
                 group_layer.add(platform)
                 x += step
             else:

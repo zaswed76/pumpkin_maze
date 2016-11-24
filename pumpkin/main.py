@@ -31,7 +31,7 @@ def run_game():
     while True:
         timer.tick(120)
         # Отслеживание событий клавиатуры и мыши.
-        controller = Controller()
+        controller = Controller(None, levels.all_layers)
         # Отображение последнего прорисованного экрана.
 
         screen.fill((0,0,0))
