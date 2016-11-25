@@ -1,9 +1,9 @@
 import pygame
-from pygame.sprite import Sprite, Group
+from pygame.sprite import Sprite, Group, OrderedUpdates
 
 a = 1 if 1 else 3
 
-class UGroup(Group):
+class UGroup(OrderedUpdates):
     def __init__(self, name, *sprites):
         super().__init__(*sprites)
         self.type = name
@@ -11,21 +11,33 @@ class UGroup(Group):
 class AbsSprite(Sprite):
     def __init__(self, screen, image, alpha=False, *groups):
         super().__init__(*groups)
-        if alpha:
-            self.image = pygame.image.load(image).convert_alpha()
-        else:
-            self.image = pygame.image.load(image).convert()
+
+
+        self.image = pygame.image.load(image).convert_alpha()
+
         self.screen = screen
         self.rect = self.image.get_rect()
+
 
     def blitme(self):
         self.screen.blit(self.image, self.rect)
 
 
 class Background(AbsSprite):
-    def __init__(self, screen, image, alpha=False, *groups):
-        super().__init__(screen, image, alpha, *groups)
+    def __init__(self, screen, image, x, y, speed, *groups):
+        super().__init__(screen, image, *groups)
+        self.speed = speed
         self.name = 'Background'
+        self.rect.x = x
+        self.rect.y = y
+        self.center_x = float(self.rect.centerx)
+        self.center_y = float(self.rect.centery)
+
+    def update(self, *args):
+        if self.speed:
+
+            self.center_x += self.speed
+        self.rect.centerx = self.center_x
 
 
 class Platform(Sprite):

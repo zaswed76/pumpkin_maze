@@ -63,6 +63,7 @@ class TiledParser:
         pth = self.sets['image']
         return os.path.join(self.tileset_dir, os.path.basename(pth))
 
+
     def load_map(self, level_map: str) -> dict:
         with open(level_map, "r") as f:
             return json.load(f)
@@ -87,10 +88,11 @@ class TiledParser:
         """
         tiles = set()
         for lay in self.layers:
-            for tile in lay['data']:
-                if tile:
-                    # сдвигаем на один назад (в json карте отсчёт от 1)
-                    tiles.add(tile - 1)
+            if lay['type'] == 'tilelayer':
+                for tile in lay['data']:
+                    if tile:
+                        # сдвигаем на один назад (в json карте отсчёт от 1)
+                        tiles.add(tile - 1)
         return tiles
 
 
