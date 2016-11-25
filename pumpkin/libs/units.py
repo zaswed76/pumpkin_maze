@@ -41,10 +41,10 @@ class Background(AbsSprite):
 
 
 class Platform(Sprite):
-    def __init__(self, name, screen, image, x, y, gid):
+    def __init__(self, type, screen, image, x, y, gid):
         super().__init__()
         self.gid = gid
-        self.name = name
+        self.type = type
         self.image = image
         self.screen = screen
         # Загрузка изображения корабля и получение прямоугольника.

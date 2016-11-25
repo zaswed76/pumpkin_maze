@@ -40,7 +40,7 @@ class Player:
         self._right = bool
 
 class Controller:
-    def __init__(self, player=None, groups=()):
+    def __init__(self, player=Player, groups=()):
         """
 
         :type player: pygame.sprite.Sprite
@@ -86,7 +86,7 @@ class Controller:
             if clicked:
                 print(s.rect.centerx)
                 print(s.rect.centery)
-                print(s.name)
+                print(s.type)
                 print(s.gid)
                 return clicked
 

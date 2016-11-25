@@ -35,7 +35,7 @@ class MapCreator:
 
     def create_map(self):
         for layer in self.tiled_map.layers:
-            if layer['type'] == 'tilelayer':
+            if layer['type'] == 'tilelayer' and layer['visible']:
                 type_name = layer['name']
                 data = layer['data']
                 group_layer = units.UGroup(type_name)
