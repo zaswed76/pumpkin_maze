@@ -6,7 +6,7 @@ from libs import tiledmap, units
 from libs.units import Platform
 
 
-class MapCreator:
+class LevelCreator:
     def __init__(self, screen: pygame.Surface, json_map: str, tileset_dir: str,
                  resources_dir: str
                  ):
@@ -23,11 +23,9 @@ class MapCreator:
 
     def get_size_map(self):
         w = (
-        self.tiled_map.json_map['width'] * self.tiled_map.json_map[
-            'tilewidth'])
+        self.tiled_map['width'] * self.tiled_map['tilewidth'])
         h = (
-        self.tiled_map.json_map['height'] * self.tiled_map.json_map[
-            'tileheight'])
+        self.tiled_map['height'] * self.tiled_map['tileheight'])
         return (w, h)
 
     def set_screen(self, screen):
@@ -40,7 +38,7 @@ class MapCreator:
                 data = layer['data']
                 group_layer = units.UGroup(type_name)
                 self.create_layer(group_layer, data)
-            elif layer['type'] == 'imagelayer':
+            elif layer['type'] == 'imagelayer' and layer['visible']:
                 speed = layer.get('properties', {}).get('speed', 0)
                 self.create_image(self.get_image_path(layer['image']),
                                   layer.get('offsetx', 0),
@@ -58,8 +56,8 @@ class MapCreator:
     def create_layer(self, group_layer, data):
         x = 0
         y = 0
-        step = self.tiled_map.json_map['tilewidth']
-        width = step * self.tiled_map.json_map['width']
+        step = self.tiled_map['tilewidth']
+        width = step * self.tiled_map['width']
         for n in data:
             if n:
                 gid = n - 1
@@ -75,7 +73,7 @@ class MapCreator:
                 y += step
         self.level[group_layer.type] = (group_layer)
 
-    def draw_map(self):
+    def draw_tiles(self):
         self.all_images.draw(self.screen)
         if self.level:
             self.level.draw(self.screen)
@@ -83,29 +81,37 @@ class MapCreator:
         else:
             print(self.level)
 
-    def update(self):
+    def draw_images(self):
         self.all_images.update()
 
+    def fill(self):
+        self.screen.fill(pygame.Color(self.tiled_map.get('backgroundcolor', 'black')))
 
-class Levels:
-    def __init__(self, screen: pygame.Surface, map_dir: str, tileset_dir: str,
-                 resources_dir: str, config,
+
+class Levels(list):
+    def __init__(self, screen: pygame.Surface, map_dir: str,
+                 tileset_dir: str, resources_dir: str, config,
                  map_format='.json'):
+        super().__init__()
         self.screen = screen
-        print(screen, 'screen')
         self.resources_dir = resources_dir
         self.tileset_dir = tileset_dir
         self.map_format = map_format
         self.map_dir = map_dir
         self.included_level = config.included_level
         self.maps = self.get_maps()
-        self.all_maps = []
 
 
-    def get_maps(self):
+
+    def get_maps(self) -> list:
+        """
+        составляет список путей к картам на основании списка config.included_level
+        :return: list < str
+        """
         maps = []
         for lev_name in self.included_level:
             path = os.path.join(self.map_dir, str(lev_name) + self.map_format)
+            # если карта существует
             if os.path.isfile(path):
                 maps.append(path)
             else:
@@ -114,13 +120,26 @@ class Levels:
         return maps
 
     def create_levels(self):
+
+        """
+        создаёт все уровни
+        :return:
+        """
         if not self.maps:
             return None
         for map in self.maps:
-            print(map, 1111)
-            level = MapCreator(self.screen, map, self.tileset_dir,
-                                   self.resources_dir)
+            # создать уровень
+            level = LevelCreator(self.screen, map, self.tileset_dir,
+                                 self.resources_dir)
             level.create_map()
-            self.all_maps.append(level)
+            self.append(level)
 
+    def draw(self, level: int):
+        """
+         отрисовывает уровень на поверхности pygame.Surface
+        :param level: номер уровня
+        """
 
+        self[level].fill()
+        self[level].draw_tiles()
+        self[level].draw_images()

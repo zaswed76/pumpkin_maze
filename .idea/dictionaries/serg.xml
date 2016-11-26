@@ -1,8 +1,10 @@
 <component name="ProjectDictionaryState">
   <dictionary name="serg">
     <words>
+      <w>backgroundcolor</w>
       <w>offsetx</w>
       <w>offsety</w>
+      <w>pygame</w>
       <w>tilelayer</w>
     </words>
   </dictionary>

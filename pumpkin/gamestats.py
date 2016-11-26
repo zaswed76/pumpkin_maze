@@ -19,4 +19,5 @@ class GameStat:
 
     @level.setter
     def level(self, level):
+        print('!!!!')
         self._level = level

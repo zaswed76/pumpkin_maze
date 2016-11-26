@@ -37,8 +37,8 @@ class TileSets(dict):
             print('========================================')
 
 
-class TiledParser:
-    def __init__(self, json_map: str, tileset_dir: str):
+class TiledParser(dict):
+    def __init__(self, json_map: str, tileset_dir: str, **kwargs):
 
         """
         создаёт объект карты, объект SubSprite
@@ -46,20 +46,21 @@ class TiledParser:
         :param tileset_dir: str path каталог размещения tileseta
         """
 
+        super().__init__(**kwargs)
         self.tileset_dir = tileset_dir
         # загрузка карты
-        self.json_map = self.load_map(json_map)
+        self.update(self.load_map(json_map))
         # слои
-        self.layers = self.json_map['layers']
+        self.layers = self['layers']
         # [0] парсится карта ТОЛЬКО с одним тайлсетом
-        self.sets = TileSets(self.json_map['tilesets'][0])
+        self.sets = TileSets(self['tilesets'][0])
         # объект SubSprite
         self.subsprite = subsprite.SubSprite(
             self.get_tileset_path(),
-            self.json_map['tilewidth'],
-            self.json_map['tileheight'])
+            self['tilewidth'],
+            self['tileheight'])
 
-        self.tiled_properties = self.json_map['tilesets'][0]['tileproperties']
+        self.tiled_properties = self['tilesets'][0]['tileproperties']
 
 
     def get_tileset_path(self):
