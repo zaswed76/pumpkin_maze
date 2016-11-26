@@ -20,6 +20,11 @@ class LevelCreator:
             self.tiled_map.get_id_tiles())
         self.level = units.Level()
         self.all_images = OrderedUpdates()
+        self.bg_type = None
+
+    def set_bg_type(self, type):
+        self.bg_type = type
+
 
     def get_size_map(self):
         w = (
@@ -50,7 +55,7 @@ class LevelCreator:
                             os.path.basename(image))
 
     def create_image(self, image_pth, x, y, speed):
-        bg = units.Background(self.screen, image_pth, x, y, speed)
+        bg = self.bg_type(self.screen, image_pth, x, y, speed)
         self.all_images.add(bg)
 
     def create_layer(self, group_layer, data):
@@ -100,7 +105,7 @@ class Levels(list):
         self.map_dir = map_dir
         self.included_level = config.included_level
         self.maps = self.get_maps()
-
+        self.bg_type = units.Background
 
 
     def get_maps(self) -> list:
@@ -131,6 +136,7 @@ class Levels(list):
             # создать уровень
             level = LevelCreator(self.screen, map, self.tileset_dir,
                                  self.resources_dir)
+            level.set_bg_type(self.bg_type )
             level.create_map()
             self.append(level)
 
@@ -139,7 +145,11 @@ class Levels(list):
          отрисовывает уровень на поверхности pygame.Surface
         :param level: номер уровня
         """
-
+        # todo что зачем?
         self[level].fill()
-        self[level].draw_tiles()
         self[level].draw_images()
+        self[level].draw_tiles()
+
+
+    def set_bg_type(self, bg_type):
+        self.bg_type = bg_type

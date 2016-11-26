@@ -15,7 +15,7 @@ def run_game():
     # Инициализирует игру и создает объект экрана.
     pygame.init()
     # json_map = os.path.join(paths.maps, '5.json')
-    screen = pygame.display.set_mode((960, 640))
+    screen = pygame.display.set_mode((320, 320))
     # level = mapcreator.MapCreator(screen, json_map, paths.tilesets,
     #                                paths.resources)
 
@@ -27,6 +27,8 @@ def run_game():
 
     #---------- Levels ----------------------------------------------
     all_levels = mapcreator.Levels(screen, paths.maps, paths.tilesets, paths.resources, cfg)
+    bg_type = units.Background2
+    all_levels.set_bg_type(bg_type)
     all_levels.create_levels()
 
     timer = pygame.time.Clock()

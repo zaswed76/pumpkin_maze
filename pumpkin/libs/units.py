@@ -33,9 +33,12 @@ class AbsSprite(Sprite):
         self.screen = screen
         self.rect = self.image.get_rect()
 
+    def update(self, *args):
+        pass
 
     def blitme(self):
         self.screen.blit(self.image, self.rect)
+
 
 
 class Background(AbsSprite):
@@ -54,6 +57,15 @@ class Background(AbsSprite):
             self.center_x += self.speed
         self.rect.centerx = self.center_x
 
+class Background2(Background):
+    def __init__(self, screen, image, x, y, speed, *groups):
+        super().__init__(screen, image, x, y, speed, *groups)
+
+    def update(self, *args):
+        if self.speed:
+
+            self.center_y += self.speed
+        self.rect.centery = self.center_y
 
 class Platform(Sprite):
     def __init__(self, type, screen, image, x, y, gid, properties):

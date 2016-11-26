@@ -62,7 +62,7 @@ class Controller:
             if e.type == pygame.KEYDOWN and e.key == pygame.K_ESCAPE:
                 sys.exit()
             if e.type == pygame.KEYDOWN and e.key == pygame.K_UP:
-                player.up = True
+                self.game_stat.increase_level()
             if e.type == pygame.KEYDOWN and e.key == pygame.K_DOWN:
                 player.down = True
             if e.type == pygame.KEYDOWN and e.key == pygame.K_LEFT:
