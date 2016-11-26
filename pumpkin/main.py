@@ -15,29 +15,32 @@ def run_game():
     # Инициализирует игру и создает объект экрана.
     pygame.init()
     json_map = os.path.join(paths.maps, '5.json')
-    levels = mapcreator.MapCreator(json_map, paths.tilesets,
+    screen = pygame.display.set_mode((960, 640))
+    level = mapcreator.MapCreator(screen, json_map, paths.tilesets,
                                    paths.resources)
-    screen = pygame.display.set_mode(levels.size_map)
-    levels.set_screen(screen)
+
+    level.set_screen(screen)
     pygame.display.set_caption("pumpkin_maze")
-    # Запуск основного цикла игры.
+
     stats = gamestats.GameStat()
-    # dir = level_map.get_map_files(paths.maps)
-    # maps = level_map.get_map_files(paths.maps)
+    level.create_map()
 
-    levels.create_map()
-    # player = units.Player(stats, screen, cfg.speedx, cfg.speedy, 27, 27)
+    #---------- Levels ----------------------------------------------
+    all_levels = mapcreator.Levels(screen, paths.maps, paths.tilesets, paths.resources, cfg)
+    all_levels.create_levels()
+
     timer = pygame.time.Clock()
-
+    # Запуск основного цикла игры.
     while True:
 
         # Отслеживание событий клавиатуры и мыши.
-        controller = Controller(groups=levels.all_layers)
+        controller = Controller(stats, groups=level.level)
         # Отображение последнего прорисованного экрана.
 
         screen.fill((0, 0, 0))
-        levels.draw_map()
-        levels.update()
+        # print(stats.level)
+        level.draw_map()
+        level.update()
 
         pygame.display.flip()
         timer.tick(120)

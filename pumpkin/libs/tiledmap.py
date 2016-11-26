@@ -59,6 +59,9 @@ class TiledParser:
             self.json_map['tilewidth'],
             self.json_map['tileheight'])
 
+        self.tiled_properties = self.json_map['tilesets'][0]['tileproperties']
+
+
     def get_tileset_path(self):
         pth = self.sets['image']
         return os.path.join(self.tileset_dir, os.path.basename(pth))
@@ -88,7 +91,7 @@ class TiledParser:
         """
         tiles = set()
         for lay in self.layers:
-            if lay['type'] == 'tilelayer':
+            if lay['type'] == 'tilelayer' and lay['visible']:
                 for tile in lay['data']:
                     if tile:
                         # сдвигаем на один назад (в json карте отсчёт от 1)

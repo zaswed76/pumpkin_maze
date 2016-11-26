@@ -1,8 +1,32 @@
-{ "height":10,
+{ "height":20,
  "layers":[
         {
-         "data":[50, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 50],
-         "height":10,
+         "height":20,
+         "image":"..\/resources\/sand_texture1010.bmp",
+         "name":"\u0421\u043b\u043e\u0439 \u0438\u0437\u043e\u0431\u0440\u0430\u0436\u0435\u043d\u0438\u0439 2",
+         "opacity":1,
+         "type":"imagelayer",
+         "visible":true,
+         "width":30,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "height":20,
+         "image":"..\/resources\/sand_texture1010.bmp",
+         "name":"\u0421\u043b\u043e\u0439 \u0438\u0437\u043e\u0431\u0440\u0430\u0436\u0435\u043d\u0438\u0439 1",
+         "offsetx":324,
+         "offsety":0,
+         "opacity":1,
+         "type":"imagelayer",
+         "visible":true,
+         "width":30,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "data":[0, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 0, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85],
+         "height":20,
          "name":"wall",
          "opacity":1,
          "properties":
@@ -15,7 +39,29 @@
             },
          "type":"tilelayer",
          "visible":true,
-         "width":10,
+         "width":30,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "data":[0, 0, 58, 58, 58, 58, 58, 58, 58, 58, 58, 58, 58, 58, 58, 58, 58, 58, 58, 58, 58, 58, 58, 58, 58, 58, 58, 58, 58, 58, 58, 0, 0, 0, 0, 0, 58, 0, 0, 0, 0, 0, 58, 0, 0, 0, 0, 0, 0, 0, 0, 0, 58, 0, 0, 0, 0, 0, 0, 58, 58, 58, 58, 58, 0, 58, 58, 58, 58, 58, 58, 58, 58, 58, 58, 0, 58, 58, 58, 0, 58, 58, 58, 58, 0, 0, 58, 0, 0, 58, 58, 0, 0, 0, 0, 0, 58, 0, 0, 0, 0, 58, 58, 0, 0, 0, 58, 0, 0, 0, 0, 0, 58, 58, 58, 0, 58, 58, 0, 58, 58, 0, 0, 0, 0, 58, 58, 0, 0, 0, 0, 0, 0, 0, 0, 0, 58, 58, 58, 58, 0, 0, 0, 0, 0, 0, 0, 58, 58, 58, 58, 0, 0, 58, 58, 58, 58, 58, 58, 58, 0, 58, 58, 58, 0, 0, 0, 58, 0, 0, 0, 0, 58, 0, 0, 58, 0, 0, 0, 58, 58, 58, 0, 58, 0, 58, 0, 58, 0, 58, 0, 58, 58, 58, 58, 58, 58, 58, 58, 0, 58, 58, 58, 58, 58, 58, 58, 58, 0, 58, 58, 0, 0, 0, 0, 58, 0, 58, 58, 0, 0, 0, 58, 58, 0, 0, 0, 0, 0, 0, 58, 0, 58, 0, 0, 0, 0, 58, 0, 58, 58, 0, 58, 58, 0, 0, 0, 0, 58, 0, 0, 0, 0, 58, 58, 58, 0, 0, 58, 0, 0, 0, 0, 0, 0, 0, 0, 58, 0, 58, 58, 58, 0, 0, 0, 58, 0, 0, 58, 58, 58, 0, 0, 0, 0, 58, 0, 0, 58, 0, 58, 0, 58, 58, 0, 0, 0, 58, 0, 58, 58, 0, 58, 58, 58, 58, 58, 0, 58, 58, 58, 58, 58, 0, 58, 58, 58, 58, 58, 58, 58, 58, 58, 58, 58, 0, 58, 58, 58, 58, 58, 0, 0, 0, 0, 0, 58, 0, 0, 0, 0, 58, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 58, 58, 0, 0, 0, 58, 58, 58, 0, 58, 58, 0, 0, 0, 0, 0, 0, 0, 58, 0, 58, 0, 0, 0, 58, 58, 0, 58, 58, 58, 58, 58, 58, 58, 0, 0, 0, 58, 0, 58, 58, 58, 58, 58, 58, 58, 58, 58, 58, 58, 58, 58, 58, 58, 58, 0, 0, 0, 58, 0, 0, 0, 58, 0, 0, 0, 58, 58, 0, 0, 0, 0, 0, 58, 0, 0, 0, 58, 0, 0, 0, 0, 0, 0, 0, 0, 0, 58, 58, 0, 0, 0, 58, 0, 0, 0, 58, 58, 58, 0, 0, 0, 0, 58, 58, 0, 0, 0, 0, 0, 0, 0, 58, 58, 58, 0, 0, 58, 0, 0, 0, 0, 58, 0, 0, 0, 58, 58, 58, 58, 58, 0, 58, 58, 58, 0, 58, 58, 58, 0, 58, 58, 58, 58, 58, 58, 58, 58, 58, 58, 0, 58, 58, 58, 58, 58, 58, 58, 58, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 58, 0, 58, 58, 0, 0, 0, 0, 0, 0, 58, 0, 0, 0, 58, 58, 58, 58, 0, 0, 0, 0, 58, 0, 0, 0, 0, 0, 58, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 58, 58, 58, 58, 58, 58, 58, 58, 58, 58, 58, 58, 58, 58, 58, 58, 58, 58, 58, 58, 58, 58, 58, 58, 58, 58, 58, 58, 58, 58, 58, 58, 58],
+         "height":20,
+         "name":"\u0421\u043b\u043e\u0439 \u0442\u0430\u0439\u043b\u043e\u0432 3",
+         "opacity":1,
+         "type":"tilelayer",
+         "visible":true,
+         "width":30,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "data":[50, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+         "height":20,
+         "name":"door",
+         "opacity":1,
+         "type":"tilelayer",
+         "visible":true,
+         "width":30,
          "x":0,
          "y":0
         }],
@@ -39,74 +85,74 @@
             {
              "0":
                 {
-                 "class":"wall",
-                 "destructible":true
+                 "destructible":true,
+                 "type":"wall"
                 },
              "1":
                 {
-                 "class":"wall",
-                 "destructible":true
+                 "destructible":true,
+                 "type":"wall"
                 },
              "10":
                 {
-                 "class":"food",
                  "hit":5,
                  "speed":0,
-                 "strength":0
+                 "strength":0,
+                 "type":"food"
                 },
              "11":
                 {
-                 "class":"food",
                  "hit":2,
                  "speed":0,
-                 "strength":0
+                 "strength":0,
+                 "type":"food"
                 },
              "12":
                 {
-                 "class":"food",
                  "hit":0,
                  "speed":0,
-                 "strength":3
+                 "strength":3,
+                 "type":"food"
                 },
              "13":
                 {
-                 "class":"food",
                  "hit":0,
                  "speed":2,
-                 "strength":0
+                 "strength":0,
+                 "type":"food"
                 },
              "14":
                 {
-                 "class":"food",
                  "hit":2,
                  "speed":0,
-                 "strength":0
+                 "strength":0,
+                 "type":"food"
                 },
              "15":
                 {
-                 "class":"food",
                  "hit":2,
                  "speed":0,
-                 "strength":0
+                 "strength":0,
+                 "type":"food"
                 },
              "16":
                 {
-                 "class":"food",
                  "hit":2,
                  "speed":0,
-                 "strength":0
+                 "strength":0,
+                 "type":"food"
                 },
              "17":
                 {
-                 "class":"food",
                  "hit":2,
                  "speed":0,
-                 "strength":0
+                 "strength":0,
+                 "type":"food"
                 },
              "18":
                 {
-                 "class":"wall",
-                 "destructible":true
+                 "destructible":true,
+                 "type":"wall"
                 },
              "19":
                 {
@@ -115,53 +161,53 @@
                 },
              "2":
                 {
-                 "class":"wall",
-                 "destructible":true
+                 "destructible":true,
+                 "type":"wall"
                 },
              "20":
                 {
-                 "class":"weapon",
-                 "damage":3
+                 "damage":3,
+                 "type":"weapon"
                 },
              "21":
                 {
-                 "class":"weapon",
-                 "damage":3
+                 "damage":3,
+                 "type":"weapon"
                 },
              "22":
                 {
-                 "class":"weapon",
-                 "damage":4
+                 "damage":4,
+                 "type":"weapon"
                 },
              "23":
                 {
-                 "class":"weapon",
-                 "damage":4
+                 "damage":4,
+                 "type":"weapon"
                 },
              "24":
                 {
-                 "class":"weapon",
-                 "damage":2
+                 "damage":2,
+                 "type":"weapon"
                 },
              "25":
                 {
-                 "class":"weapon",
-                 "damage":1
+                 "damage":1,
+                 "type":"weapon"
                 },
              "26":
                 {
-                 "class":"weapon",
-                 "damage":1
+                 "damage":1,
+                 "type":"weapon"
                 },
              "27":
                 {
-                 "class":"weapon",
-                 "damage":3
+                 "damage":3,
+                 "type":"weapon"
                 },
              "28":
                 {
-                 "class":"weapon",
-                 "damage":3
+                 "damage":3,
+                 "type":"weapon"
                 },
              "29":
                 {
@@ -170,43 +216,47 @@
                 },
              "3":
                 {
-                 "class":"wall",
-                 "destructible":true
+                 "destructible":true,
+                 "type":"wall"
                 },
              "30":
                 {
                  "armor":4,
-                 "class":"armor"
+                 "type":""
                 },
              "31":
                 {
                  "armor":3,
-                 "class":"armor"
+                 "type":""
                 },
              "32":
                 {
                  "armor":3,
-                 "class":"armor"
+                 "type":""
                 },
              "33":
                 {
                  "armor":2,
-                 "class":"armor"
+                 "type":""
                 },
              "34":
                 {
                  "armor":1,
-                 "class":"armor"
+                 "type":""
                 },
              "35":
                 {
                  "armor":1,
-                 "class":"armor"
+                 "type":""
                 },
              "36":
                 {
                  "armor":5,
-                 "class":"armor"
+                 "type":""
+                },
+             "37":
+                {
+                 "type":""
                 },
              "38":
                 {
@@ -220,81 +270,101 @@
                 },
              "4":
                 {
-                 "class":"wall",
-                 "destructible":true
+                 "destructible":true,
+                 "type":"wall"
                 },
              "40":
                 {
                  "armor":2,
-                 "class":"armor"
+                 "type":""
                 },
              "41":
                 {
                  "armor":3,
-                 "class":"armor"
+                 "type":""
                 },
              "42":
                 {
                  "armor":1,
-                 "class":"armor"
+                 "type":""
                 },
              "43":
                 {
-                 "class":"weapon",
-                 "damage":0
+                 "damage":0,
+                 "type":"weapon"
+                },
+             "44":
+                {
+                 "type":""
+                },
+             "45":
+                {
+                 "type":""
                 },
              "46":
                 {
-                 "class":"door",
                  "id":0,
-                 "link":0
+                 "link":0,
+                 "type":"door"
+                },
+             "47":
+                {
+                 "type":""
                 },
              "48":
                 {
-                 "class":"wall",
-                 "destructible":true
+                 "destructible":true,
+                 "type":"wall"
                 },
              "49":
                 {
-                 "class":"doors",
                  "id":10,
-                 "link":10
+                 "link":10,
+                 "type":"door"
                 },
              "5":
                 {
-                 "class":"wall",
-                 "destructible":true
+                 "destructible":true,
+                 "type":"wall"
                 },
              "50":
                 {
                  "armor":1,
-                 "class":"armor"
+                 "type":""
                 },
              "51":
                 {
                  "armor":1,
-                 "class":"armor"
+                 "type":""
                 },
              "52":
                 {
                  "armor":1,
-                 "class":"armor"
+                 "type":""
                 },
              "53":
                 {
                  "armor":1,
-                 "class":"armor"
+                 "type":""
                 },
              "54":
                 {
                  "armor":1,
-                 "class":"armor"
+                 "type":""
+                },
+             "55":
+                {
+                 "type":""
                 },
              "56":
                 {
-                 "class":"door",
                  "id":0,
-                 "link":0
+                 "link":0,
+                 "type":"door"
+                },
+             "57":
+                {
+                 "type":""
                 },
              "58":
                 {
@@ -303,19 +373,47 @@
                 },
              "59":
                 {
-                 "class":"door",
                  "id":2,
-                 "link":1
+                 "link":1,
+                 "type":"door"
                 },
              "6":
                 {
-                 "class":"wall",
-                 "destructible":true
+                 "destructible":true,
+                 "type":"wall"
+                },
+             "60":
+                {
+                 "type":""
+                },
+             "61":
+                {
+                 "type":""
+                },
+             "62":
+                {
+                 "type":""
+                },
+             "63":
+                {
+                 "type":""
+                },
+             "64":
+                {
+                 "type":""
+                },
+             "65":
+                {
+                 "type":""
                 },
              "66":
                 {
-                 "class":"wall",
-                 "destructible":false
+                 "destructible":false,
+                 "type":"wall"
+                },
+             "67":
+                {
+                 "type":""
                 },
              "68":
                 {
@@ -324,157 +422,226 @@
                 },
              "7":
                 {
-                 "class":"wall",
-                 "destructible":true
+                 "destructible":true,
+                 "type":"wall"
+                },
+             "70":
+                {
+                 "type":""
+                },
+             "71":
+                {
+                 "type":""
+                },
+             "72":
+                {
+                 "type":""
+                },
+             "73":
+                {
+                 "type":""
+                },
+             "74":
+                {
+                 "type":""
+                },
+             "75":
+                {
+                 "type":""
                 },
              "76":
                 {
-                 "class":"wall",
-                 "destructible":false
+                 "destructible":false,
+                 "type":"wall"
+                },
+             "77":
+                {
+                 "type":""
                 },
              "78":
                 {
                  "class":"wall",
                  "destructible":true
                 },
+             "79":
+                {
+                 "type":"wall"
+                },
              "8":
                 {
-                 "class":"wall",
-                 "destructible":true
+                 "destructible":true,
+                 "type":"wall"
+                },
+             "80":
+                {
+                 "type":""
                 },
              "81":
                 {
                  "armor":1,
-                 "class":"armor"
+                 "type":""
                 },
              "82":
                 {
                  "armor":1,
-                 "class":"armor"
+                 "type":""
                 },
              "83":
                 {
-                 "class":"wall",
-                 "destructible":true
+                 "destructible":true,
+                 "type":""
                 },
              "84":
                 {
-                 "class":"wall",
-                 "destructible":true
+                 "destructible":true,
+                 "type":""
                 },
              "85":
                 {
-                 "class":"wall",
-                 "destructible":true
+                 "destructible":true,
+                 "type":""
                 },
              "86":
                 {
-                 "class":"wall",
-                 "destructible":false
+                 "destructible":false,
+                 "type":"wall"
                 },
              "87":
                 {
-                 "class":"wall",
-                 "destructible":false
+                 "destructible":false,
+                 "type":"wall"
                 },
              "88":
                 {
                  "class":"wall",
                  "destructible":true
                 },
+             "89":
+                {
+                 "type":"wall"
+                },
              "9":
                 {
-                 "class":"wall",
-                 "destructible":true
+                 "destructible":true,
+                 "type":"wall"
                 },
              "90":
                 {
-                 "num":1
+                 "num":1,
+                 "type":""
+                },
+             "91":
+                {
+                 "type":""
+                },
+             "92":
+                {
+                 "type":""
+                },
+             "93":
+                {
+                 "type":""
+                },
+             "94":
+                {
+                 "type":""
+                },
+             "95":
+                {
+                 "type":"wall"
+                },
+             "96":
+                {
+                 "type":""
                 },
              "97":
                 {
-                 "class":"door",
                  "id":0,
-                 "link":0
+                 "link":0,
+                 "type":""
                 },
              "98":
                 {
                  "class":"wall",
                  "destructible":true
+                },
+             "99":
+                {
+                 "type":"wall"
                 }
             },
          "tilepropertytypes":
             {
              "0":
                 {
-                 "class":"string",
-                 "destructible":"bool"
+                 "destructible":"bool",
+                 "type":"string"
                 },
              "1":
                 {
-                 "class":"string",
-                 "destructible":"bool"
+                 "destructible":"bool",
+                 "type":"string"
                 },
              "10":
                 {
-                 "class":"string",
                  "hit":"int",
                  "speed":"int",
-                 "strength":"int"
+                 "strength":"int",
+                 "type":"string"
                 },
              "11":
                 {
-                 "class":"string",
                  "hit":"int",
                  "speed":"int",
-                 "strength":"int"
+                 "strength":"int",
+                 "type":"string"
                 },
              "12":
                 {
-                 "class":"string",
                  "hit":"int",
                  "speed":"int",
-                 "strength":"int"
+                 "strength":"int",
+                 "type":"string"
                 },
              "13":
                 {
-                 "class":"string",
                  "hit":"int",
                  "speed":"int",
-                 "strength":"int"
+                 "strength":"int",
+                 "type":"string"
                 },
              "14":
                 {
-                 "class":"string",
                  "hit":"int",
                  "speed":"int",
-                 "strength":"int"
+                 "strength":"int",
+                 "type":"string"
                 },
              "15":
                 {
-                 "class":"string",
                  "hit":"int",
                  "speed":"int",
-                 "strength":"int"
+                 "strength":"int",
+                 "type":"string"
                 },
              "16":
                 {
-                 "class":"string",
                  "hit":"int",
                  "speed":"int",
-                 "strength":"int"
+                 "strength":"int",
+                 "type":"string"
                 },
              "17":
                 {
-                 "class":"string",
                  "hit":"int",
                  "speed":"int",
-                 "strength":"int"
+                 "strength":"int",
+                 "type":"string"
                 },
              "18":
                 {
-                 "class":"string",
-                 "destructible":"bool"
+                 "destructible":"bool",
+                 "type":"string"
                 },
              "19":
                 {
@@ -483,53 +650,53 @@
                 },
              "2":
                 {
-                 "class":"string",
-                 "destructible":"bool"
+                 "destructible":"bool",
+                 "type":"string"
                 },
              "20":
                 {
-                 "class":"string",
-                 "damage":"int"
+                 "damage":"int",
+                 "type":"string"
                 },
              "21":
                 {
-                 "class":"string",
-                 "damage":"int"
+                 "damage":"int",
+                 "type":"string"
                 },
              "22":
                 {
-                 "class":"string",
-                 "damage":"int"
+                 "damage":"int",
+                 "type":"string"
                 },
              "23":
                 {
-                 "class":"string",
-                 "damage":"int"
+                 "damage":"int",
+                 "type":"string"
                 },
              "24":
                 {
-                 "class":"string",
-                 "damage":"int"
+                 "damage":"int",
+                 "type":"string"
                 },
              "25":
                 {
-                 "class":"string",
-                 "damage":"int"
+                 "damage":"int",
+                 "type":"string"
                 },
              "26":
                 {
-                 "class":"string",
-                 "damage":"int"
+                 "damage":"int",
+                 "type":"string"
                 },
              "27":
                 {
-                 "class":"string",
-                 "damage":"int"
+                 "damage":"int",
+                 "type":"string"
                 },
              "28":
                 {
-                 "class":"string",
-                 "damage":"int"
+                 "damage":"int",
+                 "type":"string"
                 },
              "29":
                 {
@@ -538,43 +705,47 @@
                 },
              "3":
                 {
-                 "class":"string",
-                 "destructible":"bool"
+                 "destructible":"bool",
+                 "type":"string"
                 },
              "30":
                 {
                  "armor":"int",
-                 "class":"string"
+                 "type":"string"
                 },
              "31":
                 {
                  "armor":"int",
-                 "class":"string"
+                 "type":"string"
                 },
              "32":
                 {
                  "armor":"int",
-                 "class":"string"
+                 "type":"string"
                 },
              "33":
                 {
                  "armor":"int",
-                 "class":"string"
+                 "type":"string"
                 },
              "34":
                 {
                  "armor":"int",
-                 "class":"string"
+                 "type":"string"
                 },
              "35":
                 {
                  "armor":"int",
-                 "class":"string"
+                 "type":"string"
                 },
              "36":
                 {
                  "armor":"int",
-                 "class":"string"
+                 "type":"string"
+                },
+             "37":
+                {
+                 "type":"string"
                 },
              "38":
                 {
@@ -588,81 +759,101 @@
                 },
              "4":
                 {
-                 "class":"string",
-                 "destructible":"bool"
+                 "destructible":"bool",
+                 "type":"string"
                 },
              "40":
                 {
                  "armor":"int",
-                 "class":"string"
+                 "type":"string"
                 },
              "41":
                 {
                  "armor":"int",
-                 "class":"string"
+                 "type":"string"
                 },
              "42":
                 {
                  "armor":"int",
-                 "class":"string"
+                 "type":"string"
                 },
              "43":
                 {
-                 "class":"string",
-                 "damage":"int"
+                 "damage":"int",
+                 "type":"string"
+                },
+             "44":
+                {
+                 "type":"string"
+                },
+             "45":
+                {
+                 "type":"string"
                 },
              "46":
                 {
-                 "class":"string",
                  "id":"int",
-                 "link":"int"
+                 "link":"int",
+                 "type":"string"
+                },
+             "47":
+                {
+                 "type":"string"
                 },
              "48":
                 {
-                 "class":"string",
-                 "destructible":"bool"
+                 "destructible":"bool",
+                 "type":"string"
                 },
              "49":
                 {
-                 "class":"string",
                  "id":"int",
-                 "link":"int"
+                 "link":"int",
+                 "type":"string"
                 },
              "5":
                 {
-                 "class":"string",
-                 "destructible":"bool"
+                 "destructible":"bool",
+                 "type":"string"
                 },
              "50":
                 {
                  "armor":"int",
-                 "class":"string"
+                 "type":"string"
                 },
              "51":
                 {
                  "armor":"int",
-                 "class":"string"
+                 "type":"string"
                 },
              "52":
                 {
                  "armor":"int",
-                 "class":"string"
+                 "type":"string"
                 },
              "53":
                 {
                  "armor":"int",
-                 "class":"string"
+                 "type":"string"
                 },
              "54":
                 {
                  "armor":"int",
-                 "class":"string"
+                 "type":"string"
+                },
+             "55":
+                {
+                 "type":"string"
                 },
              "56":
                 {
-                 "class":"string",
                  "id":"int",
-                 "link":"int"
+                 "link":"int",
+                 "type":"string"
+                },
+             "57":
+                {
+                 "type":"string"
                 },
              "58":
                 {
@@ -671,19 +862,47 @@
                 },
              "59":
                 {
-                 "class":"string",
                  "id":"int",
-                 "link":"int"
+                 "link":"int",
+                 "type":"string"
                 },
              "6":
                 {
-                 "class":"string",
-                 "destructible":"bool"
+                 "destructible":"bool",
+                 "type":"string"
+                },
+             "60":
+                {
+                 "type":"string"
+                },
+             "61":
+                {
+                 "type":"string"
+                },
+             "62":
+                {
+                 "type":"string"
+                },
+             "63":
+                {
+                 "type":"string"
+                },
+             "64":
+                {
+                 "type":"string"
+                },
+             "65":
+                {
+                 "type":"string"
                 },
              "66":
                 {
-                 "class":"string",
-                 "destructible":"bool"
+                 "destructible":"bool",
+                 "type":"string"
+                },
+             "67":
+                {
+                 "type":"string"
                 },
              "68":
                 {
@@ -692,88 +911,157 @@
                 },
              "7":
                 {
-                 "class":"string",
-                 "destructible":"bool"
+                 "destructible":"bool",
+                 "type":"string"
+                },
+             "70":
+                {
+                 "type":"string"
+                },
+             "71":
+                {
+                 "type":"string"
+                },
+             "72":
+                {
+                 "type":"string"
+                },
+             "73":
+                {
+                 "type":"string"
+                },
+             "74":
+                {
+                 "type":"string"
+                },
+             "75":
+                {
+                 "type":"string"
                 },
              "76":
                 {
-                 "class":"string",
-                 "destructible":"bool"
+                 "destructible":"bool",
+                 "type":"string"
+                },
+             "77":
+                {
+                 "type":"string"
                 },
              "78":
                 {
                  "class":"string",
                  "destructible":"bool"
                 },
+             "79":
+                {
+                 "type":"string"
+                },
              "8":
                 {
-                 "class":"string",
-                 "destructible":"bool"
+                 "destructible":"bool",
+                 "type":"string"
+                },
+             "80":
+                {
+                 "type":"string"
                 },
              "81":
                 {
                  "armor":"int",
-                 "class":"string"
+                 "type":"string"
                 },
              "82":
                 {
                  "armor":"int",
-                 "class":"string"
+                 "type":"string"
                 },
              "83":
                 {
-                 "class":"string",
-                 "destructible":"bool"
+                 "destructible":"bool",
+                 "type":"string"
                 },
              "84":
                 {
-                 "class":"string",
-                 "destructible":"bool"
+                 "destructible":"bool",
+                 "type":"string"
                 },
              "85":
                 {
-                 "class":"string",
-                 "destructible":"bool"
+                 "destructible":"bool",
+                 "type":"string"
                 },
              "86":
                 {
-                 "class":"string",
-                 "destructible":"bool"
+                 "destructible":"bool",
+                 "type":"string"
                 },
              "87":
                 {
-                 "class":"string",
-                 "destructible":"bool"
+                 "destructible":"bool",
+                 "type":"string"
                 },
              "88":
                 {
                  "class":"string",
                  "destructible":"bool"
                 },
+             "89":
+                {
+                 "type":"string"
+                },
              "9":
                 {
-                 "class":"string",
-                 "destructible":"bool"
+                 "destructible":"bool",
+                 "type":"string"
                 },
              "90":
                 {
-                 "num":"int"
+                 "num":"int",
+                 "type":"string"
+                },
+             "91":
+                {
+                 "type":"string"
+                },
+             "92":
+                {
+                 "type":"string"
+                },
+             "93":
+                {
+                 "type":"string"
+                },
+             "94":
+                {
+                 "type":"string"
+                },
+             "95":
+                {
+                 "type":"string"
+                },
+             "96":
+                {
+                 "type":"string"
                 },
              "97":
                 {
-                 "class":"string",
                  "id":"int",
-                 "link":"int"
+                 "link":"int",
+                 "type":"string"
                 },
              "98":
                 {
                  "class":"string",
                  "destructible":"bool"
+                },
+             "99":
+                {
+                 "type":"string"
                 }
             },
          "tilewidth":32
         }],
  "tilewidth":32,
  "version":1,
- "width":10
+ "width":30
 }

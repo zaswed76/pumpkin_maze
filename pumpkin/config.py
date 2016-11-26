@@ -2,6 +2,7 @@ class Config:
     def __init__(self):
         self.width = 640
         self.height = 640
+        self.included_level = (5, 6, 7, 77)
 
         self.initialize_dynamic_settings()
 

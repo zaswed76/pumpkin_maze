@@ -40,12 +40,13 @@ class Player:
         self._right = bool
 
 class Controller:
-    def __init__(self, player=Player, groups=()):
+    def __init__(self, game_stat, player=Player, groups=()):
         """
 
         :type player: pygame.sprite.Sprite
         """
 
+        self.game_stat = game_stat
         if player is None:
             pass
         else:
@@ -79,16 +80,22 @@ class Controller:
                 player.right = False
             if e.type == pygame.KEYUP and e.key == pygame.K_LEFT:
                 player.left = False
+            if e.type == pygame.KEYUP and e.key == pygame.K_1:
+                player.left = False
+            if e.type == pygame.KEYUP and e.key == pygame.K_2:
+                player.left = False
+    def mouse_collide(self, x, y, level):
+        for group in level.get_groups():
+            if group.type == group.Door:
+                for platform in group:
+                    print(platform.properties)
+                    self.game_stat.level = 1
+            # clicked = s.rect.collidepoint(x, y)
+            # if clicked:
+            #     for platform in group.sprites():
+            #         print(platform)
 
-    def mouse_collide(self, x, y, group):
-        for s in group:
-            clicked = s.rect.collidepoint(x, y)
-            if clicked:
-                print(s.rect.centerx)
-                print(s.rect.centery)
-                print(s.type)
-                print(s.gid)
-                return clicked
+    # def transition_point(self, platform, ):
 
 
 

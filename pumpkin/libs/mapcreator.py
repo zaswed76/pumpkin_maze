@@ -7,18 +7,18 @@ from libs.units import Platform
 
 
 class MapCreator:
-    def __init__(self, json_map: str, tileset_dir: str,
-                 resources_dir: str,
+    def __init__(self, screen: pygame.Surface, json_map: str, tileset_dir: str,
+                 resources_dir: str
                  ):
         self.resources_dir = resources_dir
-        self.screen = None
+        self.screen = screen
         self.tiled_map = tiledmap.TiledParser(json_map, tileset_dir)
 
         self.size_map = self.get_size_map()
 
         self.image_sprites = self.tiled_map.get_subsprites(
             self.tiled_map.get_id_tiles())
-        self.all_layers = units.UGroup('all')
+        self.level = units.Level()
         self.all_images = OrderedUpdates()
 
     def get_size_map(self):
@@ -62,9 +62,10 @@ class MapCreator:
         width = step * self.tiled_map.json_map['width']
         for n in data:
             if n:
-                image = self.image_sprites[n - 1]
+                gid = n - 1
+                image = self.image_sprites[gid]
                 platform = Platform(group_layer.type, self.screen,
-                                    image, x, y, n)
+                                    image, x, y, gid, self.tiled_map.tiled_properties[str(gid)])
                 group_layer.add(platform)
                 x += step
             else:
@@ -72,15 +73,54 @@ class MapCreator:
             if x == width:
                 x = 0
                 y += step
-            self.all_layers.add(group_layer)
+        self.level[group_layer.type] = (group_layer)
 
     def draw_map(self):
         self.all_images.draw(self.screen)
-        if self.all_layers:
-            self.all_layers.draw(self.screen)
+        if self.level:
+            self.level.draw(self.screen)
 
         else:
-            print(self.all_layers)
+            print(self.level)
 
     def update(self):
         self.all_images.update()
+
+
+class Levels:
+    def __init__(self, screen: pygame.Surface, map_dir: str, tileset_dir: str,
+                 resources_dir: str, config,
+                 map_format='.json'):
+        self.screen = screen
+        print(screen, 'screen')
+        self.resources_dir = resources_dir
+        self.tileset_dir = tileset_dir
+        self.map_format = map_format
+        self.map_dir = map_dir
+        self.included_level = config.included_level
+        self.maps = self.get_maps()
+        self.all_maps = []
+
+
+    def get_maps(self):
+        maps = []
+        for lev_name in self.included_level:
+            path = os.path.join(self.map_dir, str(lev_name) + self.map_format)
+            if os.path.isfile(path):
+                maps.append(path)
+            else:
+                print('путь - {} не найден'.format(path))
+                print('---------------------------------')
+        return maps
+
+    def create_levels(self):
+        if not self.maps:
+            return None
+        for map in self.maps:
+            print(map, 1111)
+            level = MapCreator(self.screen, map, self.tileset_dir,
+                                   self.resources_dir)
+            level.create_map()
+            self.all_maps.append(level)
+
+

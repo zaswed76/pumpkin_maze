@@ -1,12 +1,27 @@
 import pygame
 from pygame.sprite import Sprite, Group, OrderedUpdates
+from collections import OrderedDict
 
 a = 1 if 1 else 3
 
 class UGroup(OrderedUpdates):
+    Door = 'door'
+    Wall = 'wall'
     def __init__(self, name, *sprites):
         super().__init__(*sprites)
         self.type = name
+
+class Level(OrderedDict):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+
+    def draw(self, screen):
+        for lay in self.values():
+            lay.draw(screen)
+
+    def get_groups(self):
+        return self.values()
+
 
 class AbsSprite(Sprite):
     def __init__(self, screen, image, alpha=False, *groups):
@@ -41,8 +56,10 @@ class Background(AbsSprite):
 
 
 class Platform(Sprite):
-    def __init__(self, type, screen, image, x, y, gid):
+    def __init__(self, type, screen, image, x, y, gid, properties):
         super().__init__()
+        self.properties = properties
+
         self.gid = gid
         self.type = type
         self.image = image
@@ -53,7 +70,7 @@ class Platform(Sprite):
         self.screen_rect = screen.get_rect()
         self.rect = pygame.Rect(x, y, width, height)
 
-
+        # print(self.gid, self.properties)
 
 
     def blitme(self):
