@@ -190,24 +190,46 @@ class Rect(Sprite):
         self.y = cfg['y']
         self.width = cfg['width']
         self.height = cfg['height']
+        self.rotation = cfg['rotation']
         self.screen = screen
 
 
 
         self.sur = pygame.Surface((self.width, self.height), pygame.SRCALPHA)
+        self.rect = pygame.Rect(self.x, self.y, self.width, self.height)
 
         # if self.opacity is not None:
         #     self.sur.set_alpha(self.opacity)
 
         self.sur.fill((255,0,0,35))
+        # self.sur = self.c_rotate(self.sur, 45)
+        self.sur, self.rect = self.rot_center2(self.sur, self.rect, 45)
 
-        self.sur = pygame.transform.rotate(self.sur, 45)
+
 
 
     def draw(self, screen):
         """Вывод пули на экран."""
 
         # s = pygame.draw.rect(screen, self.color, (self.x, self.y, self.width, self.height))
-        screen.blit(self.sur, (self.x, self.y, self.width, self.height))
+        screen.blit(self.sur, self.rect)
 
 
+    def c_rotate(self, s, angle):
+        s = pygame.transform.rotate(s,angle)
+        return s
+
+    def rot_center(self, image, angle):
+        """rotate an image while keeping its center and size"""
+        orig_rect = image.get_rect()
+        rot_image = pygame.transform.rotate(image, angle)
+        rot_rect = orig_rect.copy()
+        rot_rect.center = rot_image.get_rect().center
+        rot_image = rot_image.subsurface(rot_rect).copy()
+        return rot_image
+
+    def rot_center2(self, image, rect, angle):
+            """rotate an image while keeping its center"""
+            rot_image = pygame.transform.rotate(image, angle)
+            rot_rect = rot_image.get_rect(center=rect.center)
+            return rot_image,rot_rect
