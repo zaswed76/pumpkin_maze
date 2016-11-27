@@ -235,6 +235,6 @@ class Rect(Sprite):
             rot_image = pygame.transform.rotate(image, angle)
             # c = [(x-self.x, y+self.y) for x, y in rect.center]
             x, y = (rect.center)
-            center = (self.x + x/1.5, self.y)
+            center = (self.x + x/2, self.y)
             rot_rect = rot_image.get_rect(center=center)
             return rot_image,rot_rect
