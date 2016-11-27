@@ -190,7 +190,7 @@ class Rect(Sprite):
         self.y = cfg['y']
         self.width = cfg['width']
         self.height = cfg['height']
-        self.rotation = cfg['rotation']
+        self.angle = cfg['rotation']
         self.screen = screen
 
 
@@ -203,7 +203,8 @@ class Rect(Sprite):
 
         self.sur.fill((255,0,0,35))
         # self.sur = self.c_rotate(self.sur, 45)
-        self.sur, self.rect = self.rot_center2(self.sur, self.rect, 45)
+        if self.angle:
+            self.sur, self.rect = self.rot_center2(self.sur, self.rect, self.angle )
 
 
 
@@ -229,7 +230,11 @@ class Rect(Sprite):
         return rot_image
 
     def rot_center2(self, image, rect, angle):
+            print(rect.center)
             """rotate an image while keeping its center"""
             rot_image = pygame.transform.rotate(image, angle)
-            rot_rect = rot_image.get_rect(center=rect.center)
+            # c = [(x-self.x, y+self.y) for x, y in rect.center]
+            x, y = (rect.center)
+            center = (self.x + x/1.5, self.y)
+            rot_rect = rot_image.get_rect(center=center)
             return rot_image,rot_rect
