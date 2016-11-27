@@ -6,11 +6,12 @@ from libs import tiledmap, units
 from libs.units import Platform
 
 
-class LevelCreator:
+class Level:
     def __init__(self, screen: pygame.Surface, json_map: str,
                  tileset_dir: str,
                  resources_dir: str
                  ):
+
         self.resources_dir = resources_dir
         self.screen = screen
         self.tiled_map = tiledmap.TiledParser(json_map, tileset_dir)
@@ -19,9 +20,10 @@ class LevelCreator:
 
         self.image_sprites = self.tiled_map.get_subsprites(
             self.tiled_map.get_id_tiles())
-        self.level = units.Level()
+        self.all_layers = units.AllLayers()
         self.all_images = OrderedUpdates()
         self.bg_type = None
+        self.name = os.path.splitext(os.path.basename(json_map))[0]
 
     def set_bg_type(self, type):
         self.bg_type = type
@@ -58,7 +60,7 @@ class LevelCreator:
 
     def create_image(self, image_pth, x, y, speed):
         bg = self.bg_type(self.screen, image_pth, x, y, speed)
-        self.level[image_pth] = bg
+        self.all_layers[image_pth] = bg
 
     def create_layer(self, group_layer, data):
         x = 0
@@ -79,24 +81,27 @@ class LevelCreator:
             if x == width:
                 x = 0
                 y += step
-        self.level[group_layer.type] = (group_layer)
+        self.all_layers[group_layer.type] = (group_layer)
 
     def create_object(self, screen, layer):
         for obj in layer['objects']:
             figure = units.Rect(screen, **obj)
-            self.level[figure.name] = figure
+            self.all_layers[figure.name] = figure
 
     def draw_tiles(self):
 
-        if self.level:
-            self.level.draw(self.screen)
+        if self.all_layers:
+            self.all_layers.draw(self.screen)
 
         else:
-            print(self.level)
+            print(self.all_layers)
 
     def fill(self):
         self.screen.fill(pygame.Color(
             self.tiled_map.get('backgroundcolor', 'black')))
+
+    def __repr__(self):
+        return 'level - {}'.format(self.name)
 
 
 class Levels(list):
@@ -140,8 +145,8 @@ class Levels(list):
             return None
         for map in self.maps:
             # создать уровень
-            level = LevelCreator(self.screen, map, self.tileset_dir,
-                                 self.resources_dir)
+            level = Level(self.screen, map, self.tileset_dir,
+                          self.resources_dir)
             level.set_bg_type(self.bg_type)
             level.create_map()
             self.append(level)

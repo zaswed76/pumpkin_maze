@@ -85,17 +85,7 @@ class Controller:
             if e.type == pygame.KEYUP and e.key == pygame.K_2:
                 self.game_stat.level = 1
     def mouse_collide(self, x, y, level):
-        for group in level.get_groups():
-            if group.type == group.Door:
-                for platform in group:
-                    print(platform.properties)
-                    self.game_stat.level = 1
-            # clicked = s.rect.collidepoint(x, y)
-            # if clicked:
-            #     for platform in group.sprites():
-            #         print(platform)
-
-    # def transition_point(self, platform, ):
+        print(level)
 
 
 

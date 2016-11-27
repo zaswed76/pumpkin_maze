@@ -1,5 +1,5 @@
 import pygame
-from pygame import gfxdraw
+import math
 from pygame.sprite import Sprite, Group, OrderedUpdates
 from collections import OrderedDict
 from libs import color
@@ -16,7 +16,7 @@ class UGroup(OrderedUpdates):
         self.type = name
 
 
-class Level(OrderedDict):
+class AllLayers(OrderedDict):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
@@ -180,11 +180,9 @@ class Rect(Sprite):
     def __init__(self, screen, **cfg):
         super().__init__()
         self.name = cfg['name']
-        self.color = (255, 0, 0, 7)
-        # tuple ->(color, opacity) opacity = (0-255 or None)
-        self.color_obj = color.get_color(cfg['properties']['color'])
-        self.color = self.color_obj[0]
-        self.opacity = self.color_obj[1]
+
+        self.color = color.get_color(cfg['properties']['color'])
+
 
         self.x = cfg['x']
         self.y = cfg['y']
@@ -197,14 +195,11 @@ class Rect(Sprite):
 
         self.sur = pygame.Surface((self.width, self.height), pygame.SRCALPHA)
         self.rect = pygame.Rect(self.x, self.y, self.width, self.height)
+        if self.color[3] < 255:
+            self.sur.set_alpha(self.color[3])
 
-        # if self.opacity is not None:
-        #     self.sur.set_alpha(self.opacity)
+        self.sur.fill(self.color)
 
-        self.sur.fill((255,0,0,35))
-        # self.sur = self.c_rotate(self.sur, 45)
-        if self.angle:
-            self.sur, self.rect = self.rot_center2(self.sur, self.rect, self.angle )
 
 
 
@@ -216,25 +211,27 @@ class Rect(Sprite):
         screen.blit(self.sur, self.rect)
 
 
-    def c_rotate(self, s, angle):
-        s = pygame.transform.rotate(s,angle)
-        return s
-
-    def rot_center(self, image, angle):
-        """rotate an image while keeping its center and size"""
-        orig_rect = image.get_rect()
-        rot_image = pygame.transform.rotate(image, angle)
-        rot_rect = orig_rect.copy()
-        rot_rect.center = rot_image.get_rect().center
-        rot_image = rot_image.subsurface(rot_rect).copy()
-        return rot_image
-
-    def rot_center2(self, image, rect, angle):
-            print(rect.center)
-            """rotate an image while keeping its center"""
-            rot_image = pygame.transform.rotate(image, angle)
-            # c = [(x-self.x, y+self.y) for x, y in rect.center]
-            x, y = (rect.center)
-            center = (self.x + x/2, self.y)
-            rot_rect = rot_image.get_rect(center=center)
-            return rot_image,rot_rect
+    # def c_rotate(self, s, angle):
+    #     s = pygame.transform.rotate(s,angle)
+    #     return s
+    #
+    # def rot_center(self, image, angle):
+    #     """rotate an image while keeping its center and size"""
+    #     orig_rect = image.get_rect()
+    #     rot_image = pygame.transform.rotate(image, angle)
+    #     rot_rect = orig_rect.copy()
+    #     rot_rect.center = rot_image.get_rect().center
+    #     rot_image = rot_image.subsurface(rot_rect).copy()
+    #     return rot_image
+    #
+    # def rot_center2(self, image, rect, angle):
+    #         a = b = rect.width/2
+    #         c = math.sqrt((a ** 2) + (b ** 2))
+    #         print(c, a, 'gep')
+    #         """rotate an image while keeping its center"""
+    #         rot_image = pygame.transform.rotate(image, angle)
+    #         cx = c + a
+    #         cy = (rect.centery/2) + b/2
+    #         rot_rect = rot_image.get_rect(center=(cx, cy))
+    #         print(rect.x, rect.y)
+    #         return rot_image,rot_rect

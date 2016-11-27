@@ -74,7 +74,10 @@ class TiledParser(dict):
         self.layers = Layers(self['layers'])
 
         # [0] парсится карта ТОЛЬКО с одним тайлсетом
-        self.sets = TileSets(self['tilesets'][0])
+        try:
+            self.sets = TileSets(self['tilesets'][0])
+        except IndexError:
+            pass
         # объект SubSprite
         self.subsprite = subsprite.SubSprite(
             self.get_tileset_path(),
