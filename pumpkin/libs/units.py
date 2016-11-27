@@ -1,15 +1,20 @@
 import pygame
+from pygame import gfxdraw
 from pygame.sprite import Sprite, Group, OrderedUpdates
 from collections import OrderedDict
+from libs import color
 
 a = 1 if 1 else 3
+
 
 class UGroup(OrderedUpdates):
     Door = 'door'
     Wall = 'wall'
+
     def __init__(self, name, *sprites):
         super().__init__(*sprites)
         self.type = name
+
 
 class Level(OrderedDict):
     def __init__(self, **kwargs):
@@ -18,6 +23,7 @@ class Level(OrderedDict):
     def draw(self, screen):
         for lay in self.values():
             lay.draw(screen)
+            lay.update(screen)
 
     def get_groups(self):
         return self.values()
@@ -26,7 +32,6 @@ class Level(OrderedDict):
 class AbsSprite(Sprite):
     def __init__(self, screen, image, alpha=False, *groups):
         super().__init__(*groups)
-
 
         self.image = pygame.image.load(image).convert_alpha()
 
@@ -40,7 +45,6 @@ class AbsSprite(Sprite):
         self.screen.blit(self.image, self.rect)
 
 
-
 class Background(AbsSprite):
     def __init__(self, screen, image, x, y, speed, *groups):
         super().__init__(screen, image, *groups)
@@ -51,11 +55,14 @@ class Background(AbsSprite):
         self.center_x = float(self.rect.centerx)
         self.center_y = float(self.rect.centery)
 
+    def draw(self, screen):
+        self.screen.blit(self.image, self.rect)
+
     def update(self, *args):
         if self.speed:
-
             self.center_x += self.speed
         self.rect.centerx = self.center_x
+
 
 class Background2(Background):
     def __init__(self, screen, image, x, y, speed, *groups):
@@ -63,15 +70,14 @@ class Background2(Background):
 
     def update(self, *args):
         if self.speed:
-
             self.center_y += self.speed
         self.rect.centery = self.center_y
+
 
 class Platform(Sprite):
     def __init__(self, type, screen, image, x, y, gid, properties):
         super().__init__()
         self.properties = properties
-
         self.gid = gid
         self.type = type
         self.image = image
@@ -83,7 +89,6 @@ class Platform(Sprite):
         self.rect = pygame.Rect(x, y, width, height)
 
         # print(self.gid, self.properties)
-
 
     def blitme(self):
         self.screen.blit(self.image, self.rect)
@@ -107,7 +112,6 @@ class Player(Sprite):
         # self.image.set_colorkey((255, 255, 255))
         self.image.convert_alpha()
         self.rect = self.image.get_rect()
-
 
         self.rect.height = self.rect.height
         self.screen_rect = screen.get_rect()
@@ -134,7 +138,6 @@ class Player(Sprite):
             self.collisions(platforms, self.speed_x, 0)
 
         if self.left:
-
             self.speed_x = -self.speedx
             self.rect.centerx += self.speed_x
             self.collisions(platforms, self.speed_x, 0)
@@ -148,7 +151,7 @@ class Player(Sprite):
             self.collisions(platforms, 0, self.speed_y)
 
         if not (
-                    self.left or self.right or self.up or self.down):  # стоим, когда нет указаний идти
+                            self.left or self.right or self.up or self.down):  # стоим, когда нет указаний идти
             self.speed_x = 0
             self.speed_y = 0
 
@@ -171,3 +174,40 @@ class Player(Sprite):
                         self.stats.level += 1
                         self.rect.right = 160
                         self.rect.bottom = 64
+
+
+class Rect(Sprite):
+    def __init__(self, screen, **cfg):
+        super().__init__()
+        self.name = cfg['name']
+        self.color = (255, 0, 0, 7)
+        # tuple ->(color, opacity) opacity = (0-255 or None)
+        self.color_obj = color.get_color(cfg['properties']['color'])
+        self.color = self.color_obj[0]
+        self.opacity = self.color_obj[1]
+
+        self.x = cfg['x']
+        self.y = cfg['y']
+        self.width = cfg['width']
+        self.height = cfg['height']
+        self.screen = screen
+
+
+
+        self.sur = pygame.Surface((self.width, self.height), pygame.SRCALPHA)
+
+        # if self.opacity is not None:
+        #     self.sur.set_alpha(self.opacity)
+
+        self.sur.fill((255,0,0,35))
+
+        self.sur = pygame.transform.rotate(self.sur, 45)
+
+
+    def draw(self, screen):
+        """Вывод пули на экран."""
+
+        # s = pygame.draw.rect(screen, self.color, (self.x, self.y, self.width, self.height))
+        screen.blit(self.sur, (self.x, self.y, self.width, self.height))
+
+

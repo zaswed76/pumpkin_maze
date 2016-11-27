@@ -3,19 +3,39 @@ import os
 
 from libs import subsprite
 
-
-class Layer:
-    def __init__(self, layers: dict):
+class TileObjects(list):
+    def __init__(self, objects):
         super().__init__()
-        self.data = layers['data']
-        self.height = layers['height']
-        self.name = layers['name']
-        self.opacity = layers['opacity']
-        self.type = layers['type']
-        self.visible = layers['visible']
-        self.width = layers['width']
-        self.x = layers['x']
-        self.y = layers['y']
+        self.extend(objects)
+
+    def print(self):
+        for i in self:
+            print(i)
+            print('--------------------------')
+
+    def __repr__(self):
+        return '{}'.format(len(self))
+
+class Layers(list):
+    def __init__(self, layers: list):
+        super().__init__()
+        self.extend(layers)
+        self.objects = self.objects_()
+    def __repr__(self):
+        return 'layers - {}\n{}'.format(len(self), self.names_layers())
+
+    def names_layers(self):
+        layers = []
+        for l in self:
+            layers.append(l['name'])
+        return layers
+
+    def objects_(self):
+        lst = []
+        for l in self:
+            if l['type'] == 'objectgroup' and l['visible']:
+                lst.append(l)
+        return TileObjects(lst)
 
 
 class TileSets(dict):
@@ -51,7 +71,8 @@ class TiledParser(dict):
         # загрузка карты
         self.update(self.load_map(json_map))
         # слои
-        self.layers = self['layers']
+        self.layers = Layers(self['layers'])
+
         # [0] парсится карта ТОЛЬКО с одним тайлсетом
         self.sets = TileSets(self['tilesets'][0])
         # объект SubSprite
@@ -60,7 +81,7 @@ class TiledParser(dict):
             self['tilewidth'],
             self['tileheight'])
 
-        self.tiled_properties = self['tilesets'][0]['tileproperties']
+        self.tiled_properties = self['tilesets'][0].get('tileproperties', dict())
 
 
     def get_tileset_path(self):
@@ -72,12 +93,12 @@ class TiledParser(dict):
         with open(level_map, "r") as f:
             return json.load(f)
 
-    def print_json_map(self):
-        for k, v in self.json_map.items():
+    def print_map(self):
+        for k, v in self.items():
             print(k, v, sep=' = ')
             print('----------------------------')
         print('################')
-        print('len = {}'.format(len(self.json_map)))
+        print('len = {}'.format(len(self)))
 
     def get_subsprites(self, id_tiles: set) -> dict:
         subsprites = {}
@@ -103,9 +124,9 @@ class TiledParser(dict):
 if __name__ == '__main__':
     from pumpkin import paths
 
-    pth_map = os.path.join(paths.maps, 'map1.json')
+    pth_map = os.path.join(paths.maps, '2.json')
     tiled = TiledParser(pth_map, paths.tilesets)
-    tiled.print_json_map()
-    # print(tiled.get_tileset_path())
+    # tiled.print_map()
+    print(tiled.layers.objects.print())
     # print(tiled.sets.get_set())
     # print(tiled.get_subsprites(tiled.get_id_tiles()))

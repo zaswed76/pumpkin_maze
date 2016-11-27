@@ -7,7 +7,8 @@ from libs.units import Platform
 
 
 class LevelCreator:
-    def __init__(self, screen: pygame.Surface, json_map: str, tileset_dir: str,
+    def __init__(self, screen: pygame.Surface, json_map: str,
+                 tileset_dir: str,
                  resources_dir: str
                  ):
         self.resources_dir = resources_dir
@@ -25,12 +26,11 @@ class LevelCreator:
     def set_bg_type(self, type):
         self.bg_type = type
 
-
     def get_size_map(self):
         w = (
-        self.tiled_map['width'] * self.tiled_map['tilewidth'])
+            self.tiled_map['width'] * self.tiled_map['tilewidth'])
         h = (
-        self.tiled_map['height'] * self.tiled_map['tileheight'])
+            self.tiled_map['height'] * self.tiled_map['tileheight'])
         return (w, h)
 
     def set_screen(self, screen):
@@ -49,6 +49,8 @@ class LevelCreator:
                                   layer.get('offsetx', 0),
                                   layer.get('offsety', 0),
                                   speed)
+            elif layer['type'] == 'objectgroup' and layer['visible']:
+                self.create_object(self.screen, layer)
 
     def get_image_path(self, image):
         return os.path.join(self.resources_dir,
@@ -56,7 +58,7 @@ class LevelCreator:
 
     def create_image(self, image_pth, x, y, speed):
         bg = self.bg_type(self.screen, image_pth, x, y, speed)
-        self.all_images.add(bg)
+        self.level[image_pth] = bg
 
     def create_layer(self, group_layer, data):
         x = 0
@@ -68,7 +70,8 @@ class LevelCreator:
                 gid = n - 1
                 image = self.image_sprites[gid]
                 platform = Platform(group_layer.type, self.screen,
-                                    image, x, y, gid, self.tiled_map.tiled_properties[str(gid)])
+                                    image, x, y, gid,
+                                    self.tiled_map.tiled_properties.get(str(gid), dict()))
                 group_layer.add(platform)
                 x += step
             else:
@@ -78,19 +81,22 @@ class LevelCreator:
                 y += step
         self.level[group_layer.type] = (group_layer)
 
+    def create_object(self, screen, layer):
+        for obj in layer['objects']:
+            figure = units.Rect(screen, **obj)
+            self.level[figure.name] = figure
+
     def draw_tiles(self):
-        self.all_images.draw(self.screen)
+
         if self.level:
             self.level.draw(self.screen)
 
         else:
             print(self.level)
 
-    def draw_images(self):
-        self.all_images.update()
-
     def fill(self):
-        self.screen.fill(pygame.Color(self.tiled_map.get('backgroundcolor', 'black')))
+        self.screen.fill(pygame.Color(
+            self.tiled_map.get('backgroundcolor', 'black')))
 
 
 class Levels(list):
@@ -107,7 +113,6 @@ class Levels(list):
         self.maps = self.get_maps()
         self.bg_type = units.Background
 
-
     def get_maps(self) -> list:
         """
         составляет список путей к картам на основании списка config.included_level
@@ -115,7 +120,8 @@ class Levels(list):
         """
         maps = []
         for lev_name in self.included_level:
-            path = os.path.join(self.map_dir, str(lev_name) + self.map_format)
+            path = os.path.join(self.map_dir,
+                                str(lev_name) + self.map_format)
             # если карта существует
             if os.path.isfile(path):
                 maps.append(path)
@@ -136,7 +142,7 @@ class Levels(list):
             # создать уровень
             level = LevelCreator(self.screen, map, self.tileset_dir,
                                  self.resources_dir)
-            level.set_bg_type(self.bg_type )
+            level.set_bg_type(self.bg_type)
             level.create_map()
             self.append(level)
 
@@ -147,9 +153,12 @@ class Levels(list):
         """
         # todo что зачем?
         self[level].fill()
-        self[level].draw_images()
+
         self[level].draw_tiles()
 
+    def set_bg_type(self, bg_type: units.AbsSprite):
+        """
 
-    def set_bg_type(self, bg_type):
+        :param bg_type: units.AbsSprite
+        """
         self.bg_type = bg_type

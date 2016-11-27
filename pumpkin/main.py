@@ -27,8 +27,7 @@ def run_game():
 
     #---------- Levels ----------------------------------------------
     all_levels = mapcreator.Levels(screen, paths.maps, paths.tilesets, paths.resources, cfg)
-    bg_type = units.Background2
-    all_levels.set_bg_type(bg_type)
+
     all_levels.create_levels()
 
     timer = pygame.time.Clock()
