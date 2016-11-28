@@ -12,5 +12,5 @@ def get_color(color):
             return pygame.Color(color)
 
 if __name__ == '__main__':
-    c = get_color('#000000')
+    c = get_color('#0055ff')
     print(c)

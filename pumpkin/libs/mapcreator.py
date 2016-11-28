@@ -5,13 +5,37 @@ from pygame.sprite import Group, OrderedUpdates
 from libs import tiledmap, units
 from libs.units import Platform
 
+def print_dict(d: dict):
+    for k, v in d.items():
+        print(k, v, sep=' = ')
+        print('---------------------------')
+
+def get_color(*colors) -> hex:
+    """
+
+    :param colors: цвета в порядке приоритета
+    :return: hex color возвращает первый же валидный цвет или false
+    """
+    print(colors, 'colors')
+    for c in colors:
+        print(c, 'ccc')
+        try:
+            cl = pygame.Color(c)
+        except ValueError as er:
+            print('{} - {}'.format(c, er))
+
+        else:
+            return c
+    else:
+        return False
+
 
 class Level:
     def __init__(self, screen: pygame.Surface, json_map: str,
                  tileset_dir: str,
                  resources_dir: str
                  ):
-
+        self.n = 0
         self.resources_dir = resources_dir
         self.screen = screen
         self.tiled_map = tiledmap.TiledParser(json_map, tileset_dir)
@@ -40,6 +64,7 @@ class Level:
 
     def create_map(self):
         for layer in self.tiled_map.layers:
+
             if layer['type'] == 'tilelayer' and layer['visible']:
                 type_name = layer['name']
                 data = layer['data']
@@ -52,7 +77,10 @@ class Level:
                                   layer.get('offsety', 0),
                                   speed)
             elif layer['type'] == 'objectgroup' and layer['visible']:
-                self.create_object(self.screen, layer)
+                type_name = layer['name']
+                print(type_name)
+                group_layer = units.UGroup(type_name)
+                self.create_object(group_layer, self.screen, layer)
 
     def get_image_path(self, image):
         return os.path.join(self.resources_dir,
@@ -73,7 +101,8 @@ class Level:
                 image = self.image_sprites[gid]
                 platform = Platform(group_layer.type, self.screen,
                                     image, x, y, gid,
-                                    self.tiled_map.tiled_properties.get(str(gid), dict()))
+                                    self.tiled_map.tiled_properties.get(
+                                        str(gid), dict()))
                 group_layer.add(platform)
                 x += step
             else:
@@ -83,21 +112,31 @@ class Level:
                 y += step
         self.all_layers[group_layer.type] = (group_layer)
 
-    def create_object(self, screen, layer):
+    def create_object(self, group_layer, screen, layer):
         for obj in layer['objects']:
-            if any((layer.get('color'), obj.get('color'))):
-                figure = units.FigureFabric(screen, color=layer.get('color'), **obj)
-                self.all_layers[figure.id] = figure
+            # print_dict(obj)
+            # передаём цвет в порядке приоритета
+            color = get_color(obj.get('properties', dict()).get('color'), layer.get('color'))
+            if color:
+                if obj.get('type', False):
+                    figure = units.FigureFabric(screen, color, **obj)
+                    group_layer.add(figure)
+                    print(group_layer)
+                else: print('объкт - "{}" не имеет типа'.format(obj.get('type')))
+            else:  print('объкт - {} не имеет цвета'.format(obj.get('type')))
+        print(group_layer.type, 'layer type')
+        self.all_layers[group_layer.type] = group_layer
 
 
-    def draw_tiles(self):
+    def draw_layers(self):
 
         if self.all_layers:
             self.all_layers.draw(self.screen)
-
         else:
-            print('все слои пусты', 'method - draw_tiles')
-            print(self.all_layers)
+            self.n += 1
+            if self.n < 3:
+                print('все слои пусты', 'method - draw_layers')
+                print(self.all_layers)
 
     def fill(self):
         self.screen.fill(pygame.Color(
@@ -161,7 +200,7 @@ class Levels(list):
         """
         # todo что зачем?
         self[level].fill()
-        self[level].draw_tiles()
+        self[level].draw_layers()
 
     def set_bg_type(self, bg_type: units.AbsSprite):
         """
