@@ -2,7 +2,7 @@ import pygame
 import math
 from pygame.sprite import Sprite, Group, OrderedUpdates
 from collections import OrderedDict
-from libs import color
+from libs import color as _color
 
 a = 1 if 1 else 3
 
@@ -176,62 +176,89 @@ class Player(Sprite):
                         self.rect.bottom = 64
 
 
-class Rect(Sprite):
-    def __init__(self, screen, **cfg):
+class FigureFabric(Sprite):
+    def __init__(self, screen, color=None, **cfg):
         super().__init__()
         self.name = cfg['name']
+        try:
+            self.color = _color.get_color(cfg['properties']['color'])
+        except KeyError:
+            self.color = _color.get_color(color)
 
-        self.color = color.get_color(cfg['properties']['color'])
-
-
+        self.type = cfg.get('type', None)
+        self.id = cfg['id']
+        print(self.id)
         self.x = cfg['x']
         self.y = cfg['y']
         self.width = cfg['width']
         self.height = cfg['height']
         self.angle = cfg['rotation']
         self.screen = screen
+        polyline = cfg.get('polyline')
+        if polyline is not None:
+            print(333)
+            self.sx = cfg['x']
+            self.sy = cfg['y']
+            self.fx = polyline[1]['x']
+            self.fy = polyline[1]['y']
+        else:
+            self.sx = 0
+            self.sy = 0
+            self.fx = 0
+            self.fy = 0
+        print()
 
+        self.draw_figure(self.type)
 
+    def draw_figure(self, figure):
+        getattr(self, figure)(self.screen, self.x, self.y, self.width,
+                              self.height, self.color)
 
-        self.sur = pygame.Surface((self.width, self.height), pygame.SRCALPHA)
-        self.rect = pygame.Rect(self.x, self.y, self.width, self.height)
+    def rectangle(self, screen, x, y, width, height, color, *args):
+        self.sur = pygame.Surface((width, height), pygame.SRCALPHA)
+        self.rect = pygame.Rect(x, y, width, height)
         if self.color[3] < 255:
             self.sur.set_alpha(self.color[3])
+        self.sur.fill(color)
 
-        self.sur.fill(self.color)
-
-
-
-
+    def line(self, screen, x, y, width, height, color):
+        print('line')
+        self.sur = pygame.Surface((width, height), pygame.SRCALPHA)
+        self.sur.fill(color)
 
     def draw(self, screen):
+        print(self.sx, self.sy, self.fx, self.fy)
         """Вывод пули на экран."""
-
+        self.line = pygame.draw.line(screen, self.color, (self.sx, self.sy),
+                                     [self.fx,self.fy], 3)
         # s = pygame.draw.rect(screen, self.color, (self.x, self.y, self.width, self.height))
-        screen.blit(self.sur, self.rect)
+        try:
+            screen.blit(self.sur, self.rect)
+        except AttributeError:
+            pass
 
 
-    # def c_rotate(self, s, angle):
-    #     s = pygame.transform.rotate(s,angle)
-    #     return s
-    #
-    # def rot_center(self, image, angle):
-    #     """rotate an image while keeping its center and size"""
-    #     orig_rect = image.get_rect()
-    #     rot_image = pygame.transform.rotate(image, angle)
-    #     rot_rect = orig_rect.copy()
-    #     rot_rect.center = rot_image.get_rect().center
-    #     rot_image = rot_image.subsurface(rot_rect).copy()
-    #     return rot_image
-    #
-    # def rot_center2(self, image, rect, angle):
-    #         a = b = rect.width/2
-    #         c = math.sqrt((a ** 2) + (b ** 2))
-    #         print(c, a, 'gep')
-    #         """rotate an image while keeping its center"""
-    #         rot_image = pygame.transform.rotate(image, angle)
-    #         cx = c + a
-    #         cy = (rect.centery/2) + b/2
-    #         rot_rect = rot_image.get_rect(center=(cx, cy))
-    #         print(rect.x, rect.y)
-    #         return rot_image,rot_rect
+        # def c_rotate(self, s, angle):
+        #     s = pygame.transform.rotate(s,angle)
+        #     return s
+        #
+        # def rot_center(self, image, angle):
+        #     """rotate an image while keeping its center and size"""
+        #     orig_rect = image.get_rect()
+        #     rot_image = pygame.transform.rotate(image, angle)
+        #     rot_rect = orig_rect.copy()
+        #     rot_rect.center = rot_image.get_rect().center
+        #     rot_image = rot_image.subsurface(rot_rect).copy()
+        #     return rot_image
+        #
+        # def rot_center2(self, image, rect, angle):
+        #         a = b = rect.width/2
+        #         c = math.sqrt((a ** 2) + (b ** 2))
+        #         print(c, a, 'gep')
+        #         """rotate an image while keeping its center"""
+        #         rot_image = pygame.transform.rotate(image, angle)
+        #         cx = c + a
+        #         cy = (rect.centery/2) + b/2
+        #         rot_rect = rot_image.get_rect(center=(cx, cy))
+        #         print(rect.x, rect.y)
+        #         return rot_image,rot_rect

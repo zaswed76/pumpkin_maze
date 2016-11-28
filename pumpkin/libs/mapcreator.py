@@ -85,8 +85,10 @@ class Level:
 
     def create_object(self, screen, layer):
         for obj in layer['objects']:
-            figure = units.Rect(screen, **obj)
-            self.all_layers[figure.name] = figure
+            if any((layer.get('color'), obj.get('color'))):
+                figure = units.FigureFabric(screen, color=layer.get('color'), **obj)
+                self.all_layers[figure.id] = figure
+
 
     def draw_tiles(self):
 
@@ -94,6 +96,7 @@ class Level:
             self.all_layers.draw(self.screen)
 
         else:
+            print('все слои пусты', 'method - draw_tiles')
             print(self.all_layers)
 
     def fill(self):
@@ -158,7 +161,6 @@ class Levels(list):
         """
         # todo что зачем?
         self[level].fill()
-
         self[level].draw_tiles()
 
     def set_bg_type(self, bg_type: units.AbsSprite):

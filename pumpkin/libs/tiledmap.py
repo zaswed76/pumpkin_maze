@@ -9,9 +9,21 @@ class TileObjects(list):
         self.extend(objects)
 
     def print(self):
-        for i in self:
-            print(i)
-            print('--------------------------')
+        for n, i in enumerate(self,start=1):
+            print(' ---- LayerObject N-{} ----\n'.format(n))
+
+            for k, v in i.items():
+                if k == 'objects':
+                    print(' <<< objects >>>')
+                    print('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
+                    for l in v:
+                        print(l)
+                        print('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
+                else:
+                    print(k, v, sep=' = ')
+
+                print('--------------------------')
+            print('#'*70)
 
     def __repr__(self):
         return '{}'.format(len(self))
@@ -127,7 +139,7 @@ class TiledParser(dict):
 if __name__ == '__main__':
     from pumpkin import paths
 
-    pth_map = os.path.join(paths.maps, '2.json')
+    pth_map = os.path.join(paths.maps, '3.json')
     tiled = TiledParser(pth_map, paths.tilesets)
     # tiled.print_map()
     print(tiled.layers.objects.print())
