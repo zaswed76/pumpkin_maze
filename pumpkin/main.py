@@ -32,6 +32,7 @@ def run_game():
 
     timer = pygame.time.Clock()
     # Запуск основного цикла игры.
+    # todo Campaign Cartographer
     while True:
 
         # Отслеживание событий клавиатуры и мыши.
