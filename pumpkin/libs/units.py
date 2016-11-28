@@ -15,6 +15,29 @@ class UGroup(OrderedUpdates):
         super().__init__(*sprites)
         self.type = name
 
+    def draw(self, surface):
+       spritedict = self.spritedict
+       surface_blit = surface.blit
+       dirty = self.lostsprites
+       self.lostsprites = []
+       dirty_append = dirty.append
+       for s in self.sprites():
+           r = spritedict[s]
+           newrect = s.draw(s.screen)
+           if r:
+               if newrect.colliderect(r):
+                   dirty_append(newrect.union(r))
+               else:
+                   dirty_append(newrect)
+                   dirty_append(r)
+           else:
+               dirty_append(newrect)
+           spritedict[s] = newrect
+       return dirty
+       # for s in self.sprites():
+       #     s.draw(s.screen)
+
+
 
 class AllLayers(OrderedDict):
     def __init__(self, **kwargs):
@@ -22,6 +45,7 @@ class AllLayers(OrderedDict):
 
     def draw(self, screen):
         for lay in self.values():
+            print(lay, 'lay')
             lay.draw(screen)
             lay.update(screen)
 
@@ -211,23 +235,25 @@ class FigureFabric(Sprite):
                               self.height, self.color)
 
     def rectangle(self, screen, x, y, width, height, color, *args):
-        self.sur = pygame.Surface((width, height), pygame.SRCALPHA)
+        self.image = pygame.Surface((width, height), pygame.SRCALPHA)
         self.rect = pygame.Rect(x, y, width, height)
         if self.color[3] < 255:
-            self.sur.set_alpha(self.color[3])
-        self.sur.fill(color)
+            self.image.set_alpha(self.color[3])
+        self.image.fill(color)
 
     def line(self, screen, x, y, width, height, color):
         print('line')
-        self.sur = pygame.Surface((width, height), pygame.SRCALPHA)
-        self.sur.fill(color)
+        self.image = pygame.Surface((width, height), pygame.SRCALPHA)
+        self.image.fill(color)
 
     def draw(self, screen):
+        print('1111111111111111111111')
+
         if self.border:
-            pygame.draw.rect(screen, self.color, self.rect,
+            return pygame.draw.rect(screen, self.color, self.rect,
                              self.border)
         else:
-            screen.blit(self.sur, self.rect)
+            return screen.blit(self.image, self.rect)
             # self.line = pygame.draw.line(screen, self.color, (self.sx, self.sy),
             #                              [self.fx,self.fy], 3)
             # s = pygame.draw.rect(screen, self.color, (self.x, self.y, self.width, self.height))

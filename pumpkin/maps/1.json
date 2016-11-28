@@ -11,6 +11,16 @@
                  "height":96,
                  "id":34,
                  "name":"",
+                 "properties":
+                    {
+                     "border":2,
+                     "color":"#ffff5500"
+                    },
+                 "propertytypes":
+                    {
+                     "border":"int",
+                     "color":"color"
+                    },
                  "rotation":0,
                  "type":"rect",
                  "visible":true,
