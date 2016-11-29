@@ -2,31 +2,21 @@
  "height":10,
  "layers":[
         {
-         "color":"#0055ff",
+         "color":"#00aa7f",
          "draworder":"topdown",
          "height":10,
-         "name":"object laeyr 1",
+         "name":"wall",
          "objects":[
                 {
-                 "height":96,
-                 "id":34,
+                 "height":32,
+                 "id":51,
                  "name":"",
-                 "properties":
-                    {
-                     "border":2,
-                     "color":"#ffff5500"
-                    },
-                 "propertytypes":
-                    {
-                     "border":"int",
-                     "color":"color"
-                    },
                  "rotation":0,
                  "type":"rect",
                  "visible":true,
-                 "width":96,
-                 "x":96,
-                 "y":64
+                 "width":320,
+                 "x":0,
+                 "y":0
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -35,24 +25,11 @@
          "x":0,
          "y":0
         }],
- "nextobjectid":35,
+ "nextobjectid":52,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tileheight":32,
- "tilesets":[
-        {
-         "columns":10,
-         "firstgid":1,
-         "image":"..\/resources\/sets\/set_rpg.png",
-         "imageheight":320,
-         "imagewidth":320,
-         "margin":0,
-         "name":"set_rpg",
-         "spacing":0,
-         "tilecount":100,
-         "tileheight":32,
-         "tilewidth":32
-        }],
+ "tilesets":[],
  "tilewidth":32,
  "version":1,
  "width":10

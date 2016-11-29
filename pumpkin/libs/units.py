@@ -24,6 +24,7 @@ class UGroup(OrderedUpdates):
        for s in self.sprites():
            r = spritedict[s]
            newrect = s.draw(s.screen)
+           print(newrect, 'nnnnnnnnnnnnnn')
            if r:
                if newrect.colliderect(r):
                    dirty_append(newrect.union(r))
@@ -45,7 +46,6 @@ class AllLayers(OrderedDict):
 
     def draw(self, screen):
         for lay in self.values():
-            print(lay, 'lay')
             lay.draw(screen)
             lay.update(screen)
 
@@ -203,12 +203,13 @@ class Player(Sprite):
 class FigureFabric(Sprite):
     alias_figure = {'rect': 'rectangle'}
 
-    def __init__(self, screen, color: hex, **cfg):
+    def __init__(self, screen, color: hex, figure_type: str, **cfg):
         super().__init__()
+        self.surface = None
         self.name = cfg.get('name', 'noname')
         self.color = _color.get_color(color)
-        type_name = cfg.get('type', None)
-        self.type = self.alias_figure.get(type_name, type_name)
+
+        self.type = self.alias_figure.get(figure_type, figure_type)
         self.id = cfg['id']
         self.x = cfg['x']
         self.y = cfg['y']
@@ -231,15 +232,20 @@ class FigureFabric(Sprite):
         self.draw_figure(self.type)
 
     def draw_figure(self, figure):
-        getattr(self, figure)(self.screen, self.x, self.y, self.width,
-                              self.height, self.color)
+        try:
+            getattr(self, figure)(self.screen, self.x, self.y, self.width,
+                                  self.height, self.color)
+        except AttributeError as err:
+
+            print('фигру - {} рисовать не умею'.format(figure))
+            raise Exception(err)
 
     def rectangle(self, screen, x, y, width, height, color, *args):
-        self.image = pygame.Surface((width, height), pygame.SRCALPHA)
+        self.surface = pygame.Surface((width, height), pygame.SRCALPHA)
         self.rect = pygame.Rect(x, y, width, height)
         if self.color[3] < 255:
-            self.image.set_alpha(self.color[3])
-        self.image.fill(color)
+            self.surface.set_alpha(self.color[3])
+        self.surface.fill(color)
 
     def line(self, screen, x, y, width, height, color):
         print('line')
@@ -247,13 +253,13 @@ class FigureFabric(Sprite):
         self.image.fill(color)
 
     def draw(self, screen):
-        print('1111111111111111111111')
+        if self.surface is not None:
+            if self.border:
+                return pygame.draw.rect(screen, self.color, self.rect,
+                                 self.border)
+            else:
 
-        if self.border:
-            return pygame.draw.rect(screen, self.color, self.rect,
-                             self.border)
-        else:
-            return screen.blit(self.image, self.rect)
+                return screen.blit(self.surface, self.rect)
             # self.line = pygame.draw.line(screen, self.color, (self.sx, self.sy),
             #                              [self.fx,self.fy], 3)
             # s = pygame.draw.rect(screen, self.color, (self.x, self.y, self.width, self.height))

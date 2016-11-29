@@ -56,7 +56,7 @@ class TileSets(dict):
         self.update(sets)
 
     def get_set(self):
-        return self[0]
+        return self
 
     def print(self):
         for set in self:
@@ -89,19 +89,24 @@ class TiledParser(dict):
         try:
             self.sets = TileSets(self['tilesets'][0])
         except IndexError:
-            pass
+            self.sets = {}
         # объект SubSprite
-        self.subsprite = subsprite.SubSprite(
-            self.get_tileset_path(),
-            self['tilewidth'],
-            self['tileheight'])
+        if self.sets:
+            tiled_pth = self.get_tileset_path()
 
-        self.tiled_properties = self['tilesets'][0].get('tileproperties', dict())
+            self.subsprite = subsprite.SubSprite(
+                tiled_pth,
+                self['tilewidth'],
+                self['tileheight'])
+
+            self.tiled_properties = self['tilesets'][0].get('tileproperties', dict())
 
 
     def get_tileset_path(self):
-        pth = self.sets['image']
-        return os.path.join(self.tileset_dir, os.path.basename(pth))
+        pth = self.sets.get('image', False)
+        if pth:
+            return os.path.join(self.tileset_dir, os.path.basename(pth))
+        else: return False
 
 
     def load_map(self, level_map: str) -> dict:

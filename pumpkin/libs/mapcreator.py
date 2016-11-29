@@ -42,8 +42,10 @@ class Level:
 
         self.size_map = self.get_size_map()
 
-        self.image_sprites = self.tiled_map.get_subsprites(
-            self.tiled_map.get_id_tiles())
+        # если есть тайлсет
+        if self.tiled_map.sets:
+            self.image_sprites = self.tiled_map.get_subsprites(
+                self.tiled_map.get_id_tiles())
         self.all_layers = units.AllLayers()
         self.all_images = OrderedUpdates()
         self.bg_type = None
@@ -113,15 +115,24 @@ class Level:
         self.all_layers[group_layer.type] = (group_layer)
 
     def create_object(self, group_layer, screen, layer):
+        print_dict(layer)
         for obj in layer['objects']:
             # print_dict(obj)
+
             # передаём цвет в порядке приоритета
             color = get_color(obj.get('properties', dict()).get('color'), layer.get('color'))
             if color:
-                if obj.get('type', False):
-                    figure = units.FigureFabric(screen, color, **obj)
+                layer_figure_type = layer.get('properties', {}).get('figure_type', False)
+
+                object_figure_type = obj.get('type', False)
+                if object_figure_type:
+                    figure_type = object_figure_type
+                else:
+                    figure_type = layer_figure_type
+
+                if figure_type:
+                    figure = units.FigureFabric(screen, color, figure_type, **obj)
                     group_layer.add(figure)
-                    print(group_layer)
                 else: print('объкт - "{}" не имеет типа'.format(obj.get('type')))
             else:  print('объкт - {} не имеет цвета'.format(obj.get('type')))
         print(group_layer.type, 'layer type')
@@ -129,7 +140,6 @@ class Level:
 
 
     def draw_layers(self):
-
         if self.all_layers:
             self.all_layers.draw(self.screen)
         else:
