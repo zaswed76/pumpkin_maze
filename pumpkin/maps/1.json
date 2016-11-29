@@ -2,29 +2,127 @@
  "height":10,
  "layers":[
         {
-         "color":"#0055ff",
+         "color":"#00aa7f",
          "draworder":"topdown",
          "height":10,
-         "name":"1111",
+         "name":"\u0421\u043b\u043e\u0439 \u043e\u0431\u044a\u0435\u043a\u0442\u043e\u0432 1",
          "objects":[
                 {
-                 "height":64,
-                 "id":54,
+                 "height":224,
+                 "id":55,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":64,
-                 "x":128,
+                 "x":64,
+                 "y":32
+                }, 
+                {
+                 "height":8,
+                 "id":56,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":328,
+                 "x":0,
+                 "y":-8
+                }, 
+                {
+                 "height":328,
+                 "id":57,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":320,
+                 "y":-8
+                }, 
+                {
+                 "height":8,
+                 "id":59,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":336,
+                 "x":-8,
+                 "y":320
+                }, 
+                {
+                 "height":328,
+                 "id":61,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8,
+                 "x":-8,
+                 "y":-8
+                }, 
+                {
+                 "height":32,
+                 "id":62,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":192,
                  "y":96
+                }, 
+                {
+                 "height":32,
+                 "id":63,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":224,
+                 "y":160
+                }, 
+                {
+                 "height":32,
+                 "id":64,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":192,
+                 "y":256
+                }, 
+                {
+                 "height":32,
+                 "id":65,
+                 "name":"",
+                 "properties":
+                    {
+                     "color":"#ffffaa00"
+                    },
+                 "propertytypes":
+                    {
+                     "color":"color"
+                    },
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":256,
+                 "y":32
                 }],
          "opacity":1,
          "properties":
             {
+             "class":"wall",
              "figure_type":"rect"
             },
          "propertytypes":
             {
+             "class":"string",
              "figure_type":"string"
             },
          "type":"objectgroup",
@@ -32,8 +130,27 @@
          "width":10,
          "x":0,
          "y":0
+        }, 
+        {
+         "data":[1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+         "height":10,
+         "name":"\u0421\u043b\u043e\u0439 \u0442\u0430\u0439\u043b\u043e\u0432 1",
+         "opacity":1,
+         "properties":
+            {
+             "class":"wall"
+            },
+         "propertytypes":
+            {
+             "class":"string"
+            },
+         "type":"tilelayer",
+         "visible":true,
+         "width":10,
+         "x":0,
+         "y":0
         }],
- "nextobjectid":55,
+ "nextobjectid":66,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tileheight":32,

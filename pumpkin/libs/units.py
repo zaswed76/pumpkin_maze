@@ -9,9 +9,10 @@ class UGroup(OrderedUpdates):
     Door = 'door'
     Wall = 'wall'
 
-    def __init__(self, name, *sprites):
+    def __init__(self, name, class_name, *sprites):
         super().__init__(*sprites)
-        self.type = name
+        self.name = name
+        self.class_name = class_name
 
     def draw(self, surface):
         spritedict = self.spritedict
@@ -212,23 +213,22 @@ class Player(Sprite):
             # print(group.type)
             platform = pygame.sprite.spritecollideany(self, group)
             if platform:
-                print(platform.rect.bottom)
-                if speed_y < 0:
-                    self.rect.top = platform.rect.bottom
+                if group.class_name == 'wall':
+                    if speed_x < 0:
+                        self.rect.left = platform.rect.right
+                    elif speed_x > 0:
+                        self.rect.right = platform.rect.left
+                    elif speed_y < 0:
+                        self.rect.top = platform.rect.bottom
+                    elif speed_y > 0:
+                        self.rect.bottom = platform.rect.top
                     # print(list(platforms)[0], '1111')
                     # for p in list(platforms)[0]:
                     #
                     #     if pygame.sprite.collide_rect(self, p):
                     #         print(p, 5555)
                     #         if p.name == 'walls':
-                    #             if speed_x < 0:
-                    #                 self.rect.left = p.rect.right
-                    #             elif speed_x > 0:
-                    #                 self.rect.right = p.rect.left
-                    #             elif speed_y < 0:
-                    #                 self.rect.top = p.rect.bottom
-                    #             elif speed_y > 0:
-                    #                 self.rect.bottom = p.rect.top
+
                     # elif p.name == 'doors':
                     #     if self.stats.level < self.stats.max_levels:
                     #         self.stats.level += 1

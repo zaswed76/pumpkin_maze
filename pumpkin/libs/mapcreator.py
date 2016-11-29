@@ -48,22 +48,22 @@ class Level:
 
     def create_map(self):
         for layer in self.tiled_map.layers:
+            properties = layer.get('properties', {})
+            class_name = properties.get('class')
+            name_layer = layer['name']
 
             if layer['type'] == 'tilelayer' and layer['visible']:
-                type_name = layer['name']
                 data = layer['data']
-                group_layer = units.UGroup(type_name)
+                group_layer = units.UGroup(name_layer, class_name)
                 self.create_layer(group_layer, data)
             elif layer['type'] == 'imagelayer' and layer['visible']:
-                speed = layer.get('properties', {}).get('speed', 0)
+                speed = properties.get('speed', 0)
                 self.create_image(self.get_image_path(layer['image']),
                                   layer.get('offsetx', 0),
                                   layer.get('offsety', 0),
                                   speed)
             elif layer['type'] == 'objectgroup' and layer['visible']:
-                type_name = layer['name']
-
-                group_layer = units.UGroup(type_name)
+                group_layer = units.UGroup(name_layer, class_name)
                 self.create_object(group_layer, self.screen, layer)
 
     def get_image_path(self, image):
@@ -84,7 +84,7 @@ class Level:
             if n:
                 gid = n - 1
                 image = self.image_sprites[gid]
-                platform = Platform(group_layer.type, self.screen,
+                platform = Platform(group_layer.class_name, self.screen,
                                     image, x, y, gid,
                                     self.tiled_map.tiled_properties.get(
                                         str(gid), dict()))
@@ -96,7 +96,7 @@ class Level:
                 x = 0
                 y += step
 
-        self.all_layers[group_layer.type] = (group_layer)
+        self.all_layers[group_layer.name] = (group_layer)
 
     def create_object(self, group_layer, screen, layer):
         for obj in layer['objects']:
@@ -111,11 +111,11 @@ class Level:
                 color = _color.get_color(obj.get('properties', dict()).get('color'), layer.get('color'))
                 if color:
                     figure = units.FigureFabric(screen, color, figure_type, **obj)
-                    group_layer.add(figure)
+                    group_layer.add(figure())
                 else:  print('объкт - {} не имеет цвета'.format(obj.get('type')))
             else: print('объкт - "{}" не имеет типа'.format(obj.get('type')))
 
-        self.all_layers[group_layer.type] = group_layer
+        self.all_layers[group_layer.name] = group_layer
 
 
 
