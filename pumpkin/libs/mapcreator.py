@@ -2,9 +2,9 @@ import os
 
 import pygame
 from pygame.sprite import Group, OrderedUpdates
-from libs import tiledmap, units, color
+from libs import tiledmap, game_objects, color
 from libs import color as _color
-from libs.units import Platform
+from libs.game_objects import Platform
 
 def print_dict(d: dict):
     for k, v in d.items():
@@ -28,7 +28,7 @@ class Level:
         if self.tiled_map.sets:
             self.image_sprites = self.tiled_map.get_subsprites(
                 self.tiled_map.get_id_tiles())
-        self.all_layers = units.AllLayers()
+        self.all_layers = game_objects.AllLayers()
         self.all_images = OrderedUpdates()
         self.bg_type = None
         self.name = os.path.splitext(os.path.basename(json_map))[0]
@@ -54,7 +54,7 @@ class Level:
 
             if layer['type'] == 'tilelayer' and layer['visible']:
                 data = layer['data']
-                group_layer = units.UGroup(name_layer, class_name)
+                group_layer = game_objects.UGroup(name_layer, class_name)
                 self.create_layer(group_layer, data)
             elif layer['type'] == 'imagelayer' and layer['visible']:
                 speed = properties.get('speed', 0)
@@ -63,7 +63,7 @@ class Level:
                                   layer.get('offsety', 0),
                                   speed)
             elif layer['type'] == 'objectgroup' and layer['visible']:
-                group_layer = units.UGroup(name_layer, class_name)
+                group_layer = game_objects.UGroup(name_layer, class_name)
                 self.create_object(group_layer, self.screen, layer)
 
     def get_image_path(self, image):
@@ -110,7 +110,7 @@ class Level:
                 # передаём цвет в порядке приоритета
                 color = _color.get_color(obj.get('properties', dict()).get('color'), layer.get('color'))
                 if color:
-                    figure = units.FigureFabric(screen, color, figure_type, **obj)
+                    figure = game_objects.Figure(screen, color, figure_type, **obj)
                     group_layer.add(figure())
                 else:  print('объкт - {} не имеет цвета'.format(obj.get('type')))
             else: print('объкт - "{}" не имеет типа'.format(obj.get('type')))
@@ -148,7 +148,7 @@ class Levels(list):
         self.map_dir = map_dir
         self.included_level = config.included_level
         self.maps = self.get_maps()
-        self.bg_type = units.Background
+        self.bg_type = game_objects.Background
 
     def get_maps(self) -> list:
         """
@@ -192,7 +192,7 @@ class Levels(list):
         self[level].fill()
         self[level].draw_layers()
 
-    def set_bg_type(self, bg_type: units.AbsSprite):
+    def set_bg_type(self, bg_type: game_objects.AbsSprite):
         """
 
         :param bg_type: units.AbsSprite

@@ -4,11 +4,14 @@ from pygame.sprite import Sprite, Group, OrderedUpdates
 from collections import OrderedDict
 from libs import color as _color
 
-
-class UGroup(OrderedUpdates):
+class GameObject(Sprite):
     Door = 'door'
     Wall = 'wall'
+    def __init__(self, *groups):
+        super().__init__(*groups)
 
+
+class UGroup(OrderedUpdates):
     def __init__(self, name, class_name, *sprites):
         super().__init__(*sprites)
         self.name = name
@@ -95,7 +98,7 @@ class Background2(Background):
         self.rect.centery = self.center_y
 
 
-class TailObject(Sprite):
+class TailObject(GameObject):
     def __init__(self, type, screen, rect, color=None, gid=None,
                  properties=None):
         super().__init__()
@@ -129,7 +132,7 @@ class TailObject(Sprite):
                 return screen.blit(self.surface, self.rect)
 
 
-class Platform(Sprite):
+class Platform(GameObject):
     def __init__(self, type, screen, image, x, y, gid, properties):
         super().__init__()
         self.properties = properties
@@ -213,7 +216,7 @@ class Player(Sprite):
             # print(group.type)
             platform = pygame.sprite.spritecollideany(self, group)
             if platform:
-                if group.class_name == 'wall':
+                if group.class_name == GameObject.Wall:
                     if speed_x < 0:
                         self.rect.left = platform.rect.right
                     elif speed_x > 0:
@@ -236,7 +239,7 @@ class Player(Sprite):
                     #         self.rect.bottom = 64
 
 
-class FigureFabric(Sprite):
+class Figure(GameObject):
     alias_figure = {'rect': 'rectangle'}
 
     def __init__(self, screen, color: hex, figure_type: str, **cfg):

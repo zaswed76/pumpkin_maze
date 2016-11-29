@@ -5,7 +5,7 @@ import gamestats
 import paths
 from controller import Controller
 from libs import mapcreator
-from libs import units
+from libs import game_objects
 from config import Config
 
 cfg = Config()
@@ -29,7 +29,7 @@ def run_game():
     all_levels = mapcreator.Levels(screen, paths.maps, paths.tilesets, paths.resources, cfg)
 
     all_levels.create_levels()
-    player = units.Player(stats,screen, 2, 2, 32,32)
+    player = game_objects.Player(stats, screen, 2, 2, 32, 32)
     timer = pygame.time.Clock()
     # Запуск основного цикла игры.
     # todo Campaign Cartographer
