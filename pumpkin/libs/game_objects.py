@@ -11,8 +11,14 @@ class GameObject(Sprite):
         super().__init__(*groups)
 
 
-class UGroup(OrderedUpdates):
+class OrderedGroup(OrderedUpdates):
     def __init__(self, name, class_name, *sprites):
+        """
+
+        :param name: имя слоя
+        :param class_name: тип слоя (пользовательские свойства)
+        :param sprites: pygame.sprites
+        """
         super().__init__(*sprites)
         self.name = name
         self.class_name = class_name
@@ -36,8 +42,7 @@ class UGroup(OrderedUpdates):
                 dirty_append(newrect)
             spritedict[s] = newrect
         return dirty
-        # for s in self.sprites():
-        #     s.draw(s.screen)
+
 
 
 class AllLayers(OrderedDict):

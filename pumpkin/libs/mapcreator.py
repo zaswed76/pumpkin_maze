@@ -54,26 +54,28 @@ class Level:
 
             if layer['type'] == 'tilelayer' and layer['visible']:
                 data = layer['data']
-                group_layer = game_objects.UGroup(name_layer, class_name)
+                group_layer = game_objects.OrderedGroup(name_layer, class_name)
                 self.create_layer(group_layer, data)
             elif layer['type'] == 'imagelayer' and layer['visible']:
                 speed = properties.get('speed', 0)
-                self.create_image(self.get_image_path(layer['image']),
+                group_layer = game_objects.OrderedGroup(name_layer, class_name)
+                self.create_image(group_layer, self.get_image_path(layer['image']),
                                   layer.get('offsetx', 0),
                                   layer.get('offsety', 0),
                                   speed)
             elif layer['type'] == 'objectgroup' and layer['visible']:
-                group_layer = game_objects.UGroup(name_layer, class_name)
+                group_layer = game_objects.OrderedGroup(name_layer, class_name)
                 self.create_object(group_layer, self.screen, layer)
 
     def get_image_path(self, image):
         return os.path.join(self.resources_dir,
                             os.path.basename(image))
 
-    def create_image(self, image_pth, x, y, speed):
+    def create_image(self, group_layer,   image_pth, x, y, speed):
         bg = self.bg_type(self.screen, image_pth, x, y, speed)
+        group_layer.add(bg)
 
-        self.all_layers[image_pth] = bg
+        self.all_layers[group_layer.name] = (group_layer)
 
     def create_layer(self, group_layer, data):
         x = 0
