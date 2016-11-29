@@ -72,6 +72,7 @@ class Level:
 
     def create_image(self, image_pth, x, y, speed):
         bg = self.bg_type(self.screen, image_pth, x, y, speed)
+
         self.all_layers[image_pth] = bg
 
     def create_layer(self, group_layer, data):
@@ -94,6 +95,7 @@ class Level:
             if x == width:
                 x = 0
                 y += step
+
         self.all_layers[group_layer.type] = (group_layer)
 
     def create_object(self, group_layer, screen, layer):
@@ -113,8 +115,8 @@ class Level:
                 else:  print('объкт - {} не имеет цвета'.format(obj.get('type')))
             else: print('объкт - "{}" не имеет типа'.format(obj.get('type')))
 
-
         self.all_layers[group_layer.type] = group_layer
+
 
 
     def draw_layers(self):

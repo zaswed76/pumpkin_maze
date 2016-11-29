@@ -51,6 +51,7 @@ class Controller:
             pass
         else:
             player = player
+        # print(player)
 
         for e in pygame.event.get():
             if e.type == pygame.QUIT: sys.exit()
@@ -62,7 +63,7 @@ class Controller:
             if e.type == pygame.KEYDOWN and e.key == pygame.K_ESCAPE:
                 sys.exit()
             if e.type == pygame.KEYDOWN and e.key == pygame.K_UP:
-                self.game_stat.increase_level()
+                player.up = True
             if e.type == pygame.KEYDOWN and e.key == pygame.K_DOWN:
                 player.down = True
             if e.type == pygame.KEYDOWN and e.key == pygame.K_LEFT:

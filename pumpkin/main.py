@@ -29,18 +29,21 @@ def run_game():
     all_levels = mapcreator.Levels(screen, paths.maps, paths.tilesets, paths.resources, cfg)
 
     all_levels.create_levels()
-
+    player = units.Player(stats,screen, 2, 2, 32,32)
     timer = pygame.time.Clock()
     # Запуск основного цикла игры.
     # todo Campaign Cartographer
     while True:
 
         # Отслеживание событий клавиатуры и мыши.
-        controller = Controller(stats, level=all_levels[stats.level])
+        controller = Controller(stats, level=all_levels[stats.level], player=player)
         # Отображение последнего прорисованного экрана.
 
 
         all_levels.draw(stats.level)
+        player.blitme()
+        # print(all_levels[0].all_layers)
+        player.update(all_levels[0].all_layers.get_groups())
 
         pygame.display.flip()
         timer.tick(120)
