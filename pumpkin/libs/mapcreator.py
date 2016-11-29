@@ -2,32 +2,14 @@ import os
 
 import pygame
 from pygame.sprite import Group, OrderedUpdates
-from libs import tiledmap, units
+from libs import tiledmap, units, color
+from libs import color as _color
 from libs.units import Platform
 
 def print_dict(d: dict):
     for k, v in d.items():
         print(k, v, sep=' = ')
         print('---------------------------')
-
-def get_color(*colors) -> hex:
-    """
-
-    :param colors: цвета в порядке приоритета
-    :return: hex color возвращает первый же валидный цвет или false
-    """
-    print(colors, 'colors')
-    for c in colors:
-        print(c, 'ccc')
-        try:
-            cl = pygame.Color(c)
-        except ValueError as er:
-            print('{} - {}'.format(c, er))
-
-        else:
-            return c
-    else:
-        return False
 
 
 class Level:
@@ -80,7 +62,7 @@ class Level:
                                   speed)
             elif layer['type'] == 'objectgroup' and layer['visible']:
                 type_name = layer['name']
-                print(type_name)
+
                 group_layer = units.UGroup(type_name)
                 self.create_object(group_layer, self.screen, layer)
 
@@ -115,27 +97,23 @@ class Level:
         self.all_layers[group_layer.type] = (group_layer)
 
     def create_object(self, group_layer, screen, layer):
-        print_dict(layer)
         for obj in layer['objects']:
-            # print_dict(obj)
-
-            # передаём цвет в порядке приоритета
-            color = get_color(obj.get('properties', dict()).get('color'), layer.get('color'))
-            if color:
-                layer_figure_type = layer.get('properties', {}).get('figure_type', False)
-
-                object_figure_type = obj.get('type', False)
-                if object_figure_type:
-                    figure_type = object_figure_type
-                else:
-                    figure_type = layer_figure_type
-
-                if figure_type:
+            layer_figure_type = layer.get('properties', {}).get('figure_type', False)
+            object_figure_type = obj.get('type', False)
+            if object_figure_type:
+                figure_type = object_figure_type
+            else:
+                figure_type = layer_figure_type
+            if figure_type:
+                # передаём цвет в порядке приоритета
+                color = _color.get_color(obj.get('properties', dict()).get('color'), layer.get('color'))
+                if color:
                     figure = units.FigureFabric(screen, color, figure_type, **obj)
                     group_layer.add(figure)
-                else: print('объкт - "{}" не имеет типа'.format(obj.get('type')))
-            else:  print('объкт - {} не имеет цвета'.format(obj.get('type')))
-        print(group_layer.type, 'layer type')
+                else:  print('объкт - {} не имеет цвета'.format(obj.get('type')))
+            else: print('объкт - "{}" не имеет типа'.format(obj.get('type')))
+
+
         self.all_layers[group_layer.type] = group_layer
 
 

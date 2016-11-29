@@ -17,19 +17,62 @@
                  "width":320,
                  "x":0,
                  "y":0
+                }, 
+                {
+                 "height":256,
+                 "id":53,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":288,
+                 "y":64
                 }],
          "opacity":1,
+         "properties":
+            {
+             "figure_type":"rect"
+            },
+         "propertytypes":
+            {
+             "figure_type":"string"
+            },
          "type":"objectgroup",
          "visible":true,
          "width":10,
          "x":0,
          "y":0
+        }, 
+        {
+         "data":[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 58, 0, 0, 0, 0, 58, 47, 0, 48, 0, 0, 0, 0, 48, 0, 0, 0, 0, 0, 23, 0, 0, 0, 0, 0, 0, 0, 0, 48, 0, 0, 0, 0, 0, 61, 0, 0, 0, 0, 0, 0, 15, 0, 0, 0, 0, 0, 0, 0, 0, 48, 0, 0, 48, 0, 0, 0, 0, 28, 0, 0, 0, 0, 0, 11, 0, 0, 0, 0, 0, 58, 0, 62, 0, 0, 0, 0, 0, 58, 74, 0, 0, 58, 0, 48, 0, 0],
+         "height":10,
+         "name":"\u0421\u043b\u043e\u0439 \u0442\u0430\u0439\u043b\u043e\u0432 1",
+         "opacity":1,
+         "type":"tilelayer",
+         "visible":false,
+         "width":10,
+         "x":0,
+         "y":0
         }],
- "nextobjectid":52,
+ "nextobjectid":54,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tileheight":32,
- "tilesets":[],
+ "tilesets":[
+        {
+         "columns":10,
+         "firstgid":1,
+         "image":"..\/resources\/sets\/set_rpg.png",
+         "imageheight":320,
+         "imagewidth":320,
+         "margin":0,
+         "name":"set_rpg",
+         "spacing":0,
+         "tilecount":100,
+         "tileheight":32,
+         "tilewidth":32
+        }],
  "tilewidth":32,
  "version":1,
  "width":10

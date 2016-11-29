@@ -24,7 +24,6 @@ class UGroup(OrderedUpdates):
        for s in self.sprites():
            r = spritedict[s]
            newrect = s.draw(s.screen)
-           print(newrect, 'nnnnnnnnnnnnnn')
            if r:
                if newrect.colliderect(r):
                    dirty_append(newrect.union(r))
@@ -106,16 +105,14 @@ class Platform(Sprite):
         self.type = type
         self.image = image
         self.screen = screen
-        # Загрузка изображения корабля и получение прямоугольника.
+        # Загрузка изображения тайла и получение прямоугольника.
 
         _, _, width, height = self.image.get_rect()
         self.screen_rect = screen.get_rect()
         self.rect = pygame.Rect(x, y, width, height)
 
-        # print(self.gid, self.properties)
-
-    def blitme(self):
-        self.screen.blit(self.image, self.rect)
+    def draw(self, screen):
+        screen.blit(self.image, self.rect)
 
 
 class Player(Sprite):
@@ -207,7 +204,7 @@ class FigureFabric(Sprite):
         super().__init__()
         self.surface = None
         self.name = cfg.get('name', 'noname')
-        self.color = _color.get_color(color)
+        self.color = _color.convert_color(color)
 
         self.type = self.alias_figure.get(figure_type, figure_type)
         self.id = cfg['id']
