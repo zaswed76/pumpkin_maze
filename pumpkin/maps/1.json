@@ -1,161 +1,10 @@
-{ "backgroundcolor":"#eee4cd",
+{ "backgroundcolor":"#2a7e00",
  "height":10,
  "layers":[
         {
+         "data":[2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
          "height":10,
-         "image":"..\/resources\/cloud.png",
-         "name":"\u041a\u043e\u043f\u0438\u044f \u0421\u043b\u043e\u0439 \u0438\u0437\u043e\u0431\u0440\u0430\u0436\u0435\u043d\u0438\u0439 1",
-         "offsetx":48,
-         "offsety":48,
-         "opacity":1,
-         "type":"imagelayer",
-         "visible":true,
-         "width":10,
-         "x":0,
-         "y":0
-        }, 
-        {
-         "color":"#00aa7f",
-         "draworder":"topdown",
-         "height":10,
-         "name":"\u0421\u043b\u043e\u0439 \u043e\u0431\u044a\u0435\u043a\u0442\u043e\u0432 1",
-         "objects":[
-                {
-                 "height":224,
-                 "id":55,
-                 "name":"",
-                 "properties":
-                    {
-                     "color":"#9600ffff"
-                    },
-                 "propertytypes":
-                    {
-                     "color":"color"
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":64,
-                 "x":64,
-                 "y":32
-                }, 
-                {
-                 "height":8,
-                 "id":56,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":328,
-                 "x":0,
-                 "y":-8
-                }, 
-                {
-                 "height":328,
-                 "id":57,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":8,
-                 "x":320,
-                 "y":-8
-                }, 
-                {
-                 "height":8,
-                 "id":59,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":336,
-                 "x":-8,
-                 "y":320
-                }, 
-                {
-                 "height":328,
-                 "id":61,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":8,
-                 "x":-8,
-                 "y":-8
-                }, 
-                {
-                 "height":32,
-                 "id":62,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":32,
-                 "x":192,
-                 "y":96
-                }, 
-                {
-                 "height":32,
-                 "id":63,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":32,
-                 "x":224,
-                 "y":160
-                }, 
-                {
-                 "height":32,
-                 "id":64,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":32,
-                 "x":192,
-                 "y":256
-                }, 
-                {
-                 "height":32,
-                 "id":65,
-                 "name":"",
-                 "properties":
-                    {
-                     "color":"#ffffaa00"
-                    },
-                 "propertytypes":
-                    {
-                     "color":"color"
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":32,
-                 "x":256,
-                 "y":32
-                }],
-         "opacity":1,
-         "properties":
-            {
-             "class":"wall",
-             "figure_type":"rect"
-            },
-         "propertytypes":
-            {
-             "class":"string",
-             "figure_type":"string"
-            },
-         "type":"objectgroup",
-         "visible":false,
-         "width":10,
-         "x":0,
-         "y":0
-        }, 
-        {
-         "data":[1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 25, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 26, 0, 0, 0, 0, 0, 0],
-         "height":10,
-         "name":"\u0421\u043b\u043e\u0439 \u0442\u0430\u0439\u043b\u043e\u0432 1",
+         "name":"wall",
          "opacity":1,
          "properties":
             {
@@ -166,35 +15,31 @@
              "class":"string"
             },
          "type":"tilelayer",
-         "visible":false,
+         "visible":true,
          "width":10,
          "x":0,
          "y":0
         }, 
         {
+         "data":[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 91, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
          "height":10,
-         "image":"..\/resources\/cloud.png",
-         "name":"\u0421\u043b\u043e\u0439 \u0438\u0437\u043e\u0431\u0440\u0430\u0436\u0435\u043d\u0438\u0439 1",
-         "offsetx":-72,
-         "offsety":192,
+         "name":"door",
          "opacity":1,
          "properties":
             {
-             "class":"wall",
-             "speed":1
+             "class":"door"
             },
          "propertytypes":
             {
-             "class":"string",
-             "speed":"int"
+             "class":"string"
             },
-         "type":"imagelayer",
+         "type":"tilelayer",
          "visible":true,
          "width":10,
          "x":0,
          "y":0
         }],
- "nextobjectid":66,
+ "nextobjectid":6,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tileheight":32,
@@ -210,6 +55,32 @@
          "spacing":0,
          "tilecount":100,
          "tileheight":32,
+         "tileproperties":
+            {
+             "49":
+                {
+                 "class":"door"
+                },
+             "59":
+                {
+                 "class":"door",
+                 "id":0,
+                 "link":1
+                }
+            },
+         "tilepropertytypes":
+            {
+             "49":
+                {
+                 "class":"string"
+                },
+             "59":
+                {
+                 "class":"string",
+                 "id":"int",
+                 "link":"int"
+                }
+            },
          "tilewidth":32
         }],
  "tilewidth":32,

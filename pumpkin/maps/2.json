@@ -1,50 +1,19 @@
-{ "backgroundcolor":"#c6c6c6",
+{ "backgroundcolor":"#ffff7f",
  "height":10,
  "layers":[
         {
-         "draworder":"topdown",
+         "data":[2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 60, 2, 92, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
          "height":10,
-         "name":"\u0421\u043b\u043e\u0439 \u043e\u0431\u044a\u0435\u043a\u0442\u043e\u0432 1",
-         "objects":[
-                {
-                 "height":320,
-                 "id":10,
-                 "name":"",
-                 "properties":
-                    {
-                     "color":"#640055ff"
-                    },
-                 "propertytypes":
-                    {
-                     "color":"color"
-                    },
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":320,
-                 "x":0,
-                 "y":0
-                }],
+         "name":"wall",
          "opacity":1,
          "properties":
             {
-             "color":""
+             "class":"wall"
             },
          "propertytypes":
             {
-             "color":"color"
+             "class":"string"
             },
-         "type":"objectgroup",
-         "visible":true,
-         "width":10,
-         "x":0,
-         "y":0
-        }, 
-        {
-         "data":[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-         "height":10,
-         "name":"\u0421\u043b\u043e\u0439 \u0442\u0430\u0439\u043b\u043e\u0432 1",
-         "opacity":1,
          "type":"tilelayer",
          "visible":true,
          "width":10,
@@ -52,19 +21,25 @@
          "y":0
         }, 
         {
+         "data":[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
          "height":10,
-         "image":"..\/resources\/qqq.png",
-         "name":"\u0421\u043b\u043e\u0439 \u0438\u0437\u043e\u0431\u0440\u0430\u0436\u0435\u043d\u0438\u0439 1",
-         "offsetx":96,
-         "offsety":64,
+         "name":"door",
          "opacity":1,
-         "type":"imagelayer",
+         "properties":
+            {
+             "class":"door"
+            },
+         "propertytypes":
+            {
+             "class":"string"
+            },
+         "type":"tilelayer",
          "visible":true,
          "width":10,
          "x":0,
          "y":0
         }],
- "nextobjectid":11,
+ "nextobjectid":6,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tileheight":32,
@@ -80,6 +55,32 @@
          "spacing":0,
          "tilecount":100,
          "tileheight":32,
+         "tileproperties":
+            {
+             "49":
+                {
+                 "class":"door"
+                },
+             "59":
+                {
+                 "class":"door",
+                 "id":1,
+                 "link":0
+                }
+            },
+         "tilepropertytypes":
+            {
+             "49":
+                {
+                 "class":"string"
+                },
+             "59":
+                {
+                 "class":"string",
+                 "id":"int",
+                 "link":"int"
+                }
+            },
          "tilewidth":32
         }],
  "tilewidth":32,

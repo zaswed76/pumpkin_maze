@@ -85,6 +85,8 @@ class Controller:
                 self.game_stat.level = 0
             if e.type == pygame.KEYUP and e.key == pygame.K_2:
                 self.game_stat.level = 1
+            if e.type == pygame.KEYUP and e.key == pygame.K_3:
+                self.game_stat.level = 2
     def mouse_collide(self, x, y, level):
         print(level)
 
