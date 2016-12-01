@@ -28,7 +28,7 @@
          "properties":
             {
              "class":"door",
-             "doors":"{60: (60, 69, 1), 69: (69,60,1)}\n"
+             "doors":"{60: (60, 29, 0, 'right'), 69: (69,60,1, 'left')}\n"
             },
          "propertytypes":
             {

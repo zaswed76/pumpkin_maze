@@ -175,12 +175,19 @@ class ImagePlatform(GameObject):
     def draw(self, screen):
         screen.blit(self.image, self.rect)
 
+    def __repr__(self):
+        return '{}'.format(self.rect)
+
 
 class Player(Sprite):
+
+
+
     def __init__(self, stats, screen, speedx, speedy, x, y):
         """Инициализирует корабль и задает его начальную позицию."""
 
         super().__init__()
+
         self.up = self.down = self.left = self.right = False
         self.game_stat = stats
         self.move = True
@@ -205,6 +212,9 @@ class Player(Sprite):
         # Сохранение вещественной координаты центра корабля.
         self.center_x = float(self.rect.centerx)
         self.center_y = float(self.rect.centery)
+
+    def direction_out_right(self):
+        return self.rect.right
 
     def blitme(self):
         """Рисует корабль в текущей позиции."""
@@ -253,7 +263,8 @@ class Player(Sprite):
                         self.rect.bottom = platform.rect.top
                 elif group.class_name == GameObject.Door:
                     # получить портал адресс () уревень, id двери
-                    id_door, lv = platform.portal
+                    print(platform)
+                    id_door, lv, direction = platform.portal
                     print(lv)
                      # загрузить уровень с этой дверью
                     level.clear()
@@ -264,12 +275,24 @@ class Player(Sprite):
                             if nm == GameObject.Door:
                                 for spr in lay.sprites():
                                     if spr.id == id_door:
-                                        center = spr.rect.center
+                                        center = spr.rect.centery
+                                        #  влево <<<<
                                         if speed_x < 0:
                                             self.rect.right = spr.rect.left
+                                            self.rect.centery = spr.rect.centery
+                                        # вправо >>>
                                         elif speed_x > 0:
                                             self.rect.left = spr.rect.right
+                                            self.rect.centery = spr.rect.centery
+                                        # вверх ^
+                                        if speed_y < 0:
+                                            self.rect.bottom = spr.rect.top
+                                            self.rect.centerx = spr.rect.centerx
+                                        # вниз v
+                                        elif speed_y > 0:
 
+                                            self.rect.top = spr.rect.bottom
+                                            self.rect.centerx = spr.rect.centerx
 
                     # получить центр двери
 

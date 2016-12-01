@@ -29,7 +29,7 @@ def run_game():
     all_levels = mapcreator.Levels(screen, paths.maps, paths.tilesets, paths.resources, cfg)
 
     all_levels.create_levels(stats.level)
-    player = game_objects.Player(stats, screen, 2, 2, 32, 32)
+    player = game_objects.Player(stats, screen, 1, 1, 32, 32)
     timer = pygame.time.Clock()
     # Запуск основного цикла игры.
 

@@ -87,6 +87,7 @@ class Level:
                 gid = n - 1
                 image = self.image_sprites[gid]
                 portal = group_layer.doors_portal.get(count)
+
                 platform = ImagePlatform(group_layer, self.screen,
                                          image, x, y, count,
                                          self.tiled_map.tiled_properties.get(
