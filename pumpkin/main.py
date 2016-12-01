@@ -28,7 +28,7 @@ def run_game():
     #---------- Levels ----------------------------------------------
     all_levels = mapcreator.Levels(screen, paths.maps, paths.tilesets, paths.resources, cfg)
 
-    all_levels.create_levels()
+    all_levels.create_levels(stats.level)
     player = game_objects.Player(stats, screen, 2, 2, 32, 32)
     timer = pygame.time.Clock()
     # Запуск основного цикла игры.
@@ -36,7 +36,7 @@ def run_game():
     while True:
 
         # Отслеживание событий клавиатуры и мыши.
-        controller = Controller(stats, level=all_levels[stats.level], player=player)
+        controller = Controller(stats, level=all_levels, player=player)
         # Отображение последнего прорисованного экрана.
 
 

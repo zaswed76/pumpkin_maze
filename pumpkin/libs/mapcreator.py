@@ -4,7 +4,7 @@ import pygame
 from pygame.sprite import Group, OrderedUpdates
 from libs import tiledmap, game_objects, color
 from libs import color as _color
-from libs.game_objects import Platform
+from libs.game_objects import ImagePlatform
 
 def print_dict(d: dict):
     for k, v in d.items():
@@ -54,17 +54,17 @@ class Level:
 
             if layer['type'] == 'tilelayer' and layer['visible']:
                 data = layer['data']
-                group_layer = game_objects.OrderedGroup(name_layer, class_name)
+                group_layer = game_objects.OrderedGroupLayer(name_layer, class_name, properties)
                 self.create_layer(group_layer, data)
             elif layer['type'] == 'imagelayer' and layer['visible']:
                 speed = properties.get('speed', 0)
-                group_layer = game_objects.OrderedGroup(name_layer, class_name)
+                group_layer = game_objects.OrderedGroupLayer(name_layer, class_name, properties)
                 self.create_image(group_layer, self.get_image_path(layer['image']),
                                   layer.get('offsetx', 0),
                                   layer.get('offsety', 0),
                                   speed)
             elif layer['type'] == 'objectgroup' and layer['visible']:
-                group_layer = game_objects.OrderedGroup(name_layer, class_name)
+                group_layer = game_objects.OrderedGroupLayer(name_layer, class_name, properties)
                 self.create_object(group_layer, self.screen, layer)
 
     def get_image_path(self, image):
@@ -82,14 +82,15 @@ class Level:
         y = 0
         step = self.tiled_map['tilewidth']
         width = step * self.tiled_map['width']
-        for n in data:
+        for count, n in enumerate(data):
             if n:
                 gid = n - 1
                 image = self.image_sprites[gid]
-                platform = Platform(group_layer.class_name, self.screen,
-                                    image, x, y, gid,
-                                    self.tiled_map.tiled_properties.get(
-                                        str(gid), dict()))
+                portal = group_layer.doors_portal.get(count)
+                platform = ImagePlatform(group_layer, self.screen,
+                                         image, x, y, count,
+                                         self.tiled_map.tiled_properties.get(
+                                        str(gid), dict()), portal)
                 group_layer.add(platform)
                 x += step
             else:
@@ -135,7 +136,7 @@ class Level:
             self.tiled_map.get('backgroundcolor', 'black')))
 
     def __repr__(self):
-        return 'level - {}'.format(self.name)
+        return 'level - {}'.format(self.all_layers)
 
 
 class Levels(list):
@@ -169,7 +170,7 @@ class Levels(list):
                 print('---------------------------------')
         return maps
 
-    def create_levels(self):
+    def create_levels(self, level):
 
         """
         создаёт все уровни
@@ -177,13 +178,13 @@ class Levels(list):
         """
         if not self.maps:
             return None
-        for map in self.maps:
-            # создать уровень
-            level = Level(self.screen, map, self.tileset_dir,
-                          self.resources_dir)
-            level.set_bg_type(self.bg_type)
-            level.create_map()
-            self.append(level)
+        map = self.maps[level]
+        # создать уровень
+        level = Level(self.screen, map, self.tileset_dir,
+                      self.resources_dir)
+        level.set_bg_type(self.bg_type)
+        level.create_map()
+        self.append(level)
 
     def draw(self, level: int):
         """
@@ -191,8 +192,8 @@ class Levels(list):
         :param level: номер уровня
         """
         # todo что зачем?
-        self[level].fill()
-        self[level].draw_layers()
+        self[0].fill()
+        self[0].draw_layers()
 
     def set_bg_type(self, bg_type: game_objects.AbsSprite):
         """

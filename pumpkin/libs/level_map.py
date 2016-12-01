@@ -2,7 +2,7 @@ import json
 import os
 from pygame import init, display, sprite
 from pumpkin.libs.subsprite import SubSprite
-from pumpkin.libs.game_objects import Platform, Background
+from pumpkin.libs.game_objects import ImagePlatform, Background
 
 def get_map_files(direct):
     return [os.path.join(direct, p) for p in os.listdir(direct)]
@@ -97,8 +97,8 @@ class LevelMap(list):
         for n in data:
             if n:
                 image = self.images_subsprite[n - 1]
-                platform = Platform(group.name, self.screen, image, x,
-                                    y)
+                platform = ImagePlatform(group.name, self.screen, image, x,
+                                         y)
                 group.add(platform)
                 x += step
             else:

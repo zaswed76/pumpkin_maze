@@ -82,13 +82,29 @@ class Controller:
             if e.type == pygame.KEYUP and e.key == pygame.K_LEFT:
                 player.left = False
             if e.type == pygame.KEYUP and e.key == pygame.K_1:
+                level.clear()
                 self.game_stat.level = 0
+                level.create_levels(self.game_stat.level)
             if e.type == pygame.KEYUP and e.key == pygame.K_2:
+                level.clear()
                 self.game_stat.level = 1
+                level.create_levels(self.game_stat.level)
+
             if e.type == pygame.KEYUP and e.key == pygame.K_3:
+                level.clear()
                 self.game_stat.level = 2
+                level.create_levels(self.game_stat.level)
     def mouse_collide(self, x, y, level):
-        print(level)
+        print(x,y)
+        for lay in level:
+            for n, l in lay.all_layers.items():
+                print(n, l, sep=' = ')
+                print('------------------')
+                for z in l:
+                    clicked = z.rect.collidepoint(x, y)
+                    if clicked:
+
+                        print(z.gid)
 
 
 
