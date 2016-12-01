@@ -104,7 +104,7 @@ class Controller:
                     clicked = z.rect.collidepoint(x, y)
                     if clicked:
 
-                        print(z.gid)
+                        print(z.count)
 
 
 

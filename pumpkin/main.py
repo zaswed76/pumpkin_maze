@@ -43,7 +43,7 @@ def run_game():
         all_levels.draw(stats.level)
         player.blitme()
         # print(all_levels[0].all_layers)
-        player.update(all_levels[0].all_layers.get_groups())
+        player.update(all_levels[0].all_layers.get_groups(), level=all_levels)
 
         pygame.display.flip()
         timer.tick(120)

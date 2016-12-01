@@ -158,7 +158,6 @@ class ImagePlatform(GameObject):
         super().__init__()
         if portal is not None:
             self.id, *self.portal = portal
-            print(self.id, self.portal)
         self.group = group
 
         self.properties = properties
@@ -183,7 +182,7 @@ class Player(Sprite):
 
         super().__init__()
         self.up = self.down = self.left = self.right = False
-        self.stats = stats
+        self.game_stat = stats
         self.move = True
         self.speedx = speedx
         self.speedy = speedy
@@ -211,39 +210,38 @@ class Player(Sprite):
         """Рисует корабль в текущей позиции."""
         self.screen.blit(self.image, self.rect)
 
-    def update(self, platforms):
-        """Обновляет позицию корабля с учетом флага."""
+    def update(self, platforms, level=()):
+
 
         if self.right:
             self.speed_x = self.speedx
 
             self.rect.centerx += self.speed_x
-            self.collisions(platforms, self.speed_x, 0)
+            self.collisions(platforms, level, self.speed_x, 0)
 
         if self.left:
             self.speed_x = -self.speedx
             self.rect.centerx += self.speed_x
-            self.collisions(platforms, self.speed_x, 0)
+            self.collisions(platforms, level, self.speed_x, 0)
         if self.up:
             self.speed_y = -self.speedy
             self.rect.centery += self.speed_y
-            self.collisions(platforms, 0, self.speed_y)
+            self.collisions(platforms, level, 0, self.speed_y)
         if self.down:
             self.speed_y = self.speedy
             self.rect.centery += self.speed_y
-            self.collisions(platforms, 0, self.speed_y)
+            self.collisions(platforms, level, 0, self.speed_y)
 
         if not (
                             self.left or self.right or self.up or self.down):  # стоим, когда нет указаний идти
             self.speed_x = 0
             self.speed_y = 0
 
-    def collisions(self, layers, speed_x, speed_y):
+    def collisions(self, layers, level, speed_x, speed_y):
         for group in layers:
             # print(group.type)
             platform = pygame.sprite.spritecollideany(self, group)
             if platform:
-                print(group.class_name, platform)
                 if group.class_name == GameObject.Wall:
                     if speed_x < 0:
                         self.rect.left = platform.rect.right
@@ -253,18 +251,29 @@ class Player(Sprite):
                         self.rect.top = platform.rect.bottom
                     elif speed_y > 0:
                         self.rect.bottom = platform.rect.top
-                        # print(list(platforms)[0], '1111')
-                        # for p in list(platforms)[0]:
-                        #
-                        #     if pygame.sprite.collide_rect(self, p):
-                        #         print(p, 5555)
-                        #         if p.name == 'walls':
+                elif group.class_name == GameObject.Door:
+                    # получить портал адресс () уревень, id двери
+                    id_door, lv = platform.portal
+                    print(lv)
+                     # загрузить уровень с этой дверью
+                    level.clear()
+                    self.game_stat.level = lv
+                    level.create_levels(self.game_stat.level)
+                    for l in level:
+                        for nm, lay in l.all_layers.items():
+                            if nm == GameObject.Door:
+                                for spr in lay.sprites():
+                                    if spr.id == id_door:
+                                        center = spr.rect.center
+                                        if speed_x < 0:
+                                            self.rect.right = spr.rect.left
+                                        elif speed_x > 0:
+                                            self.rect.left = spr.rect.right
 
-                        # elif p.name == 'doors':
-                        #     if self.stats.level < self.stats.max_levels:
-                        #         self.stats.level += 1
-                        #         self.rect.right = 160
-                        #         self.rect.bottom = 64
+
+                    # получить центр двери
+
+                    # переместить игрока в центр двери
 
 
 class Figure(GameObject):

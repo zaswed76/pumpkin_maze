@@ -27,11 +27,13 @@
          "opacity":1,
          "properties":
             {
-             "class":"door"
+             "class":"door",
+             "doors":"{70: (70, 69, 1)}\n"
             },
          "propertytypes":
             {
-             "class":"string"
+             "class":"string",
+             "doors":"string"
             },
          "type":"tilelayer",
          "visible":true,
