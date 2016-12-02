@@ -99,12 +99,13 @@ class Level:
             if x == width:
                 x = 0
                 y += step
-
         self.all_layers[group_layer.name] = (group_layer)
 
     def create_object(self, group_layer, screen, layer):
         for obj in layer['objects']:
-            layer_figure_type = layer.get('properties', {}).get('figure_type', False)
+            layer_properties = layer.get('properties', {})
+            print(layer_properties)
+            layer_figure_type = layer_properties.get('figure_type', False)
             object_figure_type = obj.get('type', False)
             if object_figure_type:
                 figure_type = object_figure_type
@@ -114,7 +115,7 @@ class Level:
                 # передаём цвет в порядке приоритета
                 color = _color.get_color(obj.get('properties', dict()).get('color'), layer.get('color'))
                 if color:
-                    figure = game_objects.Figure(screen, color, figure_type, **obj)
+                    figure = game_objects.TailObject(screen, color, figure_type, layer_properties, **obj)
                     group_layer.add(figure())
                 else:  print('объкт - {} не имеет цвета'.format(obj.get('type')))
             else: print('объкт - "{}" не имеет типа'.format(obj.get('type')))

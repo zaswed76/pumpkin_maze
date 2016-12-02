@@ -108,45 +108,14 @@ class Background2(Background):
         self.rect.centery = self.center_y
 
 
-class TailObject(GameObject):
-    def __init__(self, type, screen, rect, color=None, gid=None,
-                 properties=None):
-        super().__init__()
-        x, y, width, height = rect
-        if properties is None:
-            self.properties = {}
-        else:
-            self.properties = properties
-        self.color = color
-        self.gid = gid
-        self.type = type
-        self.screen = screen
-        self.border = self.properties.get('border', 0)
-        # Загрузка изображения тайла и получение прямоугольника.
-
-
-        self.surface = pygame.Surface((width, height),
-                                      pygame.SRCALPHA)
-        self.rect = pygame.Rect(x, y, width, height)
-        if self.color[3] < 255:
-            self.surface.set_alpha(self.color[3])
-        self.surface.fill(color)
-
-    def draw(self, screen):
-        if self.surface is not None:
-            if self.border:
-                return pygame.draw.rect(screen, self.color, self.rect,
-                                        self.border)
-            else:
-
-                return screen.blit(self.surface, self.rect)
-
 
 class ImagePlatform(GameObject):
     def __init__(self, group, screen, image, x, y, count, properties,
                  portal=None):
         """
-        :param portal
+        :param portal tuple < (int, int, int, str)
+        (id текущей двери, уроветь перехода, id двери перехода, направление?)
+        ?направление - 'up', 'down', 'left', 'right' - куда должен двигаться игрок что бы пройти дверь
         :param group:
         :param screen:
         :param  :
@@ -157,7 +126,8 @@ class ImagePlatform(GameObject):
         """
         super().__init__()
         if portal is not None:
-            self.id, *self.portal = portal
+            self.id = portal[0]
+            self.portal = portal[1:]
         else:
             self.id = self.portal = None
         self.group = group
@@ -180,131 +150,41 @@ class ImagePlatform(GameObject):
     def __repr__(self):
         return '{}'.format(self.rect)
 
-
-class Player(Sprite):
-    def __init__(self, stats, screen, speedx, speedy, x, y):
-        """Инициализирует корабль и задает его начальную позицию."""
-
+class FigureRect(GameObject):
+    def __init__(self, screen, rect, color=None, gid=None,
+                 border=0):
         super().__init__()
-        self.directs = dict.fromkeys(('up', 'down', 'left', 'right'),
-                                     False)
+        x, y, width, height = rect
 
-        self.game_stat = stats
-        self.move = True
-        self.speedx = speedx
-        self.speedy = speedy
-        self.speed_x = 0
-        self.speed_y = 0
+        self.color = color
+        self.gid = gid
         self.screen = screen
-        # Загрузка изображения корабля и получение прямоугольника.
-        self.image = pygame.image.load('resources/man.png')
-
-        self.image.convert_alpha()
-        self.rect = self.image.get_rect()
-        self.rect.height = self.rect.height
-        self.screen_rect = screen.get_rect()
-
-        # Каждый новый появляется здесь
-        self.rect.right = 160
-        self.rect.bottom = 64
-
-        # Сохранение вещественной координаты центра игрока.
-        self.center_x = float(self.rect.centerx)
-        self.center_y = float(self.rect.centery)
+        self.border = border
+        # Загрузка изображения тайла и получение прямоугольника.
 
 
-    def blitme(self):
-        """Рисует корабль в текущей позиции."""
-        self.screen.blit(self.image, self.rect)
+        self.surface = pygame.Surface((width, height),
+                                      pygame.SRCALPHA)
+        self.rect = pygame.Rect(x, y, width, height)
+        if self.color[3] < 255:
+            self.surface.set_alpha(self.color[3])
+        self.surface.fill(color)
 
-    def update(self, platforms, level=()):
+    def draw(self, screen):
+        if self.surface is not None:
+            if self.border:
+                return pygame.draw.rect(screen, self.color, self.rect,
+                                        self.border)
+            else:
+                return screen.blit(self.surface, self.rect)
 
-        if self.directs['right']:
-            self.speed_x = self.speedx
-            self.rect.centerx += self.speed_x
-            self.collisions(platforms, level, self.speed_x, 0)
-
-        if self.directs['left']:
-            self.speed_x = -self.speedx
-            self.rect.centerx += self.speed_x
-            self.collisions(platforms, level, self.speed_x, 0)
-
-        if self.directs['up']:
-            self.speed_y = -self.speedy
-            self.rect.centery += self.speed_y
-            self.collisions(platforms, level, 0, self.speed_y)
-
-        if self.directs['down']:
-            self.speed_y = self.speedy
-            self.rect.centery += self.speed_y
-            self.collisions(platforms, level, 0, self.speed_y)
-
-        # стоим, когда нет указаний идти
-        if not (self.directs['left'] or self.directs['right'] or
-                    self.directs['up'] or self.directs[
-            'down']):
-            self.speed_x = 0
-            self.speed_y = 0
-
-    def collisions(self, layers, level, speed_x, speed_y):
-        for group in layers:
-            platform = pygame.sprite.spritecollideany(self, group)
-            try:
-                print(platform.portal, self.game_stat.level, 'p')
-            except AttributeError:
-                pass
-            if platform:
-                if group.class_name == GameObject.Wall:
-                    if speed_x < 0:
-                        self.rect.left = platform.rect.right
-                    elif speed_x > 0:
-                        self.rect.right = platform.rect.left
-                    elif speed_y < 0:
-                        self.rect.top = platform.rect.bottom
-                    elif speed_y > 0:
-                        self.rect.bottom = platform.rect.top
-                elif group.class_name == GameObject.Door:
-                    # получить портал адресс () уревень, id двери
-
-                    id_door, lv, direction = platform.portal
-                    if self.directs[direction]:
-                        # загрузить уровень с этой дверью
-                        level.clear()
-                        self.game_stat.level = lv
-                        level.create_levels(self.game_stat.level)
-                        for l in level:
-                            for nm, lay in l.all_layers.items():
-                                if nm == GameObject.Door:
-                                    for spr in lay.sprites():
-                                        if spr.id == id_door:
-                                            #  влево <<<<
-                                            if speed_x < 0:
-                                                self.rect.right = spr.rect.left
-                                                self.rect.centery = spr.rect.centery
-                                            # вправо >>>
-                                            elif speed_x > 0:
-                                                self.rect.left = spr.rect.right
-                                                self.rect.centery = spr.rect.centery
-                                            # вверх ^
-                                            if speed_y < 0:
-                                                self.rect.bottom = spr.rect.top
-                                                self.rect.centerx = spr.rect.centerx
-                                            # вниз v
-                                            elif speed_y > 0:
-
-                                                self.rect.top = spr.rect.bottom
-                                                self.rect.centerx = spr.rect.centerx
-
-                                                # получить центр двери
-
-                                                # переместить игрока в центр двери
-
-
-class Figure(GameObject):
+class TailObject(GameObject):
     alias_figure = {'rect': 'rectangle'}
 
-    def __init__(self, screen, color: hex, figure_type: str, **cfg):
+    def __init__(self, screen, color: hex, figure_type: str, layer_properties, **cfg):
         super().__init__()
+        self.layer_properties = layer_properties
+        print(self.layer_properties, 'self.layer_properties')
         self.surface = None
         self.name = cfg.get('name', 'noname')
         self.color = _color.convert_color(color)
@@ -316,38 +196,25 @@ class Figure(GameObject):
         self.width = cfg['width']
         self.height = cfg['height']
         self.properties = cfg.get('properties', {})
-        self.border = self.properties.get('border', 0)
+        self.border = self.properties.get('border', self.layer_properties.get('border', 0))
+
         self.angle = cfg['rotation']
         self.screen = screen
-        polyline = cfg.get('polyline')
-        if polyline is not None:
-            self.sx = cfg['x']
-            self.sy = cfg['y']
-            self.fx = polyline[1]['x']
-            self.fy = polyline[1]['y']
-        else:
-            self.sx = 0
-            self.sy = 0
-            self.fx = 0
-            self.fy = 0
-        self.draw_figure(self.type)
+
+        self.create_figure(self.type)
 
     def __call__(self, *args, **kwargs):
         return self.surface
 
-    def draw_figure(self, figure):
-        # try:
+    def create_figure(self, figure):
         getattr(self, figure)(self.screen, self.x, self.y,
                               self.width,
                               self.height, self.color)
-        # except AttributeError as err:
-        #
-        #     print('фигру - {} рисовать не умею'.format(figure))
-        #     raise Exception(err)
+
 
     def rectangle(self, screen, x, y, width, height, color, *args):
-        self.surface = TailObject(1, screen, (x, y, width, height),
-                                  color, properties=self.properties)
+        self.surface = FigureRect(screen, (x, y, width, height),
+                                  color, border=self.border)
 
     def line(self, screen, x, y, width, height, color):
         print('line')

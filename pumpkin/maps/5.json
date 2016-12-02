@@ -1,47 +1,76 @@
-{ "backgroundcolor":"#ffff7f",
+{ "backgroundcolor":"#f1f1b5",
  "height":10,
  "layers":[
         {
-         "data":[2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 92, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
+         "color":"#009191",
+         "draworder":"topdown",
          "height":10,
-         "name":"wall",
+         "name":"\u0421\u043b\u043e\u0439 \u043e\u0431\u044a\u0435\u043a\u0442\u043e\u0432 1",
+         "objects":[
+                {
+                 "height":256,
+                 "id":9,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":0,
+                 "y":32
+                }, 
+                {
+                 "height":256,
+                 "id":10,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":288,
+                 "y":32
+                }, 
+                {
+                 "height":32,
+                 "id":11,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":320,
+                 "x":0,
+                 "y":0
+                }, 
+                {
+                 "height":32,
+                 "id":12,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":320,
+                 "x":0,
+                 "y":288
+                }],
          "opacity":1,
          "properties":
             {
-             "class":"wall"
+             "border":1,
+             "class":"wall",
+             "figure_type":"rect"
             },
          "propertytypes":
             {
-             "class":"string"
-            },
-         "type":"tilelayer",
-         "visible":true,
-         "width":10,
-         "x":0,
-         "y":0
-        }, 
-        {
-         "data":[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 50, 0, 0, 0, 0, 0, 0, 0, 0, 50, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-         "height":10,
-         "name":"door",
-         "opacity":1,
-         "properties":
-            {
-             "class":"door",
-             "door":"[{id:60, link: (69, 2)},{id:69, link: (60, 2)}]"
-            },
-         "propertytypes":
-            {
+             "border":"int",
              "class":"string",
-             "door":"string"
+             "figure_type":"string"
             },
-         "type":"tilelayer",
+         "type":"objectgroup",
          "visible":true,
          "width":10,
          "x":0,
          "y":0
         }],
- "nextobjectid":16,
+ "nextobjectid":13,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tileheight":32,
@@ -61,26 +90,26 @@
             {
              "49":
                 {
-                 "class":"door",
-                 "id":1,
-                 "link":0
+                 "class":"door"
                 },
              "59":
                 {
-                 "class":"door"
+                 "class":"door",
+                 "id":2,
+                 "link":1
                 }
             },
          "tilepropertytypes":
             {
              "49":
                 {
-                 "class":"string",
-                 "id":"int",
-                 "link":"int"
+                 "class":"string"
                 },
              "59":
                 {
-                 "class":"string"
+                 "class":"string",
+                 "id":"int",
+                 "link":"int"
                 }
             },
          "tilewidth":32

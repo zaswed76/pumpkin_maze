@@ -4,8 +4,8 @@ import pygame
 import gamestats
 import paths
 from controller import Controller
-from libs import mapcreator
-from libs import game_objects
+
+from libs import game_objects, player, mapcreator
 from config import Config
 
 cfg = Config()
@@ -29,21 +29,21 @@ def run_game():
     all_levels = mapcreator.Levels(screen, paths.maps, paths.tilesets, paths.resources, cfg)
 
     all_levels.create_levels(stats.level)
-    player = game_objects.Player(stats, screen, 1, 1, 32, 32)
+    player_unit = player.Player(stats, screen, 1, 1, 32, 32)
     timer = pygame.time.Clock()
     # Запуск основного цикла игры.
 
     while True:
 
         # Отслеживание событий клавиатуры и мыши.
-        controller = Controller(stats, level=all_levels, player=player)
+        controller = Controller(stats, level=all_levels, player=player_unit)
         # Отображение последнего прорисованного экрана.
 
 
         all_levels.draw(stats.level)
-        player.blitme()
+        player_unit.blitme()
         # print(all_levels[0].all_layers)
-        player.update(all_levels[0].all_layers.get_groups(), level=all_levels)
+        player_unit.update(all_levels[0].all_layers.get_groups(), level=all_levels)
 
         pygame.display.flip()
         timer.tick(120)
