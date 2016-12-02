@@ -63,24 +63,24 @@ class Controller:
             if e.type == pygame.KEYDOWN and e.key == pygame.K_ESCAPE:
                 sys.exit()
             if e.type == pygame.KEYDOWN and e.key == pygame.K_UP:
-                player.up = True
+                player.directs['up'] = True
             if e.type == pygame.KEYDOWN and e.key == pygame.K_DOWN:
-                player.down = True
+                player.directs['down'] = True
             if e.type == pygame.KEYDOWN and e.key == pygame.K_LEFT:
-                player.left = True
+                player.directs['left'] = True
             if e.type == pygame.KEYDOWN and e.key == pygame.K_RIGHT:
-                player.right = True
+                player.directs['right'] = True
             if e.type == pygame.KEYDOWN and e.key == pygame.K_SPACE:
                 print('space')
 
             if e.type == pygame.KEYUP and e.key == pygame.K_UP:
-                player.up = False
+                 player.directs['up'] = False
             if e.type == pygame.KEYUP and e.key == pygame.K_DOWN:
-                player.down = False
+                player.directs['down'] = False
             if e.type == pygame.KEYUP and e.key == pygame.K_RIGHT:
-                player.right = False
+                player.directs['right'] = False
             if e.type == pygame.KEYUP and e.key == pygame.K_LEFT:
-                player.left = False
+                player.directs['left'] = False
             if e.type == pygame.KEYUP and e.key == pygame.K_1:
                 level.clear()
                 self.game_stat.level = 0

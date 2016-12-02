@@ -25,7 +25,7 @@ class OrderedGroupLayer(OrderedUpdates):
         self.properties = properties
 
         self.doors_portal = (
-        eval(self.properties.get('doors', '{}')))
+            eval(self.properties.get('doors', '{}')))
         self.name = name
         self.class_name = class_name
 
@@ -158,6 +158,8 @@ class ImagePlatform(GameObject):
         super().__init__()
         if portal is not None:
             self.id, *self.portal = portal
+        else:
+            self.id = self.portal = None
         self.group = group
 
         self.properties = properties
@@ -180,15 +182,13 @@ class ImagePlatform(GameObject):
 
 
 class Player(Sprite):
-
-
-
     def __init__(self, stats, screen, speedx, speedy, x, y):
         """Инициализирует корабль и задает его начальную позицию."""
 
         super().__init__()
+        self.directs = dict.fromkeys(('up', 'down', 'left', 'right'),
+                                     False)
 
-        self.up = self.down = self.left = self.right = False
         self.game_stat = stats
         self.move = True
         self.speedx = speedx
@@ -198,23 +198,20 @@ class Player(Sprite):
         self.screen = screen
         # Загрузка изображения корабля и получение прямоугольника.
         self.image = pygame.image.load('resources/man.png')
-        # self.image.set_colorkey((255, 255, 255))
+
         self.image.convert_alpha()
         self.rect = self.image.get_rect()
-
         self.rect.height = self.rect.height
         self.screen_rect = screen.get_rect()
 
-        # Каждый новый корабль появляется у нижнего края экрана.
+        # Каждый новый появляется здесь
         self.rect.right = 160
         self.rect.bottom = 64
 
-        # Сохранение вещественной координаты центра корабля.
+        # Сохранение вещественной координаты центра игрока.
         self.center_x = float(self.rect.centerx)
         self.center_y = float(self.rect.centery)
 
-    def direction_out_right(self):
-        return self.rect.right
 
     def blitme(self):
         """Рисует корабль в текущей позиции."""
@@ -222,35 +219,40 @@ class Player(Sprite):
 
     def update(self, platforms, level=()):
 
-
-        if self.right:
+        if self.directs['right']:
             self.speed_x = self.speedx
-
             self.rect.centerx += self.speed_x
             self.collisions(platforms, level, self.speed_x, 0)
 
-        if self.left:
+        if self.directs['left']:
             self.speed_x = -self.speedx
             self.rect.centerx += self.speed_x
             self.collisions(platforms, level, self.speed_x, 0)
-        if self.up:
+
+        if self.directs['up']:
             self.speed_y = -self.speedy
             self.rect.centery += self.speed_y
             self.collisions(platforms, level, 0, self.speed_y)
-        if self.down:
+
+        if self.directs['down']:
             self.speed_y = self.speedy
             self.rect.centery += self.speed_y
             self.collisions(platforms, level, 0, self.speed_y)
 
-        if not (
-                            self.left or self.right or self.up or self.down):  # стоим, когда нет указаний идти
+        # стоим, когда нет указаний идти
+        if not (self.directs['left'] or self.directs['right'] or
+                    self.directs['up'] or self.directs[
+            'down']):
             self.speed_x = 0
             self.speed_y = 0
 
     def collisions(self, layers, level, speed_x, speed_y):
         for group in layers:
-            # print(group.type)
             platform = pygame.sprite.spritecollideany(self, group)
+            try:
+                print(platform.portal, self.game_stat.level, 'p')
+            except AttributeError:
+                pass
             if platform:
                 if group.class_name == GameObject.Wall:
                     if speed_x < 0:
@@ -263,40 +265,39 @@ class Player(Sprite):
                         self.rect.bottom = platform.rect.top
                 elif group.class_name == GameObject.Door:
                     # получить портал адресс () уревень, id двери
-                    print(platform)
+
                     id_door, lv, direction = platform.portal
-                    print(lv)
-                     # загрузить уровень с этой дверью
-                    level.clear()
-                    self.game_stat.level = lv
-                    level.create_levels(self.game_stat.level)
-                    for l in level:
-                        for nm, lay in l.all_layers.items():
-                            if nm == GameObject.Door:
-                                for spr in lay.sprites():
-                                    if spr.id == id_door:
-                                        center = spr.rect.centery
-                                        #  влево <<<<
-                                        if speed_x < 0:
-                                            self.rect.right = spr.rect.left
-                                            self.rect.centery = spr.rect.centery
-                                        # вправо >>>
-                                        elif speed_x > 0:
-                                            self.rect.left = spr.rect.right
-                                            self.rect.centery = spr.rect.centery
-                                        # вверх ^
-                                        if speed_y < 0:
-                                            self.rect.bottom = spr.rect.top
-                                            self.rect.centerx = spr.rect.centerx
-                                        # вниз v
-                                        elif speed_y > 0:
+                    if self.directs[direction]:
+                        # загрузить уровень с этой дверью
+                        level.clear()
+                        self.game_stat.level = lv
+                        level.create_levels(self.game_stat.level)
+                        for l in level:
+                            for nm, lay in l.all_layers.items():
+                                if nm == GameObject.Door:
+                                    for spr in lay.sprites():
+                                        if spr.id == id_door:
+                                            #  влево <<<<
+                                            if speed_x < 0:
+                                                self.rect.right = spr.rect.left
+                                                self.rect.centery = spr.rect.centery
+                                            # вправо >>>
+                                            elif speed_x > 0:
+                                                self.rect.left = spr.rect.right
+                                                self.rect.centery = spr.rect.centery
+                                            # вверх ^
+                                            if speed_y < 0:
+                                                self.rect.bottom = spr.rect.top
+                                                self.rect.centerx = spr.rect.centerx
+                                            # вниз v
+                                            elif speed_y > 0:
 
-                                            self.rect.top = spr.rect.bottom
-                                            self.rect.centerx = spr.rect.centerx
+                                                self.rect.top = spr.rect.bottom
+                                                self.rect.centerx = spr.rect.centerx
 
-                    # получить центр двери
+                                                # получить центр двери
 
-                    # переместить игрока в центр двери
+                                                # переместить игрока в центр двери
 
 
 class Figure(GameObject):
