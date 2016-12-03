@@ -11,6 +11,9 @@ Contents:
 .. toctree::
    :maxdepth: 2
 
+   tiled_map
+
+
 
 
 Indices and tables

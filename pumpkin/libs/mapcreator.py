@@ -4,7 +4,7 @@ import pygame
 from pygame.sprite import Group, OrderedUpdates
 from libs import tiledmap, game_objects, color
 from libs import color as _color
-from libs.game_objects import ImagePlatform
+from libs.sprites import ImagePlatform
 
 def print_dict(d: dict):
     for k, v in d.items():

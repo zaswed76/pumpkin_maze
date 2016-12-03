@@ -15,7 +15,7 @@ def run_game():
     # Инициализирует игру и создает объект экрана.
     pygame.init()
     # json_map = os.path.join(paths.maps, '5.json')
-    screen = pygame.display.set_mode((320, 320))
+    screen = pygame.display.set_mode((cfg.width, cfg.height))
     # level = mapcreator.MapCreator(screen, json_map, paths.tilesets,
     #                                paths.resources)
 
@@ -31,7 +31,7 @@ def run_game():
 
     all_levels.create_levels(stats.level)
 
-    player_unit = player.Player(stats, screen, 1, 1, 32, 32)
+    player_unit = player.Player(stats, screen, 2, 2, 32, 32)
     timer = pygame.time.Clock()
     # Запуск основного цикла игры.
 

@@ -23,4 +23,7 @@ class GameStat:
         if level < self.max_levels:
             self._level = level
         else:
-            print('включено только - {} уровней'.format(self.max_levels))
+            print('{}: включено только - {} уровней'.format(
+                self.__class__.__name__,
+                self.max_levels))
+            print('------------------------------------------')
