@@ -115,17 +115,12 @@ class Player(Sprite):
     def collisions(self, layers, level, speed_x, speed_y):
         for group in layers:
             platform = pygame.sprite.spritecollideany(self, group)
-            try:
-                print(platform.portal, self.game_stat.level, 'p')
-            except AttributeError:
-                pass
             if platform:
                 if group.class_name == GameObject.Wall:
                     self._stop_player(speed_x, speed_y, platform)
                 elif group.class_name == GameObject.Door:
                     # id двери, уровень перехода,
                     id_door, lv, direction = platform.portal
-                    print(platform.portal, 777)
                     if self.directs[direction]:
                         self._go_portal(platform, level, speed_x, speed_y, id_door, lv)
                     else:

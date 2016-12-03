@@ -22,13 +22,15 @@ def run_game():
     # level.set_screen(screen)
     pygame.display.set_caption("pumpkin_maze")
 
-    stats = gamestats.GameStat()
+    stats = gamestats.GameStat(cfg)
     # level.create_map()
 
     #---------- Levels ----------------------------------------------
     all_levels = mapcreator.Levels(screen, paths.maps, paths.tilesets, paths.resources, cfg)
 
+
     all_levels.create_levels(stats.level)
+
     player_unit = player.Player(stats, screen, 1, 1, 32, 32)
     timer = pygame.time.Clock()
     # Запуск основного цикла игры.
@@ -42,9 +44,7 @@ def run_game():
 
         all_levels.draw(stats.level)
         player_unit.blitme()
-        # print(all_levels[0].all_layers)
         player_unit.update(all_levels[0].all_layers.get_groups(), level=all_levels)
-
         pygame.display.flip()
         timer.tick(120)
 

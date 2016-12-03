@@ -184,7 +184,7 @@ class TailObject(GameObject):
     def __init__(self, screen, color: hex, figure_type: str, layer_properties, **cfg):
         super().__init__()
         self.layer_properties = layer_properties
-        print(self.layer_properties, 'self.layer_properties')
+
         self.surface = None
         self.name = cfg.get('name', 'noname')
         self.color = _color.convert_color(color)
@@ -217,7 +217,7 @@ class TailObject(GameObject):
                                   color, border=self.border)
 
     def line(self, screen, x, y, width, height, color):
-        print('line')
+
         self.image = pygame.Surface((width, height), pygame.SRCALPHA)
         self.image.fill(color)
 

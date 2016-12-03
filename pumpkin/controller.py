@@ -2,9 +2,10 @@ import sys
 import pygame
 
 
+
 class Player:
     def __init__(self):
-        print('init')
+
         self._up = self._down = self._left = self._right = False
 
     @property
@@ -24,7 +25,6 @@ class Player:
         return self._right
     @up.setter
     def up(self, bool):
-        print('up')
         self._up = bool
 
     @down.setter
@@ -39,13 +39,29 @@ class Player:
     def right(self, bool):
         self._right = bool
 
-class Controller:
+class KeyAlias:
+    def __init__(self):
+        self.levels = {
+            1: pygame.K_1,
+            2: pygame.K_2,
+            3: pygame.K_3,
+            4: pygame.K_4,
+            5: pygame.K_5,
+            6: pygame.K_6,
+            7: pygame.K_7,
+            8: pygame.K_8,
+            9: pygame.K_9
+        }
+
+class Controller(KeyAlias):
+    
     def __init__(self, game_stat, player=Player, level=()):
         """
 
         :type player: pygame.sprite.Sprite
         """
 
+        super().__init__()
         self.game_stat = game_stat
         if player is None:
             pass
@@ -71,7 +87,8 @@ class Controller:
             if e.type == pygame.KEYDOWN and e.key == pygame.K_RIGHT:
                 player.directs['right'] = True
             if e.type == pygame.KEYDOWN and e.key == pygame.K_SPACE:
-                print('space')
+                pass
+
 
             if e.type == pygame.KEYUP and e.key == pygame.K_UP:
                  player.directs['up'] = False
@@ -81,19 +98,18 @@ class Controller:
                 player.directs['right'] = False
             if e.type == pygame.KEYUP and e.key == pygame.K_LEFT:
                 player.directs['left'] = False
-            if e.type == pygame.KEYUP and e.key == pygame.K_1:
+
+            self.set_level(e, level)
+
+    def set_level(self, e, level):
+        for key, pygame_key in self.levels.items():
+            if e.type == pygame.KEYDOWN and e.key == pygame_key:
                 level.clear()
-                self.game_stat.level = 0
-                level.create_levels(self.game_stat.level)
-            if e.type == pygame.KEYUP and e.key == pygame.K_2:
-                level.clear()
-                self.game_stat.level = 1
+                self.game_stat.level = key-1
                 level.create_levels(self.game_stat.level)
 
-            if e.type == pygame.KEYUP and e.key == pygame.K_3:
-                level.clear()
-                self.game_stat.level = 2
-                level.create_levels(self.game_stat.level)
+
+
     def mouse_collide(self, x, y, level):
         print(x,y)
         for lay in level:

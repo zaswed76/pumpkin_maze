@@ -1,9 +1,10 @@
 
 
 class GameStat:
-    def __init__(self):
+    def __init__(self, cfg):
+        self.cfg = cfg
         self._level = 0
-        self.max_levels = 3
+        self.max_levels = len(self.cfg.included_level)
         self.reset_level()
 
     def reset_level(self):
@@ -19,5 +20,7 @@ class GameStat:
 
     @level.setter
     def level(self, level):
-        print('!!!!')
-        self._level = level
+        if level < self.max_levels:
+            self._level = level
+        else:
+            print('включено только - {} уровней'.format(self.max_levels))

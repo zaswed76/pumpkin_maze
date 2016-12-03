@@ -104,7 +104,7 @@ class Level:
     def create_object(self, group_layer, screen, layer):
         for obj in layer['objects']:
             layer_properties = layer.get('properties', {})
-            print(layer_properties)
+
             layer_figure_type = layer_properties.get('figure_type', False)
             object_figure_type = obj.get('type', False)
             if object_figure_type:
