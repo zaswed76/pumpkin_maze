@@ -179,9 +179,12 @@ class TailObject(GameObject):
     alias_figure = {'rect': 'rectangle'}
 
     def __init__(self, screen, color: hex, figure_type: str,
-                 layer_properties, properties, *groups, **cfg):
-        super().__init__(properties, *groups)
+                 layer_properties, properties, group, image, x, y,
+                 count, *groups, **cfg):
+
         # todo это какая то х. self.properties_pass = properties
+        super().__init__(group, screen, image, x, y, count,
+                         properties, *groups)
         self.properties_pass = properties
         self.layer_properties = layer_properties
 

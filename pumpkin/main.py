@@ -41,7 +41,7 @@ def run_game():
         controller = Controller(stats, level=all_levels, player=player_unit)
         # Отображение последнего прорисованного экрана.
 
-
+        # print(player_unit.breaks)
         all_levels.draw(stats.level)
         player_unit.blitme()
         player_unit.update(all_levels[0].all_layers.get_groups(), level=all_levels)

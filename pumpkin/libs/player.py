@@ -11,6 +11,17 @@ class Inventory(dict):
     def add(self, thing):
         self[thing.name] = thing
 
+    @property
+    def check_breaks(self):
+        for v in self.values():
+            if v.breaks:
+                return True
+        else:
+            return False
+
+    def __repr__(self):
+        return '{}'.format(self.values())
+
 
 
 class Player(Sprite):
@@ -19,7 +30,9 @@ class Player(Sprite):
 
         super().__init__()
 
+
         self.inventory = inventory if inventory is not None else dict()
+        self.breaks  = self.inventory.check_breaks
 
         self.directs = dict.fromkeys(('up', 'down', 'left', 'right'),
                                      False)
@@ -36,7 +49,7 @@ class Player(Sprite):
 
         self.image.convert_alpha()
         # self.rect = self.image.get_rect()
-        self.rect = pygame.Rect(0, 0, 10, 10)
+        self.rect = pygame.Rect(0, 0, 25, 25)
         self.rect.height = self.rect.height
         self.screen_rect = screen.get_rect()
 
@@ -73,6 +86,7 @@ class Player(Sprite):
         self.speed_y = 0
 
     def update(self, platforms, level=()):
+        self.breaks  = self.inventory.check_breaks
 
         if self.directs['right']:
             self.go_right()
@@ -94,6 +108,28 @@ class Player(Sprite):
         if not (self.directs['left'] or self.directs['right'] or
                     self.directs['up'] or self.directs['down']):
             self.stand()
+
+    def collisions(self, layers, level, speed_x, speed_y):
+        for group in layers:
+            platform = pygame.sprite.spritecollideany(self, group)
+            if platform:
+                # стена
+                if group.class_name == GameObject.Wall:
+                    self._stand_before_wall(speed_x, speed_y, platform)
+                # дверь
+                elif group.class_name == GameObject.Door:
+                    if platform.portal is None:
+                        self._stand_before_wall(speed_x, speed_y, platform)
+                        print('эта дверь никуда не ведёт')
+                        return
+                    else:
+                        self._go_portal(platform, level, speed_x,
+                                        speed_y, platform.portal)
+
+                elif group.class_name == GameObject.Thing:
+                    group.remove(platform)
+                    self.inventory.add(platform)
+                    print(self.inventory, 111)
 
     def _go_portal(self, platform, level, speed_x, speed_y,
                    platform_portal):
@@ -135,9 +171,9 @@ class Player(Sprite):
                                     self.rect.top = spr.rect.bottom
                                     self.rect.centerx = spr.rect.centerx
         else:
-            self.stand_before_wall(speed_x, speed_y, platform)
+            self._stand_before_wall(speed_x, speed_y, platform)
 
-    def stand_before_wall(self, speed_x, speed_y, platform):
+    def _stand_before_wall(self, speed_x, speed_y, platform):
         if speed_x < 0:
             self.rect.left = platform.rect.right
         elif speed_x > 0:
@@ -146,24 +182,3 @@ class Player(Sprite):
             self.rect.top = platform.rect.bottom
         elif speed_y > 0:
             self.rect.bottom = platform.rect.top
-
-    def collisions(self, layers, level, speed_x, speed_y):
-        for group in layers:
-            platform = pygame.sprite.spritecollideany(self, group)
-            if platform:
-                # стена
-                if group.class_name == GameObject.Wall:
-                    self.stand_before_wall(speed_x, speed_y, platform)
-                # дверь
-                elif group.class_name == GameObject.Door:
-                    if platform.portal is None:
-                        self.stand_before_wall(speed_x, speed_y, platform)
-                        print('эта дверь никуда не ведёт')
-                        return
-                    else:
-                        self._go_portal(platform, level, speed_x,
-                                        speed_y, platform.portal)
-
-                elif group.class_name == GameObject.Thing:
-                    group.remove(platform)
-                    self.inventory.add(platform)
