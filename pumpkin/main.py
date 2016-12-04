@@ -30,8 +30,8 @@ def run_game():
 
 
     all_levels.create_levels(stats.level)
-
-    player_unit = player.Player(stats, screen, 2, 2, 32, 32)
+    inventory = player.Inventory()
+    player_unit = player.Player(stats, screen, 2, 2, 32, 32, inventory=inventory)
     timer = pygame.time.Clock()
     # Запуск основного цикла игры.
 

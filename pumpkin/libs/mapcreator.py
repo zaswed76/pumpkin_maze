@@ -4,7 +4,7 @@ import pygame
 from pygame.sprite import Group, OrderedUpdates
 from libs import tiledmap, game_objects, sprites
 from libs import color as _color
-from libs.sprites import ImagePlatform, Things
+from libs.sprites import CreateImagePlatform, CreateThings
 
 
 def print_dict(d: dict):
@@ -96,14 +96,15 @@ class Level:
                     str(gid), dict())
                 group_properties = group_layer.properties
                 if group_properties.get('class')  == game_objects.GameObject.Thing:
-                    platform = Things(group_layer, self.screen,
-                                         image, x, y, count,
-                                         tiled_properties, portal)
+                    CreateThings(group_layer, self.screen,
+                                 image, x, y, count,
+                                 tiled_properties, portal)
+
                 else:
-                    platform = ImagePlatform(group_layer, self.screen,
-                                         image, x, y, count,
-                                         tiled_properties, portal)
-                group_layer.add(platform)
+                    CreateImagePlatform(group_layer, self.screen,
+                                        image, x, y, count,
+                                        tiled_properties, portal)
+
                 x += step
             else:
                 x += step

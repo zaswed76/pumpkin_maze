@@ -3,17 +3,24 @@ import pygame
 from pygame.sprite import Sprite
 from libs.sprites import GameObject
 
-class Inventory:
-    def __init__(self):
-        self.weapon = {}
-        self.armor = {}
-        self.food = {}
+class Inventory(dict):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.update(kwargs)
+
+    def add(self, thing):
+        self[thing.name] = thing
+
+
 
 class Player(Sprite):
-    def __init__(self, stats, screen, speedx, speedy, x, y):
+    def __init__(self, stats, screen, speedx, speedy, x, y, inventory=None):
         """Инициализирует игрока и задает его начальную позицию."""
 
         super().__init__()
+
+        self.inventory = inventory if inventory is not None else dict()
+
         self.directs = dict.fromkeys(('up', 'down', 'left', 'right'),
                                      False)
 
@@ -158,4 +165,5 @@ class Player(Sprite):
                                         speed_y, platform.portal)
 
                 elif group.class_name == GameObject.Thing:
-                    print(platform)
+                    group.remove(platform)
+                    self.inventory.add(platform)

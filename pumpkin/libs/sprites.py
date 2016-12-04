@@ -36,6 +36,12 @@ class Weapon(GameObject):
                  portal=None, *groups):
         super().__init__(group, screen, image, x, y, count,
                          properties, portal, *groups)
+        self.damage = properties.get('damage', 0)
+        self.breaks = properties.get('breaks', False)
+        self.name = properties.get('name', 'weapon')
+
+
+
 
 
 class Armor(GameObject):
@@ -45,7 +51,7 @@ class Armor(GameObject):
                          properties, portal, *groups)
 
 
-class Things:
+class CreateThings:
     th = dict(weapon=Weapon, armor=Armor)
 
     def __init__(self, group, screen, image, x, y, count, properties,
@@ -55,6 +61,7 @@ class Things:
         self.create_thing(self.properties['subclass'], group, screen,
                           image, x, y, count, properties,
                           portal=None, *groups)
+        group.add(self.thing)
 
     def create_thing(self, thing, group, screen, image, x, y, count,
                      properties,
@@ -66,8 +73,7 @@ class Things:
 
 
 
-
-class ImagePlatform(GameObject):
+class CreateImagePlatform(GameObject):
     def __init__(self, group, screen, image, x, y, count, properties,
                  portal=None, *groups):
         """
@@ -91,7 +97,7 @@ class ImagePlatform(GameObject):
             self.portal = portal[1:]
         else:
             self.id = self.portal = None
-        self.group = group
+        group.add(self)
 
 
 class AbsSprite(Sprite):
