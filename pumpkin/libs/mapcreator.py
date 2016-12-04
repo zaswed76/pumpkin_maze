@@ -2,9 +2,10 @@ import os
 
 import pygame
 from pygame.sprite import Group, OrderedUpdates
-from libs import tiledmap, game_objects, color
+from libs import tiledmap, game_objects, sprites
 from libs import color as _color
-from libs.sprites import ImagePlatform
+from libs.sprites import ImagePlatform, Things
+
 
 def print_dict(d: dict):
     for k, v in d.items():
@@ -51,33 +52,37 @@ class Level:
             properties = layer.get('properties', {})
             class_name = properties.get('class')
             name_layer = layer['name']
-
             if layer['type'] == 'tilelayer' and layer['visible']:
                 data = layer['data']
-                group_layer = game_objects.OrderedGroupLayer(name_layer, class_name, properties)
+                group_layer = game_objects.OrderedGroupLayer(
+                    name_layer, class_name, properties)
                 self.create_layer(group_layer, data)
             elif layer['type'] == 'imagelayer' and layer['visible']:
                 speed = properties.get('speed', 0)
-                group_layer = game_objects.OrderedGroupLayer(name_layer, class_name, properties)
-                self.create_image(group_layer, self.get_image_path(layer['image']),
+                group_layer = game_objects.OrderedGroupLayer(
+                    name_layer, class_name, properties)
+                self.create_image(group_layer,
+                                  self.get_image_path(layer['image']),
                                   layer.get('offsetx', 0),
                                   layer.get('offsety', 0),
                                   speed)
             elif layer['type'] == 'objectgroup' and layer['visible']:
-                group_layer = game_objects.OrderedGroupLayer(name_layer, class_name, properties)
+                group_layer = game_objects.OrderedGroupLayer(
+                    name_layer, class_name, properties)
                 self.create_object(group_layer, self.screen, layer)
 
     def get_image_path(self, image):
         return os.path.join(self.resources_dir,
                             os.path.basename(image))
 
-    def create_image(self, group_layer,   image_pth, x, y, speed):
+    def create_image(self, group_layer, image_pth, x, y, speed):
         bg = self.bg_type(self.screen, image_pth, x, y, speed)
         group_layer.add(bg)
 
         self.all_layers[group_layer.name] = (group_layer)
 
     def create_layer(self, group_layer, data):
+
         x = 0
         y = 0
         step = self.tiled_map['tilewidth']
@@ -87,11 +92,17 @@ class Level:
                 gid = n - 1
                 image = self.image_sprites[gid]
                 portal = group_layer.doors_portal.get(count)
-
-                platform = ImagePlatform(group_layer, self.screen,
+                tiled_properties = self.tiled_map.tiled_properties.get(
+                    str(gid), dict())
+                group_properties = group_layer.properties
+                if group_properties.get('class')  == game_objects.GameObject.Thing:
+                    platform = Things(group_layer, self.screen,
                                          image, x, y, count,
-                                         self.tiled_map.tiled_properties.get(
-                                        str(gid), dict()), portal)
+                                         tiled_properties, portal)
+                else:
+                    platform = ImagePlatform(group_layer, self.screen,
+                                         image, x, y, count,
+                                         tiled_properties, portal)
                 group_layer.add(platform)
                 x += step
             else:
@@ -105,7 +116,8 @@ class Level:
         for obj in layer['objects']:
             layer_properties = layer.get('properties', {})
 
-            layer_figure_type = layer_properties.get('figure_type', False)
+            layer_figure_type = layer_properties.get('figure_type',
+                                                     False)
             object_figure_type = obj.get('type', False)
             if object_figure_type:
                 figure_type = object_figure_type
@@ -113,16 +125,23 @@ class Level:
                 figure_type = layer_figure_type
             if figure_type:
                 # передаём цвет в порядке приоритета
-                color = _color.get_color(obj.get('properties', dict()).get('color'), layer.get('color'))
+                color = _color.get_color(
+                    obj.get('properties', dict()).get('color'),
+                    layer.get('color'))
                 if color:
-                    figure = game_objects.TailObject(screen, color, figure_type, layer_properties, **obj)
+                    figure = sprites.TailObject(screen, color,
+                                                figure_type,
+                                                layer_properties,
+                                                None, **obj)
                     group_layer.add(figure())
-                else:  print('объкт - {} не имеет цвета'.format(obj.get('type')))
-            else: print('объкт - "{}" не имеет типа'.format(obj.get('type')))
+                else:
+                    print('объкт - {} не имеет цвета'.format(
+                        obj.get('type')))
+            else:
+                print('объкт - "{}" не имеет типа'.format(
+                    obj.get('type')))
 
         self.all_layers[group_layer.name] = group_layer
-
-
 
     def draw_layers(self):
         if self.all_layers:
@@ -153,7 +172,7 @@ class Levels(list):
         self.map_dir = map_dir
         self.included_level = config.included_level
         self.maps = self.get_maps()
-        self.bg_type = game_objects.Background
+        self.bg_type = sprites.Background
 
     def get_maps(self) -> list:
         """
@@ -197,7 +216,7 @@ class Levels(list):
         self[0].fill()
         self[0].draw_layers()
 
-    def set_bg_type(self, bg_type: game_objects.AbsSprite):
+    def set_bg_type(self, bg_type: sprites.AbsSprite):
         """
 
         :param bg_type: units.AbsSprite

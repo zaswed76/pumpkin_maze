@@ -3,10 +3,15 @@ import pygame
 from pygame.sprite import Sprite
 from libs.sprites import GameObject
 
+class Inventory:
+    def __init__(self):
+        self.weapon = {}
+        self.armor = {}
+        self.food = {}
 
 class Player(Sprite):
     def __init__(self, stats, screen, speedx, speedy, x, y):
-        """Инициализирует корабль и задает его начальную позицию."""
+        """Инициализирует игрока и задает его начальную позицию."""
 
         super().__init__()
         self.directs = dict.fromkeys(('up', 'down', 'left', 'right'),
@@ -19,7 +24,7 @@ class Player(Sprite):
         self.speed_x = 0
         self.speed_y = 0
         self.screen = screen
-        # Загрузка изображения корабля и получение прямоугольника.
+        # Загрузка изображения игрока и получение прямоугольника.
         self.image = pygame.image.load('resources/man.png')
 
         self.image.convert_alpha()
@@ -83,8 +88,8 @@ class Player(Sprite):
                     self.directs['up'] or self.directs['down']):
             self.stand()
 
-    def _go_portal(self, platform, level, speed_x, speed_y, id_door,
-                   lv):
+    def _go_portal(self, platform, level, speed_x, speed_y,
+                   platform_portal):
         """
         переход игрока на указанный уровень к указанной двери с
         нужной стороны
@@ -95,32 +100,35 @@ class Player(Sprite):
         :param id_door:
         :param lv:
         """
-        print(platform)
-        level.clear()
-        self.game_stat.level = lv
-        level.create_levels(self.game_stat.level)
-        for l in level:
-            for nm, lay in l.all_layers.items():
-                if nm == GameObject.Door:
-                    for spr in lay.sprites():
-                        print(spr.id, id_door)
-                        if spr.id == id_door:
-                            #  влево <<<<
-                            if speed_x < 0:
-                                self.rect.right = spr.rect.left
-                                self.rect.centery = spr.rect.centery
-                            # вправо >>>
-                            elif speed_x > 0:
-                                self.rect.left = spr.rect.right
-                                self.rect.centery = spr.rect.centery
-                            # вверх ^
-                            if speed_y < 0:
-                                self.rect.bottom = spr.rect.top
-                                self.rect.centerx = spr.rect.centerx
-                            # вниз v
-                            elif speed_y > 0:
-                                self.rect.top = spr.rect.bottom
-                                self.rect.centerx = spr.rect.centerx
+        id_door, lv, direction = platform_portal
+        if self.directs[direction]:
+            level.clear()
+            self.game_stat.level = lv
+            level.create_levels(self.game_stat.level)
+            for l in level:
+                for nm, lay in l.all_layers.items():
+                    if nm == GameObject.Door:
+                        for spr in lay.sprites():
+                            print(spr.id, id_door)
+                            if spr.id == id_door:
+                                #  влево <<<<
+                                if speed_x < 0:
+                                    self.rect.right = spr.rect.left
+                                    self.rect.centery = spr.rect.centery
+                                # вправо >>>
+                                elif speed_x > 0:
+                                    self.rect.left = spr.rect.right
+                                    self.rect.centery = spr.rect.centery
+                                # вверх ^
+                                if speed_y < 0:
+                                    self.rect.bottom = spr.rect.top
+                                    self.rect.centerx = spr.rect.centerx
+                                # вниз v
+                                elif speed_y > 0:
+                                    self.rect.top = spr.rect.bottom
+                                    self.rect.centerx = spr.rect.centerx
+        else:
+            self.stand_before_wall(speed_x, speed_y, platform)
 
     def stand_before_wall(self, speed_x, speed_y, platform):
         if speed_x < 0:
@@ -136,22 +144,18 @@ class Player(Sprite):
         for group in layers:
             platform = pygame.sprite.spritecollideany(self, group)
             if platform:
+                # стена
                 if group.class_name == GameObject.Wall:
                     self.stand_before_wall(speed_x, speed_y, platform)
+                # дверь
                 elif group.class_name == GameObject.Door:
                     if platform.portal is None:
-                        print(platform.portal, 222)
-                        self.stand_before_wall(speed_x, speed_y,
-                                               platform)
+                        self.stand_before_wall(speed_x, speed_y, platform)
                         print('эта дверь никуда не ведёт')
                         return
-                    print(platform.portal, 222)
-                    # id двери, уровень перехода,
-                    id_door, lv, direction = platform.portal
-                    if self.directs[direction]:
-                        print('go')
-                        self._go_portal(platform, level, speed_x,
-                                        speed_y, id_door, lv)
                     else:
-                        self.stand_before_wall(speed_x, speed_y,
-                                               platform)
+                        self._go_portal(platform, level, speed_x,
+                                        speed_y, platform.portal)
+
+                elif group.class_name == GameObject.Thing:
+                    print(platform)
