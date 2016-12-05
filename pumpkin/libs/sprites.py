@@ -37,13 +37,9 @@ class Weapon(GameObject):
         self.name = properties.get('name', 'weapon')
 
 
-
-
-
 class Armor(GameObject):
     def __init__(self, group, screen, image, x, y, count):
         super().__init__(group, screen, image, x, y)
-
 
 
 class CreateThings:
@@ -59,9 +55,8 @@ class CreateThings:
     def create_thing(self, thing, group, screen, image, x, y, count,
                      properties,
                      portal=None, *groups):
-        self.thing = self.th[thing](group, screen, image, x, y, properties)
-
-
+        self.thing = self.th[thing](group, screen, image, x, y,
+                                    properties)
 
 
 class CreateImagePlatform(GameObject):
@@ -136,11 +131,11 @@ class Background2(Background):
 
 
 class FigureRect(Sprite):
-    def __init__(self, group, screen, rect, color, gid, border):
+    def __init__(self, group, screen, rect, color, border, id):
         super().__init__()
         x, y, width, height = rect
         self.color = color
-        self.gid = gid
+        self.id = id
         self.screen = screen
         self.border = border
         # Загрузка изображения тайла и получение прямоугольника.
@@ -173,79 +168,117 @@ class CreateFigure(Sprite):
         self.object = object
         self.group = group
         self.screen = screen
-        self.object_user_properties = self.object.get('properties', {})
+        self.object_user_properties = self.object.get('properties',
+                                                      {})
 
+        self.id = self.object['id']
 
+        self.surface = self.figures[self.figure_type](group, screen, self.rect, self.color, self.border, self.id)
+        group.add(self.surface)
+
+    @property
+    def rect(self):
+        return (self.x, self.y, self.width, self.height)
+
+    @property
+    def x(self):
+        return self.object['x']
+
+    @property
+    def y(self):
+        return self.object['y']
+
+    @property
+    def width(self):
+        return self.object['width']
+
+    @property
+    def height(self):
+        return self.object['height']
+
+    @property
+    def figure_type(self):
         object_type = self.object.get('type')
         if object_type:
-            self.figure_type = object_type
+            return object_type
         else:
-            self.figure_type = self.user_layer_properties.get('figure_type', {})
+            return self.user_layer_properties.get('figure_type', {})
 
-        object_color =
+    @property
+    def color(self):
+        object_color = self.object_user_properties.get('color')
+        if object_color:
+            return _color.convert_color(object_color)
+        else:
+            return _color.convert_color(
+                self.layer_properties.get('color'))
 
-        x = self.object['x']
-        y = self.object['y']
-        height = self.object['height']
-        width = self.object['width']
+    @property
+    def border(self):
+        object_border = self.object_user_properties.get('border', 0)
+        if object_border:
+            return object_border
+        else:
+            return self.layer_properties.get('border', 0)
+
+    def draw(self, screen):
+        self.surface.draw(self.screen)
+
+            # print(self.figure_type, 'self.figure_type!!!!!!!!!!!!!!!!!!')
+            # if not self.figure_type:
+            #     raise Exception('не указан тип фигуры')
+            # print(self.figure_type)
+
+            #     self.create_figure(self.type)
+            #
+            # def __call__(self, *args, **kwargs):
+            #     return self.surface
+            #
+            # def create_figure(self, figure):
+            #     getattr(self, figure)(self.screen, self.x, self.y,
+            #                           self.width,
+            #                           self.height, self.color)
+            #
+            # def rectangle(self, screen, x, y, width, height, color, *args):
+            #     self.surface = FigureRect(screen, (x, y, width, height), None,
+            #                               color=color, border=self.border)
+            #
+            # def line(self, screen, x, y, width, height, color):
+            #     self.image = pygame.Surface((width, height), pygame.SRCALPHA)
+            #     self.image.fill(color)
+            #
+
+            # self.line = pygame.draw.line(screen, self.color, (self.sx, self.sy),
+            #                              [self.fx,self.fy], 3)
+            # s = pygame.draw.rect(screen, self.color, (self.x, self.y, self.width, self.height))
+            # try:
+            #     screen.blit(self.sur, self.rect)
+            # except AttributeError:
+            #     print('units.FigureFabric.draw() AttributeError -error')
+            #     pass
 
 
-        # print(self.figure_type, 'self.figure_type!!!!!!!!!!!!!!!!!!')
-        # if not self.figure_type:
-        #     raise Exception('не указан тип фигуры')
-        # print(self.figure_type)
-
-    #     self.create_figure(self.type)
-    #
-    # def __call__(self, *args, **kwargs):
-    #     return self.surface
-    #
-    # def create_figure(self, figure):
-    #     getattr(self, figure)(self.screen, self.x, self.y,
-    #                           self.width,
-    #                           self.height, self.color)
-    #
-    # def rectangle(self, screen, x, y, width, height, color, *args):
-    #     self.surface = FigureRect(screen, (x, y, width, height), None,
-    #                               color=color, border=self.border)
-    #
-    # def line(self, screen, x, y, width, height, color):
-    #     self.image = pygame.Surface((width, height), pygame.SRCALPHA)
-    #     self.image.fill(color)
-    #
-    # def draw(self, screen):
-    #     self.surface.draw(self.screen)
-        # self.line = pygame.draw.line(screen, self.color, (self.sx, self.sy),
-        #                              [self.fx,self.fy], 3)
-        # s = pygame.draw.rect(screen, self.color, (self.x, self.y, self.width, self.height))
-        # try:
-        #     screen.blit(self.sur, self.rect)
-        # except AttributeError:
-        #     print('units.FigureFabric.draw() AttributeError -error')
-        #     pass
-
-
-        # def c_rotate(self, s, angle):
-        #     s = pygame.transform.rotate(s,angle)
-        #     return s
-        #
-        # def rot_center(self, image, angle):
-        #     """rotate an image while keeping its center and size"""
-        #     orig_rect = image.get_rect()
-        #     rot_image = pygame.transform.rotate(image, angle)
-        #     rot_rect = orig_rect.copy()
-        #     rot_rect.center = rot_image.get_rect().center
-        #     rot_image = rot_image.subsurface(rot_rect).copy()
-        #     return rot_image
-        #
-        # def rot_center2(self, image, rect, angle):
-        #         a = b = rect.width/2
-        #         c = math.sqrt((a ** 2) + (b ** 2))
-        #         print(c, a, 'gep')
-        #         """rotate an image while keeping its center"""
-        #         rot_image = pygame.transform.rotate(image, angle)
-        #         cx = c + a
-        #         cy = (rect.centery/2) + b/2
-        #         rot_rect = rot_image.get_rect(center=(cx, cy))
-        #         print(rect.x, rect.y)
-        #         return rot_image,rot_rect
+            # def c_rotate(self, s, angle):
+            #     s = pygame.transform.rotate(s,angle)
+            #     return s
+            #
+            # def rot_center(self, image, angle):
+            #     """rotate an image while keeping its center and size"""
+            #     orig_rect = image.get_rect()
+            #     rot_image = pygame.transform.rotate(image, angle)
+            #     rot_rect = orig_rect.copy()
+            #     rot_rect.center = rot_image.get_rect().center
+            #     rot_image = rot_image.subsurface(rot_rect).copy()
+            #     return rot_image
+            #
+            # def rot_center2(self, image, rect, angle):
+            #         a = b = rect.width/2
+            #         c = math.sqrt((a ** 2) + (b ** 2))
+            #         print(c, a, 'gep')
+            #         """rotate an image while keeping its center"""
+            #         rot_image = pygame.transform.rotate(image, angle)
+            #         cx = c + a
+            #         cy = (rect.centery/2) + b/2
+            #         rot_rect = rot_image.get_rect(center=(cx, cy))
+            #         print(rect.x, rect.y)
+            #         return rot_image,rot_rect

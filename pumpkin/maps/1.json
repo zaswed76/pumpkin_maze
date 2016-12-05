@@ -24,11 +24,11 @@
                  "name":"",
                  "properties":
                     {
-                     "AAAAAAAAA":"ZZZZZZZZZ"
+                     "color":"#ff00557f"
                     },
                  "propertytypes":
                     {
-                     "AAAAAAAAA":"string"
+                     "color":"color"
                     },
                  "rotation":0,
                  "type":"",
@@ -41,6 +41,16 @@
                  "height":32,
                  "id":2,
                  "name":"",
+                 "properties":
+                    {
+                     "border":4,
+                     "color":"#ffff5500"
+                    },
+                 "propertytypes":
+                    {
+                     "border":"int",
+                     "color":"color"
+                    },
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -51,10 +61,12 @@
          "opacity":1,
          "properties":
             {
+             "class":"wall",
              "figure_type":"rect"
             },
          "propertytypes":
             {
+             "class":"string",
              "figure_type":"string"
             },
          "type":"objectgroup",

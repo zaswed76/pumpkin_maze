@@ -141,26 +141,9 @@ class Level:
             CreateFigure(group, screen, object, layer_properties,
                          user_layer_properties)
 
+        self.all_layers[group.name] = group
 
-            # if figure_type:
-            #     # передаём цвет в порядке приоритета
-            #     color = _color.get_color(
-            #         obj.get('properties', dict()).get('color'),
-            #         layer.get('color'))
-            #     if color:
-            #         figure = sprites.TailObject(screen, color,
-            #                                     figure_type,
-            #                                     layer_properties,
-            #                                     None, **obj)
-            #         group_layer.add(figure())
-            #     else:
-            #         print('объкт - {} не имеет цвета'.format(
-            #             obj.get('type')))
-            # else:
-            #     print('объкт - "{}" не имеет типа'.format(
-            #         obj.get('type')))
 
-            # self.all_layers[group_layer.name] = group_layer
 
     def draw_layers(self):
         if self.all_layers:
