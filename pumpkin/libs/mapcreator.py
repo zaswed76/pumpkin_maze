@@ -65,23 +65,19 @@ class Level:
             properties = layer.get('properties', {})
             class_name = properties.get('class')
             name_layer = layer['name']
+            group_layer = game_objects.OrderedGroupLayer(
+                    name_layer, class_name, properties)
             if layer['type'] == 'tilelayer' and layer['visible']:
                 data = layer['data']
-                group_layer = game_objects.OrderedGroupLayer(
-                    name_layer, class_name, properties)
                 self.create_layer(group_layer, data)
             elif layer['type'] == 'imagelayer' and layer['visible']:
                 speed = properties.get('speed', 0)
-                group_layer = game_objects.OrderedGroupLayer(
-                    name_layer, class_name, properties)
                 self.create_image(group_layer,
                                   self.get_image_path(layer['image']),
                                   layer.get('offsetx', 0),
                                   layer.get('offsety', 0),
                                   speed)
             elif layer['type'] == 'objectgroup' and layer['visible']:
-                group_layer = game_objects.OrderedGroupLayer(
-                    name_layer, class_name, properties)
                 self.create_figure_objects(group_layer, self.screen,
                                            layer)
 
@@ -128,15 +124,13 @@ class Level:
         self.all_layers[group_layer.name] = (group_layer)
 
     def create_figure_objects(self, group, screen, layer):
-        opts = ['offsetx', 'offsety', 'color', 'type', 'opacity',
+        # ключи которые включены в layer_properties
+        layer_properties_opts = ['offsetx', 'offsety', 'color', 'type', 'opacity',
                 'name', 'visible']
-        # print_dict(layer)
-
         layer_properties = Properties()
-        layer_properties.update(options=opts, **layer)
+        layer_properties.update(options=layer_properties_opts, **layer)
         user_layer_properties = layer.get('properties', {})
         objects = layer['objects']
-
         for object in objects:
             CreateFigure(group, screen, object, layer_properties,
                          user_layer_properties)

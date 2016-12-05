@@ -22,8 +22,7 @@ class GameObject(Sprite):
         self.screen_rect = screen.get_rect()
         self.rect = pygame.Rect(x, y, width, height)
 
-    def __repr__(self):
-        return '{}\n{}'.format(self.__class__.__name__, self)
+
 
     def draw(self, screen):
         screen.blit(self.image, self.rect)
