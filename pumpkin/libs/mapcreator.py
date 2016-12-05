@@ -4,13 +4,26 @@ import pygame
 from pygame.sprite import Group, OrderedUpdates
 from libs import tiledmap, game_objects, sprites
 from libs import color as _color
-from libs.sprites import CreateImagePlatform, CreateThings
+from libs.sprites import CreateImagePlatform, CreateThings, \
+    CreateFigure
 
 
 def print_dict(d: dict):
     for k, v in d.items():
         print(k, v, sep=' = ')
         print('---------------------------')
+
+
+class Properties(dict):
+    def __init__(self):
+        super().__init__()
+
+    def update(self, E=None, options=None, **F):
+        if options is not None:
+            print(222)
+            super().update({k: F.get(k) for k in options})
+        else:
+            super().update(**F)
 
 
 class Level:
@@ -69,7 +82,8 @@ class Level:
             elif layer['type'] == 'objectgroup' and layer['visible']:
                 group_layer = game_objects.OrderedGroupLayer(
                     name_layer, class_name, properties)
-                self.create_object(group_layer, self.screen, layer)
+                self.create_figure_objects(group_layer, self.screen,
+                                           layer)
 
     def get_image_path(self, image):
         return os.path.join(self.resources_dir,
@@ -82,7 +96,6 @@ class Level:
         self.all_layers[group_layer.name] = (group_layer)
 
     def create_layer(self, group_layer, data):
-
         x = 0
         y = 0
         step = self.tiled_map['tilewidth']
@@ -95,10 +108,11 @@ class Level:
                 tiled_properties = self.tiled_map.tiled_properties.get(
                     str(gid), dict())
                 group_properties = group_layer.properties
-                if group_properties.get('class')  == game_objects.GameObject.Thing:
+                if group_properties.get(
+                        'class') == game_objects.GameObject.Thing:
                     CreateThings(group_layer, self.screen,
                                  image, x, y, count,
-                                 tiled_properties, portal)
+                                 tiled_properties)
 
                 else:
                     CreateImagePlatform(group_layer, self.screen,
@@ -113,36 +127,40 @@ class Level:
                 y += step
         self.all_layers[group_layer.name] = (group_layer)
 
-    def create_object(self, group_layer, screen, layer):
-        for obj in layer['objects']:
-            layer_properties = layer.get('properties', {})
+    def create_figure_objects(self, group, screen, layer):
+        opts = ['offsetx', 'offsety', 'color', 'type', 'opacity',
+                'name', 'visible']
+        # print_dict(layer)
 
-            layer_figure_type = layer_properties.get('figure_type',
-                                                     False)
-            object_figure_type = obj.get('type', False)
-            if object_figure_type:
-                figure_type = object_figure_type
-            else:
-                figure_type = layer_figure_type
-            if figure_type:
-                # передаём цвет в порядке приоритета
-                color = _color.get_color(
-                    obj.get('properties', dict()).get('color'),
-                    layer.get('color'))
-                if color:
-                    figure = sprites.TailObject(screen, color,
-                                                figure_type,
-                                                layer_properties,
-                                                None, **obj)
-                    group_layer.add(figure())
-                else:
-                    print('объкт - {} не имеет цвета'.format(
-                        obj.get('type')))
-            else:
-                print('объкт - "{}" не имеет типа'.format(
-                    obj.get('type')))
+        layer_properties = Properties()
+        layer_properties.update(options=opts, **layer)
+        user_layer_properties = layer.get('properties', {})
+        objects = layer['objects']
 
-        self.all_layers[group_layer.name] = group_layer
+        for object in objects:
+            CreateFigure(group, screen, object, layer_properties,
+                         user_layer_properties)
+
+
+            # if figure_type:
+            #     # передаём цвет в порядке приоритета
+            #     color = _color.get_color(
+            #         obj.get('properties', dict()).get('color'),
+            #         layer.get('color'))
+            #     if color:
+            #         figure = sprites.TailObject(screen, color,
+            #                                     figure_type,
+            #                                     layer_properties,
+            #                                     None, **obj)
+            #         group_layer.add(figure())
+            #     else:
+            #         print('объкт - {} не имеет цвета'.format(
+            #             obj.get('type')))
+            # else:
+            #     print('объкт - "{}" не имеет типа'.format(
+            #         obj.get('type')))
+
+            # self.all_layers[group_layer.name] = group_layer
 
     def draw_layers(self):
         if self.all_layers:

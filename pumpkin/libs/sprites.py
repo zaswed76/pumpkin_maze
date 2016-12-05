@@ -8,11 +8,10 @@ class GameObject(Sprite):
     Wall = 'wall'
     Thing = 'thing'
 
-    def __init__(self, group, screen, image, x, y, count, properties,
-                 portal=None, *groups):
-        super().__init__(*groups)
-        self.properties = properties
-        self.count = count
+    def __init__(self, group, screen, image, x, y):
+        super().__init__()
+
+        # self.count = count
 
         self.type = group.class_name
         self.image = image
@@ -24,18 +23,15 @@ class GameObject(Sprite):
         self.rect = pygame.Rect(x, y, width, height)
 
     def __repr__(self):
-        return '{}\n{}'.format(self.__class__.__name__,
-                               self.properties)
+        return '{}\n{}'.format(self.__class__.__name__, self)
 
     def draw(self, screen):
         screen.blit(self.image, self.rect)
 
 
 class Weapon(GameObject):
-    def __init__(self, group, screen, image, x, y, count, properties,
-                 portal=None, *groups):
-        super().__init__(group, screen, image, x, y, count,
-                         properties, portal, *groups)
+    def __init__(self, group, screen, image, x, y, properties):
+        super().__init__(group, screen, image, x, y)
         self.damage = properties.get('damage', 0)
         self.breaks = properties.get('breaks', False)
         self.name = properties.get('name', 'weapon')
@@ -45,37 +41,32 @@ class Weapon(GameObject):
 
 
 class Armor(GameObject):
-    def __init__(self, group, screen, image, x, y, count, properties,
-                 portal=None, *groups):
-        super().__init__(group, screen, image, x, y, count,
-                         properties, portal, *groups)
+    def __init__(self, group, screen, image, x, y, count):
+        super().__init__(group, screen, image, x, y)
+
 
 
 class CreateThings:
     th = dict(weapon=Weapon, armor=Armor)
 
-    def __init__(self, group, screen, image, x, y, count, properties,
-                 portal=None, *groups):
+    def __init__(self, group, screen, image, x, y, count, properties):
         self.properties = properties
         self.group_properties = group.properties
         self.create_thing(self.properties['subclass'], group, screen,
-                          image, x, y, count, properties,
-                          portal=None, *groups)
+                          image, x, y, count, properties)
         group.add(self.thing)
 
     def create_thing(self, thing, group, screen, image, x, y, count,
                      properties,
                      portal=None, *groups):
-        self.thing = self.th[thing](group, screen, image, x, y,
-                                        count, properties,
-                                        portal=None, *groups)
+        self.thing = self.th[thing](group, screen, image, x, y, properties)
 
 
 
 
 class CreateImagePlatform(GameObject):
     def __init__(self, group, screen, image, x, y, count, properties,
-                 portal=None, *groups):
+                 portal=None):
         """
         :param portal tuple < (int, int, int, str)
         (id текущей двери, уроветь перехода, id двери перехода, направление?)
@@ -89,8 +80,7 @@ class CreateImagePlatform(GameObject):
         :param properties:
         """
 
-        super().__init__(group, screen, image, x, y, count,
-                         properties, portal, *groups)
+        super().__init__(group, screen, image, x, y)
         self.group_properties = group.properties
         if portal is not None:
             self.id = portal[0]
@@ -145,13 +135,10 @@ class Background2(Background):
         self.rect.centery = self.center_y
 
 
-class FigureRect(GameObject):
-    def __init__(self, screen, rect, properties, color=None, gid=None,
-                 border=0, *groups):
-
-        super().__init__(properties, *groups)
+class FigureRect(Sprite):
+    def __init__(self, group, screen, rect, color, gid, border):
+        super().__init__()
         x, y, width, height = rect
-
         self.color = color
         self.gid = gid
         self.screen = screen
@@ -175,57 +162,59 @@ class FigureRect(GameObject):
                 return screen.blit(self.surface, self.rect)
 
 
-class TailObject(GameObject):
-    alias_figure = {'rect': 'rectangle'}
+class CreateFigure(Sprite):
+    figures = {'rect': FigureRect}
 
-    def __init__(self, screen, color: hex, figure_type: str,
-                 layer_properties, properties, group, image, x, y,
-                 count, *groups, **cfg):
-
-        # todo это какая то х. self.properties_pass = properties
-        super().__init__(group, screen, image, x, y, count,
-                         properties, *groups)
-        self.properties_pass = properties
+    def __init__(self, group, screen, object, layer_properties,
+                 user_layer_properties):
+        super().__init__()
+        self.user_layer_properties = user_layer_properties
         self.layer_properties = layer_properties
-
-        self.surface = None
-        self.name = cfg.get('name', 'noname')
-        self.color = _color.convert_color(color)
-
-        self.type = self.alias_figure.get(figure_type, figure_type)
-        self.id = cfg['id']
-        self.x = cfg['x']
-        self.y = cfg['y']
-        self.width = cfg['width']
-        self.height = cfg['height']
-        self.properties = cfg.get('properties', {})
-        self.border = self.properties.get('border',
-                                          self.layer_properties.get(
-                                              'border', 0))
-
-        self.angle = cfg['rotation']
+        self.object = object
+        self.group = group
         self.screen = screen
+        self.object_user_properties = self.object.get('properties', {})
 
-        self.create_figure(self.type)
 
-    def __call__(self, *args, **kwargs):
-        return self.surface
+        object_type = self.object.get('type')
+        if object_type:
+            self.figure_type = object_type
+        else:
+            self.figure_type = self.user_layer_properties.get('figure_type', {})
 
-    def create_figure(self, figure):
-        getattr(self, figure)(self.screen, self.x, self.y,
-                              self.width,
-                              self.height, self.color)
+        object_color =
 
-    def rectangle(self, screen, x, y, width, height, color, *args):
-        self.surface = FigureRect(screen, (x, y, width, height), None,
-                                  color=color, border=self.border)
+        x = self.object['x']
+        y = self.object['y']
+        height = self.object['height']
+        width = self.object['width']
 
-    def line(self, screen, x, y, width, height, color):
-        self.image = pygame.Surface((width, height), pygame.SRCALPHA)
-        self.image.fill(color)
 
-    def draw(self, screen):
-        self.surface.draw(self.screen)
+        # print(self.figure_type, 'self.figure_type!!!!!!!!!!!!!!!!!!')
+        # if not self.figure_type:
+        #     raise Exception('не указан тип фигуры')
+        # print(self.figure_type)
+
+    #     self.create_figure(self.type)
+    #
+    # def __call__(self, *args, **kwargs):
+    #     return self.surface
+    #
+    # def create_figure(self, figure):
+    #     getattr(self, figure)(self.screen, self.x, self.y,
+    #                           self.width,
+    #                           self.height, self.color)
+    #
+    # def rectangle(self, screen, x, y, width, height, color, *args):
+    #     self.surface = FigureRect(screen, (x, y, width, height), None,
+    #                               color=color, border=self.border)
+    #
+    # def line(self, screen, x, y, width, height, color):
+    #     self.image = pygame.Surface((width, height), pygame.SRCALPHA)
+    #     self.image.fill(color)
+    #
+    # def draw(self, screen):
+    #     self.surface.draw(self.screen)
         # self.line = pygame.draw.line(screen, self.color, (self.sx, self.sy),
         #                              [self.fx,self.fy], 3)
         # s = pygame.draw.rect(screen, self.color, (self.x, self.y, self.width, self.height))

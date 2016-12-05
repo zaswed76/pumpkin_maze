@@ -14,7 +14,7 @@
         }, 
         {
          "color":"#3b7600",
-         "draworder":"topdown",
+         "draworder":"index",
          "height":20,
          "name":"\u0421\u043b\u043e\u0439 \u043e\u0431\u044a\u0435\u043a\u0442\u043e\u0432 1",
          "objects":[
@@ -22,12 +22,31 @@
                  "height":576,
                  "id":1,
                  "name":"",
+                 "properties":
+                    {
+                     "AAAAAAAAA":"ZZZZZZZZZ"
+                    },
+                 "propertytypes":
+                    {
+                     "AAAAAAAAA":"string"
+                    },
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":40,
                  "x":32,
                  "y":32
+                }, 
+                {
+                 "height":32,
+                 "id":2,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":128,
+                 "y":96
                 }],
          "opacity":1,
          "properties":
@@ -39,7 +58,7 @@
              "figure_type":"string"
             },
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "width":20,
          "x":0,
          "y":0
@@ -58,7 +77,7 @@
              "class":"string"
             },
          "type":"tilelayer",
-         "visible":true,
+         "visible":false,
          "width":20,
          "x":0,
          "y":0
@@ -79,7 +98,7 @@
              "doors":"string"
             },
          "type":"tilelayer",
-         "visible":true,
+         "visible":false,
          "width":20,
          "x":0,
          "y":0
@@ -98,12 +117,12 @@
              "class":"string"
             },
          "type":"tilelayer",
-         "visible":true,
+         "visible":false,
          "width":20,
          "x":0,
          "y":0
         }],
- "nextobjectid":2,
+ "nextobjectid":3,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tileheight":32,
