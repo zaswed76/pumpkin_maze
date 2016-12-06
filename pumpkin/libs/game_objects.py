@@ -10,20 +10,25 @@ from libs.sprites import GameObject
 
 
 class OrderedGroupLayer(OrderedUpdates):
-    def __init__(self, name, class_name, properties, *sprites):
+    def __init__(self, name, class_name, properties):
         """
 
+         группа с сохранением порядка добавления
         :param name: имя слоя
         :param class_name: тип слоя (пользовательские свойства)
+        :param properties: (пользовательские свойства)
         :param sprites: pygame.sprites
         """
-        super().__init__(*sprites)
+        super().__init__()
         self.properties = properties
+        print(self.properties, 'properties11111111111111111111111')
 
         self.doors_portal = (
             eval(self.properties.get('doors', '{}')))
         self.name = name
+        print(self.name, 'name')
         self.class_name = class_name
+        print(self.class_name, 'class name')
 
     def draw(self, surface):
         spritedict = self.spritedict

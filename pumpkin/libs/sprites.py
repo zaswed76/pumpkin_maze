@@ -84,14 +84,16 @@ class CreateImagePlatform(GameObject):
         group.add(self)
 
 
-class AbsSprite(Sprite):
-    def __init__(self, screen, image, alpha=False, *groups):
-        super().__init__(*groups)
-
+class AbsBackGround(Sprite):
+    def __init__(self, group, screen, image, alpha=False, *groups):
+        super().__init__()
+        self.group = group
         self.image = pygame.image.load(image).convert_alpha()
-
         self.screen = screen
         self.rect = self.image.get_rect()
+
+        self.group.add(self)
+
 
     def update(self, *args):
         pass
@@ -100,9 +102,10 @@ class AbsSprite(Sprite):
         self.screen.blit(self.image, self.rect)
 
 
-class Background(AbsSprite):
-    def __init__(self, screen, image, x, y, speed, *groups):
-        super().__init__(screen, image, *groups)
+class Background(AbsBackGround):
+    def __init__(self, group, screen, image, x, y, speed):
+
+        super().__init__(group, screen, image)
         self.speed = speed
         self.name = 'Background'
         self.rect.x = x
@@ -120,8 +123,8 @@ class Background(AbsSprite):
 
 
 class Background2(Background):
-    def __init__(self, screen, image, x, y, speed, *groups):
-        super().__init__(screen, image, x, y, speed, *groups)
+    def __init__(self, screen, image, x, y, speed, group):
+        super().__init__(group, screen, image, x, y, speed)
 
     def update(self, *args):
         if self.speed:

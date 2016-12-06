@@ -48,6 +48,10 @@ class Level:
         self.name = os.path.splitext(os.path.basename(json_map))[0]
 
     def set_bg_type(self, type):
+        """
+
+        :param type: ссылка на КЛАСС - наследник sprites.AbsBackGround
+        """
         self.bg_type = type
 
     def get_size_map(self):
@@ -62,34 +66,44 @@ class Level:
 
     def create_map(self):
         for layer in self.tiled_map.layers:
-            properties = layer.get('properties', {})
-            class_name = properties.get('class')
+            # пользовательские настройки слоя
+            user_properties = layer.get('properties', {})
+            # тип слоя (sprites.GameObject)
+            class_name = user_properties.get('class')
+
             name_layer = layer['name']
-            group_layer = game_objects.OrderedGroupLayer(
-                    name_layer, class_name, properties)
+            group = game_objects.OrderedGroupLayer(
+                name_layer, class_name, user_properties)
             if layer['type'] == 'tilelayer' and layer['visible']:
                 data = layer['data']
-                self.create_layer(group_layer, data)
+                self.create_layer(group, data)
             elif layer['type'] == 'imagelayer' and layer['visible']:
-                speed = properties.get('speed', 0)
-                self.create_image(group_layer,
+                # todo переделать вызов create_image()
+                speed = user_properties.get('speed', 0)
+                self.create_image(group,
                                   self.get_image_path(layer['image']),
                                   layer.get('offsetx', 0),
                                   layer.get('offsety', 0),
                                   speed)
             elif layer['type'] == 'objectgroup' and layer['visible']:
-                self.create_figure_objects(group_layer, self.screen,
+                self.create_figure_objects(group, self.screen,
                                            layer)
 
     def get_image_path(self, image):
+        """
+
+        :param image: относительный путь к изображению
+        :return: абсалютный путь к изображению
+        """
         return os.path.join(self.resources_dir,
                             os.path.basename(image))
 
-    def create_image(self, group_layer, image_pth, x, y, speed):
-        bg = self.bg_type(self.screen, image_pth, x, y, speed)
-        group_layer.add(bg)
+    def create_image(self, group, image_pth, x, y, speed):
+        #
+        bg = self.bg_type(group, self.screen, image_pth, x, y, speed)
 
-        self.all_layers[group_layer.name] = (group_layer)
+
+        self.all_layers[group.name] = (group)
 
     def create_layer(self, group_layer, data):
         x = 0
@@ -125,19 +139,21 @@ class Level:
 
     def create_figure_objects(self, group, screen, layer):
         # ключи которые включены в layer_properties
-        layer_properties_opts = ['offsetx', 'offsety', 'color', 'type', 'opacity',
-                'name', 'visible']
+        layer_properties_opts = ['offsetx', 'offsety', 'color',
+                                 'type', 'opacity',
+                                 'name', 'visible']
         layer_properties = Properties()
-        layer_properties.update(options=layer_properties_opts, **layer)
+        layer_properties.update(options=layer_properties_opts,
+                                **layer)
+        # пользовательские свойства слоя
         user_layer_properties = layer.get('properties', {})
+        # все фигуры
         objects = layer['objects']
         for object in objects:
             CreateFigure(group, screen, object, layer_properties,
                          user_layer_properties)
 
         self.all_layers[group.name] = group
-
-
 
     def draw_layers(self):
         if self.all_layers:
@@ -168,6 +184,7 @@ class Levels(list):
         self.map_dir = map_dir
         self.included_level = config.included_level
         self.maps = self.get_maps()
+        # todo переделать устанвку типа Background
         self.bg_type = sprites.Background
 
     def get_maps(self) -> list:
@@ -212,7 +229,7 @@ class Levels(list):
         self[0].fill()
         self[0].draw_layers()
 
-    def set_bg_type(self, bg_type: sprites.AbsSprite):
+    def set_bg_type(self, bg_type: sprites.AbsBackGround):
         """
 
         :param bg_type: units.AbsSprite
