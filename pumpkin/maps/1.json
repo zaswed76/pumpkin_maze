@@ -7,7 +7,7 @@
          "name":"green",
          "opacity":1,
          "type":"tilelayer",
-         "visible":false,
+         "visible":true,
          "width":20,
          "x":0,
          "y":0
@@ -81,7 +81,7 @@
              "figure_type":"string"
             },
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "width":20,
          "x":0,
          "y":0
@@ -100,7 +100,7 @@
              "class":"string"
             },
          "type":"tilelayer",
-         "visible":false,
+         "visible":true,
          "width":20,
          "x":0,
          "y":0
@@ -121,7 +121,7 @@
              "doors":"string"
             },
          "type":"tilelayer",
-         "visible":false,
+         "visible":true,
          "width":20,
          "x":0,
          "y":0

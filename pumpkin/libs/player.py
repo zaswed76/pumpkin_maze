@@ -3,6 +3,7 @@ import pygame
 from pygame.sprite import Sprite
 from libs.sprites import GameObject
 
+
 class Inventory(dict):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -23,16 +24,15 @@ class Inventory(dict):
         return '{}'.format(self.values())
 
 
-
 class Player(Sprite):
-    def __init__(self, stats, screen, speedx, speedy, x, y, inventory=None):
+    def __init__(self, stats, screen, speedx, speedy, x, y,
+                 inventory=None):
         """Инициализирует игрока и задает его начальную позицию."""
 
         super().__init__()
 
-
         self.inventory = inventory if inventory is not None else dict()
-        self.breaks  = self.inventory.check_breaks
+        self.breaks = self.inventory.check_breaks
 
         self.directs = dict.fromkeys(('up', 'down', 'left', 'right'),
                                      False)
@@ -86,7 +86,7 @@ class Player(Sprite):
         self.speed_y = 0
 
     def update(self, platforms, level=()):
-        self.breaks  = self.inventory.check_breaks
+        self.breaks = self.inventory.check_breaks
 
         if self.directs['right']:
             self.go_right()
@@ -115,11 +115,13 @@ class Player(Sprite):
             if platform:
                 # стена
                 if group.class_name == GameObject.Wall:
-                    self._stand_before_wall(speed_x, speed_y, platform)
+                    self._stand_before_wall(speed_x, speed_y,
+                                            platform)
                 # дверь
                 elif group.class_name == GameObject.Door:
                     if platform.portal is None:
-                        self._stand_before_wall(speed_x, speed_y, platform)
+                        self._stand_before_wall(speed_x, speed_y,
+                                                platform)
                         print('эта дверь никуда не ведёт')
                         return
                     else:

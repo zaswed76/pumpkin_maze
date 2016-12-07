@@ -35,6 +35,9 @@ class Weapon(GameObject):
         self.breaks = properties.get('breaks', False)
         self.name = properties.get('name', 'weapon')
 
+    def __repr__(self):
+        return 'name - {}; breaks = {}; damage = {}'.format(self.name, self.breaks, self.damage)
+
 
 class Armor(GameObject):
     def __init__(self, group, screen, image, x, y, count):
