@@ -7,7 +7,7 @@
          "name":"green",
          "opacity":1,
          "type":"tilelayer",
-         "visible":true,
+         "visible":false,
          "width":20,
          "x":0,
          "y":0
@@ -59,14 +59,22 @@
                  "y":96
                 }, 
                 {
-                 "height":96,
+                 "height":160,
                  "id":3,
                  "name":"",
+                 "properties":
+                    {
+                     "color":"#ffffaa00"
+                    },
+                 "propertytypes":
+                    {
+                     "color":"color"
+                    },
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":128,
-                 "x":384,
+                 "width":224,
+                 "x":288,
                  "y":64
                 }],
          "opacity":1,

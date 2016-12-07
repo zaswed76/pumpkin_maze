@@ -1,18 +1,15 @@
 
 
-import sys
-from PyQt5 import QtWidgets
+class Buss:
+    def __init__(self, lst = []):
+        self.lst = lst
 
-class Widget(QtWidgets.QLabel):
-    def __init__(self, *__args):
+    def sdd(self, pas):
+        self.lst.append(pas)
 
-        super().__init__(*__args)
-        self.resize(500, 500)
 
-if __name__ == '__main__':
-    app = QtWidgets.QApplication(sys.argv)
-    # app.setStyleSheet(open('./etc/{0}.qss'.format('style'), "r").read())
-    main = Widget()
-    main.show()
-    sys.exit(app.exec_())
+a = Buss()
+b = Buss()
 
+a.sdd('serg')
+print(b.lst)
