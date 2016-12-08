@@ -114,13 +114,10 @@ class Controller(KeyAlias):
         print(x,y)
         for lay in level:
             for n, l in lay.all_layers.items():
-                print(n, l, sep=' = ')
-                print('------------------')
                 for z in l:
                     clicked = z.rect.collidepoint(x, y)
                     if clicked:
-
-                        print(z.count)
+                        print(z, '!!!!!!!!!!!!!!!!!!!!!!!!!!!')
 
 
 

@@ -3,16 +3,23 @@ from pygame.sprite import Sprite
 from libs import color as _color
 
 
+class AbcSprite(Sprite):
+    def __init__(self):
+        super().__init__()
+
+
+
 class GameObject(Sprite):
     Door = 'door'
     Wall = 'wall'
     Thing = 'thing'
 
-    def __init__(self, group, screen, image, x, y):
+    def __init__(self, group, screen, image, x, y, count):
         super().__init__()
 
-        # self.count = count
-
+        self._count = count
+        self.group = group
+        self._count = count
         self.type = group.class_name
         self.image = image
         self.screen = screen
@@ -22,20 +29,31 @@ class GameObject(Sprite):
         self.screen_rect = screen.get_rect()
         self.rect = pygame.Rect(x, y, width, height)
 
-
+    @property
+    def count(self):
+        return self._count
 
     def draw(self, screen):
         screen.blit(self.image, self.rect)
 
+    def __repr__(self):
+        return '''
+        type - {}
+        count - {}
+        group - {}
+
+        '''.format(self.type, self.count, self.group.name)
+
 
 class Weapon(GameObject):
-    def __init__(self, group, screen, image, x, y, properties):
-        super().__init__(group, screen, image, x, y)
+    def __init__(self, group, screen, image, x, y, properties, count):
+        super().__init__(group, screen, image, x, y, count)
         self.damage = properties.get('damage', 0)
         self.breaks = properties.get('breaks', False)
         self.name = properties.get('name', 'weapon')
 
     def __repr__(self):
+        print(super().__repr__())
         return 'name - {}; breaks = {}; damage = {}'.format(self.name, self.breaks, self.damage)
 
 
@@ -58,7 +76,7 @@ class CreateThings:
                      properties,
                      portal=None, *groups):
         self.thing = self.th[thing](group, screen, image, x, y,
-                                    properties)
+                                    properties, count)
 
 
 class CreateImagePlatform(GameObject):
@@ -77,8 +95,10 @@ class CreateImagePlatform(GameObject):
         :param properties:
         """
 
-        super().__init__(group, screen, image, x, y)
+        super().__init__(group, screen, image, x, y, count)
         self.group_properties = group.properties
+        self._count = count
+
         if portal is not None:
             self.id = portal[0]
             self.portal = portal[1:]
@@ -152,6 +172,10 @@ class FigureRect(Sprite):
         if self.color[3] < 255:
             self.surface.set_alpha(self.color[3])
         self.surface.fill(color)
+
+    @property
+    def count(self):
+        return self.rect
 
     def draw(self, screen):
         if self.surface is not None:
