@@ -4,34 +4,18 @@ from pygame.sprite import Sprite
 from libs.sprites import GameObject
 
 
-class Inventory(dict):
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
-        self.update(kwargs)
 
-    def add(self, thing):
-        self[thing.name] = thing
-
-    @property
-    def check_breaks(self):
-        for v in self.values():
-            if v.breaks:
-                return True
-        else:
-            return False
-
-    def __repr__(self):
-        return '{}'.format(self.values())
 
 
 class Player(Sprite):
-    def __init__(self, stats, screen, speedx, speedy, x, y,
-                 inventory=None):
+    def __init__(self, stats, screen, speedx, speedy, cfg,
+                 inventory):
         """Инициализирует игрока и задает его начальную позицию."""
 
         super().__init__()
 
-        self.inventory = inventory if inventory is not None else dict()
+        self.cfg = cfg
+        self.inventory = inventory
         self.breaks = self.inventory.check_breaks
 
         self.directs = dict.fromkeys(('up', 'down', 'left', 'right'),
@@ -49,13 +33,13 @@ class Player(Sprite):
 
         self.image.convert_alpha()
         # self.rect = self.image.get_rect()
-        self.rect = pygame.Rect(0, 0, 25, 25)
+        self.rect = pygame.Rect(0, 0, *self.cfg.player_rect)
         self.rect.height = self.rect.height
         self.screen_rect = screen.get_rect()
 
         # Каждый новый появляется здесь
-        self.rect.right = 160
-        self.rect.bottom = 64
+        self.rect.right = self.cfg.start_x
+        self.rect.bottom = self.cfg.start_y
 
         # Сохранение вещественной координаты центра игрока.
         self.center_x = float(self.rect.centerx)

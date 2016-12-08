@@ -2,7 +2,7 @@ import json
 import os
 from pygame import init, display, sprite
 from pumpkin.libs.subsprite import SubSprite
-from pumpkin.libs.game_objects import ImagePlatform, Background
+from pumpkin.libs.game_groups import ImagePlatform, Background
 
 def get_map_files(direct):
     return [os.path.join(direct, p) for p in os.listdir(direct)]

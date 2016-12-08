@@ -5,7 +5,7 @@ import gamestats
 import paths
 from controller import Controller
 
-from libs import game_objects, player, mapcreator
+from libs import game_groups, player, mapcreator
 from config import Config
 
 cfg = Config()
@@ -30,8 +30,8 @@ def run_game():
 
 
     all_levels.create_levels(stats.level)
-    inventory = player.Inventory()
-    player_unit = player.Player(stats, screen, 2, 2, 32, 32, inventory=inventory)
+    inventory = game_groups.Inventory()
+    player_unit = player.Player(stats, screen, 2, 2, cfg, inventory=inventory)
     timer = pygame.time.Clock()
     # Запуск основного цикла игры.
 

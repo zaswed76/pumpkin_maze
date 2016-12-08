@@ -15,9 +15,17 @@ class GameObject(Sprite):
     Thing = 'thing'
 
     def __init__(self, group, screen, image, x, y, count):
+        """
+
+        :param group:
+        :param screen:
+        :param image:
+        :param x:
+        :param y:
+        :param count: номер тайла на карте начиная с 0, слева направо
+        """
         super().__init__()
 
-        self._count = count
         self.group = group
         self._count = count
         self.type = group.class_name

@@ -7,6 +7,20 @@ from libs.sprites import GameObject
 
 
 
+class Inventory(OrderedUpdates):
+    def __init__(self, *sprites, **kwargs):
+        super().__init__(*sprites)
+
+    @property
+    def check_breaks(self):
+        for v in self.sprites():
+            if v.breaks:
+                return True
+        else:
+            return False
+
+    def __repr__(self):
+        return '{}'.format(self.sprites())
 
 
 class OrderedGroupLayer(OrderedUpdates):

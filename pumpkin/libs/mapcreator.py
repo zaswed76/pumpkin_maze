@@ -2,7 +2,7 @@ import os
 
 import pygame
 from pygame.sprite import Group, OrderedUpdates
-from libs import tiledmap, game_objects, sprites
+from libs import tiledmap, game_groups, sprites
 from libs import color as _color
 from libs.sprites import CreateImagePlatform, CreateThings, \
     CreateFigure
@@ -42,7 +42,7 @@ class Level:
         if self.tiled_map.sets:
             self.image_sprites = self.tiled_map.get_subsprites(
                 self.tiled_map.get_id_tiles())
-        self.all_layers = game_objects.AllLayers()
+        self.all_layers = game_groups.AllLayers()
         self.all_images = OrderedUpdates()
         self.bg_type = None
         self.name = os.path.splitext(os.path.basename(json_map))[0]
@@ -72,7 +72,7 @@ class Level:
             class_name = user_properties.get('class')
 
             name_layer = layer['name']
-            group = game_objects.OrderedGroupLayer(
+            group = game_groups.OrderedGroupLayer(
                 name_layer, class_name, user_properties)
             if layer['type'] == 'tilelayer' and layer['visible']:
                 data = layer['data']
@@ -119,7 +119,7 @@ class Level:
                     str(gid), dict())
                 group_properties = group_layer.properties
                 if group_properties.get(
-                        'class') == game_objects.GameObject.Thing:
+                        'class') == game_groups.GameObject.Thing:
                     CreateThings(group_layer, self.screen,
                                  image, x, y, count,
                                  tiled_properties)
