@@ -89,6 +89,7 @@ class Level:
                 self.create_figure_objects(group, self.screen,
                                            layer)
 
+
     def get_image_path(self, image):
         """
 
