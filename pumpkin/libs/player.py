@@ -97,6 +97,7 @@ class Player(Sprite):
         for group in layers:
             platform = pygame.sprite.spritecollideany(self, group)
             if platform:
+                print(platform)
                 # стена
                 if group.class_name == GameObject.Wall:
                     self._stand_before_wall(speed_x, speed_y,
