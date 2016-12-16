@@ -141,6 +141,17 @@ class TiledParser(Parser):
         with open(self.json_map, "w") as f:
             json.dump(self, f)
 
+    def set_portal(self, layer_name):
+        for num_layer, layer in enumerate(self['layers']):
+            if layer['name'] == layer_name:
+                if not self['layers'][num_layer].get('properties'):
+                    self['layers'][num_layer]['properties'] = {}
+                if not self['layers'][num_layer].get('propertytypes'):
+                    self['layers'][num_layer]['propertytypes'] = {}
+
+                self['layers'][num_layer]['properties']['portal'] = True
+                self['layers'][num_layer]['propertytypes']['portal'] = 'bool'
+                self.save_map()
 
 
     def get_subsprites(self, id_tiles: set) -> dict:

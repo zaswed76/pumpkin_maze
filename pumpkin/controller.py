@@ -1,23 +1,7 @@
 import sys
 import pygame
-
-import sys
-from PyQt5 import QtWidgets, QtCore
-
 from libs import mprint
-
-class Widget(QtWidgets.QWidget):
-    def __init__(self, flags, *args, **kwargs):
-
-        super().__init__(flags, *args, **kwargs)
-        self.resize(500, 500)
-        self.box = QtWidgets.QHBoxLayout(self)
-        self.lab = QtWidgets.QLabel()
-        self.box.addWidget(self.lab, alignment=QtCore.Qt.AlignCenter)
-
-    def set_text(self, text):
-        self.lab.setText(text)
-
+from gui import widgets as gui
 
 
 class Player:
@@ -131,12 +115,7 @@ class Controller(KeyAlias):
                 print(self.game_stat.level)
 
 
-    def gui(self, x):
-        app = QtWidgets.QApplication(sys.argv)
-        main = Widget(None, (QtCore.Qt.Dialog| QtCore.Qt.WindowStaysOnTopHint))
-        main.show()
-        main.set_text('{}'.format(x))
-        app.exec_()
+
 
     def mouse_collide(self, x, y, level):
         print('------------------')
@@ -149,11 +128,13 @@ class Controller(KeyAlias):
                 clicked = z.rect.collidepoint(x, y)
                 if clicked:
                     print('level num - {}'.format(self.game_stat.level))
+                    gui.show_portal_widget(z, level.tiled_map, z.group.name)
+                    # level.tiled_map
 
                     # print(self.level.tiled_map)
                     # print('###########################\n')
                     # mprint.layers(self.level.tiled_map['layers'], z.group.name)
-                    # self.gui(z)
+                    #
 
 
     def fff(self, tiled_map_object):
