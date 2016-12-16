@@ -5,3 +5,19 @@ QFrame {
 PortalDialog {
     background: #f0f0f0;
 }
+
+Label {
+    background: #88f025;
+    font-family: Arial;
+    font-size: 14pt;
+}
+
+/*QCheckBox::indicator {*/
+    /*width: 15px;*/
+    /*height: 533px;*/
+/*}*/
+QCheckBox {
+    width: 16px;
+    height: 16px;
+    background-color: #00A000 ;
+}

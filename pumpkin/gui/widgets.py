@@ -5,7 +5,9 @@ import os
 from PyQt5 import QtWidgets, QtCore
 from pumpkin import paths
 
-
+class Label(QtWidgets.QLabel):
+    def __init__(self, *__args):
+        super().__init__(*__args)
 
 class Widget(QtWidgets.QFrame):
     def __init__(self, flags, *args, **kwargs):
@@ -22,8 +24,10 @@ class PortalDialog(QtWidgets.QFrame):
 
         self.check = QtWidgets.QCheckBox()
         self.form = QtWidgets.QFormLayout(self)
-        self.form.addRow('Portal', self.check)
-        self.form.addRow('Portal2', self.check)
+        self.form.setLabelAlignment(QtCore.Qt.AlignCenter)
+        self.form.setSpacing(47)
+        self.form.addRow(Label('Portal'), self.check)
+
 
 
 
