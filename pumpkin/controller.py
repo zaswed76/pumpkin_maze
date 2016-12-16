@@ -128,7 +128,7 @@ class Controller(KeyAlias):
                 clicked = z.rect.collidepoint(x, y)
                 if clicked:
                     print('level num - {}'.format(self.game_stat.level))
-                    gui.show_portal_widget(z, level.tiled_map, z.group.name)
+                    gui.show_portal_widget(z, level.tiled_map, z.group.name, gui.portal)
                     # level.tiled_map
 
                     # print(self.level.tiled_map)
