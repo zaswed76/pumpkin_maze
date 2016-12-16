@@ -1,7 +1,14 @@
 import json
 import os
 
+from tabulate import tabulate
+
 from libs import subsprite
+
+def print_dict(d: dict):
+    for k, v in d.items():
+        print(k, v, sep=' = ')
+        print('---------------------------')
 
 class TileObjects(list):
     def __init__(self, objects):
@@ -68,8 +75,24 @@ class TileSets(dict):
             --- number of key  = {}'''.format(len(set)))
             print('========================================')
 
+class Parser(dict):
+    def __init__(self, *args, **kwargs):
+        super().__init__(**kwargs)
 
-class TiledParser(dict):
+    def print_map(self, dct):
+        for k, v in dct.items():
+            print(k, v, sep=' = ')
+            print('----------------------------')
+        print('################')
+        print('len = {}'.format(len(self)))
+
+    def print_layers(self, dct):
+        for k, v in dct.items():
+            if k == 'layers':
+                for lay in v:
+                    self.print_map(lay)
+
+class TiledParser(Parser):
     def __init__(self, json_map: str, tileset_dir: str, **kwargs):
 
         """
@@ -80,6 +103,7 @@ class TiledParser(dict):
 
         super().__init__(**kwargs)
         self.tileset_dir = tileset_dir
+        self.json_map = json_map
         # загрузка карты
         self.update(self.load_map(json_map))
         # слои
@@ -113,12 +137,11 @@ class TiledParser(dict):
         with open(level_map, "r") as f:
             return json.load(f)
 
-    def print_map(self):
-        for k, v in self.items():
-            print(k, v, sep=' = ')
-            print('----------------------------')
-        print('################')
-        print('len = {}'.format(len(self)))
+    def save_map(self) -> None:
+        with open(self.json_map, "w") as f:
+            json.dump(self, f)
+
+
 
     def get_subsprites(self, id_tiles: set) -> dict:
         subsprites = {}
@@ -144,9 +167,9 @@ class TiledParser(dict):
 if __name__ == '__main__':
     from pumpkin import paths
 
-    pth_map = os.path.join(paths.maps, '3.json')
+    pth_map = os.path.join(paths.maps, '1.json')
     tiled = TiledParser(pth_map, paths.tilesets)
     # tiled.print_map()
-    print(tiled.layers.objects.print())
+    tiled.print_layers(tiled)
     # print(tiled.sets.get_set())
     # print(tiled.get_subsprites(tiled.get_id_tiles()))

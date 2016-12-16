@@ -20,7 +20,6 @@ class Properties(dict):
 
     def update(self, E=None, options=None, **F):
         if options is not None:
-            print(222)
             super().update({k: F.get(k) for k in options})
         else:
             super().update(**F)
@@ -173,11 +172,12 @@ class Level:
         return 'level - {}'.format(self.all_layers)
 
 
-class Levels(list):
+class LevelCreator:
     def __init__(self, screen: pygame.Surface, map_dir: str,
                  tileset_dir: str, resources_dir: str, config,
                  map_format='.json'):
-        super().__init__()
+        # создаётся в методе self.create_level
+        self.level = None
         self.screen = screen
         self.resources_dir = resources_dir
         self.tileset_dir = tileset_dir
@@ -185,7 +185,6 @@ class Levels(list):
         self.map_dir = map_dir
         self.included_level = config.included_level
         self.maps = self.get_maps()
-        # todo переделать устанвку типа Background
         self.bg_type = sprites.Background
 
     def get_maps(self) -> list:
@@ -205,30 +204,30 @@ class Levels(list):
                 print('---------------------------------')
         return maps
 
-    def create_levels(self, level):
+    def create_level(self, level: int):
 
         """
-        создаёт все уровни
+        создаёт уровень с индексом < level >
         :return:
         """
         if not self.maps:
             return None
         map = self.maps[level]
         # создать уровень
-        level = Level(self.screen, map, self.tileset_dir,
+        self.level = Level(self.screen, map, self.tileset_dir,
                       self.resources_dir)
-        level.set_bg_type(self.bg_type)
-        level.create_map()
-        self.append(level)
+        self.level.set_bg_type(self.bg_type)
+        self.level.create_map()
 
-    def draw(self, level: int):
+
+    def draw(self):
         """
          отрисовывает уровень на поверхности pygame.Surface
         :param level: номер уровня
         """
-        # todo что зачем?
-        self[0].fill()
-        self[0].draw_layers()
+
+        self.level.fill()
+        self.level.draw_layers()
 
     def set_bg_type(self, bg_type: sprites.AbsBackGround):
         """
@@ -236,3 +235,7 @@ class Levels(list):
         :param bg_type: units.AbsSprite
         """
         self.bg_type = bg_type
+
+
+    def clear(self):
+        print('CLEAR')

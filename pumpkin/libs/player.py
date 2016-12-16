@@ -134,7 +134,7 @@ class Player(Sprite):
         if self.directs[direction]:
             level.clear()
             self.game_stat.level = lv
-            level.create_levels(self.game_stat.level)
+            level.create_level(self.game_stat.level)
             for l in level:
                 for nm, lay in l.all_layers.items():
                     if nm == GameObject.Door:

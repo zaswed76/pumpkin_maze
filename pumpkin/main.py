@@ -1,6 +1,7 @@
 import os
 from collections import OrderedDict
 import pygame
+import pumpkin
 import gamestats
 import paths
 from controller import Controller
@@ -9,6 +10,7 @@ from libs import game_groups, player, mapcreator
 from config import Config
 
 cfg = Config()
+print('{} = {}'.format('ver', pumpkin.__version__))
 
 
 def run_game():
@@ -26,10 +28,10 @@ def run_game():
     # level.create_map()
 
     #---------- Levels ----------------------------------------------
-    all_levels = mapcreator.Levels(screen, paths.maps, paths.tilesets, paths.resources, cfg)
+    level_creator = mapcreator.LevelCreator(screen, paths.maps, paths.tilesets, paths.resources, cfg)
 
 
-    all_levels.create_levels(stats.level)
+    level_creator.create_level(stats.level)
 
     inventory = game_groups.Inventory()
     player_unit = player.Player(stats, screen, 2, 2, cfg, inventory=inventory)
@@ -39,13 +41,13 @@ def run_game():
     while True:
 
         # Отслеживание событий клавиатуры и мыши.
-        controller = Controller(stats, level=all_levels, player=player_unit)
+        controller = Controller(stats, level_creator=level_creator, player=player_unit)
         # Отображение последнего прорисованного экрана.
 
         # print(player_unit.breaks)
-        all_levels.draw(stats.level)
+        level_creator.draw()
         player_unit.blitme()
-        player_unit.update(all_levels[0].all_layers.get_groups(), level=all_levels)
+        player_unit.update(level_creator.level.all_layers.get_groups(), level=level_creator)
         pygame.display.flip()
         timer.tick(120)
 

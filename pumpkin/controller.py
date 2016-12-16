@@ -4,6 +4,8 @@ import pygame
 import sys
 from PyQt5 import QtWidgets, QtCore
 
+from libs import mprint
+
 class Widget(QtWidgets.QWidget):
     def __init__(self, flags, *args, **kwargs):
 
@@ -70,13 +72,15 @@ class KeyAlias:
 
 class Controller(KeyAlias):
     
-    def __init__(self, game_stat, player=Player, level=()):
+    def __init__(self, game_stat, player=Player, level_creator=None):
         """
 
         :type player: pygame.sprite.Sprite
         """
 
         super().__init__()
+
+        self.level_creator = level_creator
         self.game_stat = game_stat
         if player is None:
             pass
@@ -89,7 +93,7 @@ class Controller(KeyAlias):
             elif e.type == pygame.MOUSEBUTTONDOWN:
                 x, y = pygame.mouse.get_pos()
 
-                self.mouse_collide(x, y, level)
+                self.mouse_collide(x, y, self.level_creator.level)
 
             if e.type == pygame.KEYDOWN and e.key == pygame.K_ESCAPE:
                 sys.exit()
@@ -114,14 +118,17 @@ class Controller(KeyAlias):
             if e.type == pygame.KEYUP and e.key == pygame.K_LEFT:
                 player.directs['left'] = False
 
-            self.set_level(e, level)
+            self.set_level(e, self.level_creator)
 
     def set_level(self, e, level):
+
         for key, pygame_key in self.levels.items():
             if e.type == pygame.KEYDOWN and e.key == pygame_key:
                 level.clear()
                 self.game_stat.level = key-1
-                level.create_levels(self.game_stat.level)
+
+                level.create_level(self.game_stat.level)
+                print(self.game_stat.level)
 
 
     def gui(self, x):
@@ -132,15 +139,22 @@ class Controller(KeyAlias):
         app.exec_()
 
     def mouse_collide(self, x, y, level):
-        print(x,y)
-
-        for lay in level:
-            for n, l in lay.all_layers.items():
-                for z in l:
-                    clicked = z.rect.collidepoint(x, y)
-                    if clicked:
-                        print(z.group_properties)
-                        self.gui(z.group_properties)
+        print('------------------')
+        print('coord - ({}, {})'.format(x,y))
+        # print(level)
 
 
+        for n, l in level.all_layers.items():
+            for z in l:
+                clicked = z.rect.collidepoint(x, y)
+                if clicked:
+                    print('level num - {}'.format(self.game_stat.level))
 
+                    # print(self.level.tiled_map)
+                    # print('###########################\n')
+                    # mprint.layers(self.level.tiled_map['layers'], z.group.name)
+                    # self.gui(z)
+
+
+    def fff(self, tiled_map_object):
+        print(tiled_map_object)

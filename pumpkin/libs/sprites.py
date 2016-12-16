@@ -78,6 +78,8 @@ class CreateImagePlatform(GameObject):
         """
 
         super().__init__(group, screen, image, x, y)
+        self.group = group
+        self.count = count
         self.group_properties = group.properties
         if portal is not None:
             self.id = portal[0]
@@ -85,6 +87,9 @@ class CreateImagePlatform(GameObject):
         else:
             self.id = self.portal = None
         group.add(self)
+
+    def __repr__(self):
+        return '{}; {}'.format(self.count, self.group_properties)
 
 
 class AbsBackGround(Sprite):

@@ -35,14 +35,14 @@ class OrderedGroupLayer(OrderedUpdates):
         """
         super().__init__()
         self.properties = properties
-        print(self.properties, 'properties11111111111111111111111')
+
 
         self.doors_portal = (
             eval(self.properties.get('doors', '{}')))
         self.name = name
-        print(self.name, 'name')
+
         self.class_name = class_name
-        print(self.class_name, 'class name')
+
 
     def draw(self, surface):
         spritedict = self.spritedict

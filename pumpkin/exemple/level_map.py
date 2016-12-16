@@ -123,6 +123,7 @@ class Levels(list):
         self.create_levels()
 
     def create_levels(self):
+        print(3333)
         for map in self.maps:
             level = self.create_level(map, self.screen)
             self.append(level)
