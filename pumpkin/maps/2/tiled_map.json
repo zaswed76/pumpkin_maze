@@ -1,41 +1,18 @@
-{ "backgroundcolor":"#55aa00",
+{ "backgroundcolor":"#cecece",
  "height":3,
  "layers":[
         {
-         "data":[0, 0, 0, 50, 0, 0, 0, 0, 0],
-         "height":3,
-         "name":"my_layer_1",
-         "opacity":1,
-         "properties":
-            {
-             "portal":true,
-             "test_1":"rest"
-            },
-         "propertytypes":
-            {
-             "portal":"bool",
-             "test_1":"string"
-            },
-         "type":"tilelayer",
-         "visible":true,
-         "width":3,
-         "x":0,
-         "y":0
-        }, 
-        {
-         "data":[0, 0, 0, 0, 0, 57, 0, 0, 0],
+         "data":[0, 0, 0, 0, 0, 60, 0, 0, 0],
          "height":3,
          "name":"my_layer_2",
          "opacity":1,
          "properties":
             {
-             "portal":true,
-             "portal_option":"1\/portal1.txt"
+             "portal":"portals.json"
             },
          "propertytypes":
             {
-             "portal":"bool",
-             "portal_option":"file"
+             "portal":"file"
             },
          "type":"tilelayer",
          "visible":true,
@@ -51,7 +28,7 @@
         {
          "columns":10,
          "firstgid":1,
-         "image":"..\/resources\/sets\/set_rpg.png",
+         "image":"..\/..\/resources\/sets\/set_rpg.png",
          "imageheight":320,
          "imagewidth":320,
          "margin":0,

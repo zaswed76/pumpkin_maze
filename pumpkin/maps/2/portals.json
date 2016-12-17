@@ -1,0 +1,5 @@
+{
+  "point_entry": 3,
+  "input_side": ["right", "left"],
+  "exit_points": [{"level":2, "id": 3}, {"level":2, "id": 8}]
+}

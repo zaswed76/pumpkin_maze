@@ -178,7 +178,7 @@ class TiledParser(Parser):
 if __name__ == '__main__':
     from pumpkin import paths
 
-    pth_map = os.path.join(paths.maps, '1.json')
+    pth_map = os.path.join(paths.maps, '1', 'tiled_map.json')
     tiled = TiledParser(pth_map, paths.tilesets)
     # tiled.print_map()
     tiled.print_layers(tiled)

@@ -8,8 +8,8 @@ PortalDialog {
 
 Label {
     background: #f0f0f0;
-    font-family: "Source Code Pro", serif;
-    font-size: 10pt;
+    font-family: "Source Code Pro", fantasy;
+    font-size: 11pt;
 }
 
 
@@ -19,11 +19,14 @@ Label {
 /*}*/
 
 QCheckBox::indicator:checked {
-    margin-top: 1px;
-     image: url(resources/icons/ok.png);
+    image: url(resources/icons/32x32/check.png);
+
  }
 
 QCheckBox::indicator:unchecked {
-    margin-top: 1px;
-     image: url(resources/icons/not.png);
+    image: url(resources/icons/32x32/uncheck.png);
  }
+
+/*ArrowButton {*/
+    /**/
+/*}*/

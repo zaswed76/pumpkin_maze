@@ -88,7 +88,6 @@ class Level:
                 self.create_figure_objects(group, self.screen,
                                            layer)
 
-
     def get_image_path(self, image):
         """
 
@@ -101,7 +100,6 @@ class Level:
     def create_image(self, group, image_pth, x, y, speed):
         #
         bg = self.bg_type(group, self.screen, image_pth, x, y, speed)
-
 
         self.all_layers[group.name] = (group)
 
@@ -195,7 +193,8 @@ class LevelCreator:
         maps = []
         for lev_name in self.included_level:
             path = os.path.join(self.map_dir,
-                                str(lev_name) + self.map_format)
+                                str(lev_name),
+                                'tiled_map' + self.map_format)
             # если карта существует
             if os.path.isfile(path):
                 maps.append(path)
@@ -215,10 +214,9 @@ class LevelCreator:
         map = self.maps[level]
         # создать уровень
         self.level = Level(self.screen, map, self.tileset_dir,
-                      self.resources_dir)
+                           self.resources_dir)
         self.level.set_bg_type(self.bg_type)
         self.level.create_map()
-
 
     def draw(self):
         """
@@ -235,7 +233,6 @@ class LevelCreator:
         :param bg_type: units.AbsSprite
         """
         self.bg_type = bg_type
-
 
     def clear(self):
         print('CLEAR')

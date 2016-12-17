@@ -2,12 +2,12 @@
 
 class Config:
     def __init__(self):
-        self.width = 640
-        self.height = 640
-        self.start_x = 160
-        self.start_y = 60
+        self.width = 96
+        self.height = 96
+        self.start_x = 64
+        self.start_y = 64
         self.player_rect = (25, 25)
-        self.included_level = [1, 2, 3]
+        self.included_level = [1, 2]
 
         self.initialize_dynamic_settings()
 
