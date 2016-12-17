@@ -1,32 +1,82 @@
 QFrame {
     background: grey;
+    /*border: 1px solid #e5e5e5;*/
+}
+
+InputSide {
+    background: grey;
+    border: 1px solid #e5e5e5;
 }
 
 PortalDialog {
-    background: #f0f0f0;
+    background: gray;
 }
 
 Label {
-    background: #f0f0f0;
+    background: grey;
     font-family: "Source Code Pro", fantasy;
     font-size: 11pt;
 }
 
 
 
-/*QCheckBox {*/
-     /*border-image: url(resources/icons/not.png);*/
-/*}*/
-
 QCheckBox::indicator:checked {
-    image: url(resources/icons/32x32/check.png);
+    image: url(resources/icons/32/check.png);
 
  }
 
 QCheckBox::indicator:unchecked {
-    image: url(resources/icons/32x32/uncheck.png);
+    image: url(resources/icons/32/uncheck.png);
  }
 
-/*ArrowButton {*/
-    /**/
-/*}*/
+/*кнопка не нажата*/
+
+ArrowButton#plus {
+    border-image: url(resources/icons/32/plus.png);
+}
+
+ArrowButton#minus  {
+    border-image: url(resources/icons/32/minus.png);
+
+}
+
+ArrowButton#left::checked {
+    border-image: url(resources/icons/32/left.png);
+}
+
+ArrowButton#top::checked  {
+    border-image: url(resources/icons/32/top.png);
+
+}
+
+ArrowButton#right::checked  {
+    border-image: url(resources/icons/32/right.png);
+
+}
+
+ArrowButton#bottom::checked  {
+    border-image: url(resources/icons/32/bottom.png);
+
+}
+
+/*кнопка нажата*/
+
+ArrowButton#left {
+    border-image: url(resources/icons/32/left_un.png);
+
+}
+
+ArrowButton#top {
+    border-image: url(resources/icons/32/top_un.png);
+
+}
+
+ArrowButton#right{
+    border-image: url(resources/icons/32/right_un.png);
+
+}
+
+ArrowButton#bottom {
+    border-image: url(resources/icons/32/bottom_un.png);
+
+}
