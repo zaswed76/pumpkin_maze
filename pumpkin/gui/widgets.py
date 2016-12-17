@@ -12,8 +12,9 @@ class Label(QtWidgets.QLabel):
 class Widget(QtWidgets.QFrame):
     def __init__(self, flags, *args, **kwargs):
         super().__init__(flags, *args, **kwargs)
-        self.resize(500, 500)
+        self.setWindowTitle('Tiled gui lib')
         self.box = QtWidgets.QHBoxLayout(self)
+        self.box.setContentsMargins(1, 1, 1, 1)
 
     def set_widget(self, widget):
         self.box.addWidget(widget)
@@ -22,11 +23,23 @@ class PortalDialog(QtWidgets.QFrame):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        self.check = QtWidgets.QCheckBox()
+        self.parent = args[0]
+        self.parent.setWindowTitle('Set Portal')
+
+        self.check_portal = QtWidgets.QCheckBox()
+        # откуда
+        self.start_level = QtWidgets.QLineEdit()
+        self.start_id = QtWidgets.QLineEdit()
+        # куда
+        self.finish_level = QtWidgets.QLineEdit()
+        self.finish_id = QtWidgets.QLineEdit()
+
         self.form = QtWidgets.QFormLayout(self)
-        self.form.setLabelAlignment(QtCore.Qt.AlignCenter)
-        self.form.setSpacing(47)
-        self.form.addRow(Label('Portal'), self.check)
+
+        self.form.setSpacing(12)
+        self.form.addRow(Label('Portal'), self.check_portal)
+        self.form.addRow(Label('Уровень входа'), self.start_level)
+        self.form.addRow(Label('ID входа'), self.start_id)
 
 
 
@@ -41,7 +54,7 @@ def show_portal_widget(x, tiled_map, group_name, widget):
     app = QtWidgets.QApplication(sys.argv)
     app.setStyleSheet(open(css_path, "r").read())
     main = Widget(None, (QtCore.Qt.Dialog | QtCore.Qt.WindowStaysOnTopHint))
-    main.set_widget(widget())
+    main.set_widget(widget(main))
     main.show()
 
     # tiled_map.set_portal(group_name)

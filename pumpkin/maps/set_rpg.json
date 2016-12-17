@@ -1,0 +1,11 @@
+{ "columns":10,
+ "image":"..\/resources\/sets\/set_rpg.png",
+ "imageheight":320,
+ "imagewidth":320,
+ "margin":0,
+ "name":"set_rpg",
+ "spacing":0,
+ "tilecount":100,
+ "tileheight":32,
+ "tilewidth":32
+}
