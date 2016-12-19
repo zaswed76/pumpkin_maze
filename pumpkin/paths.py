@@ -9,6 +9,8 @@ css_path = lambda name: os.path.join(root, 'css', name)
 icon_path = lambda direct, name, ext: os.path.join(resources, 'icons',
                                                    direct, name + ext)
 
+forms = lambda form: os.path.join(root, 'gui/forms', form)
+
 if __name__ == '__main__':
     pass
     # print(icon_path('32', 'name'))

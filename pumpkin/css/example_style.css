@@ -3,70 +3,26 @@ QFrame {
     /*border: 1px solid #e5e5e5;*/
 }
 
-QFrame#input_frame {
-    border-right: 1px solid white;
-}
-
-QFrame#info_frame {
-    border-bottom: 1px solid white;
-}
-
 InputSide {
     background: grey;
-
+    border: 1px solid #e5e5e5;
 }
 
 PortalDialog {
     background: gray;
 }
 
-QComboBox {
-    background: #dddddd;
-    font-family: "Source Code Pro", fantasy;
-    font-size: 14pt;
-    border: 1px solid #ededed;
-    border-radius: 4px;
-}
-
-QLineEdit {
-    background: #dddddd;
-    font-family: "Source Code Pro", fantasy;
-    font-size: 14pt;
-    border: 1px solid #EDEDED;
-    border-radius: 4px;
-}
-
-
-QComboBox:disabled {
-    background: #838383;
-    font-family: "Source Code Pro", fantasy;
-    font-size: 14pt;
-    border: 1px solid #ededed;
-    border-radius: 4px;
-}
-
-QLineEdit:disabled {
-    background: #838383;
-    font-family: "Source Code Pro", fantasy;
-    font-size: 14pt;
-    border: 1px solid #ededed;
-    border-radius: 4px;
-}
-
-
-QLabel {
+Label {
     background: grey;
     font-family: "Source Code Pro", fantasy;
-    font-size: 14pt;
+    font-size: 18pt;
 }
 
-QLabel:disabled {
+QLabel{
     background: grey;
-    color: #b6b6b6;
     font-family: "Source Code Pro", fantasy;
-    font-size: 14pt;
+    font-size: 18pt;
 }
-
 
 
 QCheckBox::indicator:checked {

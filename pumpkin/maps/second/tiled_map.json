@@ -1,9 +1,9 @@
 { "backgroundcolor":"#cecece",
- "height":3,
+ "height":5,
  "layers":[
         {
-         "data":[0, 0, 0, 0, 0, 60, 0, 0, 0],
-         "height":3,
+         "data":[0, 0, 0, 0, 0, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+         "height":5,
          "name":"my_layer_2",
          "opacity":1,
          "properties":
@@ -16,7 +16,7 @@
             },
          "type":"tilelayer",
          "visible":true,
-         "width":3,
+         "width":5,
          "x":0,
          "y":0
         }],
@@ -40,5 +40,5 @@
         }],
  "tilewidth":32,
  "version":1,
- "width":3
+ "width":5
 }

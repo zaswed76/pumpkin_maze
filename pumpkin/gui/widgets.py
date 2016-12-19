@@ -4,8 +4,11 @@ import sys
 import os
 from functools import partial
 
-from PyQt5 import QtWidgets, QtCore, QtGui
+from PyQt5 import QtWidgets, QtCore, QtGui, uic
 from pumpkin import paths
+import paths
+from pumpkin.gui import guilib as gui
+from pumpkin.gui.forms import output_point_form
 
 
 class ArrowButton(QtWidgets.QPushButton):
@@ -31,7 +34,7 @@ class InputSide(QtWidgets.QFrame):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.box = QtWidgets.QVBoxLayout(self)
-        self.box.addWidget(Label('Input sides'))
+
         self.grid = QtWidgets.QGridLayout()
         self.box.addLayout(self.grid)
 
@@ -77,7 +80,7 @@ class InputSide(QtWidgets.QFrame):
 class Widget(QtWidgets.QFrame):
     def __init__(self, flags, *args, **kwargs):
         super().__init__(flags, *args, **kwargs)
-        self.resize(300, 200)
+        # self.resize(300, 200)
         self.setWindowTitle('Tiled gui lib')
         self.box = QtWidgets.QHBoxLayout(self)
 
@@ -91,34 +94,35 @@ class PortalDialog(QtWidgets.QFrame):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        self.box = QtWidgets.QVBoxLayout(self)
-        self.box.setContentsMargins(0, 0, 0, 0)
-        self.box.setSpacing(0)
-        self.top_widget = QtWidgets.QFrame()
-        self.side_widget = InputSide()
-        self.box.addWidget(self.top_widget)
-        self.box.addWidget(self.side_widget)
         self.parent = args[0]
         self.parent.setWindowTitle('Set Portal')
+        box = gui.Box(gui.Box.Horizontal, parent=self, margins=0,
+                      spacing=0)
+        self.base_box = gui.Form(self,
+                                 paths.forms('portal_base_form.ui'))
+        box.addWidget(self.base_box)
 
-        self.check_portal = QtWidgets.QCheckBox()
-        self.check_portal.setFixedSize(32, 32)
-        # откуда
+        self.side_widget = InputSide()
+        self.base_box.input_box.addWidget(self.side_widget,
+                                          alignment=QtCore.Qt.AlignLeft | QtCore.Qt.AlignTop,
+                                          stretch=2)
 
-        self.start_id = QtWidgets.QLineEdit()
-        # куда
-        self.finish_level = QtWidgets.QLineEdit()
-        self.finish_id = QtWidgets.QLineEdit()
-
-        self.form = QtWidgets.QFormLayout(self.top_widget)
-
-        self.form.setSpacing(20)
-        label_portal = Label('Portal')
-        label_portal.setMinimumWidth(40)
-        self.form.addRow(label_portal, self.check_portal)
-        # self.form.addRow(Label('ID входа'), self.start_id)
-
-
+        self.output_1 = gui.Form(None, paths.forms('output_point.ui'))
+        self.output_2 = gui.Form(None, paths.forms('output_point.ui'))
+        self.output_3 = gui.Form(None, paths.forms('output_point.ui'))
+        self.output_4 = gui.Form(None, paths.forms('output_point.ui'))
+        self.base_box.output_box.addWidget(self.output_1,
+                                           alignment=QtCore.Qt.AlignTop,
+                                           stretch=2)
+        self.base_box.output_box.addWidget(self.output_2,
+                                           alignment=QtCore.Qt.AlignTop,
+                                           stretch=2)
+        self.base_box.output_box.addWidget(self.output_3,
+                                           alignment=QtCore.Qt.AlignTop,
+                                           stretch=2)
+        self.base_box.output_box.addWidget(self.output_4,
+                                           alignment=QtCore.Qt.AlignTop,
+                                           stretch=2)
 
 
 portal = PortalDialog
