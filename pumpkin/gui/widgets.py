@@ -90,12 +90,16 @@ class Widget(QtWidgets.QFrame):
         self.box.addWidget(widget)
 
 
+
 class PortalDialog(QtWidgets.QFrame):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
         self.parent = args[0]
         self.parent.setWindowTitle('Set Portal')
+        self.init_ui()
+
+    def init_ui(self):
         box = gui.Box(gui.Box.Horizontal, parent=self, margins=0,
                       spacing=0)
         self.base_box = gui.Form(self,
@@ -108,21 +112,11 @@ class PortalDialog(QtWidgets.QFrame):
                                           stretch=2)
 
         self.output_1 = gui.Form(None, paths.forms('output_point.ui'))
-        self.output_2 = gui.Form(None, paths.forms('output_point.ui'))
-        self.output_3 = gui.Form(None, paths.forms('output_point.ui'))
-        self.output_4 = gui.Form(None, paths.forms('output_point.ui'))
+
         self.base_box.output_box.addWidget(self.output_1,
                                            alignment=QtCore.Qt.AlignTop,
                                            stretch=2)
-        self.base_box.output_box.addWidget(self.output_2,
-                                           alignment=QtCore.Qt.AlignTop,
-                                           stretch=2)
-        self.base_box.output_box.addWidget(self.output_3,
-                                           alignment=QtCore.Qt.AlignTop,
-                                           stretch=2)
-        self.base_box.output_box.addWidget(self.output_4,
-                                           alignment=QtCore.Qt.AlignTop,
-                                           stretch=2)
+
 
 
 portal = PortalDialog
@@ -134,8 +128,11 @@ def show_portal_widget(x, tiled_map, group_name, widget):
     app.setStyleSheet(open(css_path, "r").read())
     main = Widget(None,
                   (QtCore.Qt.Dialog | QtCore.Qt.WindowStaysOnTopHint))
-    main.set_widget(widget(main))
+    dialog = widget(main)
+    main.set_widget(dialog)
     main.show()
+    print(dialog.base_box.input_frame.size())
 
     # tiled_map.set_portal(group_name)
     app.exec_()
+    print(dialog.base_box.input_frame.size())
