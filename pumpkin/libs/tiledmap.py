@@ -79,6 +79,10 @@ class Parser(dict):
     def __init__(self, *args, **kwargs):
         super().__init__(**kwargs)
 
+    def load_map(self, level_map: str) -> dict:
+        with open(level_map, "r") as f:
+            return json.load(f)
+
     def print_map(self, dct):
         for k, v in dct.items():
             print(k, v, sep=' = ')
@@ -91,6 +95,18 @@ class Parser(dict):
             if k == 'layers':
                 for lay in v:
                     self.print_map(lay)
+
+
+
+class Portal(Parser):
+    def __init__(self, json_map: str, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.update(self.load_map(json_map))
+        self.exit_points = self['exit_points']
+        self.point_entry = self['point_entry']
+        self.input_side = self['input_side']
+
+
 
 class TiledParser(Parser):
     def __init__(self, json_map: str, tileset_dir: str, **kwargs):
@@ -125,6 +141,19 @@ class TiledParser(Parser):
 
             self.tiled_properties = self['tilesets'][0].get('tileproperties', dict())
 
+    @property
+    def map_dir(self):
+        return os.path.dirname(self.json_map)
+
+    @property
+    def portal_cfg(self):
+        map_dir = os.path.dirname(self.json_map)
+        return os.path.join(map_dir, 'portals.json')
+
+    @property
+    def portal(self):
+        cfg = self.portal_cfg
+        return Portal(cfg)
 
     def get_tileset_path(self):
         pth = self.sets.get('image', False)
@@ -132,10 +161,6 @@ class TiledParser(Parser):
             return os.path.join(self.tileset_dir, os.path.basename(pth))
         else: return False
 
-
-    def load_map(self, level_map: str) -> dict:
-        with open(level_map, "r") as f:
-            return json.load(f)
 
     def save_map(self) -> None:
         with open(self.json_map, "w") as f:

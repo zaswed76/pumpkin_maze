@@ -1,4 +1,3 @@
-import os
 from collections import OrderedDict
 import pygame
 import pumpkin
@@ -42,7 +41,7 @@ def run_game():
 
         # Отслеживание событий клавиатуры и мыши.
         controller = Controller(stats, level_creator=level_creator, player=player_unit)
-        # Отображение последнего прорисованного экрана.
+        #Отображение последнего прорисованного экрана.
 
         # print(player_unit.breaks)
         level_creator.draw()

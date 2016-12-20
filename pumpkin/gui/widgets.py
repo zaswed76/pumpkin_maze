@@ -9,6 +9,7 @@ from pumpkin import paths
 import paths
 from pumpkin.gui import guilib as gui
 from pumpkin.gui.forms import output_point_form
+from pumpkin.libs import mprint
 
 
 class ArrowButton(QtWidgets.QPushButton):
@@ -80,7 +81,7 @@ class InputSide(QtWidgets.QFrame):
 class Widget(QtWidgets.QFrame):
     def __init__(self, flags, *args, **kwargs):
         super().__init__(flags, *args, **kwargs)
-        # self.resize(300, 200)
+        self.setMaximumWidth(600)
         self.setWindowTitle('Tiled gui lib')
         self.box = QtWidgets.QHBoxLayout(self)
 
@@ -92,12 +93,19 @@ class Widget(QtWidgets.QFrame):
 
 
 class PortalDialog(QtWidgets.QFrame):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
+    def __init__(self, *args, tiled_map):
+        super().__init__(*args)
 
         self.parent = args[0]
+        self.tiled_map = tiled_map
         self.parent.setWindowTitle('Set Portal')
         self.init_ui()
+        print('-----------------------------')
+        print('self.tiled_map')
+        print('-----------------------------')
+        mprint.print_map(self.tiled_map.portal)
+        print(self.tiled_map.portal.point_entry)
+        # print(self.tiled_map.print_map(self.tiled_map))
 
     def init_ui(self):
         box = gui.Box(gui.Box.Horizontal, parent=self, margins=0,
@@ -122,17 +130,17 @@ class PortalDialog(QtWidgets.QFrame):
 portal = PortalDialog
 
 
-def show_portal_widget(x, tiled_map, group_name, widget):
+def show_portal_widget(sprite, tiled_map, group_name, widget):
     css_path = paths.css_path('gui_style.css')
     app = QtWidgets.QApplication(sys.argv)
     app.setStyleSheet(open(css_path, "r").read())
     main = Widget(None,
                   (QtCore.Qt.Dialog | QtCore.Qt.WindowStaysOnTopHint))
-    dialog = widget(main)
+    dialog = widget(main, tiled_map=tiled_map)
     main.set_widget(dialog)
     main.show()
-    print(dialog.base_box.input_frame.size())
+
 
     # tiled_map.set_portal(group_name)
     app.exec_()
-    print(dialog.base_box.input_frame.size())
+

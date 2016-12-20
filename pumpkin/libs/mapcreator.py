@@ -64,6 +64,8 @@ class Level:
         self.screen = screen
 
     def create_map(self):
+
+
         for layer in self.tiled_map.layers:
             # пользовательские настройки слоя
             user_properties = layer.get('properties', {})
@@ -86,7 +88,7 @@ class Level:
                                   speed)
             elif layer['type'] == 'objectgroup' and layer['visible']:
                 self.create_figure_objects(group, self.screen,
-                                           layer)
+                                           layer, self.tiled_map['width'])
 
     def get_image_path(self, image):
         """
@@ -135,8 +137,15 @@ class Level:
                 y += step
         self.all_layers[group_layer.name] = (group_layer)
 
-    def create_figure_objects(self, group, screen, layer):
+    def create_figure_objects(self, group, screen, layer, width_map):
         # ключи которые включены в layer_properties
+        """
+
+        :param group:
+        :param screen:
+        :param layer:
+        :param width_map: длина карты в клетках
+        """
         layer_properties_opts = ['offsetx', 'offsety', 'color',
                                  'type', 'opacity',
                                  'name', 'visible']
@@ -146,10 +155,17 @@ class Level:
         # пользовательские свойства слоя
         user_layer_properties = layer.get('properties', {})
         # все фигуры
+        #
         objects = layer['objects']
+
         for object in objects:
+            print('====================')
+            print(object, 555)
+            print('-------------------')
+            size = object['width']
+            count = width_map * (object['y']//size) + object['x'] // size
             CreateFigure(group, screen, object, layer_properties,
-                         user_layer_properties)
+                         user_layer_properties, count)
 
         self.all_layers[group.name] = group
 

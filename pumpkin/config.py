@@ -2,7 +2,7 @@
 
 class Config:
     def __init__(self):
-        self.width = 160
+        self.width = 288
         self.height = 160
         self.start_x = 64
         self.start_y = 64

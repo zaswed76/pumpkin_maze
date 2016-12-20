@@ -139,8 +139,10 @@ class Background2(Background):
 
 
 class FigureRect(Sprite):
-    def __init__(self, group, screen, rect, color, border, id):
+    def __init__(self, group, screen, rect, color, border, id, count):
         super().__init__()
+        self._count = count
+        self.group = group
         x, y, width, height = rect
         self.color = color
         self.id = id
@@ -155,6 +157,10 @@ class FigureRect(Sprite):
         if self.color[3] < 255:
             self.surface.set_alpha(self.color[3])
         self.surface.fill(color)
+
+    @property
+    def count(self):
+        return self._count
 
     def draw(self, screen):
         if self.surface is not None:
@@ -195,8 +201,9 @@ class CreateFigure(Sprite):
     figures = {'rect': FigureRect, 'circle': FigureCircle}
 
     def __init__(self, group, screen, object, layer_properties,
-                 user_layer_properties):
+                 user_layer_properties, count):
         super().__init__()
+
         self.user_layer_properties = user_layer_properties
         self.layer_properties = layer_properties
         self.object = object
@@ -206,12 +213,13 @@ class CreateFigure(Sprite):
                                                       {})
 
         self.id = self.object['id']
-        print(self.figure_type, 111)
+
         self.surface = self.figures[self.figure_type](group, screen,
                                                       self.rect,
                                                       self.color,
                                                       self.border,
-                                                      self.id)
+                                                      self.id,
+                                                      count)
         group.add(self.surface)
 
     @property
@@ -237,7 +245,6 @@ class CreateFigure(Sprite):
     @property
     def figure_type(self):
         object_type = self.object.get('type')
-        print(self.object, '!!!!')
         if object_type:
             return object_type
         else:

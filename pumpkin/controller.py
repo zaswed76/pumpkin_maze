@@ -6,7 +6,6 @@ from gui import widgets as gui
 
 class Player:
     def __init__(self):
-
         self._up = self._down = self._left = self._right = False
 
     @property
@@ -24,6 +23,7 @@ class Player:
     @property
     def right(self):
         return self._right
+
     @up.setter
     def up(self, bool):
         self._up = bool
@@ -40,6 +40,7 @@ class Player:
     def right(self, bool):
         self._right = bool
 
+
 class KeyAlias:
     def __init__(self):
         self.levels = {
@@ -54,8 +55,8 @@ class KeyAlias:
             9: pygame.K_9
         }
 
+
 class Controller(KeyAlias):
-    
     def __init__(self, game_stat, player=Player, level_creator=None):
         """
 
@@ -73,7 +74,8 @@ class Controller(KeyAlias):
         # print(player)
 
         for e in pygame.event.get():
-            if e.type == pygame.QUIT: sys.exit()
+            if e.type == pygame.QUIT:
+                sys.exit()
             elif e.type == pygame.MOUSEBUTTONDOWN:
                 x, y = pygame.mouse.get_pos()
 
@@ -92,9 +94,8 @@ class Controller(KeyAlias):
             if e.type == pygame.KEYDOWN and e.key == pygame.K_SPACE:
                 pass
 
-
             if e.type == pygame.KEYUP and e.key == pygame.K_UP:
-                 player.directs['up'] = False
+                player.directs['up'] = False
             if e.type == pygame.KEYUP and e.key == pygame.K_DOWN:
                 player.directs['down'] = False
             if e.type == pygame.KEYUP and e.key == pygame.K_RIGHT:
@@ -109,17 +110,14 @@ class Controller(KeyAlias):
         for key, pygame_key in self.levels.items():
             if e.type == pygame.KEYDOWN and e.key == pygame_key:
                 level.clear()
-                self.game_stat.level = key-1
+                self.game_stat.level = key - 1
 
                 level.create_level(self.game_stat.level)
                 print(self.game_stat.level)
 
-
-
-
     def mouse_collide(self, x, y, level):
         print('------------------')
-        print('coord - ({}, {})'.format(x,y))
+        print('coord - ({}, {})'.format(x, y))
         # print(level)
 
 
@@ -127,15 +125,16 @@ class Controller(KeyAlias):
             for z in l:
                 clicked = z.rect.collidepoint(x, y)
                 if clicked:
-                    print('level num - {}'.format(self.game_stat.level))
-                    gui.show_portal_widget(z, level.tiled_map, z.group.name, gui.portal)
+                    print('level n - {}'.format(self.game_stat.level))
+                    print(z.count)
+                    # gui.show_portal_widget(z, level.tiled_map,
+                    #                        z.group.name, gui.portal)
                     # level.tiled_map
 
                     # print(self.level.tiled_map)
                     # print('###########################\n')
                     # mprint.layers(self.level.tiled_map['layers'], z.group.name)
                     #
-
 
     def fff(self, tiled_map_object):
         print(tiled_map_object)
