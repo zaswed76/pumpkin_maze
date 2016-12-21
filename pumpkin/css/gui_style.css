@@ -16,6 +16,14 @@ InputSide {
 
 }
 
+QPushButton#add_out {
+    margin-right: 4px;
+}
+
+QPushButton#del_out {
+    margin-left: 4px;
+}
+
 PortalDialog {
     background: gray;
 }

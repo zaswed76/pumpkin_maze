@@ -1,19 +1,10 @@
-{ "backgroundcolor":"#cecece",
- "height":5,
+{ "height":5,
  "layers":[
         {
-         "data":[0, 0, 0, 0, 0, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+         "data":[9, 9, 9, 9, 9, 9, 79, 80, 0, 9, 9, 89, 90, 0, 9, 9, 0, 0, 0, 9, 9, 9, 9, 9, 9],
          "height":5,
-         "name":"my_layer_2",
+         "name":"\u0421\u043b\u043e\u0439 \u0442\u0430\u0439\u043b\u043e\u0432 1",
          "opacity":1,
-         "properties":
-            {
-             "portal":"portals.json"
-            },
-         "propertytypes":
-            {
-             "portal":"file"
-            },
          "type":"tilelayer",
          "visible":true,
          "width":5,
@@ -36,6 +27,58 @@
          "spacing":0,
          "tilecount":100,
          "tileheight":32,
+         "tiles":
+            {
+             "8":
+                {
+                 "objectgroup":
+                    {
+                     "draworder":"index",
+                     "height":0,
+                     "name":"",
+                     "objects":[
+                            {
+                             "height":0,
+                             "id":1,
+                             "name":"",
+                             "rotation":0,
+                             "type":"",
+                             "visible":true,
+                             "width":0,
+                             "x":16,
+                             "y":16
+                            }, 
+                            {
+                             "height":16,
+                             "id":2,
+                             "name":"",
+                             "rotation":0,
+                             "type":"",
+                             "visible":true,
+                             "width":8,
+                             "x":16,
+                             "y":16
+                            }, 
+                            {
+                             "height":24,
+                             "id":3,
+                             "name":"",
+                             "rotation":0,
+                             "type":"",
+                             "visible":true,
+                             "width":16,
+                             "x":0,
+                             "y":-8
+                            }],
+                     "opacity":1,
+                     "type":"objectgroup",
+                     "visible":true,
+                     "width":0,
+                     "x":0,
+                     "y":0
+                    }
+                }
+            },
          "tilewidth":32
         }],
  "tilewidth":32,

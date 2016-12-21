@@ -5,7 +5,7 @@
          "data":[0, 0, 0, 0, 0, 8, 0, 0, 0, 50, 0, 0, 0, 0, 8, 0, 0, 0, 0, 0, 0, 0, 0, 8, 0, 0, 0, 0, 0, 0, 0, 0, 8, 0, 0, 0, 0, 0, 0, 0, 0, 8, 0, 0, 0],
          "height":5,
          "name":"my_layer_1",
-         "opacity":1,
+         "opacity":0.200000002980232,
          "properties":
             {
              "portal":"portals.json"
@@ -21,7 +21,7 @@
          "y":0
         }, 
         {
-         "color":"#7800aaff",
+         "color":"#0000aaff",
          "draworder":"topdown",
          "height":5,
          "name":"\u0421\u043b\u043e\u0439 \u043e\u0431\u044a\u0435\u043a\u0442\u043e\u0432 1",
@@ -102,15 +102,34 @@
                  "width":32,
                  "x":96,
                  "y":64
+                }, 
+                {
+                 "height":160,
+                 "id":8,
+                 "name":"",
+                 "rotation":0,
+                 "type":"rect",
+                 "visible":true,
+                 "width":8,
+                 "x":168,
+                 "y":0
                 }],
          "opacity":1,
+         "properties":
+            {
+             "class":"wall"
+            },
+         "propertytypes":
+            {
+             "class":"string"
+            },
          "type":"objectgroup",
          "visible":true,
          "width":5,
          "x":0,
          "y":0
         }],
- "nextobjectid":8,
+ "nextobjectid":9,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tileheight":32,

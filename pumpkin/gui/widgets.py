@@ -91,9 +91,9 @@ class Widget(QtWidgets.QFrame):
         self.box.addWidget(widget)
 
 
-
 class PortalDialog(QtWidgets.QFrame):
-    def __init__(self, parent, level, gid, included_levels, portal=None):
+    def __init__(self, parent, level, gid, included_levels,
+                 portal=None):
         """
 
         :param parent:
@@ -102,6 +102,9 @@ class PortalDialog(QtWidgets.QFrame):
         :param portal: json конфиг
         """
         super().__init__()
+        self.included_levels = included_levels
+        self.gid = gid
+        self.level = level
         self.setWindowModality(True)
         self.parent = parent
         if portal is None:
@@ -109,14 +112,54 @@ class PortalDialog(QtWidgets.QFrame):
         else:
             self.portal = portal
         self.parent.setWindowTitle('Set Portal')
-        self.init_ui()
-        self.base_box.cancel_but.clicked.connect(self._close)
-        self.base_box.ok_but.clicked.connect(self._press_ok)
-        self.base_box.level_info.setText('Level - {}'.format(level))
-        self.base_box.id_info.setText('Entry - {}'.format(gid))
-        self.output_1.comboBox.addItems(included_levels)
+        self.__init_settings()
+        self.__init_ui()
+        self.__init_options()
+        self.__init_actions()
+
+
 
         print("portal", self.portal)
+
+    def __init_options(self):
+        self.base_box.level_info.setText('Level - {}'.format(self.level))
+        self.base_box.id_info.setText('Entry - {}'.format(self.gid))
+        self.output_forms[self.out_form_count].comboBox.addItems(self.included_levels)
+
+    def __init_settings(self):
+        self.out_form_count = 0
+
+    def __init_actions(self):
+        self.base_box.cancel_but.clicked.connect(self._close)
+        self.base_box.ok_but.clicked.connect(self._press_ok)
+        self.base_box.add_out.clicked.connect(self._press_add_out)
+        self.base_box.del_out.clicked.connect(self._press_del_out)
+
+    def _press_add_out(self):
+        self.out_form_count += 1
+        self.output_forms[self.out_form_count] = gui.Form(None, paths.forms(
+            'output_point.ui'))
+        self.base_box.output_box.addWidget(self.output_forms[self.out_form_count],
+                                           alignment=QtCore.Qt.AlignTop,
+                                           stretch=2)
+        self.output_forms[self.out_form_count].comboBox.addItems(self.included_levels)
+
+        print('_press_add_out')
+
+    def _press_del_out(self):
+        if self.out_form_count > 0:
+            self.output_forms[self.out_form_count].deleteLater()
+            self.base_box.output_box.removeWidget(self.output_forms[self.out_form_count])
+            self.out_form_count -= 1
+
+        # while self.base_box.count() > 0:
+        # item = self.base_box.itemAt(1)
+           # if not item:
+           # continue
+           # w = item.widget()
+           # print(w)
+           # if w:
+           #     w.deleteLater()
 
     def _close(self):
         print('cancel')
@@ -126,7 +169,7 @@ class PortalDialog(QtWidgets.QFrame):
         print('press_ok')
         self.parent.close()
 
-    def init_ui(self):
+    def __init_ui(self):
         box = gui.Box(gui.Box.Horizontal, parent=self, margins=0,
                       spacing=0)
         self.base_box = gui.Form(self,
@@ -137,19 +180,23 @@ class PortalDialog(QtWidgets.QFrame):
         self.base_box.input_box.addWidget(self.side_widget,
                                           alignment=QtCore.Qt.AlignLeft | QtCore.Qt.AlignTop,
                                           stretch=2)
+        self.output_forms = {}
+        self.output_forms[self.out_form_count] = gui.Form(None, paths.forms(
+            'output_point.ui'))
 
-        self.output_1 = gui.Form(None, paths.forms('output_point.ui'))
+        self.base_box.output_box.addWidget(
+            self.output_forms[self.out_form_count],
+            alignment=QtCore.Qt.AlignTop,
+            stretch=2)
 
-        self.base_box.output_box.addWidget(self.output_1,
-                                           alignment=QtCore.Qt.AlignTop,
-                                           stretch=2)
-
-
+    def itemAt(self):
+        pass
 
 portal = PortalDialog
 
 
-def show_portal_widget(widget, level, gid, included_levels, portal=None):
+def show_portal_widget(widget, level, gid, included_levels,
+                       portal=None):
     css_path = paths.css_path('gui_style.css')
     app = QtWidgets.QApplication(sys.argv)
     app.setStyleSheet(open(css_path, "r").read())
@@ -160,5 +207,3 @@ def show_portal_widget(widget, level, gid, included_levels, portal=None):
     main.show()
     app.exec_()
     print(main)
-
-
