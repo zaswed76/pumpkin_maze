@@ -101,10 +101,11 @@ class Parser(dict):
 class Portal(Parser):
     def __init__(self, json_map: str, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.update(self.load_map(json_map))
-        self.exit_points = self['exit_points']
-        self.point_entry = self['point_entry']
-        self.input_side = self['input_side']
+        try:
+            self.update(self.load_map(json_map))
+        except FileNotFoundError:
+            pass
+
 
 
 

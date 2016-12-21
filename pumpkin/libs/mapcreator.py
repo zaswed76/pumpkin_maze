@@ -159,9 +159,6 @@ class Level:
         objects = layer['objects']
 
         for object in objects:
-            print('====================')
-            print(object, 555)
-            print('-------------------')
             size = object['width']
             count = width_map * (object['y']//size) + object['x'] // size
             CreateFigure(group, screen, object, layer_properties,

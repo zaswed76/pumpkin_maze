@@ -64,7 +64,7 @@ class Controller(KeyAlias):
         """
 
         super().__init__()
-
+        self.gui_open = False
         self.level_creator = level_creator
         self.game_stat = game_stat
         if player is None:
@@ -116,25 +116,18 @@ class Controller(KeyAlias):
                 print(self.game_stat.level)
 
     def mouse_collide(self, x, y, level):
-        print('------------------')
-        print('coord - ({}, {})'.format(x, y))
-        # print(level)
-
-
+        # print('------------------')
+        # print('coord - ({}, {})'.format(x, y))
         for n, l in level.all_layers.items():
-            for z in l:
-                clicked = z.rect.collidepoint(x, y)
+            for sprite in l:
+                clicked = sprite.rect.collidepoint(x, y)
                 if clicked:
-                    print('level n - {}'.format(self.game_stat.level))
-                    print(z.count)
-                    # gui.show_portal_widget(z, level.tiled_map,
-                    #                        z.group.name, gui.portal)
-                    # level.tiled_map
+                    gui.show_portal_widget(gui.portal,
+                                           self.game_stat.level,
+                                           sprite.count,
+                                           portal=level.tiled_map.portal,
+                                           )
 
-                    # print(self.level.tiled_map)
-                    # print('###########################\n')
-                    # mprint.layers(self.level.tiled_map['layers'], z.group.name)
-                    #
 
     def fff(self, tiled_map_object):
         print(tiled_map_object)

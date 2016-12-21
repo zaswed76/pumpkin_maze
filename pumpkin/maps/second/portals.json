@@ -1,5 +1,17 @@
 {
-  "point_entry": 3,
-  "input_side": ["right", "left"],
-  "exit_points": [{"level":2, "id": 3}, {"level":2, "id": 8}]
+  "3": {
+
+    "input_side": [1, 0, 0, 0],
+    "exit_points": [{"level":2, "id": 3}, {"level":2, "id": 8}]
+  },
+
+    "7": {
+
+    "input_side": [0, 0, 1, 0],
+    "exit_points": [{"level":2, "id": 3}, {"level":2, "id": 8}]
+  }
+
+
 }
+
+

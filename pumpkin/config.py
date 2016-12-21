@@ -7,7 +7,7 @@ class Config:
         self.start_x = 64
         self.start_y = 64
         self.player_rect = (25, 25)
-        self.included_level = ['first', 'second']
+        self.included_levels = ['first', 'second']
 
         self.initialize_dynamic_settings()
 

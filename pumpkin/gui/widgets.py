@@ -93,19 +93,37 @@ class Widget(QtWidgets.QFrame):
 
 
 class PortalDialog(QtWidgets.QFrame):
-    def __init__(self, *args, tiled_map):
-        super().__init__(*args)
+    def __init__(self, parent, level, gid, portal=None):
+        """
 
-        self.parent = args[0]
-        self.tiled_map = tiled_map
+        :param parent:
+        :param level:
+        :param gid: порядоковый номер
+        :param portal: json конфиг
+        """
+        super().__init__()
+        self.setWindowModality(True)
+        self.parent = parent
+        if portal is None:
+            self.portal = {}
+        else:
+            self.portal = portal
         self.parent.setWindowTitle('Set Portal')
         self.init_ui()
-        print('-----------------------------')
-        print('self.tiled_map')
-        print('-----------------------------')
-        mprint.print_map(self.tiled_map.portal)
-        print(self.tiled_map.portal.point_entry)
-        # print(self.tiled_map.print_map(self.tiled_map))
+        self.base_box.cancel_but.clicked.connect(self._close)
+        self.base_box.ok_but.clicked.connect(self._press_ok)
+        self.base_box.level_info.setText('Level - {}'.format(level))
+        self.base_box.id_info.setText('Entry - {}'.format(gid))
+
+        print("portal", self.portal)
+
+    def _close(self):
+        print('cancel')
+        self.parent.close()
+
+    def _press_ok(self):
+        print('press_ok')
+        self.parent.close()
 
     def init_ui(self):
         box = gui.Box(gui.Box.Horizontal, parent=self, margins=0,
@@ -130,17 +148,15 @@ class PortalDialog(QtWidgets.QFrame):
 portal = PortalDialog
 
 
-def show_portal_widget(sprite, tiled_map, group_name, widget):
+def show_portal_widget(widget, level, gid, portal=None):
     css_path = paths.css_path('gui_style.css')
     app = QtWidgets.QApplication(sys.argv)
     app.setStyleSheet(open(css_path, "r").read())
     main = Widget(None,
                   (QtCore.Qt.Dialog | QtCore.Qt.WindowStaysOnTopHint))
-    dialog = widget(main, tiled_map=tiled_map)
+    dialog = widget(main, level, gid, portal=portal)
     main.set_widget(dialog)
     main.show()
-
-
-    # tiled_map.set_portal(group_name)
     app.exec_()
+
 

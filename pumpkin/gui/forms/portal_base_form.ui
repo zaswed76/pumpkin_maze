@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
+    <width>600</width>
     <height>397</height>
    </rect>
   </property>
@@ -81,6 +81,24 @@
             </property>
             <property name="text">
              <string>Level</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="id_info">
+            <property name="font">
+             <font>
+              <family>Source Sans Pro Semibold</family>
+              <pointsize>12</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">color: rgb(79, 79, 79);</string>
+            </property>
+            <property name="text">
+             <string>Id</string>
             </property>
            </widget>
           </item>
@@ -252,7 +270,7 @@ color: rgb(50, 50, 50);
     </layout>
    </item>
    <item>
-    <layout class="QHBoxLayout" name="controller_box">
+    <layout class="QHBoxLayout" name="controller_box" stretch="5,1">
      <property name="spacing">
       <number>0</number>
      </property>
@@ -268,6 +286,30 @@ color: rgb(50, 50, 50);
      <property name="bottomMargin">
       <number>1</number>
      </property>
+     <item>
+      <widget class="QPushButton" name="ok_but">
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(38, 195, 238);
+color: rgb(51, 102, 0);
+
+font: 75 12pt &quot;DejaVu Sans Mono&quot;;</string>
+       </property>
+       <property name="text">
+        <string>Ok</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="cancel_but">
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(221, 109, 109);
+font: 12pt &quot;DejaVu Sans Mono&quot;;</string>
+       </property>
+       <property name="text">
+        <string>cancel</string>
+       </property>
+      </widget>
+     </item>
     </layout>
    </item>
   </layout>
