@@ -57,13 +57,14 @@ class KeyAlias:
 
 
 class Controller(KeyAlias):
-    def __init__(self, game_stat, player=Player, level_creator=None):
+    def __init__(self, game_stat, cfg, player=Player, level_creator=None):
         """
 
         :type player: pygame.sprite.Sprite
         """
 
         super().__init__()
+        self.cfg = cfg
         self.gui_open = False
         self.level_creator = level_creator
         self.game_stat = game_stat
@@ -125,7 +126,8 @@ class Controller(KeyAlias):
                     gui.show_portal_widget(gui.portal,
                                            self.game_stat.level,
                                            sprite.count,
-                                           portal=level.tiled_map.portal,
+                                           self.cfg.included_levels,
+                                           portal=level.tiled_map.portal
                                            )
 
 

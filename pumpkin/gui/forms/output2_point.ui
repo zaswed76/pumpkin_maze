@@ -45,7 +45,7 @@
     <number>0</number>
    </property>
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout">
+    <layout class="QHBoxLayout" name="horizontalLayout" stretch="3,1">
      <property name="spacing">
       <number>8</number>
      </property>

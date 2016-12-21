@@ -4,7 +4,7 @@ class GameStat:
     def __init__(self, cfg):
         self.cfg = cfg
         self._level = 0
-        self.max_levels = len(self.cfg.included_level)
+        self.max_levels = len(self.cfg.included_levels)
         self.reset_level()
 
     def reset_level(self):

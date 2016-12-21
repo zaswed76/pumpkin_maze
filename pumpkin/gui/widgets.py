@@ -93,7 +93,7 @@ class Widget(QtWidgets.QFrame):
 
 
 class PortalDialog(QtWidgets.QFrame):
-    def __init__(self, parent, level, gid, portal=None):
+    def __init__(self, parent, level, gid, included_levels, portal=None):
         """
 
         :param parent:
@@ -114,6 +114,7 @@ class PortalDialog(QtWidgets.QFrame):
         self.base_box.ok_but.clicked.connect(self._press_ok)
         self.base_box.level_info.setText('Level - {}'.format(level))
         self.base_box.id_info.setText('Entry - {}'.format(gid))
+        self.output_1.comboBox.addItems(included_levels)
 
         print("portal", self.portal)
 
@@ -148,15 +149,16 @@ class PortalDialog(QtWidgets.QFrame):
 portal = PortalDialog
 
 
-def show_portal_widget(widget, level, gid, portal=None):
+def show_portal_widget(widget, level, gid, included_levels, portal=None):
     css_path = paths.css_path('gui_style.css')
     app = QtWidgets.QApplication(sys.argv)
     app.setStyleSheet(open(css_path, "r").read())
     main = Widget(None,
                   (QtCore.Qt.Dialog | QtCore.Qt.WindowStaysOnTopHint))
-    dialog = widget(main, level, gid, portal=portal)
+    dialog = widget(main, level, gid, included_levels, portal=portal)
     main.set_widget(dialog)
     main.show()
     app.exec_()
+    print(main)
 
 

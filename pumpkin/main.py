@@ -40,7 +40,7 @@ def run_game():
     while True:
 
         # Отслеживание событий клавиатуры и мыши.
-        controller = Controller(stats, level_creator=level_creator, player=player_unit)
+        controller = Controller(stats, cfg, level_creator=level_creator, player=player_unit)
         #Отображение последнего прорисованного экрана.
 
         # print(player_unit.breaks)

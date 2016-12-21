@@ -194,7 +194,7 @@ class LevelCreator:
         self.tileset_dir = tileset_dir
         self.map_format = map_format
         self.map_dir = map_dir
-        self.included_level = config.included_level
+        self.included_level = config.included_levels
         self.maps = self.get_maps()
         self.bg_type = sprites.Background
 
