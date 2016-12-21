@@ -189,8 +189,7 @@ class PortalDialog(QtWidgets.QFrame):
             alignment=QtCore.Qt.AlignTop,
             stretch=2)
 
-    def itemAt(self):
-        pass
+
 
 portal = PortalDialog
 
