@@ -55,6 +55,18 @@ class KeyAlias:
             9: pygame.K_9
         }
 
+class Flag:
+    gui_flag = False
+
+    @classmethod
+    def flag_on(cls):
+        cls.gui_flag = True
+
+    @classmethod
+    def flag_off(cls):
+        print(cls.gui_flag, '!!!!!')
+        cls.gui_flag = False
+
 
 class Controller(KeyAlias):
     def __init__(self, game_stat, cfg, player=Player, level_creator=None):
@@ -64,6 +76,7 @@ class Controller(KeyAlias):
         """
 
         super().__init__()
+
         self.cfg = cfg
         self.gui_open = False
         self.level_creator = level_creator
@@ -77,10 +90,14 @@ class Controller(KeyAlias):
         for e in pygame.event.get():
             if e.type == pygame.QUIT:
                 sys.exit()
-            elif e.type == pygame.MOUSEBUTTONDOWN:
-                x, y = pygame.mouse.get_pos()
 
-                self.mouse_collide(x, y, self.level_creator.level)
+            elif e.type == pygame.MOUSEBUTTONDOWN:
+                if e.button == 1:
+                    x, y = pygame.mouse.get_pos()
+                    self.mouse_collide(x, y, self.level_creator.level)
+
+
+
 
             if e.type == pygame.KEYDOWN and e.key == pygame.K_ESCAPE:
                 sys.exit()
@@ -124,11 +141,14 @@ class Controller(KeyAlias):
                 clicked = sprite.rect.collidepoint(x, y)
                 if clicked:
                     gui.show_portal_widget(gui.portal,
-                                           self.game_stat.level,
-                                           sprite.count,
-                                           self.cfg.included_levels,
-                                           portal=level.tiled_map.portal
-                                           )
+                                               self.game_stat.level,
+                                               sprite.count,
+                                               self.cfg.included_levels,
+                                               portal=level.tiled_map.portal
+                                               )
+
+
+
 
 
     def fff(self, tiled_map_object):

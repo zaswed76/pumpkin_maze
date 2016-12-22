@@ -1,9 +1,9 @@
 import os
 
 import pygame
-from pygame.sprite import Group, OrderedUpdates
+from pygame.sprite import OrderedUpdates
+
 from libs import tiledmap, game_groups, sprites
-from libs import color as _color
 from libs.sprites import CreateImagePlatform, CreateThings, \
     CreateFigure
 
@@ -46,25 +46,24 @@ class Level:
         self.bg_type = None
         self.name = os.path.splitext(os.path.basename(json_map))[0]
 
-    def set_bg_type(self, type):
+    def set_bg_type(self, bg_type):
         """
 
-        :param type: ссылка на КЛАСС - наследник sprites.AbsBackGround
+        :param bg_type: ссылка на КЛАСС - наследник sprites.AbsBackGround
         """
-        self.bg_type = type
+        self.bg_type = bg_type
 
     def get_size_map(self):
         w = (
             self.tiled_map['width'] * self.tiled_map['tilewidth'])
         h = (
             self.tiled_map['height'] * self.tiled_map['tileheight'])
-        return (w, h)
+        return w, h
 
     def set_screen(self, screen):
         self.screen = screen
 
     def create_map(self):
-
 
         for layer in self.tiled_map.layers:
             # пользовательские настройки слоя
@@ -88,7 +87,8 @@ class Level:
                                   speed)
             elif layer['type'] == 'objectgroup' and layer['visible']:
                 self.create_figure_objects(group, self.screen,
-                                           layer, self.tiled_map['width'])
+                                           layer,
+                                           self.tiled_map['width'])
 
     def get_image_path(self, image):
         """
@@ -100,7 +100,7 @@ class Level:
                             os.path.basename(image))
 
     def create_image(self, group, image_pth, x, y, speed):
-        #
+        # todo переписать !
         bg = self.bg_type(group, self.screen, image_pth, x, y, speed)
 
         self.all_layers[group.name] = (group)
@@ -160,7 +160,8 @@ class Level:
 
         for object in objects:
             size = object['width']
-            count = width_map * (object['y']//size) + object['x'] // size
+            count = width_map * (object['y'] // size) + object[
+                                                            'x'] // size
             CreateFigure(group, screen, object, layer_properties,
                          user_layer_properties, count)
 
@@ -226,15 +227,16 @@ class LevelCreator:
             return None
         map = self.maps[level]
         # создать уровень
+
         self.level = Level(self.screen, map, self.tileset_dir,
                            self.resources_dir)
         self.level.set_bg_type(self.bg_type)
         self.level.create_map()
 
+
     def draw(self):
         """
          отрисовывает уровень на поверхности pygame.Surface
-        :param level: номер уровня
         """
 
         self.level.fill()

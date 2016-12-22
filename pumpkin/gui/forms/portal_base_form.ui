@@ -238,58 +238,6 @@ color: rgb(50, 50, 50);
           <number>0</number>
          </property>
          <item>
-          <widget class="QPushButton" name="del_out">
-           <property name="minimumSize">
-            <size>
-             <width>25</width>
-             <height>25</height>
-            </size>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>25</width>
-             <height>25</height>
-            </size>
-           </property>
-           <property name="font">
-            <font>
-             <family>DejaVu Sans Mono</family>
-             <pointsize>11</pointsize>
-             <weight>9</weight>
-             <italic>false</italic>
-             <bold>false</bold>
-            </font>
-           </property>
-           <property name="cursor">
-            <cursorShape>ArrowCursor</cursorShape>
-           </property>
-           <property name="contextMenuPolicy">
-            <enum>Qt::DefaultContextMenu</enum>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">font: 75 11pt &quot;DejaVu Sans Mono&quot;;
-color: rgb(255, 0, 0);
-background-color: rgb(80, 188, 255);</string>
-           </property>
-           <property name="text">
-            <string/>
-           </property>
-           <property name="icon">
-            <iconset>
-             <normaloff>../../resources/icons/32/minus.png</normaloff>../../resources/icons/32/minus.png</iconset>
-           </property>
-           <property name="iconSize">
-            <size>
-             <width>25</width>
-             <height>25</height>
-            </size>
-           </property>
-           <property name="flat">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-         <item>
           <widget class="QLabel" name="output_lab">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
@@ -322,52 +270,6 @@ color: rgb(50, 50, 50);
            </property>
           </widget>
          </item>
-         <item>
-          <widget class="QPushButton" name="add_out">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="minimumSize">
-            <size>
-             <width>25</width>
-             <height>25</height>
-            </size>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>25</width>
-             <height>25</height>
-            </size>
-           </property>
-           <property name="cursor">
-            <cursorShape>ArrowCursor</cursorShape>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">color: rgb(0, 91, 0);
-font: 87 10pt &quot;Arial Black&quot;;
-background-color: rgb(80, 188, 255);</string>
-           </property>
-           <property name="text">
-            <string/>
-           </property>
-           <property name="icon">
-            <iconset>
-             <normaloff>../../resources/icons/32/plus.png</normaloff>../../resources/icons/32/plus.png</iconset>
-           </property>
-           <property name="iconSize">
-            <size>
-             <width>25</width>
-             <height>25</height>
-            </size>
-           </property>
-           <property name="flat">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
         </layout>
        </item>
       </layout>
@@ -375,7 +277,7 @@ background-color: rgb(80, 188, 255);</string>
     </layout>
    </item>
    <item>
-    <layout class="QHBoxLayout" name="controller_box" stretch="5,1">
+    <layout class="QHBoxLayout" name="controller_box" stretch="0,5">
      <property name="spacing">
       <number>0</number>
      </property>
@@ -392,6 +294,17 @@ background-color: rgb(80, 188, 255);</string>
       <number>1</number>
      </property>
      <item>
+      <widget class="QPushButton" name="cancel_but">
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(185, 185, 185);
+font: 12pt &quot;DejaVu Sans Mono&quot;;</string>
+       </property>
+       <property name="text">
+        <string>cancel</string>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QPushButton" name="ok_but">
        <property name="styleSheet">
         <string notr="true">background-color: rgb(38, 195, 238);
@@ -401,17 +314,6 @@ font: 75 12pt &quot;DejaVu Sans Mono&quot;;</string>
        </property>
        <property name="text">
         <string>Ok</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="cancel_but">
-       <property name="styleSheet">
-        <string notr="true">background-color: rgb(221, 109, 109);
-font: 12pt &quot;DejaVu Sans Mono&quot;;</string>
-       </property>
-       <property name="text">
-        <string>cancel</string>
        </property>
       </widget>
      </item>

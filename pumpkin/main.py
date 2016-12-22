@@ -12,6 +12,8 @@ cfg = Config()
 print('{} = {}'.format('ver', pumpkin.__version__))
 
 
+
+
 def run_game():
     # Инициализирует игру и создает объект экрана.
     pygame.init()
