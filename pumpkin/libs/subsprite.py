@@ -1,9 +1,7 @@
 
 import pygame
 
-pygame.init()
-screen = pygame.display.set_mode(
-        (500, 500))
+
 class SubSprite:
     def __init__(self, image, width, height):
         self.image = image
@@ -54,5 +52,8 @@ class SubSprite:
                    self.h_count, self.width, self.height)
 
 if __name__ == '__main__':
+    pygame.init()
+    screen = pygame.display.set_mode(
+        (500, 500))
     sub = SubSprite(r'D:\0SYNC\python_projects\games\Games\pumpkin_maze\pumpkin\resources\DungeonCrawl_ProjectUtumnoTileset.png', 32, 32)
     # print(sub.get_sprites())
