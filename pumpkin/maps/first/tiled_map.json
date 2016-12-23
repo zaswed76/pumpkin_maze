@@ -1,9 +1,87 @@
-{ "backgroundcolor":"#ffaa00",
- "height":5,
+{ "backgroundcolor":"#ffff7f",
+ "height":10,
  "layers":[
         {
-         "data":[8, 0, 0, 0, 8, 8, 0, 0, 8, 8, 8, 0, 0, 8, 0, 8, 0, 0, 8, 8, 8, 0, 0, 0, 8],
-         "height":5,
+         "color":"#0000ff",
+         "draworder":"topdown",
+         "height":20,
+         "name":"\u0421\u043b\u043e\u0439 \u043e\u0431\u044a\u0435\u043a\u0442\u043e\u0432 1",
+         "objects":[
+                {
+                 "height":288,
+                 "id":13,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":64,
+                 "y":64
+                }, 
+                {
+                 "height":32,
+                 "id":14,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":128,
+                 "y":160
+                }, 
+                {
+                 "height":0,
+                 "id":15,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":144,
+                 "y":176
+                }, 
+                {
+                 "height":83,
+                 "id":16,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":6,
+                 "x":268,
+                 "y":38
+                }],
+         "opacity":1,
+         "properties":
+            {
+             "ddd":"eee",
+             "figure_type":"rect"
+            },
+         "propertytypes":
+            {
+             "ddd":"string",
+             "figure_type":"string"
+            },
+         "type":"objectgroup",
+         "visible":false,
+         "width":20,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "height":20,
+         "image":"..\/..\/resources\/sand_texture_320.bmp",
+         "name":"\u0421\u043b\u043e\u0439 \u0438\u0437\u043e\u0431\u0440\u0430\u0436\u0435\u043d\u0438\u0439 1",
+         "opacity":1,
+         "type":"imagelayer",
+         "visible":false,
+         "width":20,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "data":[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 0, 0, 0, 0, 0, 8, 0, 0, 0, 8, 0, 0, 0, 0, 0, 8, 0, 0, 0, 8, 8, 0, 0, 0, 0, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+         "height":10,
          "name":"\u0421\u043b\u043e\u0439 \u0442\u0430\u0439\u043b\u043e\u0432 1",
          "opacity":1,
          "properties":
@@ -16,11 +94,11 @@
             },
          "type":"tilelayer",
          "visible":true,
-         "width":5,
+         "width":10,
          "x":0,
          "y":0
         }],
- "nextobjectid":1,
+ "nextobjectid":17,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tileheight":32,
@@ -36,61 +114,9 @@
          "spacing":0,
          "tilecount":100,
          "tileheight":32,
-         "tiles":
-            {
-             "8":
-                {
-                 "objectgroup":
-                    {
-                     "draworder":"index",
-                     "height":0,
-                     "name":"",
-                     "objects":[
-                            {
-                             "height":0,
-                             "id":1,
-                             "name":"",
-                             "rotation":0,
-                             "type":"",
-                             "visible":true,
-                             "width":0,
-                             "x":16,
-                             "y":16
-                            }, 
-                            {
-                             "height":16,
-                             "id":2,
-                             "name":"",
-                             "rotation":0,
-                             "type":"",
-                             "visible":true,
-                             "width":8,
-                             "x":16,
-                             "y":16
-                            }, 
-                            {
-                             "height":24,
-                             "id":3,
-                             "name":"",
-                             "rotation":0,
-                             "type":"",
-                             "visible":true,
-                             "width":16,
-                             "x":0,
-                             "y":-8
-                            }],
-                     "opacity":1,
-                     "type":"objectgroup",
-                     "visible":true,
-                     "width":0,
-                     "x":0,
-                     "y":0
-                    }
-                }
-            },
          "tilewidth":32
         }],
  "tilewidth":32,
  "version":1,
- "width":5
+ "width":10
 }

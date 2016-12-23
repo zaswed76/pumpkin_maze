@@ -35,7 +35,7 @@ def run_game():
     level_creator.create_level(stats.level)
 
     inventory = game_groups.Inventory()
-    player_unit = player.Player(stats, screen, 1, 1, cfg, inventory=inventory)
+    player_unit = player.Player(stats, screen, 2, 2, cfg, inventory=inventory)
     timer = pygame.time.Clock()
     # Запуск основного цикла игры.
 

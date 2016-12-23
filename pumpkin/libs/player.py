@@ -51,10 +51,12 @@ class Player(Sprite):
 
     def go_right(self):
         self.speed_x = self.speedx
+        print(self.speed_x, self.rect.centerx)
         self.rect.centerx += self.speed_x
 
     def go_left(self):
         self.speed_x = -self.speedx
+        print(self.speed_x, self.rect.centerx)
         self.rect.centerx += self.speed_x
 
     def go_up(self):
@@ -75,8 +77,8 @@ class Player(Sprite):
         if self.directs['right']:
             self.speed_x = self.speedx
             self.rect.centerx += self.speed_x
-            # self.go_right()
-            # self.collisions(platforms, level, self.speed_x, 0)
+            self.go_right()
+            self.collisions(platforms, level, self.speed_x, 0)
 
         elif self.directs['left']:
             self.go_left()
@@ -100,14 +102,8 @@ class Player(Sprite):
             platform = pygame.sprite.spritecollideany(self, group)
 
             if platform:
-                # if platform.count_name == 9:
-                #     print('Portal')
-                #     self.go_to()
-                #     # self._go_portal(platform, level, speed_x,
-                #     #                     speed_y, platform.portal)
-                #     return
-                # стена
                 if group.class_name == GameObject.Wall:
+
                     self._stand_before_wall(speed_x, speed_y,
                                             platform)
                 # дверь
@@ -172,6 +168,7 @@ class Player(Sprite):
         self.rect.center = (264, 41)
 
     def _stand_before_wall(self, speed_x, speed_y, platform):
+        print(speed_x)
         if speed_x < 0:
             self.rect.left = platform.rect.right
         elif speed_x > 0:
