@@ -1,119 +1,10 @@
-{ "backgroundcolor":"#cecece",
+{ "backgroundcolor":"#ffaa00",
  "height":5,
  "layers":[
         {
-         "data":[0, 0, 0, 0, 0, 8, 0, 0, 0, 50, 0, 0, 0, 0, 8, 0, 0, 0, 0, 0, 0, 0, 0, 8, 0, 0, 0, 0, 0, 0, 0, 0, 8, 0, 0, 0, 0, 0, 0, 0, 0, 8, 0, 0, 0],
+         "data":[8, 0, 0, 0, 8, 8, 0, 0, 8, 8, 8, 0, 0, 8, 0, 8, 0, 0, 8, 8, 8, 0, 0, 0, 8],
          "height":5,
-         "name":"my_layer_1",
-         "opacity":0.200000002980232,
-         "properties":
-            {
-             "portal":"portals.json"
-            },
-         "propertytypes":
-            {
-             "portal":"file"
-            },
-         "type":"tilelayer",
-         "visible":true,
-         "width":9,
-         "x":0,
-         "y":0
-        }, 
-        {
-         "color":"#0000aaff",
-         "draworder":"topdown",
-         "height":5,
-         "name":"\u0421\u043b\u043e\u0439 \u043e\u0431\u044a\u0435\u043a\u0442\u043e\u0432 1",
-         "objects":[
-                {
-                 "height":32,
-                 "id":1,
-                 "name":"",
-                 "rotation":0,
-                 "type":"rect",
-                 "visible":true,
-                 "width":32,
-                 "x":64,
-                 "y":128
-                }, 
-                {
-                 "height":32,
-                 "id":2,
-                 "name":"",
-                 "rotation":0,
-                 "type":"rect",
-                 "visible":true,
-                 "width":32,
-                 "x":256,
-                 "y":128
-                }, 
-                {
-                 "height":32,
-                 "id":3,
-                 "name":"",
-                 "rotation":0,
-                 "type":"rect",
-                 "visible":true,
-                 "width":32,
-                 "x":0,
-                 "y":64
-                }, 
-                {
-                 "height":32,
-                 "id":4,
-                 "name":"",
-                 "rotation":0,
-                 "type":"rect",
-                 "visible":true,
-                 "width":32,
-                 "x":0,
-                 "y":0
-                }, 
-                {
-                 "height":32,
-                 "id":5,
-                 "name":"",
-                 "rotation":0,
-                 "type":"rect",
-                 "visible":true,
-                 "width":32,
-                 "x":192,
-                 "y":128
-                }, 
-                {
-                 "height":32,
-                 "id":6,
-                 "name":"",
-                 "rotation":0,
-                 "type":"rect",
-                 "visible":true,
-                 "width":32,
-                 "x":0,
-                 "y":128
-                }, 
-                {
-                 "height":32,
-                 "id":7,
-                 "name":"",
-                 "rotation":0,
-                 "type":"rect",
-                 "visible":true,
-                 "width":32,
-                 "x":96,
-                 "y":64
-                }, 
-                {
-                 "height":160,
-                 "id":8,
-                 "name":"",
-                 "rotation":0,
-                 "type":"rect",
-                 "visible":true,
-                 "width":8,
-                 "x":168,
-                 "y":0
-                }],
+         "name":"\u0421\u043b\u043e\u0439 \u0442\u0430\u0439\u043b\u043e\u0432 1",
          "opacity":1,
          "properties":
             {
@@ -123,26 +14,13 @@
             {
              "class":"string"
             },
-         "type":"objectgroup",
+         "type":"tilelayer",
          "visible":true,
          "width":5,
          "x":0,
          "y":0
-        }, 
-        {
-         "height":5,
-         "image":"..\/..\/resources\/cloud.png",
-         "name":"\u0421\u043b\u043e\u0439 \u0438\u0437\u043e\u0431\u0440\u0430\u0436\u0435\u043d\u0438\u0439 1",
-         "offsetx":64,
-         "offsety":32,
-         "opacity":1,
-         "type":"imagelayer",
-         "visible":true,
-         "width":9,
-         "x":0,
-         "y":0
         }],
- "nextobjectid":9,
+ "nextobjectid":1,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tileheight":32,
@@ -158,9 +36,61 @@
          "spacing":0,
          "tilecount":100,
          "tileheight":32,
+         "tiles":
+            {
+             "8":
+                {
+                 "objectgroup":
+                    {
+                     "draworder":"index",
+                     "height":0,
+                     "name":"",
+                     "objects":[
+                            {
+                             "height":0,
+                             "id":1,
+                             "name":"",
+                             "rotation":0,
+                             "type":"",
+                             "visible":true,
+                             "width":0,
+                             "x":16,
+                             "y":16
+                            }, 
+                            {
+                             "height":16,
+                             "id":2,
+                             "name":"",
+                             "rotation":0,
+                             "type":"",
+                             "visible":true,
+                             "width":8,
+                             "x":16,
+                             "y":16
+                            }, 
+                            {
+                             "height":24,
+                             "id":3,
+                             "name":"",
+                             "rotation":0,
+                             "type":"",
+                             "visible":true,
+                             "width":16,
+                             "x":0,
+                             "y":-8
+                            }],
+                     "opacity":1,
+                     "type":"objectgroup",
+                     "visible":true,
+                     "width":0,
+                     "x":0,
+                     "y":0
+                    }
+                }
+            },
          "tilewidth":32
         }],
  "tilewidth":32,
  "version":1,
- "width":9
+ "width":5
 }

@@ -73,8 +73,10 @@ class Player(Sprite):
         self.breaks = self.inventory.check_breaks
 
         if self.directs['right']:
-            self.go_right()
-            self.collisions(platforms, level, self.speed_x, 0)
+            self.speed_x = self.speedx
+            self.rect.centerx += self.speed_x
+            # self.go_right()
+            # self.collisions(platforms, level, self.speed_x, 0)
 
         elif self.directs['left']:
             self.go_left()
@@ -96,8 +98,14 @@ class Player(Sprite):
     def collisions(self, layers, level, speed_x, speed_y):
         for group in layers:
             platform = pygame.sprite.spritecollideany(self, group)
+
             if platform:
-                print(platform)
+                # if platform.count_name == 9:
+                #     print('Portal')
+                #     self.go_to()
+                #     # self._go_portal(platform, level, speed_x,
+                #     #                     speed_y, platform.portal)
+                #     return
                 # стена
                 if group.class_name == GameObject.Wall:
                     self._stand_before_wall(speed_x, speed_y,
@@ -159,6 +167,9 @@ class Player(Sprite):
                                     self.rect.centerx = spr.rect.centerx
         else:
             self._stand_before_wall(speed_x, speed_y, platform)
+
+    def go_to(self):
+        self.rect.center = (264, 41)
 
     def _stand_before_wall(self, speed_x, speed_y, platform):
         if speed_x < 0:

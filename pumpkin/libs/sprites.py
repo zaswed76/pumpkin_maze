@@ -18,7 +18,7 @@ class GameObject(Sprite):
         self.screen = screen
         # Загрузка изображения тайла и получение прямоугольника.
 
-        _, _, width, height = self.image.get_rect()
+        self.x, self.y, width, height = self.image.get_rect()
         self.screen_rect = screen.get_rect()
         self.rect = pygame.Rect(x, y, width, height)
 
@@ -47,7 +47,9 @@ class Armor(GameObject):
 class CreateThings:
     th = dict(weapon=Weapon, armor=Armor)
 
-    def __init__(self, group, screen, image, x, y, count, properties):
+    def __init__(self, group, screen, image, x, y, count, properties,
+                 count_name):
+        self.count_name = count_name
         self.properties = properties
         self.group_properties = group.properties
         self.create_thing(self.properties['subclass'], group, screen,
@@ -63,7 +65,7 @@ class CreateThings:
 
 class CreateImagePlatform(GameObject):
     def __init__(self, group, screen, image, x, y, count, properties,
-                 portal=None):
+                 count_name, portal=None):
         """
         :param portal tuple < (int, int, int, str)
         (id текущей двери, уроветь перехода, id двери перехода, направление?)
@@ -78,6 +80,8 @@ class CreateImagePlatform(GameObject):
         """
 
         super().__init__(group, screen, image, x, y)
+        self.count_name = count_name
+        self.properties = properties
         self.group = group
         self.count = count
         self.group_properties = group.properties
@@ -86,10 +90,25 @@ class CreateImagePlatform(GameObject):
             self.portal = portal[1:]
         else:
             self.id = self.portal = None
+
         group.add(self)
 
+        self.rect.x = x
+        self.rect.y = y
+        self.center_x = float(self.rect.centerx)
+        self.center_y = float(self.rect.centery)
+
+    def update(self, *args):
+        pass
+        # print('update', self.properties)
+        # speed = self.properties['speed']
+        # if speed:
+        #     self.center_x += speed
+        # self.rect.centery = self.center_x
+
     def __repr__(self):
-        return '{}; {}'.format(self.count, self.group_properties)
+        return '{}\ncount_name - {}'.format(self.__class__.__name__,
+                                            self.count_name)
 
 
 class AbsBackGround(Sprite):
@@ -185,7 +204,8 @@ class FigureCircle(Sprite):
 
         self.surface = pygame.Surface((self.width, self.height),
                                       pygame.SRCALPHA)
-        self.rect = pygame.Rect(self.x, self.y, self.width, self.height)
+        self.rect = pygame.Rect(self.x, self.y, self.width,
+                                self.height)
         if self.color[3] < 255:
             self.surface.set_alpha(self.color[3])
         self.surface.fill(color)
@@ -244,11 +264,14 @@ class CreateFigure(Sprite):
 
     @property
     def figure_type(self):
+        print(self.user_layer_properties, 444)
         object_type = self.object.get('type')
         if object_type:
             return object_type
         else:
+
             try:
+
                 figure = self.user_layer_properties['figure_type']
             except KeyError:
                 raise Exception('не верно указан тип фигуры')

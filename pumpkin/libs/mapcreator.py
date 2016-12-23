@@ -31,6 +31,7 @@ class Level:
                  resources_dir: str
                  ):
         self.n = 0
+        self.glob_count_name = 0
         self.resources_dir = resources_dir
         self.screen = screen
         self.tiled_map = tiledmap.TiledParser(json_map, tileset_dir)
@@ -106,6 +107,7 @@ class Level:
         self.all_layers[group.name] = (group)
 
     def create_layer(self, group_layer, data):
+        self.sprite_obj = {}
         x = 0
         y = 0
         step = self.tiled_map['tilewidth']
@@ -120,14 +122,24 @@ class Level:
                 group_properties = group_layer.properties
                 if group_properties.get(
                         'class') == game_groups.GameObject.Thing:
-                    CreateThings(group_layer, self.screen,
-                                 image, x, y, count,
-                                 tiled_properties)
+                    self.sprite_obj[
+                        self.glob_count_name] = CreateThings(
+                        group_layer,
+                        self.screen,
+                        image, x, y,
+                        count,
+                        tiled_properties,
+                        self.glob_count_name)
 
                 else:
-                    CreateImagePlatform(group_layer, self.screen,
-                                        image, x, y, count,
-                                        tiled_properties, portal)
+                    self.sprite_obj[
+                        self.glob_count_name] = CreateImagePlatform(
+                        group_layer, self.screen,
+                        image, x, y, count,
+                        tiled_properties,
+                        self.glob_count_name,
+                        portal=portal
+                    )
 
                 x += step
             else:
@@ -135,6 +147,7 @@ class Level:
             if x == width:
                 x = 0
                 y += step
+            self.glob_count_name += 1
         self.all_layers[group_layer.name] = (group_layer)
 
     def create_figure_objects(self, group, screen, layer, width_map):
@@ -232,7 +245,6 @@ class LevelCreator:
                            self.resources_dir)
         self.level.set_bg_type(self.bg_type)
         self.level.create_map()
-
 
     def draw(self):
         """

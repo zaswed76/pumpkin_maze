@@ -2,8 +2,8 @@
 import pygame
 
 pygame.init()
-screen = pygame.display.set_mode(
-        (500, 500))
+# screen = pygame.display.set_mode(
+#         (500, 500))
 class SubSprite:
     def __init__(self, image, width, height):
         self.image = image

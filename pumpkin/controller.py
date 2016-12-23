@@ -71,10 +71,10 @@ class Controller(KeyAlias):
         self.gui_open = False
         self.level_creator = level_creator
         self.game_stat = game_stat
-        if player is None:
-            pass
-        else:
-            player = player
+        # if player is None:
+        #     pass
+        # else:
+        # player = player
         # print(player)
 
         for e in pygame.event.get():
@@ -111,7 +111,7 @@ class Controller(KeyAlias):
             if e.type == pygame.KEYUP and e.key == pygame.K_LEFT:
                 player.directs['left'] = False
 
-            self.set_level(e, self.level_creator)
+            # self.set_level(e, self.level_creator)
 
     def set_level(self, e, level):
 
@@ -125,17 +125,18 @@ class Controller(KeyAlias):
 
     def mouse_collide(self, x, y, level):
         # print('------------------')
-        # print('coord - ({}, {})'.format(x, y))
+        print('coord - ({}, {})'.format(x, y))
         for n, l in level.all_layers.items():
             for sprite in l:
                 clicked = sprite.rect.collidepoint(x, y)
                 if clicked:
-                    gui.show_portal_widget(gui.portal,
-                                               self.game_stat.level,
-                                               sprite.count,
-                                               self.cfg.included_levels,
-                                               portal=level.tiled_map.portal
-                                               )
+                    print(sprite)
+                    # gui.show_portal_widget(gui.portal,
+                    #                            self.game_stat.level,
+                    #                            sprite.count,
+                    #                            self.cfg.included_levels,
+                    #                            portal=level.tiled_map.portal
+                    #                            )
 
 
 
