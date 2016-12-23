@@ -1,5 +1,8 @@
 {
   "3": {
     "input_side": [1, 0, 0, 0],
+    "random": false,
+    "series": false,
     "exit_points": [{"level": 2, "id": 3}, {"level": 2, "id": 8}]}
 }
+

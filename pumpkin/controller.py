@@ -55,21 +55,11 @@ class KeyAlias:
             9: pygame.K_9
         }
 
-class Flag:
-    gui_flag = False
-
-    @classmethod
-    def flag_on(cls):
-        cls.gui_flag = True
-
-    @classmethod
-    def flag_off(cls):
-        print(cls.gui_flag, '!!!!!')
-        cls.gui_flag = False
 
 
 class Controller(KeyAlias):
-    def __init__(self, game_stat, cfg, player=Player, level_creator=None):
+    def __init__(self, game_stat, cfg,
+                 player=Player, level_creator=None):
         """
 
         :type player: pygame.sprite.Sprite
