@@ -21,4 +21,7 @@ class Tiled:
 
 if __name__ == '__main__':
     path_map = paths.get_map('level_1')
-    print_dict(Tiled.load_map(path_map))
+    maps = Tiled.load_map(path_map)
+    print_dict(maps)
+    print('#######################')
+    print_sets(maps['layers'][0])

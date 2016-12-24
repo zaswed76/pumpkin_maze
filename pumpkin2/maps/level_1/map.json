@@ -1,48 +1,43 @@
-{ "height":4,
+{ "height":10,
  "layers":[
         {
-         "data":[1, 0, 0, 0, 0, 18, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-         "height":4,
-         "name":"lay1",
+         "draworder":"topdown",
+         "height":10,
+         "name":"\u0421\u043b\u043e\u0439 \u043e\u0431\u044a\u0435\u043a\u0442\u043e\u0432 1",
+         "objects":[
+                {
+                 "height":0,
+                 "id":1,
+                 "name":"",
+                 "polyline":[
+                        {
+                         "x":0,
+                         "y":0
+                        }, 
+                        {
+                         "x":320,
+                         "y":320
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":0,
+                 "x":0,
+                 "y":0
+                }],
          "opacity":1,
-         "type":"tilelayer",
+         "type":"objectgroup",
          "visible":true,
-         "width":4,
+         "width":10,
          "x":0,
          "y":0
         }],
- "nextobjectid":1,
+ "nextobjectid":2,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tileheight":32,
- "tilesets":[
-        {
-         "columns":4,
-         "firstgid":1,
-         "image":"..\/resources\/sets\/128-32.png",
-         "imageheight":128,
-         "imagewidth":128,
-         "margin":0,
-         "name":"128-32",
-         "spacing":0,
-         "tilecount":16,
-         "tileheight":32,
-         "tilewidth":32
-        }, 
-        {
-         "columns":2,
-         "firstgid":17,
-         "image":"..\/resources\/sets\/128-64.png",
-         "imageheight":128,
-         "imagewidth":128,
-         "margin":0,
-         "name":"128-64",
-         "spacing":0,
-         "tilecount":4,
-         "tileheight":64,
-         "tilewidth":64
-        }],
+ "tilesets":[],
  "tilewidth":32,
  "version":1,
- "width":4
+ "width":10
 }
