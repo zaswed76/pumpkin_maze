@@ -20,7 +20,6 @@ class Properties(dict):
 
     def update(self, E=None, options=None, **F):
         if options is not None:
-            print(222)
             super().update({k: F.get(k) for k in options})
         else:
             super().update(**F)
@@ -115,6 +114,7 @@ class Level:
             if n:
                 gid = n - 1
                 image = self.image_sprites[gid]
+                print(image.get_size())
                 portal = group_layer.doors_portal.get(count)
                 tiled_properties = self.tiled_map.tiled_properties.get(
                     str(gid), dict())

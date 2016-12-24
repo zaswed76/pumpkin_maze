@@ -1,5 +1,21 @@
+import os
 
 import pygame
+from pumpkin import paths
+
+
+class Sprites:
+    def __init__(self, *lst):
+        self.lst = []
+        for i in lst:
+            self.lst.extend(i)
+
+    def __getitem__(self, key):
+        if key != 0:
+            return self.lst[key-1]
+        else:
+            raise IndexError('min index = 1')
+
 
 
 class SubSprite:
@@ -55,5 +71,13 @@ if __name__ == '__main__':
     pygame.init()
     screen = pygame.display.set_mode(
         (500, 500))
-    sub = SubSprite(r'D:\0SYNC\python_projects\games\Games\pumpkin_maze\pumpkin\resources\DungeonCrawl_ProjectUtumnoTileset.png', 32, 32)
-    # print(sub.get_sprites())
+    sets = os.path.join(paths.tilesets, '128-32.png')
+    sets2 = os.path.join(paths.tilesets, '128-64.png')
+
+    sub = SubSprite(sets, 32, 32)
+    sub2 = SubSprite(sets, 64, 64)
+    s = sub.get_sprites()
+    s2 = sub2.get_sprites()
+    lst = Sprites(s, s2)
+
+    print(lst[1].get_size())

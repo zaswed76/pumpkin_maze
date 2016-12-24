@@ -143,10 +143,13 @@ class TiledParser(dict):
 
 if __name__ == '__main__':
     from pumpkin import paths
-
-    pth_map = os.path.join(paths.maps, '3.json')
+    import pygame
+    pygame.init()
+    screen = pygame.display.set_mode(
+        (1, 1))
+    pth_map = os.path.join(paths.maps, '1.json')
     tiled = TiledParser(pth_map, paths.tilesets)
-    # tiled.print_map()
+    # tiled.print_dict()
     print(tiled.layers.objects.print())
     # print(tiled.sets.get_set())
     # print(tiled.get_subsprites(tiled.get_id_tiles()))
