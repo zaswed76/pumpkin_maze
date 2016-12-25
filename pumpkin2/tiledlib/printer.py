@@ -7,3 +7,8 @@ def print_dict(d: dict):
 def print_sets(sets: list):
     for s in sets:
         print_dict(s)
+
+def print_list(sets: list):
+    for s in sets:
+        print(s)
+        print('----------------------')

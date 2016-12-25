@@ -1,102 +1,87 @@
 { "height":10,
  "layers":[
         {
-         "draworder":"topdown",
+         "compression":"zlib",
+         "data":"eJxjYKA9kKCDHdhA7ADZSwkAAF8UAHY=",
+         "encoding":"base64",
          "height":10,
-         "name":"\u0421\u043b\u043e\u0439 \u043e\u0431\u044a\u0435\u043a\u0442\u043e\u0432 1",
-         "objects":[
-                {
-                 "height":0,
-                 "id":5,
-                 "name":"",
-                 "polyline":[
-                        {
-                         "x":0,
-                         "y":0
-                        }, 
-                        {
-                         "x":320,
-                         "y":0
-                        }, 
-                        {
-                         "x":320,
-                         "y":320
-                        }, 
-                        {
-                         "x":0,
-                         "y":320
-                        }, 
-                        {
-                         "x":0,
-                         "y":0
-                        }, 
-                        {
-                         "x":160,
-                         "y":160
-                        }, 
-                        {
-                         "x":320,
-                         "y":0
-                        }, 
-                        {
-                         "x":320,
-                         "y":320
-                        }, 
-                        {
-                         "x":160,
-                         "y":160
-                        }, 
-                        {
-                         "x":0,
-                         "y":320
-                        }, 
-                        {
-                         "x":0,
-                         "y":160
-                        }, 
-                        {
-                         "x":160,
-                         "y":160
-                        }, 
-                        {
-                         "x":320,
-                         "y":160
-                        }, 
-                        {
-                         "x":320,
-                         "y":0
-                        }, 
-                        {
-                         "x":160,
-                         "y":0
-                        }, 
-                        {
-                         "x":160,
-                         "y":160
-                        }, 
-                        {
-                         "x":160,
-                         "y":320
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":0,
-                 "x":0,
-                 "y":0
-                }],
+         "name":"\u0421\u043b\u043e\u0439 \u0442\u0430\u0439\u043b\u043e\u0432 1",
          "opacity":1,
-         "type":"objectgroup",
+         "type":"tilelayer",
          "visible":true,
          "width":10,
          "x":0,
          "y":0
         }],
- "nextobjectid":6,
+ "nextobjectid":38,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tileheight":32,
- "tilesets":[],
+ "tilesets":[
+        {
+         "columns":4,
+         "firstgid":1,
+         "image":"..\/..\/..\/pumpkin\/resources\/sets\/128-32.png",
+         "imageheight":128,
+         "imagewidth":128,
+         "margin":0,
+         "name":"128-32",
+         "spacing":0,
+         "tilecount":16,
+         "tileheight":32,
+         "tilewidth":32
+        }, 
+        {
+         "columns":10,
+         "firstgid":17,
+         "image":"..\/..\/..\/pumpkin\/resources\/sets\/set_rpg.png",
+         "imageheight":320,
+         "imagewidth":320,
+         "margin":0,
+         "name":"set_rpg",
+         "spacing":0,
+         "terrains":[
+                {
+                 "name":"platform",
+                 "tile":7
+                }, 
+                {
+                 "name":"platform2",
+                 "tile":76
+                }],
+         "tilecount":100,
+         "tileheight":32,
+         "tileproperties":
+            {
+             "1":
+                {
+                 "cllass":"MovablePlatform"
+                }
+            },
+         "tilepropertytypes":
+            {
+             "1":
+                {
+                 "cllass":"string"
+                }
+            },
+         "tiles":
+            {
+             "58":
+                {
+                 "terrain":[0, -1, 0, -1]
+                },
+             "7":
+                {
+                 "terrain":[0, 0, 0, 0]
+                },
+             "76":
+                {
+                 "terrain":[1, 1, 1, 1]
+                }
+            },
+         "tilewidth":32
+        }],
  "tilewidth":32,
  "version":1,
  "width":10
