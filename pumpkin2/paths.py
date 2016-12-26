@@ -9,7 +9,7 @@ MAPS = 'maps'
 
 root = path.dirname(__file__)
 resources = path.join(root, RESOURCES)
-tilesets = path.join(resources, SETS)
+tilesets = path.join(resources, 'sets')
 maps = path.join(root, MAPS)
 
 

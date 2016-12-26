@@ -5,10 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b2c168a0-6f50-4917-b52f-d8d0429866de" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/pumpkin_maze.iml" afterPath="$PROJECT_DIR$/.idea/pumpkin_maze.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pumpkin/exemple/map1.json" afterPath="$PROJECT_DIR$/pumpkin/exemple/map1.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pumpkin2/paths.py" afterPath="$PROJECT_DIR$/pumpkin2/paths.py" />
     </list>
     <ignored path="pumpkin_maze.iws" />
@@ -71,10 +68,10 @@
       <file leaf-file-name="paths.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pumpkin2/paths.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="308">
-              <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+            <state relative-caret-position="374">
+              <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
               <folding>
-                <element signature="e#272#321#0" expanded="true" />
+                <element signature="e#274#323#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -848,7 +845,14 @@
       <option name="project" value="LOCAL" />
       <updated>1481181039070</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="figure">
+      <created>1482744723219</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1482744723219</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1204,10 +1208,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pumpkin2/paths.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+        <state relative-caret-position="374">
+          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
           <folding>
-            <element signature="e#272#321#0" expanded="true" />
+            <element signature="e#274#323#0" expanded="true" />
           </folding>
         </state>
       </provider>
