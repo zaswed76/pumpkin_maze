@@ -1,13 +1,13 @@
-{ "height":5,
+{ "height":10,
  "layers":[
         {
-         "data":[1, 2684354561, 3221225473, 1610612737, 1, 2147483649, 1, 1073741825, 1, 536870913, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-         "height":5,
+         "data":[0, 0, 0, 0, 0, 258, 259, 0, 0, 0, 0, 0, 0, 0, 0, 262, 263, 0, 0, 0, 257, 0, 0, 0, 0, 0, 0, 0, 0, 0, 258, 259, 0, 0, 0, 0, 0, 0, 0, 0, 262, 263, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 258, 259, 0, 0, 0, 0, 0, 0, 0, 0, 262, 263, 0, 0, 0],
+         "height":10,
          "name":"\u0421\u043b\u043e\u0439 \u0442\u0430\u0439\u043b\u043e\u0432 1",
          "opacity":1,
          "type":"tilelayer",
          "visible":true,
-         "width":5,
+         "width":10,
          "x":0,
          "y":0
         }],
@@ -24,12 +24,119 @@
          "imagewidth":512,
          "margin":0,
          "name":"equipment-icons-tileset",
+         "properties":
+            {
+             "class":"image"
+            },
+         "propertytypes":
+            {
+             "class":"string"
+            },
          "spacing":0,
          "tilecount":256,
          "tileheight":32,
          "tilewidth":32
+        }, 
+        {
+         "columns":0,
+         "firstgid":257,
+         "margin":0,
+         "name":"wwwe",
+         "properties":
+            {
+             "class":"tile"
+            },
+         "propertytypes":
+            {
+             "class":"string"
+            },
+         "spacing":0,
+         "tilecount":1,
+         "tileheight":96,
+         "tileproperties":
+            {
+             "0":
+                {
+                 "class":"tile"
+                }
+            },
+         "tilepropertytypes":
+            {
+             "0":
+                {
+                 "class":"string"
+                }
+            },
+         "tiles":
+            {
+             "0":
+                {
+                 "image":"..\/..\/resources\/exsets\/set_4x3_transparent.png"
+                }
+            },
+         "tilewidth":128
+        }, 
+        {
+         "columns":4,
+         "firstgid":258,
+         "image":"..\/..\/resources\/exsets\/set_2x1x64_white.png",
+         "imageheight":64,
+         "imagewidth":128,
+         "margin":0,
+         "name":"set_2x1x64_white",
+         "properties":
+            {
+             "class":"image"
+            },
+         "propertytypes":
+            {
+             "class":"string"
+            },
+         "spacing":0,
+         "tilecount":8,
+         "tileheight":32,
+         "tileproperties":
+            {
+             "0":
+                {
+                 "class":"image"
+                },
+             "1":
+                {
+                 "class":"image"
+                },
+             "4":
+                {
+                 "class":"image"
+                },
+             "5":
+                {
+                 "class":"image"
+                }
+            },
+         "tilepropertytypes":
+            {
+             "0":
+                {
+                 "class":"string"
+                },
+             "1":
+                {
+                 "class":"string"
+                },
+             "4":
+                {
+                 "class":"string"
+                },
+             "5":
+                {
+                 "class":"string"
+                }
+            },
+         "tilewidth":32,
+         "transparentcolor":"#ffffff"
         }],
  "tilewidth":32,
  "version":1,
- "width":5
+ "width":10
 }

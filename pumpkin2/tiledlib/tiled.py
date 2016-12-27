@@ -21,4 +21,4 @@ if __name__ == '__main__':
     path_map = paths.get_map('level_1')
     maps = Tiled.load_map(path_map)
     tiled_map = Tiled(maps)
-    print(tiled_map.empty_options)
+    print(tiled_map.tilesets)

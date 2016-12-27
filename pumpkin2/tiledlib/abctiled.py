@@ -4,32 +4,79 @@ class _Tiled:
     def __init__(self):
         pass
 
+
     @property
     def empty_options(self):
         return [k for k, v in self.__dict__.items() if v is None]
 
-class TileSets:
-    def __init__(self, sets: list):
-        self.sets = sets
 
-
+    def __repr__(self):
+        return '{}'.format(self.__class__.__name__)
 
 class TileSet(_Tiled):
-    def __init__(self, sets):
+    def __init__(self, tset):
+        super().__init__()
+
+        self.columns = tset.get("columns")
+        self.firstgid = tset.get("firstgid")
+        self.margin = tset.get("margin")
+        self.name = tset.get("name")
+        self.properties = tset.get("properties")
+        self.spacing = tset.get("spacing")
+        self.tilecount = tset.get("tilecount")
+        self.tileheight = tset.get("tileheight")
+        self.tileproperties = tset.get("tileproperties")
+        self.tilepropertytypes = tset.get("tilepropertytypes")
+        self.tiles = tset.get("tiles")
+        self.tilewidth = tset.get("tilewidth")
+
+
+    def __repr__(self):
+        s = super().__repr__()
+        z = '{}'.format(self.image)
+        return " - ".join((s, z))
+
+class ImageSet(_Tiled):
+    def __init__(self, tset):
          super().__init__()
-         self.columns = sets.get("columns")
-         self.firstgid = sets.get("firstgid")
-         self.image = sets.get("image")
-         self.imageheight = sets.get("imageheight")
-         self.imagewidth = sets.get("imagewidth")
-         self.margin = sets.get("margin")
-         self.name = sets.get("name")
-         self.properties = sets.get("properties")
-         self.propertytypes = sets.get("propertytypes")
-         self.tilecount = sets.get("tilecount")
-         self.tileheight = sets.get("tileheight")
-         self.tileoffset = sets.get("tileoffset")
-         self.tilewidth = sets.get("tilewidth")
+         self.columns = tset.get("columns")
+         self.firstgid = tset.get("firstgid")
+         self.image = tset.get("image")
+         self.imageheight = tset.get("imageheight")
+         self.imagewidth = tset.get("imagewidth")
+         self.margin = tset.get("margin")
+         self.name = tset.get("name")
+
+         self.tilecount = tset.get("tilecount")
+         self.tileheight = tset.get("tileheight")
+         self.tileoffset = tset.get("tileoffset")
+         self.tilewidth = tset.get("tilewidth")
+
+    def __repr__(self):
+        s = super().__repr__()
+        z = '{}'.format(self.image)
+        return " - ".join((s, z))
+
+
+
+class TileSets:
+    type_sets = dict(image=ImageSet, tile=TileSet)
+    def __init__(self, sets: list):
+        self.sets = []
+        self.create_sets(sets)
+
+    def create_sets(self, sets):
+        for s in sets:
+            self.sets.append(self.type_sets.get(s['properties']['class'])(s))
+
+
+    def __repr__(self):
+        # return str(self.sets)
+        return "\n".join([str(x) for x in self.sets])
+
+
+
+
 
 
 class AbcTiled(_Tiled):
@@ -43,6 +90,7 @@ class AbcTiled(_Tiled):
 
         :param map_dict: www
         """
+
         super().__init__()
         self.layers = map_dict.get("layers")
         # Stores the next available ID for new objects.
@@ -50,7 +98,7 @@ class AbcTiled(_Tiled):
         self.orientation = map_dict.get("orientation")
         self.renderorder = map_dict.get("renderorder")
         self.tileheight = map_dict.get("tileheight")
-        self.tilesets = map_dict.get("tilesets")
+        self.tilesets = TileSets(map_dict.get("tilesets"))
         self.tilewidth = map_dict.get("tilewidth")
         self.tilewidth = map_dict.get("tilewidth")
         self.version = map_dict.get("version")
