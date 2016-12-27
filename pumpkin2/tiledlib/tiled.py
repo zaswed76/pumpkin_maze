@@ -1,30 +1,24 @@
-import json
-from pumpkin2 import paths
-from pumpkin2.tiledlib.printer import *
+
+from pumpkin2.tiledlib import abctiled
 
 
-
-class TileSets:
-    def __init__(self, **sets):
-        pass
-
-
-class Tiled:
-    def __init__(self):
-        pass
-
-    @staticmethod
-    def load_map(pth_map: str) -> dict:
-        with open(pth_map, "r") as f:
-            return json.load(f)
+class Tiled(abctiled.AbcTiled):
+    """
+    класс представляет карту сгенерированую Tiled Map Editor,
+    где атрибуты соответствуют ключам словаря сгенерированой карты
+    """
+    def __init__(self, map_dict: dict, **kwargs):
+        """
+         eee
+        :param map_dict:
+        :param kwargs:
+        """
+        super().__init__(map_dict)
 
 
 if __name__ == '__main__':
+    from pumpkin2 import paths
     path_map = paths.get_map('level_1')
     maps = Tiled.load_map(path_map)
-    layer = maps['layers'][0]
-    print_dict(layer)
-    # objects = layer['objects']
-    # print_list(objects)
-    # print('#######################')
-    # print_sets(maps['layers'][0]['objects'])
+    tiled_map = Tiled(maps)
+    print(tiled_map.empty_options)

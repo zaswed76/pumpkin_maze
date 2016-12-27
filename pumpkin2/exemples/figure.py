@@ -3,7 +3,7 @@
 import sys
 import pygame
 from pumpkin2 import paths
-from pumpkin2.tiledlib import tiled, printer
+from pumpkin2.tiledlib import abctiled, printer
 
 
 def run_game():
@@ -13,7 +13,7 @@ def run_game():
     pygame.display.set_caption("Name Game")
     # Запуск основного цикла игры.
     level_pth = paths.get_map('level_1')
-    level = tiled.Tiled.load_map(level_pth)
+    level = abctiled.Tiled.load_map(level_pth)
     layer = level['layers'][0]
     fobject = layer['objects'][0]
     fobjects = layer['objects']

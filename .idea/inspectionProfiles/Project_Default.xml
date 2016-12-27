@@ -6,6 +6,7 @@
       <option name="ignoredIdentifiers">
         <list>
           <option value="Levenshtein.*" />
+          <option value="dict.*" />
         </list>
       </option>
     </inspection_tool>

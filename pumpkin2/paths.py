@@ -5,11 +5,13 @@ MAP_NAME = 'map'
 
 RESOURCES = 'resources'
 SETS = 'sets'
+EXSETS = 'exsets'
 MAPS = 'maps'
 
 root = path.dirname(__file__)
 resources = path.join(root, RESOURCES)
-tilesets = path.join(resources, 'sets')
+tilesets = path.join(resources, SETS)
+exsets = path.join(resources, EXSETS)
 maps = path.join(root, MAPS)
 
 
