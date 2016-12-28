@@ -1,19 +1,19 @@
-from os import path
+from os import path as __path
 
-EXT_MAP = '.json'
-MAP_NAME = 'map'
+__EXT_MAP = '.json'
+__MAP_NAME = 'map'
 
-RESOURCES = 'resources'
-SETS = 'sets'
-EXSETS = 'exsets'
-MAPS = 'maps'
+__RESOURCES = 'resources'
+__SETS = 'sets'
+__EXSETS = 'exsets'
+__MAPS = 'maps'
 
-root = path.dirname(__file__)
-resources = path.join(root, RESOURCES)
-tilesets = path.join(resources, SETS)
-exsets = path.join(resources, EXSETS)
-maps = path.join(root, MAPS)
+root = __path.dirname(__file__)
+resources = __path.join(root, __RESOURCES)
+tilesets_dir = __path.join(resources, __SETS)
+exsets = __path.join(resources, __EXSETS)
+maps = __path.join(root, __MAPS)
 
 
 def get_map(level):
-    return path.join(maps, level, MAP_NAME + EXT_MAP)
+    return __path.join(maps, level, __MAP_NAME + __EXT_MAP)

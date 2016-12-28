@@ -2,7 +2,9 @@
   <dictionary name="Admin">
     <words>
       <w>tasklist</w>
+      <w>tilesets</w>
       <w>tmap</w>
+      <w>tset</w>
     </words>
   </dictionary>
 </component>

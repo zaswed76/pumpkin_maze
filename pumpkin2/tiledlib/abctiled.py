@@ -1,22 +1,50 @@
 import json
+import os
+
+
+class TsetError(Exception):
+    def __init__(self, value, mess: str, *args):
+        self.args = args
+        self.mess = mess
+        self.value = value
+
+    def __str__(self):
+        return self.mess.format(self.value, *self.args)
+
+
+err_message_options = """
+тайл сет - {} должен иметь
+пользовательский параметр - {}
+"""
+
+err_message_properties = """
+тайл сет - {} должен иметь
+пользовательский параметр
+"""
+err_message_valid_type = """
+тайл сет - {}:
+пользовательский параметр {} может иметь одно из этих значений:
+{}
+"""
+
 
 class _Tiled:
     def __init__(self):
         pass
 
-
     @property
     def empty_options(self):
         return [k for k, v in self.__dict__.items() if v is None]
 
-
     def __repr__(self):
         return '{}'.format(self.__class__.__name__)
 
-class TileSet(_Tiled):
-    def __init__(self, tset):
-        super().__init__()
 
+class TileSet(_Tiled):
+    ''' коллекция изображений '''
+    def __init__(self, tset: dict, **kwargs):
+        super().__init__()
+        self.sets_dir = kwargs['sets_dir']
         self.columns = tset.get("columns")
         self.firstgid = tset.get("firstgid")
         self.margin = tset.get("margin")
@@ -30,53 +58,74 @@ class TileSet(_Tiled):
         self.tiles = tset.get("tiles")
         self.tilewidth = tset.get("tilewidth")
 
-
     def __repr__(self):
         s = super().__repr__()
-        z = '{}'.format(self.image)
+        z = '\n' + '\n'.join(str(x) for x in self.tiles.values())
         return " - ".join((s, z))
+
 
 class ImageSet(_Tiled):
-    def __init__(self, tset):
-         super().__init__()
-         self.columns = tset.get("columns")
-         self.firstgid = tset.get("firstgid")
-         self.image = tset.get("image")
-         self.imageheight = tset.get("imageheight")
-         self.imagewidth = tset.get("imagewidth")
-         self.margin = tset.get("margin")
-         self.name = tset.get("name")
+    """ набор тайлов в одном изображении"""
+    def __init__(self, tset: dict, **kwargs):
+        super().__init__()
+        self.sets_dir = kwargs['sets_dir']
+        self.columns = tset.get("columns")
+        self.firstgid = tset.get("firstgid")
+        self._image = tset.get("image")
+        self.imageheight = tset.get("imageheight")
+        self.imagewidth = tset.get("imagewidth")
+        self.margin = tset.get("margin")
+        self.name = tset.get("name")
 
-         self.tilecount = tset.get("tilecount")
-         self.tileheight = tset.get("tileheight")
-         self.tileoffset = tset.get("tileoffset")
-         self.tilewidth = tset.get("tilewidth")
+        self.tilecount = tset.get("tilecount")
+        self.tileheight = tset.get("tileheight")
+        self.tileoffset = tset.get("tileoffset")
+        self.tilewidth = tset.get("tilewidth")
+
+    @property
+    def image(self):
+        return os.path.join(self._image)
 
     def __repr__(self):
         s = super().__repr__()
         z = '{}'.format(self.image)
         return " - ".join((s, z))
-
 
 
 class TileSets:
     type_sets = dict(image=ImageSet, tile=TileSet)
-    def __init__(self, sets: list):
+
+    def __init__(self, sets: list, **kwargs):
+        """
+
+        :param sets: список словарей tilesets
+        :param kwargs: set_dir < str; путь к каталогу с сетами
+        """
+        self.set_dir = kwargs.get('sets_dir')
         self.sets = []
         self.create_sets(sets)
 
     def create_sets(self, sets):
-        for s in sets:
-            self.sets.append(self.type_sets.get(s['properties']['class'])(s))
-
+        for tset in sets:
+            try:
+                tset_properties = tset['properties']
+            except KeyError:
+                raise TsetError(tset['name'], err_message_properties)
+            try:
+                cls_name = tset_properties['class']
+            except KeyError:
+                raise TsetError(tset['name'], err_message_options,
+                                'class')
+            if not cls_name in self.type_sets.keys():
+                raise TsetError(tset['name'], err_message_valid_type,
+                                'class', tuple(self.type_sets.keys()))
+            self.sets.append(
+                # создаём объекты тайлсетов
+                self.type_sets[cls_name](tset,
+                                         sets_dir=self.set_dir))
 
     def __repr__(self):
-        # return str(self.sets)
-        return "\n".join([str(x) for x in self.sets])
-
-
-
-
+        return "\n----------\n".join([str(x) for x in self.sets])
 
 
 class AbcTiled(_Tiled):
@@ -130,10 +179,9 @@ class AbcTiled(_Tiled):
             return json.load(f)
 
 
-
-
 if __name__ == '__main__':
     from pumpkin2 import paths
+
     path_map = paths.get_map('level_1')
     maps = AbcTiled.load_map(path_map)
 

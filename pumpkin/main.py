@@ -26,7 +26,7 @@ def run_game():
     # level.create_map()
 
     #---------- Levels ----------------------------------------------
-    all_levels = mapcreator.Levels(screen, paths.maps, paths.tilesets, paths.resources, cfg)
+    all_levels = mapcreator.Levels(screen, paths.maps, paths.tilesets_dir, paths.resources, cfg)
 
 
     all_levels.create_levels(stats.level)
