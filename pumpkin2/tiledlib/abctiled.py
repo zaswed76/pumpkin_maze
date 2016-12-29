@@ -42,6 +42,7 @@ class _Tiled:
 
 class TileSet(_Tiled):
     ''' коллекция изображений '''
+
     def __init__(self, tset: dict, **kwargs):
         super().__init__()
         self.sets_dir = kwargs['sets_dir']
@@ -66,6 +67,7 @@ class TileSet(_Tiled):
 
 class ImageSet(_Tiled):
     """ набор тайлов в одном изображении"""
+
     def __init__(self, tset: dict, **kwargs):
         super().__init__()
         self.sets_dir = kwargs['sets_dir']
@@ -84,7 +86,7 @@ class ImageSet(_Tiled):
 
     @property
     def image(self):
-        return os.path.join(self._image)
+        return os.path.join(self.sets_dir, os.path.basename(self._image))
 
     def __repr__(self):
         s = super().__repr__()
@@ -101,7 +103,7 @@ class TileSets:
         :param sets: список словарей tilesets
         :param kwargs: set_dir < str; путь к каталогу с сетами
         """
-        self.set_dir = kwargs.get('sets_dir')
+        self.set_dir = kwargs['sets_dir']
         self.sets = []
         self.create_sets(sets)
 
@@ -133,7 +135,7 @@ class AbcTiled(_Tiled):
     обёртка над словарём предсставляющем карту Tiled Map Editor
     """
 
-    def __init__(self, map_dict: dict):
+    def __init__(self, map_dict: dict, sets_dir):
         # all layers
         """
 
@@ -141,13 +143,15 @@ class AbcTiled(_Tiled):
         """
 
         super().__init__()
+        self.sets_dir = sets_dir
         self.layers = map_dict.get("layers")
         # Stores the next available ID for new objects.
         self.nextobjectid = map_dict.get("nextobjectid")
         self.orientation = map_dict.get("orientation")
         self.renderorder = map_dict.get("renderorder")
         self.tileheight = map_dict.get("tileheight")
-        self.tilesets = TileSets(map_dict.get("tilesets"))
+        self.tilesets = TileSets(map_dict.get("tilesets", []),
+                                 sets_dir=self.sets_dir)
         self.tilewidth = map_dict.get("tilewidth")
         self.tilewidth = map_dict.get("tilewidth")
         self.version = map_dict.get("version")
