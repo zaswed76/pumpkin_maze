@@ -148,7 +148,7 @@ if __name__ == '__main__':
     screen = pygame.display.set_mode(
         (1, 1))
     pth_map = os.path.join(paths.maps, '1.json')
-    tiled = TiledParser(pth_map, paths.tilesets)
+    tiled = TiledParser(pth_map, paths.tilesets_dir)
     # tiled.print_dict()
     print(tiled.layers.objects.print())
     # print(tiled.sets.get_set())

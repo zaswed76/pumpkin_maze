@@ -1,7 +1,8 @@
-{ "height":4,
+{ "backgroundcolor":"#ffff7f",
+ "height":4,
  "layers":[
         {
-         "data":[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 17, 0],
+         "data":[1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
          "height":4,
          "name":"lay1",
          "opacity":1,
@@ -28,19 +29,6 @@
          "tilecount":16,
          "tileheight":32,
          "tilewidth":32
-        }, 
-        {
-         "columns":2,
-         "firstgid":17,
-         "image":"..\/resources\/sets\/128-64.png",
-         "imageheight":128,
-         "imagewidth":128,
-         "margin":0,
-         "name":"128-64",
-         "spacing":0,
-         "tilecount":4,
-         "tileheight":64,
-         "tilewidth":64
         }],
  "tilewidth":32,
  "version":1,

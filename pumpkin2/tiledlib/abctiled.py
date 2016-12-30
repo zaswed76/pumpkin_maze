@@ -84,9 +84,15 @@ class ImageSet(_Tiled):
         self.tileoffset = tset.get("tileoffset")
         self.tilewidth = tset.get("tilewidth")
 
+
     @property
     def image(self):
-        return os.path.join(self.sets_dir, os.path.basename(self._image))
+        paths = os.path.join(self.sets_dir,
+                             os.path.basename(self._image))
+        if not os.path.isfile(paths):
+            raise Exception(FileNotFoundError)
+        else: return paths
+
 
     def __repr__(self):
         s = super().__repr__()

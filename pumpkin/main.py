@@ -2,7 +2,7 @@ import os
 from collections import OrderedDict
 import pygame
 import gamestats
-import paths
+from pumpkin import paths
 from controller import Controller
 
 from libs import game_groups, player, mapcreator

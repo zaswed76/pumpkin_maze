@@ -68,16 +68,15 @@ class SubSprite:
                    self.h_count, self.width, self.height)
 
 if __name__ == '__main__':
+    import sys
     pygame.init()
     screen = pygame.display.set_mode(
         (500, 500))
-    sets = os.path.join(paths.tilesets, '128-32.png')
-    sets2 = os.path.join(paths.tilesets, '128-64.png')
+    sets = os.path.join(paths.tilesets_dir, 'set2_rpg.png')
+    sets2 = os.path.join(paths.tilesets_dir, '128-64.png')
 
-    sub = SubSprite(sets, 32, 32)
-    sub2 = SubSprite(sets, 64, 64)
+    sub = SubSprite(sets, 1, 1)
     s = sub.get_sprites()
-    s2 = sub2.get_sprites()
-    lst = Sprites(s, s2)
 
-    print(lst[1].get_size())
+    print(sys.getsizeof(s)/1024**2)
+    print(len(s))
