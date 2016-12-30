@@ -23,7 +23,7 @@ if __name__ == '__main__':
     from pumpkin2 import paths
     path_map = paths.get_map('level_1')
     maps = Tiled.load_map(path_map)
-    sets_dir = paths.tilesets_dir
+    sets_dir = paths.exsets
     tiled_map = Tiled(maps, sets_dir)
     print(tiled_map.tilesets)
 

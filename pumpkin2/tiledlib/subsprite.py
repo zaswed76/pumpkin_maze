@@ -1,20 +1,22 @@
 import os
 
 import pygame
-from pumpkin import paths
 
 
-class Sprites:
+
+class Sprites(list):
     def __init__(self, *lst):
+        super().__init__()
         self.lst = []
         for i in lst:
             self.lst.extend(i)
 
     def __getitem__(self, key):
-        if key != 0:
+        if isinstance(key, slice):
             return self.lst[key-1]
         else:
-            raise IndexError('min index = 1')
+            return self.lst[key-1]
+
 
 
 
@@ -44,12 +46,12 @@ class SubSprite:
         if count is None:
             f = self.w_count * self.h_count
         else: f = s + count + 1
-        lst = []
+        lst = Sprites()
         for x in range(s, f):
             print(x)
             lst.append(self.get_sprite(x))
         return lst
-        # return [self.get_sprite(x) for x in range(s, f)]
+
 
     def get_sprites_back(self, n=None):
         if n is None:
@@ -74,10 +76,11 @@ class SubSprite:
 
 if __name__ == '__main__':
     import sys
+    from pumpkin2 import paths
     pygame.init()
     screen = pygame.display.set_mode(
         (500, 500))
-    sets = os.path.join(paths.tilesets_dir, 'set2_rpg.png')
+    sets = os.path.join(paths.exsets, 'set_4x3x32_transparent.png')
     sub = SubSprite(sets, 32, 32)
     s = sub.get_sprites()
 
