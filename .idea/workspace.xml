@@ -2,10 +2,17 @@
 <project version="4">
   <component name="BookmarkManager">
     <bookmark url="file://$PROJECT_DIR$/pumpkin/libs/mapcreator.py" line="20" />
+    <bookmark url="file://$PROJECT_DIR$/pumpkin2/tiledlib/tiled.py" line="9" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b2c168a0-6f50-4917-b52f-d8d0429866de" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pumpkin2/tiledlib/tiled_to_spites.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pumpkin2/exemple1.py" afterPath="$PROJECT_DIR$/pumpkin2/exemple1.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pumpkin2/exemples/sl.py" afterPath="$PROJECT_DIR$/pumpkin2/exemples/sl.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pumpkin2/exemples/tiled_to_spites.py" afterPath="$PROJECT_DIR$/pumpkin2/exemples/tiled_to_spites.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pumpkin2/tiledlib/abctiled.py" afterPath="$PROJECT_DIR$/pumpkin2/tiledlib/abctiled.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pumpkin2/tiledlib/subsprite.py" afterPath="$PROJECT_DIR$/pumpkin2/tiledlib/subsprite.py" />
     </list>
     <ignored path="pumpkin_maze.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -25,11 +32,11 @@
     <SUITE FILE_PATH="coverage/pumpkin_maze$zerg.coverage" NAME="zerg Coverage Results" MODIFIED="1483035013056" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pumpkin/exemple" />
     <SUITE FILE_PATH="coverage/pumpkin_maze$exemple1.coverage" NAME="exemple1 Coverage Results" MODIFIED="1483107620196" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pumpkin2/tiledlib" />
     <SUITE FILE_PATH="coverage/pumpkin_maze$main.coverage" NAME="main Coverage Results" MODIFIED="1483107361277" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pumpkin" />
-    <SUITE FILE_PATH="coverage/pumpkin_maze$exemple1__1_.coverage" NAME="exemple1 (1) Coverage Results" MODIFIED="1483109245190" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pumpkin2" />
+    <SUITE FILE_PATH="coverage/pumpkin_maze$exemple1__1_.coverage" NAME="exemple1 (1) Coverage Results" MODIFIED="1483133204110" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pumpkin2" />
     <SUITE FILE_PATH="coverage/pumpkin_maze$level_map.coverage" NAME="level_map Coverage Results" MODIFIED="1479819619770" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pumpkin/libs" />
     <SUITE FILE_PATH="coverage/pumpkin_maze$tiled_parser.coverage" NAME="tiled_parser Coverage Results" MODIFIED="1483109809811" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pumpkin/exemple" />
-    <SUITE FILE_PATH="coverage/pumpkin_maze$sl.coverage" NAME="sl Coverage Results" MODIFIED="1483113529728" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pumpkin2/exemples" />
-    <SUITE FILE_PATH="coverage/pumpkin_maze$tiled_to_spites.coverage" NAME="tiled_to_spites Coverage Results" MODIFIED="1483114009951" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pumpkin2/exemples" />
+    <SUITE FILE_PATH="coverage/pumpkin_maze$sl.coverage" NAME="sl Coverage Results" MODIFIED="1483133163956" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pumpkin2/exemples" />
+    <SUITE FILE_PATH="coverage/pumpkin_maze$tiled_to_spites.coverage" NAME="tiled_to_spites Coverage Results" MODIFIED="1483126735201" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pumpkin2/exemples" />
     <SUITE FILE_PATH="coverage/pumpkin_maze$color.coverage" NAME="color Coverage Results" MODIFIED="1480362315483" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pumpkin/libs" />
     <SUITE FILE_PATH="coverage/pumpkin_maze$tiled.coverage" NAME="tiled Coverage Results" MODIFIED="1483105592215" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pumpkin2/tiledlib" />
     <SUITE FILE_PATH="coverage/pumpkin_maze$figure.coverage" NAME="figure Coverage Results" MODIFIED="1482616736572" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/exemples" />
@@ -47,13 +54,27 @@
       <file leaf-file-name="tiled_to_spites.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pumpkin2/exemples/tiled_to_spites.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="234">
-              <caret line="48" column="31" selection-start-line="48" selection-start-column="31" selection-end-line="48" selection-end-column="31" />
+            <state relative-caret-position="1298">
+              <caret line="71" column="0" selection-start-line="71" selection-start-column="0" selection-end-line="73" selection-end-column="14" />
               <folding>
                 <element signature="e#26#52#0" expanded="true" />
-                <element signature="e#643#693#0" expanded="true" />
-                <element signature="e#735#940#0" expanded="true" />
-                <element signature="e#1259#1283#0" expanded="true" />
+                <element signature="e#742#792#0" expanded="true" />
+                <element signature="e#834#1039#0" expanded="true" />
+                <element signature="e#1080#1329#0" expanded="true" />
+                <element signature="e#1363#1387#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="tiled.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pumpkin2/tiledlib/tiled.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="88">
+              <caret line="4" column="25" selection-start-line="4" selection-start-column="25" selection-end-line="4" selection-end-column="25" />
+              <folding>
+                <element signature="e#78#218#1" expanded="true" />
+                <element signature="e#292#517#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -72,12 +93,9 @@
       <file leaf-file-name="sl.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pumpkin2/exemples/sl.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="168">
-              <caret line="11" column="8" selection-start-line="11" selection-start-column="8" selection-end-line="11" selection-end-column="34" />
-              <folding>
-                <element signature="e#80#154#0" expanded="true" />
-                <element signature="e#362#382#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="66">
+              <caret line="5" column="18" selection-start-line="5" selection-start-column="18" selection-end-line="5" selection-end-column="18" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -85,8 +103,8 @@
       <file leaf-file-name="map.json" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pumpkin2/maps/level_1/map.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="440">
-              <caret line="59" column="11" selection-start-line="17" selection-start-column="1" selection-end-line="59" selection-end-column="11" />
+            <state relative-caret-position="44">
+              <caret line="17" column="2" selection-start-line="17" selection-start-column="2" selection-end-line="17" selection-end-column="10" />
               <folding />
             </state>
           </provider>
@@ -95,44 +113,72 @@
       <file leaf-file-name="abctiled.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pumpkin2/tiledlib/abctiled.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="290">
-              <caret line="115" column="32" selection-start-line="115" selection-start-column="32" selection-end-line="115" selection-end-column="32" />
+            <state relative-caret-position="395">
+              <caret line="169" column="46" selection-start-line="169" selection-start-column="46" selection-end-line="169" selection-end-column="46" />
               <folding>
-                <element signature="e#3136#3909#0" expanded="true" />
-                <element signature="e#5560#5645#1" expanded="false" />
+                <element signature="e#2882#3103#0" expanded="true" />
+                <element signature="e#3146#3919#0" expanded="true" />
+                <element signature="e#3964#3986#0" expanded="true" />
+                <element signature="e#4019#4040#0" expanded="true" />
+                <element signature="e#4074#4131#0" expanded="true" />
+                <element signature="e#4162#4237#1" expanded="true" />
+                <element signature="e#5327#5645#0" expanded="true" />
+                <element signature="e#5713#5868#0" expanded="true" />
+                <element signature="e#5713#5798#1" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="subsprite.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="subsprite.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pumpkin2/tiledlib/subsprite.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-47">
-              <caret line="23" column="8" selection-start-line="23" selection-start-column="8" selection-end-line="23" selection-end-column="8" />
+            <state relative-caret-position="325">
+              <caret line="49" column="29" selection-start-line="49" selection-start-column="29" selection-end-line="49" selection-end-column="29" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
                 <element signature="e#87#180#0" expanded="true" />
                 <element signature="e#222#332#0" expanded="true" />
                 <element signature="e#408#718#0" expanded="true" />
                 <element signature="e#928#1062#0" expanded="true" />
-                <element signature="e#1116#1346#0" expanded="true" />
-                <element signature="e#1397#1570#0" expanded="true" />
-                <element signature="e#1617#1643#0" expanded="true" />
+                <element signature="e#1369#1542#0" expanded="true" />
+                <element signature="e#1589#1615#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="exemple1.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="exemple1.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pumpkin2/exemple1.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="220">
-              <caret line="19" column="25" selection-start-line="19" selection-start-column="25" selection-end-line="19" selection-end-column="25" />
+            <state relative-caret-position="440">
+              <caret line="29" column="66" selection-start-line="29" selection-start-column="66" selection-end-line="29" selection-end-column="66" />
               <folding>
                 <element signature="e#24#34#0" expanded="true" />
+                <element signature="e#385#580#0" expanded="true" />
               </folding>
             </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="tiled_to_spites.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pumpkin2/tiledlib/tiled_to_spites.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="325">
+              <caret line="43" column="41" selection-start-line="43" selection-start-column="41" selection-end-line="43" selection-end-column="41" />
+              <folding>
+                <element signature="e#26#52#0" expanded="true" />
+                <element signature="e#742#792#0" expanded="true" />
+                <element signature="e#1168#1417#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="set_4x3x32_transparent.png" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pumpkin2/resources/exsets/set_4x3x32_transparent.png">
+          <provider selected="true" editor-type-id="images">
+            <state />
           </provider>
         </entry>
       </file>
@@ -164,7 +210,6 @@
         <option value="$PROJECT_DIR$/pumpkin/main.py" />
         <option value="$PROJECT_DIR$/pumpkin/paths.py" />
         <option value="$PROJECT_DIR$/pumpkin/maps/1.json" />
-        <option value="$PROJECT_DIR$/pumpkin2/tiledlib/abctiled.py" />
         <option value="$PROJECT_DIR$/pumpkin2/maps/level_1/map.json" />
         <option value="$PROJECT_DIR$/pumpkin2/tiledlib/tiled.py" />
         <option value="$PROJECT_DIR$/pumpkin/exemple/zerg.py" />
@@ -172,11 +217,13 @@
         <option value="$PROJECT_DIR$/pumpkin2/tiledlib/exemple1.py" />
         <option value="$PROJECT_DIR$/pumpkin2/paths.py" />
         <option value="$PROJECT_DIR$/pumpkin2/gamelib/sprites.py" />
-        <option value="$PROJECT_DIR$/pumpkin2/exemple1.py" />
         <option value="$PROJECT_DIR$/pumpkin/exemple/tiled_parser.py" />
-        <option value="$PROJECT_DIR$/pumpkin2/exemples/sl.py" />
-        <option value="$PROJECT_DIR$/pumpkin2/tiledlib/subsprite.py" />
+        <option value="$PROJECT_DIR$/pumpkin2/tiledlib/abctiled.py" />
         <option value="$PROJECT_DIR$/pumpkin2/exemples/tiled_to_spites.py" />
+        <option value="$PROJECT_DIR$/pumpkin2/tiledlib/subsprite.py" />
+        <option value="$PROJECT_DIR$/pumpkin2/exemple1.py" />
+        <option value="$PROJECT_DIR$/pumpkin2/exemples/sl.py" />
+        <option value="$PROJECT_DIR$/pumpkin2/tiledlib/tiled_to_spites.py" />
       </list>
     </option>
   </component>
@@ -188,8 +235,8 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
-    <option name="width" value="1932" />
-    <option name="height" value="1092" />
+    <option name="width" value="1936" />
+    <option name="height" value="1096" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -216,9 +263,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="NBKnowledgePane" />
       <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -265,12 +311,93 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="tiledlib" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pumpkin_maze" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pumpkin_maze" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pumpkin2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pumpkin_maze" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pumpkin_maze" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pumpkin2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="exsets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pumpkin_maze" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pumpkin_maze" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pumpkin2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="maps" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="level_1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pumpkin_maze" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pumpkin_maze" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pumpkin2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="exemples" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+      <pane id="NBKnowledgePane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -280,21 +407,21 @@
     <property name="settings.editor.splitter.proportion" value="0.2" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\0SYNC\python_projects\games\Games\pumpkin_maze\pumpkin2\gamelib" />
-      <recent name="D:\0SYNC\python_projects\games\Games\pumpkin_maze\pumpkin2\tiledlib" />
-      <recent name="E:\SERG\programming\games\Game\pumpkin_maze\pumpkin\exemple" />
-      <recent name="D:\save\serg\projects\pumpkin_maze\pumpkin2\maps" />
-      <recent name="E:\SERG\programming\games\Game\pumpkin_maze\exemples" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\0SYNC\python_projects\games\Games\pumpkin_maze\pumpkin2" />
       <recent name="D:\save\serg\projects\pumpkin_maze\pumpkin2\resources" />
       <recent name="D:\save\serg\projects\pumpkin_maze\pumpkin2\maps\level_1" />
       <recent name="E:\SERG\programming\games\Game\pumpkin_maze\pumpkin2" />
     </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\0SYNC\python_projects\games\Games\pumpkin_maze\pumpkin2\tiledlib" />
+      <recent name="D:\0SYNC\python_projects\games\Games\pumpkin_maze\pumpkin2\gamelib" />
+      <recent name="E:\SERG\programming\games\Game\pumpkin_maze\pumpkin\exemple" />
+      <recent name="D:\save\serg\projects\pumpkin_maze\pumpkin2\maps" />
+      <recent name="E:\SERG\programming\games\Game\pumpkin_maze\exemples" />
+    </key>
   </component>
-  <component name="RunManager" selected="Python.tiled_to_spites">
+  <component name="RunManager" selected="Python.exemple1 (1)">
     <configuration default="false" name="exemple1" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -631,10 +758,10 @@
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.tiled_to_spites" />
+        <item index="0" class="java.lang.String" itemvalue="Python.exemple1 (1)" />
         <item index="1" class="java.lang.String" itemvalue="Python.sl" />
-        <item index="2" class="java.lang.String" itemvalue="Python.tiled_parser" />
-        <item index="3" class="java.lang.String" itemvalue="Python.exemple1 (1)" />
+        <item index="2" class="java.lang.String" itemvalue="Python.tiled_to_spites" />
+        <item index="3" class="java.lang.String" itemvalue="Python.tiled_parser" />
         <item index="4" class="java.lang.String" itemvalue="Python.exemple1" />
       </list>
     </recent_temporary>
@@ -891,28 +1018,35 @@
       <option name="project" value="LOCAL" />
       <updated>1483114100607</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="tiledlib/abctiled">
+      <created>1483114615149</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1483114615149</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1932" height="1092" extended-state="0" />
+    <frame x="-8" y="-8" width="1936" height="1096" extended-state="6" />
     <editor active="false" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="TypeScript Compiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39273927" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="TypeScript Compiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.076754384" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="true" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32893288" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3069307" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.46644664" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30592105" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.40197152" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32343236" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30096567" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30406854" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Copy/Paste" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -948,13 +1082,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/pumpkin/maps/6.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1122">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pumpkin/libs/level_map.py" />
     <entry file="file://$PROJECT_DIR$/pumpkin/gamestats.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -1080,28 +1207,17 @@
       </provider>
     </entry>
     <entry file="file://$USER_HOME$/.PyCharm2016.1/system/python_stubs/-2110857978/builtins.py" />
-    <entry file="file://$PROJECT_DIR$/pumpkin2/tiledlib/tiled.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="25" column="27" selection-start-line="25" selection-start-column="27" selection-end-line="25" selection-end-column="27" />
-          <folding>
-            <element signature="e#78#218#1" expanded="true" />
-            <element signature="e#292#517#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pumpkin/libs/subsprite.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="137">
           <caret line="47" column="29" selection-start-line="47" selection-start-column="29" selection-end-line="47" selection-end-column="29" />
           <folding>
-            <element signature="e#0#9#0" expanded="true" />
-            <element signature="e#106#172#0" expanded="true" />
-            <element signature="e#214#321#0" expanded="true" />
-            <element signature="e#396#706#0" expanded="true" />
-            <element signature="e#769#877#0" expanded="true" />
-            <element signature="e#916#1050#0" expanded="true" />
+            <element signature="e#0#9#0" expanded="false" />
+            <element signature="e#106#172#0" expanded="false" />
+            <element signature="e#214#321#0" expanded="false" />
+            <element signature="e#396#706#0" expanded="false" />
+            <element signature="e#769#877#0" expanded="false" />
+            <element signature="e#916#1050#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1110,7 +1226,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="88">
           <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1118,9 +1233,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="264">
           <caret line="45" column="20" selection-start-line="45" selection-start-column="20" selection-end-line="45" selection-end-column="20" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1129,16 +1241,11 @@
         <state relative-caret-position="110">
           <caret line="10" column="51" selection-start-line="10" selection-start-column="51" selection-end-line="10" selection-end-column="51" />
           <folding>
-            <element signature="e#225#583#0" expanded="true" />
-            <element signature="e#621#655#0" expanded="true" />
-            <element signature="e#2128#2841#0" expanded="true" />
+            <element signature="e#225#583#0" expanded="false" />
+            <element signature="e#621#655#0" expanded="false" />
+            <element signature="e#2128#2841#0" expanded="false" />
           </folding>
         </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pumpkin2/resources/exsets/set_4x3x32_transparent.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pumpkin2/gamelib/sprites.py">
@@ -1146,9 +1253,9 @@
         <state relative-caret-position="463">
           <caret line="25" column="8" selection-start-line="25" selection-start-column="8" selection-end-line="25" selection-end-column="42" />
           <folding>
-            <element signature="e#0#13#0" expanded="true" />
-            <element signature="e#225#585#0" expanded="true" />
-            <element signature="e#2130#2843#0" expanded="true" />
+            <element signature="e#0#13#0" expanded="false" />
+            <element signature="e#225#585#0" expanded="false" />
+            <element signature="e#2130#2843#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1162,7 +1269,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="198">
           <caret line="9" column="18" selection-start-line="9" selection-start-column="18" selection-end-line="9" selection-end-column="18" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1171,8 +1277,8 @@
         <state relative-caret-position="418">
           <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
           <folding>
-            <element signature="e#373#405#0" expanded="true" />
-            <element signature="e#432#487#0" expanded="true" />
+            <element signature="e#373#405#0" expanded="false" />
+            <element signature="e#432#487#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1182,10 +1288,10 @@
         <state relative-caret-position="177">
           <caret line="43" column="42" selection-start-line="43" selection-start-column="42" selection-end-line="43" selection-end-column="42" />
           <folding>
-            <element signature="e#3514#4716#0" expanded="true" />
-            <element signature="e#5787#5878#0" expanded="true" />
-            <element signature="e#7177#7537#0" expanded="true" />
-            <element signature="e#7579#7768#0" expanded="true" />
+            <element signature="e#3514#4716#0" expanded="false" />
+            <element signature="e#5787#5878#0" expanded="false" />
+            <element signature="e#7177#7537#0" expanded="false" />
+            <element signature="e#7579#7768#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1195,8 +1301,8 @@
         <state relative-caret-position="243">
           <caret line="71" column="27" selection-start-line="71" selection-start-column="27" selection-end-line="71" selection-end-column="27" />
           <folding>
-            <element signature="e#1925#1951#0" expanded="true" />
-            <element signature="e#1989#2074#0" expanded="true" />
+            <element signature="e#1925#1951#0" expanded="false" />
+            <element signature="e#1989#2074#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1205,26 +1311,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="44">
           <caret line="2" column="5" selection-start-line="2" selection-start-column="5" selection-end-line="2" selection-end-column="14" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pumpkin2/tiledlib/abctiled.py">
+    <entry file="file://$USER_HOME$/.PyCharm2016.1/system/python_stubs/883948838/pygame/surface.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="290">
-          <caret line="115" column="32" selection-start-line="115" selection-start-column="32" selection-end-line="115" selection-end-column="32" />
-          <folding>
-            <element signature="e#3136#3909#0" expanded="true" />
-            <element signature="e#5560#5645#1" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pumpkin2/maps/level_1/map.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="440">
-          <caret line="59" column="11" selection-start-line="17" selection-start-column="1" selection-end-line="59" selection-end-column="11" />
-          <folding />
+        <state relative-caret-position="507">
+          <caret line="335" column="8" selection-start-line="335" selection-start-column="8" selection-end-line="335" selection-end-column="8" />
         </state>
       </provider>
     </entry>
@@ -1236,64 +1329,105 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pumpkin2/exemples/sl.py">
+    <entry file="file://$PROJECT_DIR$/pumpkin2/tiledlib/tiled.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="11" column="8" selection-start-line="11" selection-start-column="8" selection-end-line="11" selection-end-column="34" />
+        <state relative-caret-position="88">
+          <caret line="4" column="25" selection-start-line="4" selection-start-column="25" selection-end-line="4" selection-end-column="25" />
           <folding>
-            <element signature="e#80#154#0" expanded="true" />
-            <element signature="e#362#382#0" expanded="true" />
+            <element signature="e#78#218#1" expanded="true" />
+            <element signature="e#292#517#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pumpkin2/exemple1.py">
+    <entry file="file://$PROJECT_DIR$/pumpkin2/maps/level_1/map.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="19" column="25" selection-start-line="19" selection-start-column="25" selection-end-line="19" selection-end-column="25" />
-          <folding>
-            <element signature="e#24#34#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="44">
+          <caret line="17" column="2" selection-start-line="17" selection-start-column="2" selection-end-line="17" selection-end-column="10" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/.PyCharm2016.1/system/python_stubs/883948838/pygame/surface.py">
+    <entry file="file://$PROJECT_DIR$/pumpkin2/tiledlib/abctiled.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="507">
-          <caret line="335" column="8" selection-start-line="335" selection-start-column="8" selection-end-line="335" selection-end-column="8" />
+        <state relative-caret-position="395">
+          <caret line="169" column="46" selection-start-line="169" selection-start-column="46" selection-end-line="169" selection-end-column="46" />
           <folding>
-            <element signature="e#411#592#1" expanded="true" />
-            <element signature="e#10164#10294#0" expanded="true" />
+            <element signature="e#2882#3103#0" expanded="true" />
+            <element signature="e#3146#3919#0" expanded="true" />
+            <element signature="e#3964#3986#0" expanded="true" />
+            <element signature="e#4019#4040#0" expanded="true" />
+            <element signature="e#4074#4131#0" expanded="true" />
+            <element signature="e#4162#4237#1" expanded="true" />
+            <element signature="e#5327#5645#0" expanded="true" />
+            <element signature="e#5713#5868#0" expanded="true" />
+            <element signature="e#5713#5798#1" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pumpkin2/exemples/tiled_to_spites.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="48" column="31" selection-start-line="48" selection-start-column="31" selection-end-line="48" selection-end-column="31" />
+        <state relative-caret-position="1298">
+          <caret line="71" column="0" selection-start-line="71" selection-start-column="0" selection-end-line="73" selection-end-column="14" />
           <folding>
             <element signature="e#26#52#0" expanded="true" />
-            <element signature="e#643#693#0" expanded="true" />
-            <element signature="e#735#940#0" expanded="true" />
-            <element signature="e#1259#1283#0" expanded="true" />
+            <element signature="e#742#792#0" expanded="true" />
+            <element signature="e#834#1039#0" expanded="true" />
+            <element signature="e#1080#1329#0" expanded="true" />
+            <element signature="e#1363#1387#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/pumpkin2/resources/exsets/set_4x3x32_transparent.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/pumpkin2/tiledlib/subsprite.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-47">
-          <caret line="23" column="8" selection-start-line="23" selection-start-column="8" selection-end-line="23" selection-end-column="8" />
+        <state relative-caret-position="325">
+          <caret line="49" column="29" selection-start-line="49" selection-start-column="29" selection-end-line="49" selection-end-column="29" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
             <element signature="e#87#180#0" expanded="true" />
             <element signature="e#222#332#0" expanded="true" />
             <element signature="e#408#718#0" expanded="true" />
             <element signature="e#928#1062#0" expanded="true" />
-            <element signature="e#1116#1346#0" expanded="true" />
-            <element signature="e#1397#1570#0" expanded="true" />
-            <element signature="e#1617#1643#0" expanded="true" />
+            <element signature="e#1369#1542#0" expanded="true" />
+            <element signature="e#1589#1615#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pumpkin2/exemples/sl.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="66">
+          <caret line="5" column="18" selection-start-line="5" selection-start-column="18" selection-end-line="5" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pumpkin2/tiledlib/tiled_to_spites.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="325">
+          <caret line="43" column="41" selection-start-line="43" selection-start-column="41" selection-end-line="43" selection-end-column="41" />
+          <folding>
+            <element signature="e#26#52#0" expanded="true" />
+            <element signature="e#742#792#0" expanded="true" />
+            <element signature="e#1168#1417#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pumpkin2/exemple1.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="440">
+          <caret line="29" column="66" selection-start-line="29" selection-start-column="66" selection-end-line="29" selection-end-column="66" />
+          <folding>
+            <element signature="e#24#34#0" expanded="true" />
+            <element signature="e#385#580#0" expanded="true" />
           </folding>
         </state>
       </provider>

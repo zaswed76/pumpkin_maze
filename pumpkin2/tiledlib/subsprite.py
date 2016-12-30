@@ -46,9 +46,8 @@ class SubSprite:
         if count is None:
             f = self.w_count * self.h_count
         else: f = s + count + 1
-        lst = Sprites()
+        lst = []
         for x in range(s, f):
-            print(x)
             lst.append(self.get_sprite(x))
         return lst
 

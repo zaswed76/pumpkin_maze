@@ -38,9 +38,16 @@ class TileSprite:
         """
         if isinstance(key, slice):
             # noinspection PyTypeChecker
+            assert key.start > 0, "!!!"
             return self.sprites[key.start - 1: key.stop - 1]
         else:
+            assert key > 0, 'здесь ошибка'
             return self.sprites[key-1]
+
+
+
+
+
 
 
     def create_sprites(self):

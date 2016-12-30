@@ -5,8 +5,19 @@ from pygame.sprite import Group
 from pumpkin2.gamelib import sprites
 from pumpkin2.tiledlib import subsprite
 from pumpkin2 import paths
+from pumpkin2 import paths
+from pumpkin2.tiledlib import subsprite, tiled
+from pumpkin2.tiledlib import tiled as tl
+from pumpkin2.tiledlib import tiled_to_spites
 
-
+def sprites_img(level, set_dir):
+    tmap = tl.Tiled.load_map(level)
+    tiled = tl.Tiled(tmap, set_dir)
+    tsets = tiled.tilesets
+    print(tsets)
+    sub = tiled_to_spites.TileSprite(tsets)
+    sub.create_sprites()
+    return sub
 
 def run_game():
     # Инициализирует игру и создает объект экрана.
@@ -14,10 +25,10 @@ def run_game():
     screen = pygame.display.set_mode((600, 600))
     pygame.display.set_caption("Name Game")
     # Запуск основного цикла игры.
-    sub = subsprite.SubSprite(paths.get_exsets('100x50x4.png'), 100, 50)
-    sprites_img = sub.get_sprites()
+
     group = Group()
-    image = sprites_img[3]
+    image = sprites_img(paths.get_map('level_1'), paths._exsets)[0]
+    print(image)
     img = sprites.GameObject(group, screen, image, 32, 32)
 
     while True:

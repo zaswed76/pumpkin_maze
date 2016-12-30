@@ -84,15 +84,14 @@ class ImageSet(_Tiled):
         self.tileoffset = tset.get("tileoffset")
         self.tilewidth = tset.get("tilewidth")
 
-
     @property
     def image(self):
         paths = os.path.join(self.sets_dir,
                              os.path.basename(self._image))
         if not os.path.isfile(paths):
             raise Exception(FileNotFoundError)
-        else: return paths
-
+        else:
+            return paths
 
     def __repr__(self):
         s = super().__repr__()
@@ -132,6 +131,14 @@ class TileSets:
                 self.type_sets[cls_name](tset,
                                          sets_dir=self.set_dir))
 
+
+
+    def __getitem__(self, item):
+        return self.sets[item]
+
+    def __len__(self):
+        return len(self.sets)
+
     def __repr__(self):
         return "\n----------\n".join([str(x) for x in self.sets])
 
@@ -156,8 +163,8 @@ class AbcTiled(_Tiled):
         self.orientation = map_dict.get("orientation")
         self.renderorder = map_dict.get("renderorder")
         self.tileheight = map_dict.get("tileheight")
-        self.tilesets = TileSets(map_dict.get("tilesets", []),
-                                 sets_dir=self.sets_dir)
+        # self.tilesets = TileSets(map_dict.get("tilesets", []),sets_dir=self.sets_dir)
+        self.tilesets = map_dict.get("tilesets")
         self.tilewidth = map_dict.get("tilewidth")
         self.tilewidth = map_dict.get("tilewidth")
         self.version = map_dict.get("version")
@@ -172,11 +179,15 @@ class AbcTiled(_Tiled):
   layers - {}
   user_properties - {}
   width - {} tiles
-  height - {} tiles'''.format(self.__class__.__name__,
-                              len(self.layers),
-                              self.properties,
-                              self.width,
-                              self.height)
+  height - {} tiles
+  count sets - {} sets
+  '''.format(self.__class__.__name__,
+             len(self.layers),
+             self.properties,
+             self.width,
+             self.height,
+             len(self.tilesets)
+             )
 
     @staticmethod
     def load_map(pth_map: str) -> dict:
