@@ -28,42 +28,12 @@ from pumpkin2.tiledlib import tiled as tl
 #          "tilewidth":64
 #         }]
 
-class TileSprite:
-    def __init__(self, tilesets):
-        self.tilesets = tilesets
-        self.sprites = []
 
-    def __getitem__(self, key):
-        """
-        """
-        if isinstance(key, slice):
-            # noinspection PyTypeChecker
-            assert key.start > 0, "!!!"
-            return self.sprites[key.start - 1: key.stop - 1]
-        else:
-            assert key > 0, 'здесь ошибка'
-            return self.sprites[key-1]
-
-
-
-
-
-
-
-    def create_sprites(self):
-        for tset in self.tilesets:
-            image = paths.get_exsets(tset['image'])
-            w = tset['tilewidth']
-            h = tset['tileheight']
-            sub = subsprite.SubSprite(image, w, h)
-            self.sprites.extend(sub.get_sprites())
-
-    def __repr__(self):
-        return str(self.sprites)
 
 
 if __name__ == '__main__':
     import pygame
+
     pygame.init()
     screen = pygame.display.set_mode(
         (500, 500))
@@ -71,7 +41,6 @@ if __name__ == '__main__':
     tmap = tl.Tiled.load_map(paths.get_map('level_1'))
 
     tiled = tl.Tiled(tmap, set_dir)
-
 
     for i in tiled.tilesets:
         print(i)

@@ -13,11 +13,7 @@ from pumpkin2.tiledlib import tiled_to_spites
 def sprites_img(level, set_dir):
     tmap = tl.Tiled.load_map(level)
     tiled = tl.Tiled(tmap, set_dir)
-    tsets = tiled.tilesets
-    print(tsets)
-    sub = tiled_to_spites.TileSprite(tsets)
-    sub.create_sprites()
-    return sub
+    return tiled.sub_sprites
 
 def run_game():
     # Инициализирует игру и создает объект экрана.
@@ -27,7 +23,7 @@ def run_game():
     # Запуск основного цикла игры.
 
     group = Group()
-    image = sprites_img(paths.get_map('level_1'), paths._exsets)[0]
+    image = sprites_img(paths.get_map('level_1'), paths._exsets)[15]
     print(image)
     img = sprites.GameObject(group, screen, image, 32, 32)
 
