@@ -16,14 +16,16 @@ def sprites_img(level, set_dir):
     return tiled.sub_sprites
 
 def run_game():
+    tmap = tl.Tiled.load_map(paths.get_map('level_1'))
+    tiled = tl.Tiled(tmap, paths._exsets)
     # Инициализирует игру и создает объект экрана.
     pygame.init()
-    screen = pygame.display.set_mode((600, 600))
+    screen = pygame.display.set_mode(tiled.size)
     pygame.display.set_caption("Name Game")
     # Запуск основного цикла игры.
 
     group = Group()
-    image = sprites_img(paths.get_map('level_1'), paths._exsets)[15]
+    image = tiled.sub_sprites[14]
     print(image)
     img = sprites.GameObject(group, screen, image, 32, 32)
 

@@ -4,21 +4,6 @@ import pygame
 
 
 
-class Sprites(list):
-    def __init__(self, *lst):
-        super().__init__()
-        self.lst = []
-        for i in lst:
-            self.lst.extend(i)
-
-    def __getitem__(self, key):
-        if isinstance(key, slice):
-            return self.lst[key-1]
-        else:
-            return self.lst[key-1]
-
-
-
 
 class SubSprite:
     def __init__(self, image, width, height):

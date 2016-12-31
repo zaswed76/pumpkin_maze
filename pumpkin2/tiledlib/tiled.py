@@ -3,15 +3,15 @@ from pumpkin2.tiledlib import abctiled
 from pumpkin2.tiledlib import subsprite
 
 class TileSprite:
-    def __init__(self, tilesets):
+    def __init__(self, tilesets: abctiled.TileSets):
         self.tilesets = tilesets
         self.sprites = []
 
     def create_sprites(self):
         for tset in self.tilesets:
-            image = tset['image']
-            w = tset['tilewidth']
-            h = tset['tileheight']
+            image = tset.image
+            w = tset.tilewidth
+            h = tset.tileheight
             sub = subsprite.SubSprite(image, w, h)
             self.sprites.extend(sub.get_sprites())
 
@@ -55,6 +55,12 @@ class Tiled(abctiled.AbcTiled):
         sub = TileSprite(self.tilesets)
         sub.create_sprites()
         return sub
+
+    @property
+    def size(self):
+        w = self.width * self.tilewidth
+        h = self.height * self.tileheight
+        return (w, h)
 
 
 if __name__ == '__main__':
