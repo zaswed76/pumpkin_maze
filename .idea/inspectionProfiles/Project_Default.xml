@@ -7,6 +7,8 @@
         <list>
           <option value="Levenshtein.*" />
           <option value="dict.*" />
+          <option value="object.*" />
+          <option value="pygame.image.*" />
         </list>
       </option>
     </inspection_tool>

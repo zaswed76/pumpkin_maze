@@ -11,11 +11,11 @@ __MAPS = 'maps'
 root = __path.dirname(__file__)
 resources = __path.join(root, __RESOURCES)
 tilesets_dir = __path.join(resources, __SETS)
-_exsets = __path.join(resources, __EXSETS)
+exsets = __path.join(resources, __EXSETS)
 maps = __path.join(root, __MAPS)
 
 def get_exsets(img):
-    return __path.join(_exsets, img)
+    return __path.join(exsets, img)
 
 
 def get_map(level):

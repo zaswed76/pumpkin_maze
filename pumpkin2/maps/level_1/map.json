@@ -17,34 +17,13 @@
  "tileheight":32,
  "tilesets":[
         {
-         "columns":4,
-         "firstgid":1,
-         "image":"..\/..\/resources\/exsets\/set_4x3x32_transparent.png",
-         "imageheight":96,
-         "imagewidth":128,
-         "margin":0,
-         "name":"set_4x3x32_transparent",
-         "properties":
-            {
-             "class":"image"
-            },
-         "propertytypes":
-            {
-             "class":"string"
-            },
-         "spacing":0,
-         "tilecount":12,
-         "tileheight":32,
-         "tilewidth":32
-        }, 
-        {
          "columns":2,
-         "firstgid":13,
-         "image":"..\/..\/resources\/exsets\/set_2x1x64transparent.png",
-         "imageheight":64,
-         "imagewidth":128,
+         "firstgid":1,
+         "image":"..\/..\/resources\/exsets\/100x50x4.png",
+         "imageheight":100,
+         "imagewidth":200,
          "margin":0,
-         "name":"set_2x1x64transparent",
+         "name":"100x50x4",
          "properties":
             {
              "class":"image"
@@ -54,9 +33,9 @@
              "class":"string"
             },
          "spacing":0,
-         "tilecount":2,
-         "tileheight":64,
-         "tilewidth":64
+         "tilecount":4,
+         "tileheight":50,
+         "tilewidth":100
         }],
  "tilewidth":32,
  "version":1,

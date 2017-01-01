@@ -156,6 +156,7 @@ class AbcTiled(_Tiled):
         """
 
         super().__init__()
+
         self.sets_dir = sets_dir
         self.layers = map_dict.get("layers")
         # Stores the next available ID for new objects.

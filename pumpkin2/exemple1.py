@@ -17,7 +17,7 @@ def sprites_img(level, set_dir):
 
 def run_game():
     tmap = tl.Tiled.load_map(paths.get_map('level_1'))
-    tiled = tl.Tiled(tmap, paths._exsets)
+    tiled = tl.Tiled(tmap, paths.exsets)
     # Инициализирует игру и создает объект экрана.
     pygame.init()
     screen = pygame.display.set_mode(tiled.size)

@@ -60,7 +60,7 @@ if __name__ == '__main__':
     pygame.init()
     screen = pygame.display.set_mode(
         (500, 500))
-    set_dir = paths._exsets
+    set_dir = paths.exsets
     tmap = tl.Tiled.load_map(paths.get_map('level_1'))
 
     tiled = tl.Tiled(tmap, set_dir)

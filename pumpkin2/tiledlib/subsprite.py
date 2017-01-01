@@ -13,7 +13,6 @@ class SubSprite:
         self.sprite = pygame.image.load(image).convert_alpha()
         self.sprite_rect = self.sprite.get_rect()
         self.w_count = self.sprite_rect.width // self.width
-
         self.h_count = self.sprite_rect.height // self.height
 
 
