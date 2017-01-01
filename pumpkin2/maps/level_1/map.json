@@ -19,6 +19,27 @@
         {
          "columns":2,
          "firstgid":1,
+         "image":"..\/..\/resources\/exsets\/set_2x1x64_white.png",
+         "imageheight":64,
+         "imagewidth":128,
+         "margin":0,
+         "name":"set_2x1x64_white",
+         "properties":
+            {
+             "class":"image"
+            },
+         "propertytypes":
+            {
+             "class":"string"
+            },
+         "spacing":0,
+         "tilecount":2,
+         "tileheight":64,
+         "tilewidth":64
+        }, 
+        {
+         "columns":2,
+         "firstgid":3,
          "image":"..\/..\/resources\/exsets\/100x50x4.png",
          "imageheight":100,
          "imagewidth":200,

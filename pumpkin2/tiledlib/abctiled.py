@@ -1,5 +1,6 @@
 import json
 import os
+from collections import namedtuple
 
 
 class TsetError(Exception):
@@ -109,10 +110,32 @@ class TileSets:
         :param kwargs: set_dir < str; путь к каталогу с сетами
         """
         self.set_dir = kwargs['sets_dir']
-        self.sets = []
-        self.create_sets(sets)
+        self._sets = []
+        self.__create_sets(sets)
 
-    def create_sets(self, sets):
+    @property
+    def sets(self):
+        """
+
+        :return: list < type: type_sets
+        """
+        return self._sets
+
+    @property
+    def count(self):
+        """
+
+        :return: list < namedtuple: елементов в каждом тайлсете
+        """
+        Count = namedtuple('Tilesets', ['name', 'length'])
+        count = []
+        for s in self._sets:
+            count.append(Count(s.name, s.tilecount))
+        return count
+
+
+
+    def __create_sets(self, sets):
         for tset in sets:
             try:
                 tset_properties = tset['properties']
