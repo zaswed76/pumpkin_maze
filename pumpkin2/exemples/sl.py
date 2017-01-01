@@ -1,20 +1,22 @@
 # -*- coding: utf-8 -*-
 
 
-from pumpkin2.tiledlib import *
 
-# простой пример
-from collections import namedtuple
 
-Point = namedtuple('Point', ['y'])
-p = Point(11, 22)     # создаём экземпляр с позиционными или именованными аргументами
-             # поля доступны и по именам
+tiles = {
+   "1":
+      {
+       "image":"..\/..\/resources\/exsets\/8246060_orig.jpg"
+      },
+   "2":
+      {
+       "image":"..\/..\/resources\/exsets\/100x50x4.png"
+      }
+  }
 
-                # метод __repr__ с форматом name=value
-print(p)
 
-import sys
-from PyQt5 import QtWidgets
-
-QtWidgets.QLabel
-
+st = sorted(tiles.items(), key=lambda item: item[0])
+res = []
+for t in st:
+    res.append(t[1]['image'])
+print(res)

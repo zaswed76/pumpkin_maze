@@ -78,8 +78,9 @@ class SubSprites:
         """
 
         self.__sprites = []
-        self.value = 0
+        self.__value = 0
 
+        # если тайлсет
         if 'tilesets' in kwargs:
             self.tilesets = kwargs['tilesets']
             assert isinstance(self.tilesets, _abctiled.TileSets), \
@@ -87,6 +88,7 @@ class SubSprites:
                     _abctiled.TileSets.__class__.__name__
                 )
             self.create_sets_sprites()
+        # если изображение
         elif 'image' in kwargs.keys():
             self.image = kwargs['image']
             assert isinstance(self.image,
@@ -103,28 +105,41 @@ class SubSprites:
             raise Exception('отсутствуют параметры')
 
     def create_sub_sprites(self):
+        """
+        на основе одного изображения
+        """
         self.sub = _SubSprite(image=self.image, width=self.width,
 
                               height=self.height)
         self.__sprites.extend(self.sub.get_sprites())
 
     def create_sets_sprites(self):
+        """
+        на основе тайлсетов из сгенерированой карты
+        """
         for tset in self.tilesets:
-            image = tset.image
-            w = tset.tilewidth
-            h = tset.tileheight
-            self.sub = _SubSprite(image=image, width=w, height=h)
-            self.__sprites.extend(self.sub.get_sprites())
+            # если тайлсет (вырезает)
+            if isinstance(tset, _abctiled.ImageSet):
+                image = tset.image
+                w = tset.tilewidth
+                h = tset.tileheight
+                self.sub = _SubSprite(image=image, width=w, height=h)
+                self.__sprites.extend(self.sub.get_sprites())
+            # коллекция изображений
+            elif isinstance(tset, _abctiled.TileSet):
+                for img in tset.images:
+                    self.__sprites.append(
+                        pygame.image.load(img).convert_alpha())
 
     def __iter__(self):  # Возвращает итератор в iter()
         return self
 
     def __next__(self):
-        if self.value == len(self.__sprites):
+        if self.__value == len(self.__sprites):
             raise StopIteration
 
-        z = self.__sprites[self.value]
-        self.value += 1
+        z = self.__sprites[self.__value]
+        self.__value += 1
         return z
 
     def __getitem__(self, key):
@@ -175,11 +190,19 @@ class TiledMap(_abctiled.AbcTiled):
 
     @property
     def sub_sprites(self):
+        """
+        последовательность спрайтов созданная на основе тайлсетов
+        :return: SubSprites < Surface
+        """
         sub = SubSprites(tilesets=self.tilesets)
         return sub
 
     @property
     def size(self):
+        """
+        размер карты
+        :return: tuple < int, int
+        """
         w = self.width * self.tilewidth
         h = self.height * self.tileheight
         return (w, h)
@@ -187,6 +210,7 @@ class TiledMap(_abctiled.AbcTiled):
 
 if __name__ == '__main__':
     from pumpkin2 import paths
+
     pygame.init()
     screen = pygame.display.set_mode((10, 10))
     path_map = paths.get_map('level_1')

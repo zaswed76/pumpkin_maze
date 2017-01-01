@@ -58,7 +58,25 @@ class TileSet(_Tiled):
         self.tileproperties = tset.get("tileproperties")
         self.tilepropertytypes = tset.get("tilepropertytypes")
         self.tiles = tset.get("tiles")
+
         self.tilewidth = tset.get("tilewidth")
+
+    @property
+    def images(self):
+        """
+
+        :return: list < str список путей
+        """
+        images = []
+        tiles = sorted(self.tiles.items(), key=lambda item: item[0])
+        for img in tiles:
+            paths = os.path.join(self.sets_dir,
+                                 os.path.basename(img[1]['image']))
+            if not os.path.isfile(paths):
+                raise FileNotFoundError('нет картинки')
+            else:
+                images.append(paths)
+        return images
 
     def __repr__(self):
         s = super().__repr__()
@@ -79,7 +97,7 @@ class ImageSet(_Tiled):
         self.imagewidth = tset.get("imagewidth")
         self.margin = tset.get("margin")
         self.name = tset.get("name")
-
+        self.properties = tset.get("properties")
         self.tilecount = tset.get("tilecount")
         self.tileheight = tset.get("tileheight")
         self.tileoffset = tset.get("tileoffset")
@@ -90,7 +108,7 @@ class ImageSet(_Tiled):
         paths = os.path.join(self.sets_dir,
                              os.path.basename(self._image))
         if not os.path.isfile(paths):
-            raise Exception(FileNotFoundError)
+            raise FileNotFoundError('файл не найден')
         else:
             return paths
 
@@ -133,8 +151,6 @@ class TileSets:
             count.append(Count(s.name, s.tilecount))
         return count
 
-
-
     def __create_sets(self, sets):
         for tset in sets:
             try:
@@ -153,8 +169,6 @@ class TileSets:
                 # создаём объекты тайлсетов
                 self.type_sets[cls_name](tset,
                                          sets_dir=self.set_dir))
-
-
 
     def __getitem__(self, item):
         return self.sets[item]
@@ -187,7 +201,8 @@ class AbcTiled(_Tiled):
         self.orientation = map_dict.get("orientation")
         self.renderorder = map_dict.get("renderorder")
         self.tileheight = map_dict.get("tileheight")
-        self.tilesets = TileSets(map_dict.get("tilesets", []),sets_dir=self.sets_dir)
+        self.tilesets = TileSets(map_dict.get("tilesets", []),
+                                 sets_dir=self.sets_dir)
         self.tilewidth = map_dict.get("tilewidth")
         self.tilewidth = map_dict.get("tilewidth")
         self.version = map_dict.get("version")

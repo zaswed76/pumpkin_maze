@@ -13,6 +13,9 @@ def create_image(screen, image, pos):
     group = Group()
     return sprites.GameObject(group, screen, image, pos[0], pos[1])
 
+def create_image_2(image):
+    img = pygame.image.load(image).convert_alpha()
+    return img
 
 def run_game():
     tmap = tl.TiledMap.load_map(paths.get_map('level_1'))
@@ -23,9 +26,12 @@ def run_game():
     screen = pygame.display.set_mode(tiled.size)
     pygame.display.set_caption("Name Game")
     # Запуск основного цикла игры.
-    sprite = tiled.sub_sprites[1]
+    sprite = tiled.sub_sprites[7]
+    # print(tiled.sub_sprites)
     img = create_image(screen, sprite, (1, 1))
-    print(sprite)
+    # img = create_image_2(paths.get_exsets("100x50x4.png"))
+
+
 
     while True:
         # Отслеживание событий клавиатуры и мыши.

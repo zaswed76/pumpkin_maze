@@ -1,7 +1,7 @@
 { "height":10,
  "layers":[
         {
-         "data":[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+         "data":[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
          "height":10,
          "name":"\u0421\u043b\u043e\u0439 \u0442\u0430\u0439\u043b\u043e\u0432 1",
          "opacity":1,
@@ -19,27 +19,6 @@
         {
          "columns":2,
          "firstgid":1,
-         "image":"..\/..\/resources\/exsets\/set_2x1x64_white.png",
-         "imageheight":64,
-         "imagewidth":128,
-         "margin":0,
-         "name":"set_2x1x64_white",
-         "properties":
-            {
-             "class":"image"
-            },
-         "propertytypes":
-            {
-             "class":"string"
-            },
-         "spacing":0,
-         "tilecount":2,
-         "tileheight":64,
-         "tilewidth":64
-        }, 
-        {
-         "columns":2,
-         "firstgid":3,
          "image":"..\/..\/resources\/exsets\/100x50x4.png",
          "imageheight":100,
          "imagewidth":200,
@@ -57,6 +36,39 @@
          "tilecount":4,
          "tileheight":50,
          "tilewidth":100
+        }, 
+        {
+         "columns":0,
+         "firstgid":5,
+         "margin":0,
+         "name":"collection",
+         "properties":
+            {
+             "class":"tile"
+            },
+         "propertytypes":
+            {
+             "class":"string"
+            },
+         "spacing":0,
+         "tilecount":3,
+         "tileheight":100,
+         "tiles":
+            {
+             "1":
+                {
+                 "image":"..\/..\/resources\/exsets\/8246060_orig.jpg"
+                },
+             "2":
+                {
+                 "image":"..\/..\/resources\/exsets\/100x50x4.png"
+                },
+             "4":
+                {
+                 "image":"..\/..\/resources\/exsets\/8246060_orig.jpg"
+                }
+            },
+         "tilewidth":200
         }],
  "tilewidth":32,
  "version":1,
