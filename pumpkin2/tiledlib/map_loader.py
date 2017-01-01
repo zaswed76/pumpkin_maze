@@ -5,6 +5,7 @@
 class SubSprites создаёт и возвращает последовательность спрайтов - 'Surface'
 class TiledMap - обёртка над словарём предсставляющем карту Tiled Map Editor
 
+
 """
 
 import pygame
@@ -216,7 +217,21 @@ if __name__ == '__main__':
     path_map = paths.get_map('level_1')
     maps = TiledMap.load_map(path_map)
     sets_dir = paths.exsets
+
     tiled_map = TiledMap(maps, sets_dir)
-    obj = tiled_map.sub_sprites
-    for s in obj:
+    # получить subsprites можно после  иницализации дисплея screen
+    for s in tiled_map.sub_sprites:
         print(s)
+    print('-------------------')
+
+    image = paths.get_exsets('set_4x3x32_transparent.png')
+    sub = SubSprites(image=image, size=(32, 32))
+    print(sub)
+
+    print('-------------------')
+    tiled_map = TiledMap(maps, sets_dir)
+    tileset = tiled_map.tilesets
+    sub = SubSprites(tilesets=tileset)
+    print(sub)
+
+

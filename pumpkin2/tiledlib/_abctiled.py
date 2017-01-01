@@ -45,6 +45,7 @@ class TileSet(_Tiled):
     ''' коллекция изображений '''
 
     def __init__(self, tset: dict, **kwargs):
+        # todo надо ли переделывать в словарь (универсальнее?)
         super().__init__()
         self.sets_dir = kwargs['sets_dir']
         self.columns = tset.get("columns")
