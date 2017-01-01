@@ -5,10 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b2c168a0-6f50-4917-b52f-d8d0429866de" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pumpkin2/maps/level_1/map_test.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pumpkin2/tiledlib/_abctiled.py" afterPath="$PROJECT_DIR$/pumpkin2/tiledlib/_abctiled.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pumpkin2/tiledlib/map_loader.py" afterPath="$PROJECT_DIR$/pumpkin2/tiledlib/map_loader.py" />
     </list>
     <ignored path="pumpkin_maze.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -960,7 +957,14 @@
       <option name="project" value="LOCAL" />
       <updated>1483308203949</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="map_loader">
+      <created>1483309771888</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1483309771888</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1009,7 +1013,8 @@
     <MESSAGE value="figure" />
     <MESSAGE value="tiledlib/abctiled" />
     <MESSAGE value="tiled_to_spites" />
-    <option name="LAST_COMMIT_MESSAGE" value="tiled_to_spites" />
+    <MESSAGE value="map_loader" />
+    <option name="LAST_COMMIT_MESSAGE" value="map_loader" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
