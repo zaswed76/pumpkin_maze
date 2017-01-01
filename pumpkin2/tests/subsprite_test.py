@@ -5,7 +5,9 @@ import pygame
 from pygame.sprite import Group
 from pumpkin2 import paths
 from pumpkin2.gamelib import sprites
-from pumpkin2.tiledlib import tiled as tl
+from pumpkin2.tiledlib import map_loader as tl
+from pumpkin2.tiledlib.map_loader import *
+print(tl.__doc__)
 
 def create_image(screen, image, pos):
     group = Group()
@@ -13,17 +15,17 @@ def create_image(screen, image, pos):
 
 
 def run_game():
-    tmap = tl.Tiled.load_map(paths.get_map('level_1'))
-    tiled = tl.Tiled(tmap, paths.exsets)
+    tmap = tl.TiledMap.load_map(paths.get_map('level_1'))
+    tiled = tl.TiledMap(tmap, paths.exsets)
 
     # Инициализирует игру и создает объект экрана.
     pygame.init()
     screen = pygame.display.set_mode(tiled.size)
     pygame.display.set_caption("Name Game")
     # Запуск основного цикла игры.
-
-    img = create_image(screen, tiled.sub_sprites[1], (1, 1))
-    print(tiled.tilesets.sets)
+    sprite = tiled.sub_sprites[1]
+    img = create_image(screen, sprite, (1, 1))
+    print(sprite)
 
     while True:
         # Отслеживание событий клавиатуры и мыши.

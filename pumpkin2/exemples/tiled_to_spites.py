@@ -2,8 +2,8 @@
 
 
 from pumpkin2 import paths
-from pumpkin2.tiledlib import subsprite, tiled
-from pumpkin2.tiledlib import tiled as tl
+from pumpkin2.tiledlib import subsprite, map_loader
+from pumpkin2.tiledlib import map_loader as tl
 
 
 # tilesets= [
@@ -61,9 +61,9 @@ if __name__ == '__main__':
     screen = pygame.display.set_mode(
         (500, 500))
     set_dir = paths.exsets
-    tmap = tl.Tiled.load_map(paths.get_map('level_1'))
+    tmap = tl.TiledMap.load_map(paths.get_map('level_1'))
 
-    tiled = tl.Tiled(tmap, set_dir)
+    tiled = tl.TiledMap(tmap, set_dir)
 
 
     for i in tiled.tilesets:

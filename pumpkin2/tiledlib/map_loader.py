@@ -1,6 +1,17 @@
+"""
+модуль предоставляет классы для работы с картой сгенерирваной
+програмой Tiled Map Editor. карта представляет собой
+словарь.
+class SubSprites создаёт и возвращает последовательность спрайтов - 'Surface'
+class TiledMap - обёртка над словарём предсставляющем карту Tiled Map Editor
+
+"""
 
 import pygame
-from pumpkin2.tiledlib import abctiled
+
+from pumpkin2.tiledlib import _abctiled
+
+__all__ = ["TiledMap", "SubSprites"]
 
 
 class _SubSprite:
@@ -41,7 +52,8 @@ class _SubSprite:
         lst.extend(sorted(range(n), reverse=1))
         return [self.get_sprite(x) for x in lst]
 
-    def get_sprite_time(self, s, t):
+    @staticmethod
+    def get_sprite_time(s, t):
         return [(x, t) for x in s]
 
     def __repr__(self):
@@ -57,19 +69,22 @@ class _SubSprite:
 
 
 class SubSprites:
+    """ класс создаёт последовательность спрайтов из изображения """
+
     def __init__(self, **kwargs):
         """
-
-        :rtype: SubSprites
+        SubSprites(tilesets: _abctiled.TileSets)
+        SubSprites(image: str, size: tuple(int, int))
         """
+
         self.__sprites = []
         self.value = 0
 
         if 'tilesets' in kwargs:
             self.tilesets = kwargs['tilesets']
-            assert isinstance(self.tilesets, abctiled.TileSets), \
+            assert isinstance(self.tilesets, _abctiled.TileSets), \
                 "параметр tilesets должен быть объектом класса - {}".format(
-                    abctiled.TileSets.__class__.__name__
+                    _abctiled.TileSets.__class__.__name__
                 )
             self.create_sets_sprites()
         elif 'image' in kwargs.keys():
@@ -90,7 +105,7 @@ class SubSprites:
     def create_sub_sprites(self):
         self.sub = _SubSprite(image=self.image, width=self.width,
 
-                         height=self.height)
+                              height=self.height)
         self.__sprites.extend(self.sub.get_sprites())
 
     def create_sets_sprites(self):
@@ -101,11 +116,11 @@ class SubSprites:
             self.sub = _SubSprite(image=image, width=w, height=h)
             self.__sprites.extend(self.sub.get_sprites())
 
-    def __iter__(self): # Возвращает итератор в iter()
+    def __iter__(self):  # Возвращает итератор в iter()
         return self
 
-    def __next__(self): # Возвращает квадрат в каждой итерации
-        if self.value == len(self.__sprites): # Также вызывается функцией next
+    def __next__(self):
+        if self.value == len(self.__sprites):
             raise StopIteration
 
         z = self.__sprites[self.value]
@@ -132,8 +147,8 @@ class SubSprites:
             self.__sprites.extend(other)
             return self.__sprites
         else:
-            raise TypeError('слагаемое должно быть объктом класса SubSprites')
-
+            raise TypeError(
+                'слагаемое должно быть объктом класса SubSprites')
 
     def __len__(self):
         return len(self.__sprites)
@@ -141,11 +156,13 @@ class SubSprites:
     def __repr__(self):
         return str(self.__sprites)
 
-class Tiled(abctiled.AbcTiled):
+
+class TiledMap(_abctiled.AbcTiled):
     """
     класс представляет карту сгенерированую Tiled Map Editor,
     где атрибуты соответствуют ключам словаря сгенерированой карты
     """
+
     def __init__(self, map_dict: dict, sets_dir: str, **kwargs):
         """
          карта в виде словаря
@@ -170,9 +187,12 @@ class Tiled(abctiled.AbcTiled):
 
 if __name__ == '__main__':
     from pumpkin2 import paths
+    pygame.init()
+    screen = pygame.display.set_mode((10, 10))
     path_map = paths.get_map('level_1')
-    maps = Tiled.load_map(path_map)
+    maps = TiledMap.load_map(path_map)
     sets_dir = paths.exsets
-    tiled_map = Tiled(maps, sets_dir)
-    print(tiled_map.tilesets)
-
+    tiled_map = TiledMap(maps, sets_dir)
+    obj = tiled_map.sub_sprites
+    for s in obj:
+        print(s)
