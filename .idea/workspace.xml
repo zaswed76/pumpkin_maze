@@ -6,6 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="b2c168a0-6f50-4917-b52f-d8d0429866de" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pumpkin2/tiledlib/_abctiled.py" afterPath="$PROJECT_DIR$/pumpkin2/tiledlib/_abctiled.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pumpkin2/tiledlib/map_loader.py" afterPath="$PROJECT_DIR$/pumpkin2/tiledlib/map_loader.py" />
     </list>
     <ignored path="pumpkin_maze.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -26,7 +28,7 @@
     <SUITE FILE_PATH="coverage/pumpkin_maze$subsprite.coverage" NAME="subsprite Coverage Results" MODIFIED="1483045341402" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pumpkin/libs" />
     <SUITE FILE_PATH="coverage/pumpkin_maze$subsprite_test.coverage" NAME="subsprite_test Coverage Results" MODIFIED="1483307711155" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pumpkin2/tests" />
     <SUITE FILE_PATH="coverage/pumpkin_maze$tiled.coverage" NAME="tiled Coverage Results" MODIFIED="1483220694791" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pumpkin2/tiledlib" />
-    <SUITE FILE_PATH="coverage/pumpkin_maze$map_loader.coverage" NAME="map_loader Coverage Results" MODIFIED="1483309667429" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pumpkin2/tiledlib" />
+    <SUITE FILE_PATH="coverage/pumpkin_maze$map_loader.coverage" NAME="map_loader Coverage Results" MODIFIED="1483323424621" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pumpkin2/tiledlib" />
     <SUITE FILE_PATH="coverage/pumpkin_maze$color.coverage" NAME="color Coverage Results" MODIFIED="1480362315483" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pumpkin/libs" />
     <SUITE FILE_PATH="coverage/pumpkin_maze$level_map.coverage" NAME="level_map Coverage Results" MODIFIED="1479819619770" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pumpkin/libs" />
     <SUITE FILE_PATH="coverage/pumpkin_maze$sl.coverage" NAME="sl Coverage Results" MODIFIED="1483306276137" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pumpkin2/exemples" />
@@ -62,31 +64,30 @@
       <file leaf-file-name="map_loader.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pumpkin2/tiledlib/map_loader.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="540">
-              <caret line="234" column="13" selection-start-line="234" selection-start-column="13" selection-end-line="234" selection-end-column="13" />
+            <state relative-caret-position="464">
+              <caret line="46" column="26" selection-start-line="46" selection-start-column="26" selection-end-line="46" selection-end-column="26" />
               <folding>
                 <element signature="e#0#288#1" expanded="true" />
                 <element signature="e#290#303#0" expanded="true" />
-                <element signature="e#457#766#0" expanded="true" />
-                <element signature="e#828#936#0" expanded="true" />
-                <element signature="e#975#1139#0" expanded="true" />
-                <element signature="e#1193#1407#0" expanded="true" />
-                <element signature="e#1457#1630#0" expanded="true" />
-                <element signature="e#1689#1715#0" expanded="true" />
-                <element signature="e#1749#1995#0" expanded="true" />
-                <element signature="e#2128#3228#0" expanded="true" />
-                <element signature="e#3272#3495#0" expanded="true" />
-                <element signature="e#3540#4208#0" expanded="true" />
-                <element signature="e#4274#4285#0" expanded="true" />
-                <element signature="e#4319#4475#0" expanded="true" />
-                <element signature="e#4517#5014#0" expanded="true" />
-                <element signature="e#5054#5272#0" expanded="true" />
-                <element signature="e#5305#5331#0" expanded="true" />
-                <element signature="e#5365#5391#0" expanded="true" />
-                <element signature="e#5434#5574#1" expanded="true" />
-                <element signature="e#5649#5874#0" expanded="true" />
-                <element signature="e#5925#6112#0" expanded="true" />
-                <element signature="e#6156#6330#0" expanded="true" />
+                <element signature="e#546#1066#0" expanded="true" />
+                <element signature="e#1507#1756#0" expanded="true" />
+                <element signature="e#1810#2024#0" expanded="true" />
+                <element signature="e#2074#2247#0" expanded="true" />
+                <element signature="e#2306#2332#0" expanded="true" />
+                <element signature="e#2366#2612#0" expanded="true" />
+                <element signature="e#2745#3845#0" expanded="true" />
+                <element signature="e#3889#4098#0" expanded="true" />
+                <element signature="e#4143#4804#0" expanded="true" />
+                <element signature="e#4870#4881#0" expanded="true" />
+                <element signature="e#4915#5071#0" expanded="true" />
+                <element signature="e#5113#5610#0" expanded="true" />
+                <element signature="e#5650#5868#0" expanded="true" />
+                <element signature="e#5901#5927#0" expanded="true" />
+                <element signature="e#5961#5987#0" expanded="true" />
+                <element signature="e#6030#6170#1" expanded="true" />
+                <element signature="e#6245#6470#0" expanded="true" />
+                <element signature="e#6521#6708#0" expanded="true" />
+                <element signature="e#6752#6926#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -95,26 +96,27 @@
       <file leaf-file-name="_abctiled.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pumpkin2/tiledlib/_abctiled.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="286">
-              <caret line="47" column="62" selection-start-line="47" selection-start-column="62" selection-end-line="47" selection-end-column="62" />
+            <state relative-caret-position="528">
+              <caret line="46" column="45" selection-start-line="46" selection-start-column="45" selection-end-line="46" selection-end-column="45" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
                 <element signature="e#633#637#0" expanded="true" />
                 <element signature="e#690#747#0" expanded="true" />
                 <element signature="e#781#824#0" expanded="true" />
-                <element signature="e#1670#2133#0" expanded="true" />
-                <element signature="e#2415#3023#0" expanded="true" />
-                <element signature="e#3068#3294#0" expanded="true" />
-                <element signature="e#3328#3420#0" expanded="true" />
-                <element signature="e#3545#3769#0" expanded="true" />
-                <element signature="e#3813#3895#0" expanded="true" />
-                <element signature="e#3940#4201#0" expanded="true" />
-                <element signature="e#4246#5019#0" expanded="true" />
-                <element signature="e#5172#5229#0" expanded="true" />
-                <element signature="e#5260#5335#1" expanded="true" />
-                <element signature="e#5395#6376#0" expanded="true" />
-                <element signature="e#6795#6950#0" expanded="true" />
-                <element signature="e#6795#6880#1" expanded="false" />
+                <element signature="e#939#1561#0" expanded="true" />
+                <element signature="e#1607#2070#0" expanded="true" />
+                <element signature="e#2352#2960#0" expanded="true" />
+                <element signature="e#3005#3231#0" expanded="true" />
+                <element signature="e#3265#3357#0" expanded="true" />
+                <element signature="e#3482#3706#0" expanded="true" />
+                <element signature="e#3750#3832#0" expanded="true" />
+                <element signature="e#3877#4138#0" expanded="true" />
+                <element signature="e#4183#4956#0" expanded="true" />
+                <element signature="e#5109#5166#0" expanded="true" />
+                <element signature="e#5197#5272#1" expanded="true" />
+                <element signature="e#5332#6313#0" expanded="true" />
+                <element signature="e#6732#6887#0" expanded="true" />
+                <element signature="e#6732#6817#1" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -964,24 +966,31 @@
       <option name="project" value="LOCAL" />
       <updated>1483309771888</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="map_loader">
+      <created>1483312617703</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1483312617703</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1296" height="1000" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="TypeScript Compiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.03309693" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32893288" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4964539" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30645162" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19030733" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1749409" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32419354" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3403909" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26872963" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32742316" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2931596" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2931596" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1501,32 +1510,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pumpkin2/tiledlib/_abctiled.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="47" column="62" selection-start-line="47" selection-start-column="62" selection-end-line="47" selection-end-column="62" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-            <element signature="e#633#637#0" expanded="true" />
-            <element signature="e#690#747#0" expanded="true" />
-            <element signature="e#781#824#0" expanded="true" />
-            <element signature="e#1670#2133#0" expanded="true" />
-            <element signature="e#2415#3023#0" expanded="true" />
-            <element signature="e#3068#3294#0" expanded="true" />
-            <element signature="e#3328#3420#0" expanded="true" />
-            <element signature="e#3545#3769#0" expanded="true" />
-            <element signature="e#3813#3895#0" expanded="true" />
-            <element signature="e#3940#4201#0" expanded="true" />
-            <element signature="e#4246#5019#0" expanded="true" />
-            <element signature="e#5172#5229#0" expanded="true" />
-            <element signature="e#5260#5335#1" expanded="true" />
-            <element signature="e#5395#6376#0" expanded="true" />
-            <element signature="e#6795#6950#0" expanded="true" />
-            <element signature="e#6795#6880#1" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pumpkin2/maps/level_1/map_test.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1547,33 +1530,59 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/pumpkin2/tiledlib/_abctiled.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="528">
+          <caret line="46" column="45" selection-start-line="46" selection-start-column="45" selection-end-line="46" selection-end-column="45" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+            <element signature="e#633#637#0" expanded="true" />
+            <element signature="e#690#747#0" expanded="true" />
+            <element signature="e#781#824#0" expanded="true" />
+            <element signature="e#939#1561#0" expanded="true" />
+            <element signature="e#1607#2070#0" expanded="true" />
+            <element signature="e#2352#2960#0" expanded="true" />
+            <element signature="e#3005#3231#0" expanded="true" />
+            <element signature="e#3265#3357#0" expanded="true" />
+            <element signature="e#3482#3706#0" expanded="true" />
+            <element signature="e#3750#3832#0" expanded="true" />
+            <element signature="e#3877#4138#0" expanded="true" />
+            <element signature="e#4183#4956#0" expanded="true" />
+            <element signature="e#5109#5166#0" expanded="true" />
+            <element signature="e#5197#5272#1" expanded="true" />
+            <element signature="e#5332#6313#0" expanded="true" />
+            <element signature="e#6732#6887#0" expanded="true" />
+            <element signature="e#6732#6817#1" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/pumpkin2/tiledlib/map_loader.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="234" column="13" selection-start-line="234" selection-start-column="13" selection-end-line="234" selection-end-column="13" />
+        <state relative-caret-position="464">
+          <caret line="46" column="26" selection-start-line="46" selection-start-column="26" selection-end-line="46" selection-end-column="26" />
           <folding>
             <element signature="e#0#288#1" expanded="true" />
             <element signature="e#290#303#0" expanded="true" />
-            <element signature="e#457#766#0" expanded="true" />
-            <element signature="e#828#936#0" expanded="true" />
-            <element signature="e#975#1139#0" expanded="true" />
-            <element signature="e#1193#1407#0" expanded="true" />
-            <element signature="e#1457#1630#0" expanded="true" />
-            <element signature="e#1689#1715#0" expanded="true" />
-            <element signature="e#1749#1995#0" expanded="true" />
-            <element signature="e#2128#3228#0" expanded="true" />
-            <element signature="e#3272#3495#0" expanded="true" />
-            <element signature="e#3540#4208#0" expanded="true" />
-            <element signature="e#4274#4285#0" expanded="true" />
-            <element signature="e#4319#4475#0" expanded="true" />
-            <element signature="e#4517#5014#0" expanded="true" />
-            <element signature="e#5054#5272#0" expanded="true" />
-            <element signature="e#5305#5331#0" expanded="true" />
-            <element signature="e#5365#5391#0" expanded="true" />
-            <element signature="e#5434#5574#1" expanded="true" />
-            <element signature="e#5649#5874#0" expanded="true" />
-            <element signature="e#5925#6112#0" expanded="true" />
-            <element signature="e#6156#6330#0" expanded="true" />
+            <element signature="e#546#1066#0" expanded="true" />
+            <element signature="e#1507#1756#0" expanded="true" />
+            <element signature="e#1810#2024#0" expanded="true" />
+            <element signature="e#2074#2247#0" expanded="true" />
+            <element signature="e#2306#2332#0" expanded="true" />
+            <element signature="e#2366#2612#0" expanded="true" />
+            <element signature="e#2745#3845#0" expanded="true" />
+            <element signature="e#3889#4098#0" expanded="true" />
+            <element signature="e#4143#4804#0" expanded="true" />
+            <element signature="e#4870#4881#0" expanded="true" />
+            <element signature="e#4915#5071#0" expanded="true" />
+            <element signature="e#5113#5610#0" expanded="true" />
+            <element signature="e#5650#5868#0" expanded="true" />
+            <element signature="e#5901#5927#0" expanded="true" />
+            <element signature="e#5961#5987#0" expanded="true" />
+            <element signature="e#6030#6170#1" expanded="true" />
+            <element signature="e#6245#6470#0" expanded="true" />
+            <element signature="e#6521#6708#0" expanded="true" />
+            <element signature="e#6752#6926#0" expanded="true" />
           </folding>
         </state>
       </provider>

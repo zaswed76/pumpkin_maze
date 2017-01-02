@@ -15,23 +15,46 @@ from pumpkin2.tiledlib import _abctiled
 __all__ = ["TiledMap", "SubSprites"]
 
 
-class _SubSprite:
+class Sub:
+    """ класс предоставляет методы для 'вырезания и зоздания
+     спрайтов из изображения ' """
     def __init__(self, image, width, height):
+        """
+
+        :param image: str путь к изображению
+        :param width: ширина спрайта
+        :param height: высота спрайта
+        """
         self.image = image
         self.height = height
         self.width = width
         self.sprite = pygame.image.load(image).convert_alpha()
         self.sprite_rect = self.sprite.get_rect()
+        # спрайтов по горизонтали
         self.w_count = self.sprite_rect.width // self.width
+        # спрайтов по вертикали
         self.h_count = self.sprite_rect.height // self.height
 
     def get_coord(self, n, width, height, w_count):
+        """
+        вычисляет координату верхнего левого угла спрайта
+        :param n: порядковый номер от 0
+        :param width:
+        :param height:
+        :param w_count: спрайтов по горизонтали
+        :return:
+        """
         n_y = n // w_count
         x = width * int(n - (n_y * w_count))
         y = height * n_y
         return x, y
 
     def get_sprite(self, n):
+        """
+
+        :param n: порядковый номер
+        :return: Surface
+        """
         x, y = self.get_coord(n, self.width, self.height,
                               self.w_count)
         return self.sprite.subsurface((x, y, self.width, self.height))
@@ -109,9 +132,9 @@ class SubSprites:
         """
         на основе одного изображения
         """
-        self.sub = _SubSprite(image=self.image, width=self.width,
+        self.sub = Sub(image=self.image, width=self.width,
 
-                              height=self.height)
+                       height=self.height)
         self.__sprites.extend(self.sub.get_sprites())
 
     def create_sets_sprites(self):
@@ -124,7 +147,7 @@ class SubSprites:
                 image = tset.image
                 w = tset.tilewidth
                 h = tset.tileheight
-                self.sub = _SubSprite(image=image, width=w, height=h)
+                self.sub = Sub(image=image, width=w, height=h)
                 self.__sprites.extend(self.sub.get_sprites())
             # коллекция изображений
             elif isinstance(tset, _abctiled.TileSet):
