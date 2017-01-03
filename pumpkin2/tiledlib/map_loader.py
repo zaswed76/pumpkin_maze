@@ -69,12 +69,19 @@ class Sub:
             lst.append(self.get_sprite(x))
         return lst
 
-    def get_sprites_back(self, n=None):
-        if n is None:
-            n = int(self.w_count)
+    def get_sprites_back(self):
+        """
+        создаёт спрайты из изображения для анимации
+        с вовратом
+        [0, 1, 2, 3, 2, 1]
+        :return: lst < Surface
+        """
+        n = int(self.w_count)
         lst = list(range(n))
-        lst.extend(sorted(range(n), reverse=1))
-        return [self.get_sprite(x) for x in lst]
+        res = [self.get_sprite(x) for x in lst]
+        back = res[::-1]
+        res.extend(back[1:len(back)-1])
+        return res
 
     @staticmethod
     def get_sprite_time(s, t):
@@ -242,19 +249,21 @@ if __name__ == '__main__':
     sets_dir = paths.exsets
 
     tiled_map = TiledMap(maps, sets_dir)
-    # получить subsprites можно после  иницализации дисплея screen
-    for s in tiled_map.sub_sprites:
-        print(s)
-    print('-------------------')
+    # # получить subsprites можно после  иницализации дисплея screen
+    # for s in tiled_map.sub_sprites:
+    #     print(s)
+    # print('-------------------')
 
-    image = paths.get_exsets('set_4x3x32_transparent.png')
-    sub = SubSprites(image=image, size=(32, 32))
-    print(sub)
+    image = paths.get_exsets('set_2x1x64_white.png')
+    sub = Sub(image, 64, 64)
+    print(sub.get_sprites())
+    print(sub.get_sprites())
+    print(sub.get_sprites_back(), 111)
 
-    print('-------------------')
-    tiled_map = TiledMap(maps, sets_dir)
-    tileset = tiled_map.tilesets
-    sub = SubSprites(tilesets=tileset)
-    print(sub)
+    # print('-------------------')
+    # tiled_map = TiledMap(maps, sets_dir)
+    # tileset = tiled_map.tilesets
+    # sub = SubSprites(tilesets=tileset)
+    # print(sub)
 
 
