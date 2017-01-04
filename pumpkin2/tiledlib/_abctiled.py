@@ -58,7 +58,6 @@ class TileSet(_Tiled):
         self.tileproperties = tset.get("tileproperties")
         self.tilepropertytypes = tset.get("tilepropertytypes")
         self.tiles = tset.get("tiles")
-
         self.tilewidth = tset.get("tilewidth")
 
     @property
@@ -105,12 +104,14 @@ class ImageSet(_Tiled):
 
     @property
     def image(self):
-        paths = os.path.join(self.sets_dir,
+        path = os.path.join(self.sets_dir,
                              os.path.basename(self._image))
-        if not os.path.isfile(paths):
-            raise FileNotFoundError('файл не найден')
+        path = os.path.abspath(path)
+        if not os.path.isfile(path):
+            raise FileNotFoundError(
+                '{} - файл не найден'.format(path))
         else:
-            return paths
+            return path
 
     def __repr__(self):
         s = super().__repr__()
@@ -165,6 +166,7 @@ class TileSets:
             if not cls_name in self.type_sets.keys():
                 raise TsetError(tset['name'], err_message_valid_type,
                                 'class', tuple(self.type_sets.keys()))
+            # noinspection PyCallingNonCallable
             self.sets.append(
                 # создаём объекты тайлсетов
                 self.type_sets[cls_name](tset,
@@ -225,7 +227,7 @@ class AbcTiled(_Tiled):
              self.width,
              self.height,
              len(self.tilesets)
-             )
+        )
 
     @staticmethod
     def load_map(pth_map: str) -> dict:

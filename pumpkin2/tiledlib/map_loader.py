@@ -7,6 +7,7 @@ class TiledMap - обёртка над словарём предсставляю
 
 
 """
+import os
 
 import pygame
 
@@ -15,9 +16,61 @@ from pumpkin2.tiledlib import _abctiled
 __all__ = ["TiledMap", "SubSprites"]
 
 
+class _Sprites:
+    """ класс создаёт последовательность спрайтов из изображения """
+
+
+    def __init__(self):
+        self._sprites = []
+        self.__value = 0
+
+    def append(self, item):
+        self._sprites.append(item)
+
+    def __iter__(self):  # Возвращает итератор в iter()
+        return self
+
+    def __next__(self):
+        if self.__value == len(self._sprites):
+            raise StopIteration
+
+        z = self._sprites[self.__value]
+        self.__value += 1
+        return z
+
+    def __getitem__(self, key):
+        """
+        """
+        if isinstance(key, slice):
+            # noinspection PyTypeChecker
+            assert key.start > 0, "!!!"
+            return self._sprites[key.start - 1: key.stop]
+        else:
+            assert key > 0, 'Index sprites list starts with 1'
+            assert key <= len(self._sprites), \
+                '''Length is the list of sprites - {}'''.format(
+                    len(self._sprites))
+            return self._sprites[key - 1]
+
+    def __add__(self, other):
+        if isinstance(other, SubSprites):
+            self._sprites.extend(other)
+            return self._sprites
+        else:
+            raise TypeError(
+                'слагаемое должно быть объктом класса SubSprites')
+
+    def __len__(self):
+        return len(self._sprites)
+
+    def __repr__(self):
+        return str(self._sprites)
+
+
 class Sub:
     """ класс предоставляет методы для 'вырезания и зоздания
      спрайтов из изображения ' """
+
     def __init__(self, image, width, height):
         """
 
@@ -25,6 +78,7 @@ class Sub:
         :param width: ширина спрайта
         :param height: высота спрайта
         """
+        # todo откуда список начинается в разных методах
         self.image = image
         self.height = height
         self.width = width
@@ -60,18 +114,25 @@ class Sub:
         return self.sprite.subsurface((x, y, self.width, self.height))
 
     def get_sprites(self, s=0, count=None):
+        """
+
+        :param s: начало вырезания
+        :param count:  колличество вырезаных
+        :return: _Sprites < pygame.Surface последовательность спрайтов
+        отсчёт начинается с 1
+        """
+        lst = _Sprites()
         if count is None:
             f = self.w_count * self.h_count
         else:
             f = s + count + 1
-        lst = []
         for x in range(s, f):
             lst.append(self.get_sprite(x))
         return lst
 
     def get_sprites_back(self):
         """
-        создаёт спрайты из изображения для анимации
+        создаёт спрайты из изображения (для анимации)
         с вовратом
         [0, 1, 2, 3, 2, 1]
         :return: lst < Surface
@@ -80,7 +141,7 @@ class Sub:
         lst = list(range(n))
         res = [self.get_sprite(x) for x in lst]
         back = res[::-1]
-        res.extend(back[1:len(back)-1])
+        res.extend(back[1:len(back) - 1])
         return res
 
     @staticmethod
@@ -99,19 +160,18 @@ class Sub:
                    self.h_count, self.width, self.height)
 
 
-class SubSprites:
+class SubSprites(_Sprites):
     """ класс создаёт последовательность спрайтов из изображения """
 
     def __init__(self, **kwargs):
         """
-        SubSprites(tilesets: _abctiled.TileSets)
-        SubSprites(image: str, size: tuple(int, int))
-        """
-
-        self.__sprites = []
+            SubSprites(tilesets: _abctiled.TileSets)
+            SubSprites(image: str, size: tuple(int, int))
+            """
+        super().__init__()
+        # self._sprites = []
         self.__value = 0
 
-        # если тайлсет
         if 'tilesets' in kwargs:
             self.tilesets = kwargs['tilesets']
             assert isinstance(self.tilesets, _abctiled.TileSets), \
@@ -142,7 +202,7 @@ class SubSprites:
         self.sub = Sub(image=self.image, width=self.width,
 
                        height=self.height)
-        self.__sprites.extend(self.sub.get_sprites())
+        self._sprites.extend(self.sub.get_sprites())
 
     def create_sets_sprites(self):
         """
@@ -155,52 +215,12 @@ class SubSprites:
                 w = tset.tilewidth
                 h = tset.tileheight
                 self.sub = Sub(image=image, width=w, height=h)
-                self.__sprites.extend(self.sub.get_sprites())
+                self._sprites.extend(self.sub.get_sprites())
             # коллекция изображений
             elif isinstance(tset, _abctiled.TileSet):
                 for img in tset.images:
-                    self.__sprites.append(
+                    self._sprites.append(
                         pygame.image.load(img).convert_alpha())
-
-    def __iter__(self):  # Возвращает итератор в iter()
-        return self
-
-    def __next__(self):
-        if self.__value == len(self.__sprites):
-            raise StopIteration
-
-        z = self.__sprites[self.__value]
-        self.__value += 1
-        return z
-
-    def __getitem__(self, key):
-        """
-        """
-        if isinstance(key, slice):
-            # noinspection PyTypeChecker
-            assert key.start > 0, "!!!"
-            return self.__sprites[key.start - 1: key.stop - 1]
-        else:
-            print(key, 444)
-            assert key > 0, 'Index sprites list starts with 1'
-            assert key <= len(self.__sprites), \
-                '''Length is the list of sprites - {}'''.format(
-                    len(self.__sprites))
-            return self.__sprites[key - 1]
-
-    def __add__(self, other):
-        if isinstance(other, SubSprites):
-            self.__sprites.extend(other)
-            return self.__sprites
-        else:
-            raise TypeError(
-                'слагаемое должно быть объктом класса SubSprites')
-
-    def __len__(self):
-        return len(self.__sprites)
-
-    def __repr__(self):
-        return str(self.__sprites)
 
 
 class TiledMap(_abctiled.AbcTiled):
@@ -217,7 +237,12 @@ class TiledMap(_abctiled.AbcTiled):
         :param kwargs:
         """
         super().__init__(map_dict, sets_dir)
-        self.sets_dir = sets_dir
+        path = os.path.abspath(sets_dir)
+        if os.path.isdir(path):
+            self.sets_dir = path
+        else:
+            raise FileNotFoundError(
+                "директория - {} не найдена".format(path))
 
     @property
     def sub_sprites(self):
@@ -249,16 +274,14 @@ if __name__ == '__main__':
     sets_dir = paths.exsets
 
     tiled_map = TiledMap(maps, sets_dir)
-    # # получить subsprites можно после  иницализации дисплея screen
-    # for s in tiled_map.sub_sprites:
-    #     print(s)
-    # print('-------------------')
+    # получить subsprites можно после  иницализации дисплея screen
+    print(tiled_map.sub_sprites)
 
-    image = paths.get_exsets('set_2x1x64_white.png')
-    sub = Sub(image, 64, 64)
-    print(sub.get_sprites())
-    print(sub.get_sprites())
-    print(sub.get_sprites_back(), 111)
+    # image = paths.get_exsets('set_2x1x64_white.png')
+    # sub = Sub(image, 64, 64)
+    # print(sub.get_sprites())
+    # print(sub.get_sprites())
+    # print(sub.get_sprites_back(), 111)
 
     # print('-------------------')
     # tiled_map = TiledMap(maps, sets_dir)
