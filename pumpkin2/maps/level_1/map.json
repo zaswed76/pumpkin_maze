@@ -17,13 +17,13 @@
  "tileheight":32,
  "tilesets":[
         {
-         "columns":4,
+         "columns":2,
          "firstgid":1,
-         "image":"..\/..\/resources\/exsets\/set_4x3_transparent.png",
-         "imageheight":96,
+         "image":"..\/..\/resources\/exsets\/set_2x1x64transparent.png",
+         "imageheight":64,
          "imagewidth":128,
          "margin":0,
-         "name":"set_4x3_transparent",
+         "name":"set_2x1x64transparent",
          "properties":
             {
              "class":"image"
@@ -33,9 +33,9 @@
              "class":"string"
             },
          "spacing":0,
-         "tilecount":12,
-         "tileheight":32,
-         "tilewidth":32
+         "tilecount":2,
+         "tileheight":64,
+         "tilewidth":64
         }],
  "tilewidth":32,
  "version":1,

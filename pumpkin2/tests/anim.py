@@ -49,7 +49,8 @@ class Game:
         y = y
         x = x
         step = 32
-        if isinstance(sprites, map_loader._Sprites):
+
+        if isinstance(sprites, (list, map_loader.ListMap)):
             for sp in sprites:
                 img = GameObject(self.group, self.screen, sp, x, y)
                 x += step
@@ -62,7 +63,8 @@ if __name__ == '__main__':
     def test_get_sprites():
         player = Sub(paths.get_exsets('set_4x1_transparent.png'), 32,
                       32).get_sprites()
-        game.create_sprites(player, 10, 10)
+        var = player[0]
+        game.create_sprites(var, 10, 10)
 
     def test_get_back_sprites():
         player = Sub(paths.get_exsets('set_4x1_transparent.png'), 32,
@@ -71,7 +73,7 @@ if __name__ == '__main__':
 
     def test_tilesets_sprites():
         tiled_map = TiledMap(TiledMap.load_map("map.json"), './')
-        sprites = tiled_map.sub_sprites
+        sprites = tiled_map.sub_sprites[1]
         game.create_sprites(sprites, 10, 50)
 
     def test_get_sprite(gid):
@@ -80,8 +82,9 @@ if __name__ == '__main__':
         game.create_sprites(player, 10, 10)
 
     game = Game()
-    test_get_sprites()
-    # test_get_sprite(3)
+
+    # test_get_sprites()
+    # test_get_sprite(0)
     # test_get_back_sprites()
     # test_tilesets_sprites()
     game.run()

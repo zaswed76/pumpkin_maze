@@ -7,15 +7,19 @@ from pumpkin2 import paths
 from pumpkin2.gamelib import sprites
 from pumpkin2.tiledlib import map_loader as tl
 from pumpkin2.tiledlib.map_loader import *
+
 print(tl.__doc__)
+
 
 def create_image(screen, image, pos):
     group = Group()
     return sprites.GameObject(group, screen, image, pos[0], pos[1])
 
+
 def create_image_2(image):
     img = pygame.image.load(image).convert_alpha()
     return img
+
 
 def run_game():
     tmap = tl.TiledMap.load_map(paths.get_map('level_1'))
@@ -42,5 +46,6 @@ def run_game():
         screen.fill(pygame.Color('#D8D8D8'))
         img.draw(screen)
         pygame.display.flip()
+
 
 run_game()

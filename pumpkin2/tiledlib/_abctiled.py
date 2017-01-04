@@ -105,7 +105,7 @@ class ImageSet(_Tiled):
     @property
     def image(self):
         path = os.path.join(self.sets_dir,
-                             os.path.basename(self._image))
+                            os.path.basename(self._image))
         path = os.path.abspath(path)
         if not os.path.isfile(path):
             raise FileNotFoundError(

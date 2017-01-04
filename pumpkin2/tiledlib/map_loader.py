@@ -1,3 +1,5 @@
+# coding=utf-8
+# coding=utf-8
 """
 модуль предоставляет классы для работы с картой сгенерирваной
 програмой Tiled Map Editor. карта представляет собой
@@ -11,16 +13,23 @@ import os
 
 import pygame
 
-from pumpkin2.tiledlib import _abctiled
+from pumpkin2.tiledlib import _abctiled as abc
 
-__all__ = ["TiledMap", "SubSprites"]
+__all__ = ["TiledMap", "TiledSubSprites"]
 
 
-class _Sprites:
-    """ класс создаёт последовательность спрайтов из изображения """
+class ListMap:
+    '''
+    класс создаёт последовательность спрайтов из изображения
 
+    '''
 
     def __init__(self):
+        """
+        ! индксация начинается с 1
+        обращение к 0 или отрицательному индексу вызовет исключение
+        выход за пределы списка так же вызовет исключение
+        """
         self._sprites = []
         self.__value = 0
 
@@ -43,7 +52,7 @@ class _Sprites:
         """
         if isinstance(key, slice):
             # noinspection PyTypeChecker
-            assert key.start > 0, "!!!"
+            assert key.start > 0, "'Index sprites list starts with 1'"
             return self._sprites[key.start - 1: key.stop]
         else:
             assert key > 0, 'Index sprites list starts with 1'
@@ -53,7 +62,7 @@ class _Sprites:
             return self._sprites[key - 1]
 
     def __add__(self, other):
-        if isinstance(other, SubSprites):
+        if isinstance(other, TiledSubSprites):
             self._sprites.extend(other)
             return self._sprites
         else:
@@ -113,7 +122,7 @@ class Sub:
                               self.w_count)
         return self.sprite.subsurface((x, y, self.width, self.height))
 
-    def get_sprites(self, s=0, count=None):
+    def get_sprites(self, s: int = 0, count: int = None) -> list:
         """
 
         :param s: начало вырезания
@@ -121,7 +130,7 @@ class Sub:
         :return: _Sprites < pygame.Surface последовательность спрайтов
         отсчёт начинается с 1
         """
-        lst = _Sprites()
+        lst = list()
         if count is None:
             f = self.w_count * self.h_count
         else:
@@ -160,11 +169,12 @@ class Sub:
                    self.h_count, self.width, self.height)
 
 
-class SubSprites(_Sprites):
+class TiledSubSprites(ListMap):
     """ класс создаёт последовательность спрайтов из изображения """
 
     def __init__(self, **kwargs):
         """
+            ! читать doc к ListMap
             SubSprites(tilesets: _abctiled.TileSets)
             SubSprites(image: str, size: tuple(int, int))
             """
@@ -174,9 +184,9 @@ class SubSprites(_Sprites):
 
         if 'tilesets' in kwargs:
             self.tilesets = kwargs['tilesets']
-            assert isinstance(self.tilesets, _abctiled.TileSets), \
+            assert isinstance(self.tilesets, abc.TileSets), \
                 "параметр tilesets должен быть объектом класса - {}".format(
-                    _abctiled.TileSets.__class__.__name__
+                    abc.TileSets.__class__.__name__
                 )
             self.create_sets_sprites()
         # если изображение
@@ -210,20 +220,20 @@ class SubSprites(_Sprites):
         """
         for tset in self.tilesets:
             # если тайлсет (вырезает)
-            if isinstance(tset, _abctiled.ImageSet):
+            if isinstance(tset, abc.ImageSet):
                 image = tset.image
                 w = tset.tilewidth
                 h = tset.tileheight
                 self.sub = Sub(image=image, width=w, height=h)
                 self._sprites.extend(self.sub.get_sprites())
             # коллекция изображений
-            elif isinstance(tset, _abctiled.TileSet):
+            elif isinstance(tset, abc.TileSet):
                 for img in tset.images:
                     self._sprites.append(
                         pygame.image.load(img).convert_alpha())
 
 
-class TiledMap(_abctiled.AbcTiled):
+class TiledMap(abc.AbcTiled):
     """
     класс представляет карту сгенерированую Tiled Map Editor,
     где атрибуты соответствуют ключам словаря сгенерированой карты
@@ -250,7 +260,7 @@ class TiledMap(_abctiled.AbcTiled):
         последовательность спрайтов созданная на основе тайлсетов
         :return: SubSprites < Surface
         """
-        sub = SubSprites(tilesets=self.tilesets)
+        sub = TiledSubSprites(tilesets=self.tilesets)
         return sub
 
     @property
@@ -275,18 +285,29 @@ if __name__ == '__main__':
 
     tiled_map = TiledMap(maps, sets_dir)
     # получить subsprites можно после  иницализации дисплея screen
-    print(tiled_map.sub_sprites)
+    # print(tiled_map.sub_sprites)
 
-    # image = paths.get_exsets('set_2x1x64_white.png')
-    # sub = Sub(image, 64, 64)
-    # print(sub.get_sprites())
+    image = paths.get_exsets('set_2x1x64_white.png')
+    sub = Sub(image, 64, 64)
+    print(sub.get_sprites())
+    print(sub.get_sprites()[0])
     # print(sub.get_sprites())
     # print(sub.get_sprites_back(), 111)
 
-    # print('-------------------')
-    # tiled_map = TiledMap(maps, sets_dir)
-    # tileset = tiled_map.tilesets
-    # sub = SubSprites(tilesets=tileset)
-    # print(sub)
+    print('-------------------')
+    tiled_map = TiledMap(maps, sets_dir)
+    tileset = tiled_map.tilesets
+    sub = TiledSubSprites(tilesets=tileset)
+    print("------TiledSubSprites------------")
+    print(sub)
+    print("------TiledSubSprites первый елемент ------------")
+    print(sub[1])
+    print("------TiledSubSprites 0 елемент == исключение ------------")
+    try:
 
-
+        # print(sub[0])
+        # print(sub[-1])
+        print(sub[55])
+    except AssertionError as er:
+        print(
+            "вызвано исключение - обращение к несуществующему индексу\n{}".format(er))
