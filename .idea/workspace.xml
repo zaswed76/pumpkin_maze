@@ -5,15 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b2c168a0-6f50-4917-b52f-d8d0429866de" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pumpkin2/resources/exsets/set_4x1_transparent.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pumpkin2/tests/set_4x1_transparent.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pumpkin2/tests/set_4x3_transparent.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pumpkin2/tests/map.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/scopes/scope_settings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pumpkin2/tiledlib/_abctiled.py" afterPath="$PROJECT_DIR$/pumpkin2/tiledlib/_abctiled.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pumpkin2/tests/anim.py" afterPath="$PROJECT_DIR$/pumpkin2/tests/anim.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pumpkin2/maps/level_1/map.json" afterPath="$PROJECT_DIR$/pumpkin2/maps/level_1/map.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pumpkin2/tiledlib/map_loader.py" afterPath="$PROJECT_DIR$/pumpkin2/tiledlib/map_loader.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/readme.rst" afterPath="$PROJECT_DIR$/readme.rst" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="pumpkin_maze.iws" />
@@ -69,10 +61,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="map_loader.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="map_loader.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pumpkin2/tiledlib/map_loader.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="2.6205356" vertical-offset="4854" max-vertical-offset="6226">
+            <state vertical-scroll-proportion="0.0" vertical-offset="4854" max-vertical-offset="6226">
               <caret line="289" column="6" selection-start-line="289" selection-start-column="6" selection-end-line="289" selection-end-column="6" />
               <folding>
                 <element signature="e#289#298#0" expanded="true" />
@@ -98,6 +90,16 @@
                 <element signature="e#6895#7303#0" expanded="true" />
                 <element signature="e#7354#7541#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="readme.rst" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/readme.rst">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.14316703" vertical-offset="0" max-vertical-offset="792">
+              <caret line="3" column="20" selection-start-line="3" selection-start-column="20" selection-end-line="3" selection-end-column="20" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -177,6 +179,7 @@
         <option value="$PROJECT_DIR$/pumpkin2/tiledlib/_abctiled.py" />
         <option value="$PROJECT_DIR$/pumpkin2/tests/anim.py" />
         <option value="$PROJECT_DIR$/pumpkin2/tiledlib/map_loader.py" />
+        <option value="$PROJECT_DIR$/readme.rst" />
       </list>
     </option>
   </component>
@@ -233,60 +236,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="pumpkin_maze" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pumpkin_maze" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pumpkin_maze" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pumpkin2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pumpkin_maze" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pumpkin_maze" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pumpkin2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tests" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pumpkin_maze" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pumpkin_maze" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pumpkin2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="maps" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="level_1" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -759,7 +708,11 @@
       <created>1483462738791</created>
       <updated>1483462738791</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="map_loader">
+      <created>1483533600857</created>
+      <updated>1483533600857</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1172,7 +1125,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pumpkin2/tiledlib/map_loader.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="2.6205356" vertical-offset="4854" max-vertical-offset="6226">
+        <state vertical-scroll-proportion="0.0" vertical-offset="4854" max-vertical-offset="6226">
           <caret line="289" column="6" selection-start-line="289" selection-start-column="6" selection-end-line="289" selection-end-column="6" />
           <folding>
             <element signature="e#289#298#0" expanded="true" />
@@ -1198,6 +1151,14 @@
             <element signature="e#6895#7303#0" expanded="true" />
             <element signature="e#7354#7541#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/readme.rst">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.14316703" vertical-offset="0" max-vertical-offset="792">
+          <caret line="3" column="20" selection-start-line="3" selection-start-column="20" selection-end-line="3" selection-end-column="20" />
+          <folding />
         </state>
       </provider>
     </entry>
