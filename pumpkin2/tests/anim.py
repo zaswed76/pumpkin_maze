@@ -4,7 +4,7 @@ __author__ = 'lyuda'
 import sys
 import pygame
 from pygame.sprite import Group
-from pumpkin2.tiledlib.map_loader import Sub, TiledMap
+from pumpkin2.tiledlib.map_loader import SubSprites, TiledMap
 from pumpkin2.tiledlib import map_loader
 
 from pumpkin2.gamelib.sprites import GameObject
@@ -61,14 +61,14 @@ class Game:
 
 if __name__ == '__main__':
     def test_get_sprites():
-        player = Sub(paths.get_exsets('set_4x1_transparent.png'), 32,
-                      32).get_sprites()
+        player = SubSprites(paths.get_exsets('set_4x1_transparent.png'), 32,
+                            32).get_sprites()
         var = player[0]
         game.create_sprites(var, 10, 10)
 
     def test_get_back_sprites():
-        player = Sub(paths.get_exsets('set_4x1_transparent.png'), 32,
-                      32).get_sprites_back()
+        player = SubSprites(paths.get_exsets('set_4x1_transparent.png'), 32,
+                            32).get_sprites_back()
         game.create_sprites(player, 10, 50)
 
     def test_tilesets_sprites():
@@ -77,8 +77,8 @@ if __name__ == '__main__':
         game.create_sprites(sprites, 10, 50)
 
     def test_get_sprite(gid):
-        player = Sub(paths.get_exsets('set_4x1_transparent.png'), 32,
-                      32).get_sprite(gid)
+        player = SubSprites(paths.get_exsets('set_4x1_transparent.png'), 32,
+                            32).get_sprite(gid)
         game.create_sprites(player, 10, 10)
 
     game = Game()

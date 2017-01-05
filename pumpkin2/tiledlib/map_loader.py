@@ -9,18 +9,19 @@ class TiledMap - обёртка над словарём предсставляю
 
 
 """
+import json
 import os
 
 import pygame
 
-from pumpkin2.tiledlib import _abctiled as abc
+from pumpkin2.tiledlib.tilesets import TileSets, TileSet, ImageSet
 
 __all__ = ["TiledMap", "TiledSubSprites"]
 
 
 class ListMap:
     '''
-    класс создаёт последовательность спрайтов из изображения
+    класс контейнер для спрайтов с индексацией с 1
 
     '''
 
@@ -76,7 +77,7 @@ class ListMap:
         return str(self._sprites)
 
 
-class Sub:
+class SubSprites:
     """ класс предоставляет методы для 'вырезания и зоздания
      спрайтов из изображения ' """
 
@@ -87,7 +88,6 @@ class Sub:
         :param width: ширина спрайта
         :param height: высота спрайта
         """
-        # todo откуда список начинается в разных методах
         self.image = image
         self.height = height
         self.width = width
@@ -170,49 +170,27 @@ class Sub:
 
 
 class TiledSubSprites(ListMap):
-    """ класс создаёт последовательность спрайтов из изображения """
+    """
+    класс является контейнером для спрайтов созданных на основании данных
+    объкта TileSets
+    """
 
-    def __init__(self, **kwargs):
-        """
+    def __init__(self, tilesets):
+        """ индексация начинается с 1
             ! читать doc к ListMap
-            SubSprites(tilesets: _abctiled.TileSets)
-            SubSprites(image: str, size: tuple(int, int))
+            получает один параметр tilesets объект класса TileSets
+            отображение параметра 'tilesets' карты
+            SubSprites(tilesets: TileSets)
             """
         super().__init__()
         # self._sprites = []
         self.__value = 0
-
-        if 'tilesets' in kwargs:
-            self.tilesets = kwargs['tilesets']
-            assert isinstance(self.tilesets, abc.TileSets), \
-                "параметр tilesets должен быть объектом класса - {}".format(
-                    abc.TileSets.__class__.__name__
-                )
-            self.create_sets_sprites()
-        # если изображение
-        elif 'image' in kwargs.keys():
-            self.image = kwargs['image']
-            assert isinstance(self.image,
-                              str), "должна быть строка"
-            if 'size' in kwargs.keys():
-                assert isinstance(kwargs['size'],
-                                  tuple), 'должен быть tuple'
-                self.width = kwargs['size'][0]
-                self.height = kwargs['size'][1]
-
-                self.create_sub_sprites()
-
-        else:
-            raise Exception('отсутствуют параметры')
-
-    def create_sub_sprites(self):
-        """
-        на основе одного изображения
-        """
-        self.sub = Sub(image=self.image, width=self.width,
-
-                       height=self.height)
-        self._sprites.extend(self.sub.get_sprites())
+        self.tilesets = tilesets
+        assert isinstance(self.tilesets, TileSets), \
+            "параметр tilesets должен быть объектом класса - {}".format(
+                TileSets.__class__.__name__
+            )
+        self.create_sets_sprites()
 
     def create_sets_sprites(self):
         """
@@ -220,20 +198,20 @@ class TiledSubSprites(ListMap):
         """
         for tset in self.tilesets:
             # если тайлсет (вырезает)
-            if isinstance(tset, abc.ImageSet):
+            if isinstance(tset, ImageSet):
                 image = tset.image
                 w = tset.tilewidth
                 h = tset.tileheight
-                self.sub = Sub(image=image, width=w, height=h)
+                self.sub = SubSprites(image=image, width=w, height=h)
                 self._sprites.extend(self.sub.get_sprites())
             # коллекция изображений
-            elif isinstance(tset, abc.TileSet):
+            elif isinstance(tset, TileSet):
                 for img in tset.images:
                     self._sprites.append(
                         pygame.image.load(img).convert_alpha())
 
 
-class TiledMap(abc.AbcTiled):
+class TiledMap:
     """
     класс представляет карту сгенерированую Tiled Map Editor,
     где атрибуты соответствуют ключам словаря сгенерированой карты
@@ -246,22 +224,62 @@ class TiledMap(abc.AbcTiled):
         :param map_dict:
         :param kwargs:
         """
-        super().__init__(map_dict, sets_dir)
+
+        # region поля словаря карты
+        self.sets_dir = sets_dir
+        self.layers = map_dict.get("layers")
+        # Stores the next available ID for new objects.
+        self.nextobjectid = map_dict.get("nextobjectid")
+        self.orientation = map_dict.get("orientation")
+        self.renderorder = map_dict.get("renderorder")
+        self.tileheight = map_dict.get("tileheight")
+        self.tilesets = TileSets(map_dict.get("tilesets", []),
+                                 sets_dir=self.sets_dir)
+        self.tilewidth = map_dict.get("tilewidth")
+        self.tilewidth = map_dict.get("tilewidth")
+        self.version = map_dict.get("version")
+        self.width = map_dict.get("width")
+        self.properties = map_dict.get("properties")
+        self.backgroundcolor = map_dict.get("backgroundcolor")
+        self.propertytypes = map_dict.get("propertytypes")
+        self.height = map_dict.get("height")
+        # endregion
+
+
         path = os.path.abspath(sets_dir)
         if os.path.isdir(path):
+            #
             self.sets_dir = path
         else:
             raise FileNotFoundError(
                 "директория - {} не найдена".format(path))
 
-    @property
-    def sub_sprites(self):
+        self.sub_sprites = TiledSubSprites(self.tilesets)
+
+    def __str__(self):
+        return '''  class - {}
+  layers - {}
+  user_properties - {}
+  width - {} tiles
+  height - {} tiles
+  count sets - {} sets
+  '''.format(self.__class__.__name__,
+             len(self.layers),
+             self.properties,
+             self.width,
+             self.height,
+             len(self.tilesets)
+             )
+
+    @staticmethod
+    def load_map(pth_map: str) -> dict:
         """
-        последовательность спрайтов созданная на основе тайлсетов
-        :return: SubSprites < Surface
+
+        :param pth_map: path to json map
+        :return: map < dict
         """
-        sub = TiledSubSprites(tilesets=self.tilesets)
-        return sub
+        with open(pth_map, "r") as f:
+            return json.load(f)
 
     @property
     def size(self):
@@ -288,14 +306,22 @@ if __name__ == '__main__':
     # print(tiled_map.sub_sprites)
 
     image = paths.get_exsets('set_2x1x64_white.png')
-    sub = Sub(image, 64, 64)
+    sub = SubSprites(image, 64, 64)
     print(sub.get_sprites())
     print(sub.get_sprites()[0])
     # print(sub.get_sprites())
     # print(sub.get_sprites_back(), 111)
 
     print('-------------------')
+
+    print('использование TiledMap (метод sub_sprites)')
     tiled_map = TiledMap(maps, sets_dir)
+    print(tiled_map.sub_sprites)
+
+
+
+
+
     tileset = tiled_map.tilesets
     sub = TiledSubSprites(tilesets=tileset)
     print("------TiledSubSprites------------")
@@ -311,3 +337,4 @@ if __name__ == '__main__':
     except AssertionError as er:
         print(
             "вызвано исключение - обращение к несуществующему индексу\n{}".format(er))
+
