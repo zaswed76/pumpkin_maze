@@ -1,5 +1,5 @@
 # coding=utf-8
-# coding=utf-8
+
 """
 модуль предоставляет классы для работы с картой сгенерирваной
 програмой Tiled Map Editor. карта представляет собой
@@ -172,7 +172,8 @@ class SubSprites:
 class TiledSubSprites(ListMap):
     """
     класс является контейнером для спрайтов созданных на основании данных
-    объкта TileSets
+    объкта TileSets. Может создавать спрайты на основании тайлсетов
+    и коллекций изображений
     """
 
     def __init__(self, tilesets):
@@ -190,9 +191,9 @@ class TiledSubSprites(ListMap):
             "параметр tilesets должен быть объектом класса - {}".format(
                 TileSets.__class__.__name__
             )
-        self.create_sets_sprites()
+        self._create_sets_sprites()
 
-    def create_sets_sprites(self):
+    def _create_sets_sprites(self):
         """
         на основе тайлсетов из сгенерированой карты
         """
