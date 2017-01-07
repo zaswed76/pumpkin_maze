@@ -6,6 +6,7 @@
       <option name="ignoredIdentifiers">
         <list>
           <option value="pygame.image.*" />
+          <option value="exemples.test_level.GUI.*" />
         </list>
       </option>
     </inspection_tool>
