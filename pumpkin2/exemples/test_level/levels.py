@@ -5,11 +5,12 @@ import pygame
 from pygame.sprite import Group
 
 class Levels:
-    def __init__(self):
-        pass
+    def __init__(self, screen):
+        self.screen = screen
 
     def __create_levels(self):
-        pass
+        group = Group()
+
 
     def draw(self, level):
         pass
