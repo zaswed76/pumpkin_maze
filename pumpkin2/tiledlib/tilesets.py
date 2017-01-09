@@ -3,6 +3,8 @@ import os
 from collections import namedtuple
 
 
+__all__ = ["ImageCollection", "TileSet", "TileSets"]
+
 class TsetError(Exception):
     def __init__(self, value, mess: str, *args):
         self.args = args
@@ -41,7 +43,7 @@ class _Tiled:
         return '{}'.format(self.__class__.__name__)
 
 
-class TileSet(_Tiled):
+class ImageCollection(_Tiled):
     ''' коллекция изображений '''
 
     def __init__(self, tset: dict, **kwargs):
@@ -83,7 +85,7 @@ class TileSet(_Tiled):
         return " - ".join((s, z))
 
 
-class ImageSet(_Tiled):
+class TileSet(_Tiled):
     """ набор тайлов в одном изображении"""
 
     def __init__(self, tset: dict, **kwargs):
@@ -120,7 +122,7 @@ class ImageSet(_Tiled):
 
 
 class TileSets:
-    type_sets = dict(image=ImageSet, tile=TileSet)
+    type_sets = dict(tileset=TileSet, collection=ImageCollection)
 
     def __init__(self, sets: list, **kwargs):
         """

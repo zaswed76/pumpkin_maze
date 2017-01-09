@@ -2,4 +2,4 @@
 
 class Status:
     def __init__(self):
-        self.level = 1
+        self.level = 0

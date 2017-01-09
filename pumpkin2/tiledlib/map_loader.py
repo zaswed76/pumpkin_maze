@@ -11,10 +11,11 @@ class TiledMap - обёртка над словарём предсставляю
 """
 import json
 import os
+from abc import ABCMeta, abstractmethod
 
 import pygame
 
-from pumpkin2.tiledlib.tilesets import TileSets, TileSet, ImageSet
+from pumpkin2.tiledlib.tilesets import *
 
 __all__ = ["TiledMap", "TiledSubSprites"]
 
@@ -76,27 +77,49 @@ class ListMap:
     def __repr__(self):
         return str(self._sprites)
 
+class ABCSubImages(metaclass=ABCMeta):
+    def __init__(self, **kwargs):
+        self.image = kwargs.get('image')
+        self.height = kwargs.get('height')
+        self.width = kwargs.get('width')
 
-class SubSprites:
+    @abstractmethod
+    def get_sprites(self):
+        """
+        :return последовательность  объктов изображений
+        """
+        pass
+
+    @abstractmethod
+    def get_image_sprite(self, img):
+        """
+        :return объект изображения
+        """
+        pass
+
+class SubSprites(ABCSubImages):
     """ класс предоставляет методы для 'вырезания и зоздания
      спрайтов из изображения ' """
 
-    def __init__(self, image, width, height):
+    def __init__(self, **kwargs):
         """
 
         :param image: str путь к изображению
         :param width: ширина спрайта
         :param height: высота спрайта
         """
-        self.image = image
-        self.height = height
-        self.width = width
-        self.sprite = pygame.image.load(image).convert_alpha()
-        self.sprite_rect = self.sprite.get_rect()
-        # спрайтов по горизонтали
-        self.w_count = self.sprite_rect.width // self.width
-        # спрайтов по вертикали
-        self.h_count = self.sprite_rect.height // self.height
+
+        super().__init__(**kwargs)
+        self.image = kwargs.get('image')
+        self.height = kwargs.get('height')
+        self.width = kwargs.get('width')
+        if  self.image is not None:
+            self.sprite = pygame.image.load(self.image).convert_alpha()
+            self.sprite_rect = self.sprite.get_rect()
+            # спрайтов по горизонтали
+            self.w_count = self.sprite_rect.width // self.width
+            # спрайтов по вертикали
+            self.h_count = self.sprite_rect.height // self.height
 
     def get_coord(self, n, width, height, w_count):
         """
@@ -127,8 +150,8 @@ class SubSprites:
 
         :param s: начало вырезания
         :param count:  колличество вырезаных
-        :return: _Sprites < pygame.Surface последовательность спрайтов
-        отсчёт начинается с 1
+        :return: list < pygame.Surface последовательность спрайтов
+        отсчёт начинается с 0
         """
         lst = list()
         if count is None:
@@ -138,6 +161,10 @@ class SubSprites:
         for x in range(s, f):
             lst.append(self.get_sprite(x))
         return lst
+
+    # noinspection PyMethodOverriding
+    def get_image_sprite(self, img):
+        return pygame.image.load(img).convert_alpha()
 
     def get_sprites_back(self):
         """
@@ -176,15 +203,20 @@ class TiledSubSprites(ListMap):
     и коллекций изображений
     """
 
-    def __init__(self, tilesets):
+    def __init__(self, images_fabric, tilesets):
         """ индексация начинается с 1
             ! читать doc к ListMap
             получает один параметр tilesets объект класса TileSets
             отображение параметра 'tilesets' карты
             SubSprites(tilesets: TileSets)
+            :param images_fabric наследник класса ABCSubImages
             """
         super().__init__()
-        # self._sprites = []
+        self.sprites_fabric = images_fabric
+        if not isinstance(images_fabric, ABCMeta):
+            raise TypeError('''images_fabric лолжен быть
+            наследником класса ABCSubImages''')
+
         self.__value = 0
         self.tilesets = tilesets
         assert isinstance(self.tilesets, TileSets), \
@@ -199,17 +231,18 @@ class TiledSubSprites(ListMap):
         """
         for tset in self.tilesets:
             # если тайлсет (вырезает)
-            if isinstance(tset, ImageSet):
+            if isinstance(tset, TileSet):
                 image = tset.image
                 w = tset.tilewidth
                 h = tset.tileheight
-                self.sub = SubSprites(image=image, width=w, height=h)
+                self.sub = self.sprites_fabric(image=image, width=w, height=h)
                 self._sprites.extend(self.sub.get_sprites())
             # коллекция изображений
-            elif isinstance(tset, TileSet):
+            elif isinstance(tset, ImageCollection):
                 for img in tset.images:
+                    sub = self.sprites_fabric()
                     self._sprites.append(
-                        pygame.image.load(img).convert_alpha())
+                        sub.get_image_sprite(img))
 
 
 class TiledMap:
@@ -255,7 +288,17 @@ class TiledMap:
             raise FileNotFoundError(
                 "директория - {} не найдена".format(path))
 
-        self.sub_sprites = TiledSubSprites(self.tilesets)
+    def sub_sprites(self, images_fabric):
+        """
+
+        :param sprites_fabric: ссылка на класс наслдедующего
+         абстрактный ABCSubImages
+        :return:  TiledSubSprites < Surface
+        """
+        if not isinstance(images_fabric, ABCMeta):
+            raise TypeError('''images_fabric лолжен быть
+            наследником класса ABCSubImages''')
+        return TiledSubSprites(images_fabric, self.tilesets)
 
     def __str__(self):
         return '''  class - {}
@@ -294,48 +337,58 @@ class TiledMap:
 
 
 if __name__ == '__main__':
+    # примеры исползьования
+    # импорт модуля хранящего пути к ресурсам
     from pumpkin2 import paths
-
+    # инициация pygame ! обязательно !
     pygame.init()
-    screen = pygame.display.set_mode((10, 10))
+
+    # путь к json карте
     path_map = paths.get_map('level_1')
+    # получить словарь из json карты
     maps = TiledMap.load_map(path_map)
+    # каталог с изображениями тайлсетов
     sets_dir = paths.exsets
 
-    tiled_map = TiledMap(maps, sets_dir)
-    # получить subsprites можно после  иницализации дисплея screen
-    # print(tiled_map.sub_sprites)
-
-    image = paths.get_exsets('set_2x1x64_white.png')
-    sub = SubSprites(image, 64, 64)
-    print(sub.get_sprites())
-    print(sub.get_sprites()[0])
-    # print(sub.get_sprites())
-    # print(sub.get_sprites_back(), 111)
-
     print('-------------------')
+    print('''sub
+     получить список объектов изображений вызовом
+     метода sub_sprites и передачей ссылки на класс SubSprites :\n''')
 
-    print('использование TiledMap (метод sub_sprites)')
+    # создать объект TiledMap
     tiled_map = TiledMap(maps, sets_dir)
-    print(tiled_map.sub_sprites)
 
-
-
-
-
-    tileset = tiled_map.tilesets
-    sub = TiledSubSprites(tilesets=tileset)
-    print("------TiledSubSprites------------")
+    # получить subsprites можно после  иницализации дисплея screen
+    # создать поверхность дисплея
+    screen = pygame.display.set_mode((10, 10))
+    # получить объекты изображений ИНДКСАЦИЯ НАЧИНАЕТСЯ С 1
+    sub = tiled_map.sub_sprites(SubSprites)
     print(sub)
-    print("------TiledSubSprites первый елемент ------------")
+    print("""------ ИНДКСАЦИЯ НАЧИНАЕТСЯ С 1 --------- :""")
     print(sub[1])
-    print("------TiledSubSprites 0 елемент == исключение ------------")
+    print("""------sub[1] исключение --------- :""")
     try:
+        print(sub[0])
+    except AssertionError:
+        print(" !!! вызвано исключение: индксация начинается с 1 ")
 
-        # print(sub[0])
-        # print(sub[-1])
-        print(sub[55])
-    except AssertionError as er:
-        print(
-            "вызвано исключение - обращение к несуществующему индексу\n{}".format(er))
+    print('############################################')
+    print(""" sub.get_sprites()
+    получить последовательность спрайтов непсредственно создав
+    объект класса SubSprites и вызова метода get_sprites
+    ! ИНАДКСАЦИЯ НАЧИНАЕТС С 0 ! """)
+    image = paths.get_exsets('set_4x1_transparent.png')
+    sub = SubSprites(image=image, width=32, height=32)
+    # ИНДКСАЦИЯ НАЧИНАЕТСЯ С 0
+    print(sub.get_sprites())
+    print("""------ sub.get_sprites()[0] ИНДКСАЦИЯ НАЧИНАЕТСЯ С 0 --------- :""")
+    print(sub.get_sprites()[0])
+    print("""------ sub.get_sprites_back() ИНДКСАЦИЯ НАЧИНАЕТСЯ С 0 --------- :""")
+    print(sub.get_sprites_back())
+
+
+
+
+
+
 

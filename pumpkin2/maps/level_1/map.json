@@ -12,20 +12,22 @@
          "y":0
         }, 
         {
+         "color":"#aa007f",
          "draworder":"topdown",
          "height":10,
          "name":"figure",
          "objects":[
                 {
-                 "height":31,
-                 "id":1,
+                 "ellipse":true,
+                 "height":136,
+                 "id":2,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":33,
-                 "x":95,
-                 "y":34
+                 "width":136,
+                 "x":33,
+                 "y":76
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -33,19 +35,8 @@
          "width":10,
          "x":0,
          "y":0
-        }, 
-        {
-         "height":10,
-         "image":"..\/..\/resources\/cloud.png",
-         "name":"image",
-         "opacity":1,
-         "type":"imagelayer",
-         "visible":true,
-         "width":10,
-         "x":0,
-         "y":0
         }],
- "nextobjectid":2,
+ "nextobjectid":3,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tileheight":32,
@@ -53,23 +44,48 @@
         {
          "columns":2,
          "firstgid":1,
-         "image":"..\/..\/resources\/exsets\/set_2x1x64transparent.png",
-         "imageheight":64,
-         "imagewidth":128,
+         "image":"..\/..\/resources\/exsets\/100x50x4.png",
+         "imageheight":100,
+         "imagewidth":200,
          "margin":0,
-         "name":"set_2x1x64transparent",
+         "name":"100x50x4",
          "properties":
             {
-             "class":"image"
+             "class":"tileset"
             },
          "propertytypes":
             {
              "class":"string"
             },
          "spacing":0,
-         "tilecount":2,
-         "tileheight":64,
-         "tilewidth":64
+         "tilecount":4,
+         "tileheight":50,
+         "tilewidth":100
+        }, 
+        {
+         "columns":0,
+         "firstgid":5,
+         "margin":0,
+         "name":"collection",
+         "properties":
+            {
+             "class":"collection"
+            },
+         "propertytypes":
+            {
+             "class":"string"
+            },
+         "spacing":0,
+         "tilecount":1,
+         "tileheight":100,
+         "tiles":
+            {
+             "0":
+                {
+                 "image":"..\/..\/resources\/exsets\/100x50x4.png"
+                }
+            },
+         "tilewidth":200
         }],
  "tilewidth":32,
  "version":1,
