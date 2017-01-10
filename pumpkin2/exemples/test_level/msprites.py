@@ -20,8 +20,15 @@ class MGroup(Group):
 class Image:
     def __init__(self, **kwargs):
         image = kwargs['image']
-        self.surface = pygame.image.load(image).convert_alpha()
+        if isinstance(image, str):
+            self.surface = pygame.image.load(image).convert_alpha()
+        elif isinstance(image, pygame.Surface):
+            self.surface = image
+        else:
+            raise TypeError('не тот тип изображения')
         self.rect = self.surface.get_rect()
+
+
 
     def draw(self, screen):
         surface_blit = screen.blit
@@ -55,51 +62,26 @@ class Circle:
         return pygame.draw.circle(screen, self.color, self.pos, self.radius, 0)
 
 class ABCSprite(Sprite):
-    def __init__(self, figure, **kwargs):
+    def __init__(self, sprite_object, **kwargs):
         super().__init__()
-        self.figure = figure(**kwargs)
+        self.sprite_object = sprite_object(**kwargs)
+
+    def set_pos(self, pos):
+        self.sprite_object.rect.x = pos[0]
+        self.sprite_object.rect.y = pos[1]
 
     @property
     def image(self):
-        return self.figure.surface
+        return self.sprite_object.surface
 
     @property
     def rect(self):
-        return self.figure.rect
+        return self.sprite_object.rect
 
     def draw(self, screen):
-        return self.figure.draw(screen)
+        return self.sprite_object.draw(screen)
 
 
-class MySprite(ABCSprite):
-    def __init__(self, figure, **kwargs):
-        super().__init__(figure, **kwargs)
-
-
-#
-# def run_game():
-#     # Инициализирует игру и создает объект экрана.
-#     pygame.init()
-#     screen = pygame.display.set_mode((600, 600))
-#     pygame.display.set_caption("Name Game")
-#     # Запуск основного цикла игры.
-#     group = MGroup()
-#
-#     # a = ABCSprite(Circle, surface=screen, color=(255, 0, 0), radius=45)
-#     # a = ABCSprite(Image, image='cloud.png')
-#     a = ABCSprite(Rect, size=(50, 50), pos=(0, 0), color='green')
-#     group.add(a)
-#     while True:
-#         # Отслеживание событий клавиатуры и мыши.
-#         for event in pygame.event.get():
-#             if event.type == pygame.QUIT:
-#                 sys.exit()
-#         # Отображение последнего прорисованного экрана.
-#         screen.fill(pygame.Color('#D8D8D8'))
-#         group.draw(screen)
-#         pygame.display.flip()
-#
-# run_game()
 
 
 

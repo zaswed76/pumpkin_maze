@@ -1,0 +1,35 @@
+{ "height":4,
+ "layers":[
+        {
+         "data":[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+         "height":4,
+         "name":"\u0421\u043b\u043e\u0439 \u0442\u0430\u0439\u043b\u043e\u0432 1",
+         "opacity":1,
+         "type":"tilelayer",
+         "visible":true,
+         "width":4,
+         "x":0,
+         "y":0
+        }],
+ "nextobjectid":1,
+ "orientation":"orthogonal",
+ "renderorder":"right-down",
+ "tileheight":32,
+ "tilesets":[
+        {
+         "columns":6,
+         "firstgid":1,
+         "image":"res\/100x50x4.png",
+         "imageheight":100,
+         "imagewidth":200,
+         "margin":0,
+         "name":"100x50x4",
+         "spacing":0,
+         "tilecount":18,
+         "tileheight":32,
+         "tilewidth":32
+        }],
+ "tilewidth":32,
+ "version":1,
+ "width":4
+}

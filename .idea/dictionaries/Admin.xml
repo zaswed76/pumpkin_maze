@@ -2,6 +2,8 @@
   <dictionary name="Admin">
     <words>
       <w>abctiled</w>
+      <w>blit</w>
+      <w>objectgroup</w>
       <w>tasklist</w>
       <w>tilesets</w>
       <w>tilewidth</w>

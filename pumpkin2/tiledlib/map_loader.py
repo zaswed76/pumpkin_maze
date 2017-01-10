@@ -7,7 +7,7 @@
 class SubSprites создаёт и возвращает последовательность спрайтов - 'Surface'
 class TiledMap - обёртка над словарём предсставляющем карту Tiled Map Editor
 
-
+See http://www.iana.org/time-zones/repository/tz-link.html
 """
 import json
 import os
@@ -15,7 +15,7 @@ from abc import ABCMeta, abstractmethod
 
 import pygame
 
-from pumpkin2.tiledlib.tilesets import *
+from tiledlib.tilesets import *
 
 __all__ = ["TiledMap", "TiledSubSprites"]
 
@@ -260,15 +260,16 @@ class TiledMap:
         """
 
         # region поля словаря карты
-        self.sets_dir = sets_dir
+        self._sets_dir = sets_dir
+        self.tilesets = TileSets(map_dict.get("tilesets", []),
+                                 sets_dir=self.sets_dir)
         self.layers = map_dict.get("layers")
         # Stores the next available ID for new objects.
         self.nextobjectid = map_dict.get("nextobjectid")
         self.orientation = map_dict.get("orientation")
         self.renderorder = map_dict.get("renderorder")
         self.tileheight = map_dict.get("tileheight")
-        self.tilesets = TileSets(map_dict.get("tilesets", []),
-                                 sets_dir=self.sets_dir)
+
         self.tilewidth = map_dict.get("tilewidth")
         self.tilewidth = map_dict.get("tilewidth")
         self.version = map_dict.get("version")
@@ -283,10 +284,22 @@ class TiledMap:
         path = os.path.abspath(sets_dir)
         if os.path.isdir(path):
             #
-            self.sets_dir = path
+            self._sets_dir = path
         else:
             raise FileNotFoundError(
                 "директория - {} не найдена".format(path))
+        pth = self.tilesets.sets[0]._image
+        print(pth)
+        print(os.path.abspath(pth))
+        # print(os.path.dirname(__file__))
+    @property
+    def sets_dir(self):
+
+        return self._sets_dir
+
+    @sets_dir.setter
+    def sets_dir(self, value):
+        self._sets_dir = value
 
     def sub_sprites(self, images_fabric):
         """
@@ -316,12 +329,13 @@ class TiledMap:
              )
 
     @staticmethod
-    def load_map(pth_map: str) -> dict:
+    def load_map(pth_map: str, root) -> dict:
         """
 
         :param pth_map: path to json map
         :return: map < dict
         """
+        print(root)
         with open(pth_map, "r") as f:
             return json.load(f)
 
@@ -349,42 +363,43 @@ if __name__ == '__main__':
     maps = TiledMap.load_map(path_map)
     # каталог с изображениями тайлсетов
     sets_dir = paths.exsets
-
-    print('-------------------')
-    print('''sub
-     получить список объектов изображений вызовом
-     метода sub_sprites и передачей ссылки на класс SubSprites :\n''')
-
-    # создать объект TiledMap
     tiled_map = TiledMap(maps, sets_dir)
 
-    # получить subsprites можно после  иницализации дисплея screen
-    # создать поверхность дисплея
-    screen = pygame.display.set_mode((10, 10))
-    # получить объекты изображений ИНДКСАЦИЯ НАЧИНАЕТСЯ С 1
-    sub = tiled_map.sub_sprites(SubSprites)
-    print(sub)
-    print("""------ ИНДКСАЦИЯ НАЧИНАЕТСЯ С 1 --------- :""")
-    print(sub[1])
-    print("""------sub[1] исключение --------- :""")
-    try:
-        print(sub[0])
-    except AssertionError:
-        print(" !!! вызвано исключение: индксация начинается с 1 ")
-
-    print('############################################')
-    print(""" sub.get_sprites()
-    получить последовательность спрайтов непсредственно создав
-    объект класса SubSprites и вызова метода get_sprites
-    ! ИНАДКСАЦИЯ НАЧИНАЕТС С 0 ! """)
-    image = paths.get_exsets('set_4x1_transparent.png')
-    sub = SubSprites(image=image, width=32, height=32)
-    # ИНДКСАЦИЯ НАЧИНАЕТСЯ С 0
-    print(sub.get_sprites())
-    print("""------ sub.get_sprites()[0] ИНДКСАЦИЯ НАЧИНАЕТСЯ С 0 --------- :""")
-    print(sub.get_sprites()[0])
-    print("""------ sub.get_sprites_back() ИНДКСАЦИЯ НАЧИНАЕТСЯ С 0 --------- :""")
-    print(sub.get_sprites_back())
+    # print('-------------------')
+    # print('''sub
+    #  получить список объектов изображений вызовом
+    #  метода sub_sprites и передачей ссылки на класс SubSprites :\n''')
+    #
+    # # создать объект TiledMap
+    # tiled_map = TiledMap(maps, sets_dir)
+    #
+    # # получить subsprites можно после  иницализации дисплея screen
+    # # создать поверхность дисплея
+    # screen = pygame.display.set_mode((10, 10))
+    # # получить объекты изображений ИНДКСАЦИЯ НАЧИНАЕТСЯ С 1
+    # sub = tiled_map.sub_sprites(SubSprites)
+    # print(sub)
+    # print("""------ ИНДКСАЦИЯ НАЧИНАЕТСЯ С 1 --------- :""")
+    # print(sub[1])
+    # print("""------sub[1] исключение --------- :""")
+    # try:
+    #     print(sub[0])
+    # except AssertionError:
+    #     print(" !!! вызвано исключение: индксация начинается с 1 ")
+    #
+    # print('############################################')
+    # print(""" sub.get_sprites()
+    # получить последовательность спрайтов непсредственно создав
+    # объект класса SubSprites и вызова метода get_sprites
+    # ! ИНАДКСАЦИЯ НАЧИНАЕТС С 0 ! """)
+    # image = paths.get_exsets('set_4x1_transparent.png')
+    # sub = SubSprites(image=image, width=32, height=32)
+    # # ИНДКСАЦИЯ НАЧИНАЕТСЯ С 0
+    # print(sub.get_sprites())
+    # print("""------ sub.get_sprites()[0] ИНДКСАЦИЯ НАЧИНАЕТСЯ С 0 --------- :""")
+    # print(sub.get_sprites()[0])
+    # print("""------ sub.get_sprites_back() ИНДКСАЦИЯ НАЧИНАЕТСЯ С 0 --------- :""")
+    # print(sub.get_sprites_back())
 
 
 

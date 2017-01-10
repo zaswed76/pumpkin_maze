@@ -1,11 +1,10 @@
-
-
+import os
 import sys
 
 import pygame
 
-from pumpkin2.exemples.test_level.game_status import Status
-from pumpkin2.exemples.test_level import levels as lv
+from exemples.test_level.game_status import Status
+from exemples.test_level import levels as lv
 
 status = Status()
 
@@ -24,8 +23,8 @@ def run_game():
 
 
 
-
-    level = lv.Level(screen)
+    root = os.path.dirname(__file__)
+    level = lv.Level(screen, root)
 
 
 
