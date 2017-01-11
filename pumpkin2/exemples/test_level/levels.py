@@ -22,7 +22,9 @@ class Level(pygame.sprite.Group):
         # sprite = spr.ABCSprite(spr.Image, image=self.image)
 
     def __create_level(self):
-        map_dct = TiledMap.load_map(paths.get_map('level_1'), self.root)
+        path = paths.get_map('level_1')
+        # path = r'D:\save\serg\projects\pumpkin_maze\pumpkin2\map.json'
+        map_dct = TiledMap.load_map(path, self.root)
         tiled_map = TiledMap(map_dct, paths.exsets)
         self.sub_sprites = tiled_map.sub_sprites(SubSprites)
         layers = tiled_map.layers

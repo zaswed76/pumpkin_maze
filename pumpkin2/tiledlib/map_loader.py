@@ -329,6 +329,12 @@ class TiledMap:
              )
 
     @staticmethod
+    def get_path(rootw, tiled_set_image):
+        suff = os.path.realpath(tiled_set_image).replace(rootw, "").strip()
+        full = os.path.join(os.path.abspath(rootw), suff)
+        return full
+
+    @staticmethod
     def load_map(pth_map: str, root) -> dict:
         """
 
@@ -358,7 +364,8 @@ if __name__ == '__main__':
     pygame.init()
 
     # путь к json карте
-    path_map = paths.get_map('level_1')
+    # path_map = paths.get_map('level_1')
+    path_map = r'D:\save\serg\projects\pumpkin_maze\pumpkin2\map.json'
     # получить словарь из json карты
     maps = TiledMap.load_map(path_map)
     # каталог с изображениями тайлсетов
