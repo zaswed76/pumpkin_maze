@@ -17,13 +17,13 @@
  "tileheight":32,
  "tilesets":[
         {
-         "columns":4,
+         "columns":6,
          "firstgid":1,
-         "image":"..\/..\/resources\/sets\/128-32.png",
-         "imageheight":128,
-         "imagewidth":128,
+         "image":"..\/..\/resources\/base_bg.bmp",
+         "imageheight":320,
+         "imagewidth":192,
          "margin":0,
-         "name":"100x50x4",
+         "name":"base_bg",
          "properties":
             {
              "class":"tileset"
@@ -33,7 +33,7 @@
              "class":"string"
             },
          "spacing":0,
-         "tilecount":18,
+         "tilecount":60,
          "tileheight":32,
          "tilewidth":32
         }],

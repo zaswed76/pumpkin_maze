@@ -48,7 +48,8 @@ class ImageCollection(_Tiled):
 
     def __init__(self, tset: dict, **kwargs):
         super().__init__()
-        self.sets_dir = kwargs['sets_dir']
+        self.root = kwargs['root']
+        print(self.root, '2')
         self.columns = tset.get("columns")
         self.firstgid = tset.get("firstgid")
         self.margin = tset.get("margin")
@@ -62,6 +63,12 @@ class ImageCollection(_Tiled):
         self.tiles = tset.get("tiles")
         self.tilewidth = tset.get("tilewidth")
 
+
+    def image(self, img):
+        suff = os.path.realpath(img[1]['image']).replace(self.root, "").strip()
+        full = os.path.join(os.path.abspath(self.root), suff)
+        return full
+
     @property
     def images(self):
         """
@@ -71,8 +78,7 @@ class ImageCollection(_Tiled):
         images = []
         tiles = sorted(self.tiles.items(), key=lambda item: item[0])
         for img in tiles:
-            paths = os.path.join(self.sets_dir,
-                                 os.path.basename(img[1]['image']))
+            paths = self.image(img)
             if not os.path.isfile(paths):
                 raise FileNotFoundError('нет картинки')
             else:
@@ -90,7 +96,8 @@ class TileSet(_Tiled):
 
     def __init__(self, tset: dict, **kwargs):
         super().__init__()
-        self.sets_dir = kwargs['sets_dir']
+        self.root = kwargs['root']
+        print(self.root)
         self.columns = tset.get("columns")
         self.firstgid = tset.get("firstgid")
         self._image = tset.get("image")
@@ -106,14 +113,12 @@ class TileSet(_Tiled):
 
     @property
     def image(self):
-        path = os.path.join(self.sets_dir,
-                            os.path.basename(self._image))
-        path = os.path.abspath(path)
-        if not os.path.isfile(path):
-            raise FileNotFoundError(
-                '{} - файл не найден'.format(path))
-        else:
-            return path
+        suff = os.path.realpath(self._image).replace(self.root, "").strip()
+        full = os.path.join(os.path.abspath(self.root), suff)
+        print(self._image, '1')
+        print(self.root, '2')
+        print(os.path.realpath(self._image), '3')
+        return full
 
     def __repr__(self):
         s = super().__repr__()
@@ -124,13 +129,14 @@ class TileSet(_Tiled):
 class TileSets:
     type_sets = dict(tileset=TileSet, collection=ImageCollection)
 
-    def __init__(self, sets: list, **kwargs):
+    def __init__(self, sets: list, root, **kwargs):
         """
 
         :param sets: список словарей tilesets
         :param kwargs: set_dir < str; путь к каталогу с сетами
         """
-        self.set_dir = kwargs['sets_dir']
+        self.root = root
+
         self._sets = []
         self.__create_sets(sets)
 
@@ -172,7 +178,7 @@ class TileSets:
             self.sets.append(
                 # создаём объекты тайлсетов
                 self.type_sets[cls_name](tset,
-                                         sets_dir=self.set_dir))
+                                         root=self.root))
 
     def __getitem__(self, item):
         return self.sets[item]

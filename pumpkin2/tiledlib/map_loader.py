@@ -251,18 +251,19 @@ class TiledMap:
     где атрибуты соответствуют ключам словаря сгенерированой карты
     """
 
-    def __init__(self, map_dict: dict, sets_dir: str, **kwargs):
+    def __init__(self, map_dict: dict, root: str, **kwargs):
         """
          карта в виде словаря
         :param sets_dir: путь к каталогу с тайлсетами
         :param map_dict:
         :param kwargs:
         """
+        self.root = root
 
         # region поля словаря карты
-        self._sets_dir = sets_dir
+
         self.tilesets = TileSets(map_dict.get("tilesets", []),
-                                 sets_dir=self.sets_dir)
+                                 root=self.root)
         self.layers = map_dict.get("layers")
         # Stores the next available ID for new objects.
         self.nextobjectid = map_dict.get("nextobjectid")
@@ -279,27 +280,6 @@ class TiledMap:
         self.propertytypes = map_dict.get("propertytypes")
         self.height = map_dict.get("height")
         # endregion
-
-
-        path = os.path.abspath(sets_dir)
-        if os.path.isdir(path):
-            #
-            self._sets_dir = path
-        else:
-            raise FileNotFoundError(
-                "директория - {} не найдена".format(path))
-        pth = self.tilesets.sets[0]._image
-        print(pth)
-        print(os.path.abspath(pth))
-        # print(os.path.dirname(__file__))
-    @property
-    def sets_dir(self):
-
-        return self._sets_dir
-
-    @sets_dir.setter
-    def sets_dir(self, value):
-        self._sets_dir = value
 
     def sub_sprites(self, images_fabric):
         """
@@ -335,13 +315,12 @@ class TiledMap:
         return full
 
     @staticmethod
-    def load_map(pth_map: str, root) -> dict:
+    def load_map(pth_map: str) -> dict:
         """
 
         :param pth_map: path to json map
         :return: map < dict
         """
-        print(root)
         with open(pth_map, "r") as f:
             return json.load(f)
 
