@@ -41,6 +41,8 @@ def run_game():
                 status.level = 1
                 print(status.level)
         screen.fill(pygame.Color('#D8D8D8'))
+
+        
         # Отображение последнего прорисованного экрана.
 
         level.draw(screen)

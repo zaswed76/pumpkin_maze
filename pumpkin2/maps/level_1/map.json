@@ -17,11 +17,11 @@
  "tileheight":32,
  "tilesets":[
         {
-         "columns":6,
+         "columns":4,
          "firstgid":1,
-         "image":"..\/..\/resources\/base_bg.bmp",
-         "imageheight":320,
-         "imagewidth":192,
+         "image":"..\/..\/resources\/exsets\/set_2x1x64_white.png",
+         "imageheight":64,
+         "imagewidth":128,
          "margin":0,
          "name":"base_bg",
          "properties":

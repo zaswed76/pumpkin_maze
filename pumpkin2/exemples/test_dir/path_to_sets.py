@@ -3,19 +3,17 @@
 import os
 import re
 tiled_path = '../../resources/sets/128-32.png'
-root1 = r"D:/save/serg/projects/pumpkin_maze/pumpkin2"
+root1 = r"D:\0SYNC\python_projects\games\Games\pumpkin_maze\pumpkin2"
 
 
 
-# def get_path(rootw, tiled_set_image):
-#     suff = os.path.realpath(tiled_set_image).replace(rootw, "").strip()
-#     full = os.path.join(os.path.abspath(rootw), suff)
-#     return full
-#
-# print(get_path(root1, tiled_path))
+def get_path(dir_name, base_name):
+    lst = []
+    for root, dirs, files in os.walk(dir_name):  # пройти по директории рекурсивно
+        for name in files:
+            fullname = os.path.join(root, name)  # получаем полное имя файла
+            if base_name in fullname:
+                lst.append(fullname) # делаем что-нибудь с ним
+    return lst
 
-print(os.path.relpath(tiled_path))
-
-tiled_path = '../../resources/sets/128-32.png'
-pat = re.compile(r'^[\.]+[/]+')
-print(pat.sub('', tiled_path, ), 55)
+print(get_path(root1, os.path.basename((tiled_path))))

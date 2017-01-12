@@ -29,6 +29,22 @@ err_message_valid_type = """
 пользовательский параметр {} может иметь одно из этих значений:
 {}
 """
+def get_path(dir_name, base_name):
+    # todo а если несколько файлов
+    """
+     сканируем все папки каталога и выдаём полный путь к тайл сету
+    :param dir_name: путь к корнюевой папке программы
+    :param base_name: базовое имя тайлсета
+    :return:
+    """
+
+    lst = []
+    for root, dirs, files in os.walk(dir_name):  # пройти по директории рекурсивно
+        for name in files:
+            fullname = os.path.join(root, name)  # получаем полное имя файла
+            if base_name in fullname:
+                lst.append(fullname) # делаем что-нибудь с ним
+    return lst[0]
 
 
 class _Tiled:
@@ -49,7 +65,6 @@ class ImageCollection(_Tiled):
     def __init__(self, tset: dict, **kwargs):
         super().__init__()
         self.root = kwargs['root']
-        print(self.root, '2')
         self.columns = tset.get("columns")
         self.firstgid = tset.get("firstgid")
         self.margin = tset.get("margin")
@@ -97,7 +112,6 @@ class TileSet(_Tiled):
     def __init__(self, tset: dict, **kwargs):
         super().__init__()
         self.root = kwargs['root']
-        print(self.root)
         self.columns = tset.get("columns")
         self.firstgid = tset.get("firstgid")
         self._image = tset.get("image")
@@ -113,18 +127,9 @@ class TileSet(_Tiled):
 
     @property
     def image(self):
-        suff = os.path.realpath(self._image).replace(self.root, "").strip()
-        full = os.path.join(os.path.abspath(self.root), suff)
-        print(self._image, '1')
-        print(self.root, '2')
-        print(os.path.realpath(self._image), '3')
-        return full
-
-    def __repr__(self):
-        s = super().__repr__()
-        z = '{}'.format(self.image)
-        return " - ".join((s, z))
-
+        base = os.path.basename(self._image) # базовое имя
+        image = get_path(self.root, base) # сканируем все папки
+        return image
 
 class TileSets:
     type_sets = dict(tileset=TileSet, collection=ImageCollection)

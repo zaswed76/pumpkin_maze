@@ -114,6 +114,7 @@ class SubSprites(ABCSubImages):
         self.height = kwargs.get('height')
         self.width = kwargs.get('width')
         if  self.image is not None:
+
             self.sprite = pygame.image.load(self.image).convert_alpha()
             self.sprite_rect = self.sprite.get_rect()
             # спрайтов по горизонтали
@@ -343,8 +344,8 @@ if __name__ == '__main__':
     pygame.init()
 
     # путь к json карте
-    # path_map = paths.get_map('level_1')
-    path_map = r'D:\save\serg\projects\pumpkin_maze\pumpkin2\map.json'
+    path_map = paths.get_map('level_1')
+    # path_map = r'D:\save\serg\projects\pumpkin_maze\pumpkin2\map.json'
     # получить словарь из json карты
     maps = TiledMap.load_map(path_map)
     # каталог с изображениями тайлсетов
@@ -361,10 +362,10 @@ if __name__ == '__main__':
     #
     # # получить subsprites можно после  иницализации дисплея screen
     # # создать поверхность дисплея
-    # screen = pygame.display.set_mode((10, 10))
+    screen = pygame.display.set_mode((10, 10))
     # # получить объекты изображений ИНДКСАЦИЯ НАЧИНАЕТСЯ С 1
-    # sub = tiled_map.sub_sprites(SubSprites)
-    # print(sub)
+    sub = tiled_map.sub_sprites(SubSprites)
+    print(sub)
     # print("""------ ИНДКСАЦИЯ НАЧИНАЕТСЯ С 1 --------- :""")
     # print(sub[1])
     # print("""------sub[1] исключение --------- :""")
