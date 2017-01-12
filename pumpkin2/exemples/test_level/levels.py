@@ -22,14 +22,16 @@ class Level(pygame.sprite.Group):
         # sprite = spr.ABCSprite(spr.Image, image=self.image)
 
     def __create_level(self):
+        print('creata')
         path = paths.get_map('level_1')
         map_dct = TiledMap.load_map(path)
         tiled_map = TiledMap(map_dct, self.root)
         self.sub_sprites = tiled_map.sub_sprites(SubSprites)
+
         layers = tiled_map.layers
 
-        # print(sub_image)
         for layer in layers:
+            print(layer)
             if layer['type'] == 'tilelayer': # tiles
                 self.__create_tilelayer(layer)
             elif layer['type'] == 'objectgroup': # figure
