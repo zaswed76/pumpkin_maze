@@ -34,7 +34,7 @@ def run_game():
             if e.type == pygame.KEYDOWN and e.key == pygame.K_2:
                 status.level = 1
                 print(status.level)
-        screen.fill(pygame.Color('#D8D8D8'))
+        screen.fill(pygame.Color('green'))
 
         # Отображение последнего прорисованного экрана.
 

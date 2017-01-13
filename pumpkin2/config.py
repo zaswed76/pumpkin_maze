@@ -1,8 +1,8 @@
 
 class Config:
     def __init__(self):
-        self.width_in_tile = 12
-        self.height_in_tile = 12
+        self.width_in_tile = 32
+        self.height_in_tile = 25
         self.tileheight = 32
         self.tilewidth = 32
         self.width = self.tilewidth * self.width_in_tile
