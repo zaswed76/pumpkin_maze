@@ -38,7 +38,7 @@ def run_game():
 
         # Отображение последнего прорисованного экрана.
 
-        # level.draw(screen)
+        levels.levels[status.level].draw(screen)
         pygame.display.flip()
 
 

@@ -11,8 +11,9 @@ from pumpkin2.exemples.test_level import msprites as spr
 from pumpkin2.tiledlib.map_loader import TiledMap, SubSprites
 
 
-class Levels(list):
+class Levels:
     level_map_name = 'map.json'
+
     def __init__(self, screen: pygame.Surface, root: str,
                  included_levels: list, levels_dir: str):
 
@@ -29,29 +30,60 @@ class Levels(list):
         self.screen = screen
         self.levels_dir = levels_dir
         self._included_levels = included_levels
+        self.validate_maps = []
+        self.levels = []
+
+        self.__create_levels()
+
+    def __create_levels(self):
+        # создаём список валидных карт TiledMap
+        self.validate_maps.extend(self.__get_validate_tiled_map())
+        if self.validate_maps:
+            for tiled_map in self.validate_maps:
+                level = Level(self.screen, self.root, tiled_map)
+                self.add_level(level)
+
+    def add_level(self, level):
+        self.levels.append(level)
+
+
 
     def _get_level_path(self, level_name):
-        return os.path.join(self.root, self.levels_dir, level_name, Levels.level_map_name)
+        return os.path.join(self.root, self.levels_dir, level_name,
+                            Levels.level_map_name)
 
+    def __get_validate_tiled_map(self):
 
-    @property
-    def included_levels(self):
-        validate_paths = []
+        """
+        список объектов TiledMap
+        :return: list < TiledMap
+        """
+        validate_maps = []
+        not_maps_paths = []
         for name_level in self._included_levels:
             full_path = self._get_level_path(name_level)
             if os.path.isfile(full_path):
                 map_dct = TiledMap.load_map(full_path)
                 tiled_map = TiledMap(map_dct, self.root)
-                validate_paths.append((tiled_map, name_level))
-        return validate_paths
+                validate_maps.append(tiled_map)
+            else:
+                not_maps_paths.append(full_path)
+        if not_maps_paths:
+            print(''' этих карт не существует - {}'''.format(not_maps_paths))
+        return validate_maps
 
-    def __str__(self):
-        return 'доступные уровни - {}'.format(
-            list([x[1] for x in self.included_levels]))
+    def draw(self, level):
+        self.levels[level].draw(self.screen)
+
+    # def __str__(self):
+    #     return 'доступные уровни - {}'.format(
+    #         list([x for x in self.validate_maps]))
+
+
 
 
 class Level(pygame.sprite.Group):
-    def __init__(self, screen, root, tiled_map_path):
+    def __init__(self, screen, root, tiled_map: TiledMap):
         """
 
         :param screen: ссылка на поверхность главного окна
@@ -59,13 +91,15 @@ class Level(pygame.sprite.Group):
         :param tiled_map_path: карта json
         """
         super().__init__()
-        self.tiled_map_path = tiled_map_path
+        self._tiled_map = tiled_map
         self.root = root
         self.screen = screen
-        map_dct = TiledMap.load_map(self.tiled_map_path)
-        self.tiled_map = TiledMap(map_dct, self.root)
         self.sub_sprites = self.tiled_map.sub_sprites(SubSprites)
         self.__create_level()
+
+    @property
+    def tiled_map(self):
+        return self._tiled_map
 
     def __create_level(self):
         layers = self.tiled_map.layers

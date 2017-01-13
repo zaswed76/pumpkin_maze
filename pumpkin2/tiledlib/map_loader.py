@@ -19,6 +19,10 @@ from tiledlib.tilesets import *
 __all__ = ["TiledMap", "TiledSubSprites"]
 
 
+class MapErrors(Exception):
+    pass
+
+
 class ListMap:
     '''
     класс контейнер для спрайтов с индексацией с 1
@@ -76,6 +80,7 @@ class ListMap:
     def __repr__(self):
         return str(self._sprites)
 
+
 class ABCSubImages(metaclass=ABCMeta):
     def __init__(self, **kwargs):
         self.image = kwargs.get('image')
@@ -96,6 +101,7 @@ class ABCSubImages(metaclass=ABCMeta):
         """
         pass
 
+
 class SubSprites(ABCSubImages):
     """ класс предоставляет методы для 'вырезания и зоздания
      спрайтов из изображения ' """
@@ -112,8 +118,7 @@ class SubSprites(ABCSubImages):
         self.image = kwargs.get('image')
         self.height = kwargs.get('height')
         self.width = kwargs.get('width')
-        if  self.image is not None:
-
+        if self.image is not None:
             self.sprite = pygame.image.load(self.image).convert_alpha()
             self.sprite_rect = self.sprite.get_rect()
             # спрайтов по горизонтали
@@ -250,6 +255,7 @@ class TiledMap:
     класс представляет карту сгенерированую Tiled Map Editor,
     где атрибуты соответствуют ключам словаря сгенерированой карты
     """
+    default_orientation = 'orthogonal'
 
     def __init__(self, map_dict: dict, root: str, **kwargs):
         """
@@ -259,11 +265,12 @@ class TiledMap:
         :param kwargs:
         """
         self.root = root
+        self.__map_dict = map_dict
 
         # region поля словаря карты
 
-        self.tilesets = TileSets(map_dict.get("tilesets", []),
-                                 root=self.root)
+        self._tilesets = TileSets(map_dict.get("tilesets", []),
+                                  root=self.root)
         self.layers = map_dict.get("layers")
         # Stores the next available ID for new objects.
         self.nextobjectid = map_dict.get("nextobjectid")
@@ -280,8 +287,32 @@ class TiledMap:
         self.propertytypes = map_dict.get("propertytypes")
         self.height = map_dict.get("height")
         # endregion
+        self.__check_card()
 
-    def sub_sprites(self, images_fabric):
+    def __check_card(self):
+        """
+        проверка карты на валидность
+        """
+        if not self.__map_dict:
+            raise MapErrors('файл карты пуст')
+        if self.orientation != TiledMap.default_orientation:
+            raise MapErrors(
+                'карта должна быть - {}'.format(TiledMap.default_orientation))
+        if not isinstance(self.layers, list):
+            raise MapErrors('слои должны быть в виде списка')
+        if not isinstance(self.tilesets, TileSets):
+            raise MapErrors('tilesets должны быть объектом класса TileSets')
+
+    @property
+    def tilesets(self) -> TileSets:
+        """
+        :return: объект класса TileSets
+        """
+        ts = self.__map_dict.get("tilesets", [])
+        if not isinstance(ts, list): raise MapErrors('должен быть списком')
+        return self._tilesets
+
+    def sub_sprites(self, images_fabric: ABCSubImages) -> TiledSubSprites:
         """
 
         :param sprites_fabric: ссылка на класс наслдедующего
@@ -339,6 +370,7 @@ if __name__ == '__main__':
     # примеры исползьования
     # импорт модуля хранящего пути к ресурсам
     from pumpkin2 import paths
+
     # инициация pygame ! обязательно !
     pygame.init()
 
@@ -386,10 +418,3 @@ if __name__ == '__main__':
     # print(sub.get_sprites()[0])
     # print("""------ sub.get_sprites_back() ИНДКСАЦИЯ НАЧИНАЕТСЯ С 0 --------- :""")
     # print(sub.get_sprites_back())
-
-
-
-
-
-
-
