@@ -7,7 +7,6 @@
 class SubSprites создаёт и возвращает последовательность спрайтов - 'Surface'
 class TiledMap - обёртка над словарём предсставляющем карту Tiled Map Editor
 
-See http://www.iana.org/time-zones/repository/tz-link.html
 """
 import json
 import os

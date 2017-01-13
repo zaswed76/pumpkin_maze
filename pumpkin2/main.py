@@ -2,31 +2,25 @@ import os
 import sys
 
 import pygame
-
+from pumpkin2 import paths
+from config import Config
 from exemples.test_level.game_status import Status
-from exemples.test_level import levels as lv
+from tiledlib.levels import Levels
 
+cfg = Config()
 status = Status()
-
-
-
-
-
 
 
 def run_game():
     # Инициализирует игру и создает объект экрана.
     pygame.init()
-    screen = pygame.display.set_mode((600, 600))
+    screen = pygame.display.set_mode((cfg.width, cfg.height))
     pygame.display.set_caption("Name Game")
     # Запуск основного цикла игры.
 
-
-
     root = os.path.dirname(__file__)
-    level = lv.Level(screen, root)
-
-
+    levels = Levels(screen, root, cfg.included_levels, paths.maps)
+    print(levels)
 
 
     while True:
@@ -42,10 +36,10 @@ def run_game():
                 print(status.level)
         screen.fill(pygame.Color('#D8D8D8'))
 
-        
         # Отображение последнего прорисованного экрана.
 
-        level.draw(screen)
+        # level.draw(screen)
         pygame.display.flip()
+
 
 run_game()

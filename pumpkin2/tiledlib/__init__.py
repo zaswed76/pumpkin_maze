@@ -4,5 +4,6 @@
 __all__ = [
     "map_loader",
     "printer",
-    "layers"
+    "layers",
+    "levels"
     ]
