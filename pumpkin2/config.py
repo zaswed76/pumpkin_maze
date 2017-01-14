@@ -1,8 +1,8 @@
 
 class Config:
     def __init__(self):
-        self.width_in_tile = 32
-        self.height_in_tile = 25
+        self.width_in_tile = 5
+        self.height_in_tile = 5
         self.tileheight = 32
         self.tilewidth = 32
         self.width = self.tilewidth * self.width_in_tile
@@ -12,7 +12,7 @@ class Config:
         self.player_rect = (25, 25)
         self._included_levels = [
             'level_1',
-            'level_2', '3', '4', '5', '6', '7', '8', '9'
+            # 'level_2', '3', '4', '5', '6', '7', '8', '9'
         ]
 
         self.initialize_dynamic_settings()

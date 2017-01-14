@@ -80,9 +80,10 @@ class ImageCollection(_Tiled):
 
 
     def image(self, img):
-        suff = os.path.realpath(img[1]['image']).replace(self.root, "").strip()
-        full = os.path.join(os.path.abspath(self.root), suff)
-        return full
+        print(img)
+        base = os.path.basename(img) # базовое имя
+        image = get_path(self.root, base) # сканируем все папки
+        return image
 
     @property
     def images(self):
@@ -93,7 +94,7 @@ class ImageCollection(_Tiled):
         images = []
         tiles = sorted(self.tiles.items(), key=lambda item: item[0])
         for img in tiles:
-            paths = self.image(img)
+            paths = self.image(img[1]['image'])
             if not os.path.isfile(paths):
                 raise FileNotFoundError('нет картинки')
             else:

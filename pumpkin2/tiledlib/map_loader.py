@@ -61,6 +61,7 @@ class ListMap:
             return self._sprites[key.start - 1: key.stop]
         else:
             assert key > 0, 'Index sprites list starts with 1'
+            print(key, 555)
             assert key <= len(self._sprites), \
                 '''Length is the list of sprites - {}'''.format(
                     len(self._sprites))
@@ -339,11 +340,11 @@ class TiledMap:
              len(self.tilesets)
              )
 
-    @staticmethod
-    def get_path(rootw, tiled_set_image):
-        suff = os.path.realpath(tiled_set_image).replace(rootw, "").strip()
-        full = os.path.join(os.path.abspath(rootw), suff)
-        return full
+    # @staticmethod
+    # def get_path(rootw, tiled_set_image):
+    #     suff = os.path.realpath(tiled_set_image).replace(rootw, "").strip()
+    #     full = os.path.join(os.path.abspath(rootw), suff)
+    #     return full
 
     @staticmethod
     def load_map(pth_map: str) -> dict:
