@@ -1,10 +1,8 @@
 
 
-dct = {}
+a = [3, 1, 5, 2, 4]
 
-dct[1] = 1
-dct['e'] = 'e'
-dct[0] = 1
-dct['a'] = 1
-
-print(dct)
+flag = True
+while flag:
+    while True:
+        pass

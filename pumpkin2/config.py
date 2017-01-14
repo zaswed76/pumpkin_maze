@@ -12,7 +12,7 @@ class Config:
         self.player_rect = (25, 25)
         self._included_levels = [
             'level_1',
-            'level_2'
+            'level_2', '3', '4', '5', '6', '7', '8', '9'
         ]
 
         self.initialize_dynamic_settings()
