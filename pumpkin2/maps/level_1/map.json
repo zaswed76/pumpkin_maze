@@ -1,16 +1,5 @@
 { "height":5,
- "layers":[
-        {
-         "data":[13, 0, 13, 0, 0, 0, 0, 0, 0, 0, 0, 0, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-         "height":5,
-         "name":"\u0421\u043b\u043e\u0439 \u0442\u0430\u0439\u043b\u043e\u0432 1",
-         "opacity":1,
-         "type":"tilelayer",
-         "visible":true,
-         "width":5,
-         "x":0,
-         "y":0
-        }],
+ "layers":[],
  "nextobjectid":1,
  "orientation":"orthogonal",
  "renderorder":"right-down",
@@ -51,11 +40,19 @@
              "class":"string"
             },
          "spacing":0,
-         "tilecount":1,
+         "tilecount":3,
          "tileheight":32,
          "tiles":
             {
              "0":
+                {
+                 "image":"..\/..\/resources\/exsets\/images\/1_13.gif"
+                },
+             "1":
+                {
+                 "image":"..\/..\/resources\/exsets\/images\/1_23.gif"
+                },
+             "2":
                 {
                  "image":"..\/..\/resources\/exsets\/images\/1_13.gif"
                 }
